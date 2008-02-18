@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<jbossesb xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd" parameterReloadSecs="5">
+
+    <providers>
+          <sql-provider name="SQLprovider" 
+          			url="jdbc:hsqldb:hsql://localhost:1703"
+          			driver="org.hsqldb.jdbcDriver"
+          			username="sa"
+          			password="">
+          	<sql-bus busid="helloSQLChannel" >
+          		<sql-message-filter
+          			tablename="GATEWAY_TABLE"
+          			status-column="STATUS_COL"
+				order-by="DATA_COLUMN"	
+				where-condition="DATA_COLUMN like 'data%'"
+
+          			message-id-column="UNIQUE_ID"
+          		/>
+          	</sql-bus>
+          </sql-provider>
+          
+          <jms-provider name="JBossMQ" 
+          		connection-factory="ConnectionFactory"
+            	jndi-context-factory="org.jnp.interfaces.NamingContextFactory"
+            	jndi-URL="localhost" >
+            
+			    <jms-bus busid="quickstartEsbChannel">
+			        <jms-message-filter
+			            dest-type="QUEUE"
+			            dest-name="queue/A"
+			            selector="source='fromHelloworldSQLAction'"
+			        />
+			    </jms-bus>
+			
+		   </jms-provider>
+
+      </providers>
+      
+      <services>
+        <service 
+			category="myCategory"
+			name="myJmsListener"
+        	description="Hello World SQL Action (esb jdbc listener)">
+            <listeners>
+            	<sql-listener name="SqlGateway"
+            		busidref="helloSQLChannel"
+            		maxThreads="1"
+            		is-gateway="true"/>
+                <jms-listener name="helloWorldJmsAction"
+                              busidref="quickstartEsbChannel"
+                              maxThreads="1"
+                />
+            </listeners>
+            <actions mep="OneWay">
+		       <action name="action1" 
+                   	class="org.jboss.soa.esb.samples.quickstart.helloworldsqlaction.MyAction" 
+                   	process="displayMessage" 
+                   	/> 
+	               <action name="action2" class="org.jboss.soa.esb.actions.SystemPrintln" />    
+            </actions>
+
+        </service>
+      </services>
+     
+</jbossesb>
+
