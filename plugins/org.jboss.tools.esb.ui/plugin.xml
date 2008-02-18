@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <wizard 
+         category="org.jboss.tools.seam.ui" 
+         class="org.jboss.tools.esb.ui.wizard.newfile.NewESBFileWizard" 
+         icon="images/esb16.png"
+         id="org.jboss.tools.esb.ui.wizard.newfile.NewESBFileWizard" 
+         name="ESB File" 
+         project="false">
+         <selection class="org.eclipse.core.resources.IResource">
+         </selection>
+         <description>
+            Create a ESB XML File
+         </description>
+      </wizard>
+   </extension>
+
+   <extension id="e" name="XML Editors" point="org.jboss.tools.common.model.ui.xmlEditor">
+      <xmlEditor 
+            class="org.jboss.tools.jst.web.ui.editors.WebCompoundEditor" 
+            contributorClass="org.jboss.tools.common.model.ui.texteditors.MultiPageContributor" 
+            entities="FileESB101" 
+            icon="images/xstudio/editors/esb.gif" 
+            name="ESB">
+      </xmlEditor>
+   </extension>
+
+	<extension point="org.jboss.tools.common.model.classes">
+		<xclass id="org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+			class="org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"/>
+	</extension>
+
+</plugin>
