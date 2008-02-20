@@ -88,6 +88,90 @@ public class ESBModelTest extends TestCase {
 		assertTrue(errorList.toString(), errorList.length() == 0);
 	}
 	
+	public void testFTPExample() {
+		IFile f = project.getFile(new Path("esb-1.0.1/jboss-esb-ftp.xml"));
+		assertTrue("Cannot find jboss-esb-ftp.xml", f != null);
+		XModelObject object = EclipseResourceUtil.createObjectForResource(f);
+		assertTrue("Cannot create model for jboss-esb-ftp.xml", object != null);
+		assertTrue("Wrong entity for jboss-esb-ftp.xml", ESBConstants.ENT_ESB_FILE_101.equals(object.getModelEntity().getName()));
+		
+		StringBuffer errorList = new StringBuffer();
+		checkAttributeValue(object, 
+				"Providers/FTPprovider", 
+				"hostname", 
+				"@FTP_HOSTNAME@", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"username", 
+				"@FTP_USERNAME@", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"password", 
+				"@FTP_PASSWORD@", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"read only", 
+				"true", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"passive", 
+				"false", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"directory", 
+				"@FTP_DIRECTORY@", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"input suffix", 
+				".dat", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"work suffix", 
+				".esbWorking", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"post delete", 
+				"false", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"post suffix", 
+				".COMPLETE", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"error delete", 
+				"false", 
+			errorList);
+		checkAttributeValue(object, 
+				"Providers/FTPprovider/helloFTPChannel/Filter", 
+				"error suffix", 
+				".HAS_ERROR", 
+			errorList);
+		
+		checkAttributeValue(object, 
+				"Services/myFileListener/Listeners/FtpGateway", 
+				"bus id ref", 
+				"helloFTPChannel", 
+			errorList);
+		checkAttributeValue(object, 
+				"Services/myFileListener/Listeners/FtpGateway/remoteFileSystemStrategy-configFile", 
+				"value", 
+				"/ftpfile-cache-config.xml", 
+			errorList);
+
+		
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+	
 	protected boolean checkAttributeValue(XModelObject object, String path, String attribute, String testValue, StringBuffer errorList) {
 		XModelObject child = object.getChildByPath(path);
 		if(child == null) {
