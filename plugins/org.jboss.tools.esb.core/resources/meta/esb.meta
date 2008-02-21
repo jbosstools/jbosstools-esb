@@ -1294,7 +1294,10 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true" name="name" xmlname="name"/>
-   <XModelAttribute PROPERTIES="category=general" name="bus id ref" xmlname="busidref"/>
+   <XModelAttribute PROPERTIES="category=general" name="bus id ref" xmlname="busidref">
+    <Constraint loader="ListString"/>
+    <Editor name="ESBBusList"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="max threads" xmlname="maxThreads"/>
    <XModelAttribute PROPERTIES="category=general" name="is gateway" xmlname="is-gateway">
     <Constraint loader="ListString">
@@ -1442,16 +1445,13 @@
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
    <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
     <XActionItem BaseActionName="Paste" HandlerClassName="%Paste%"
      ICON="action.paste" displayName="Paste" kind="action" name="Paste"/>
    </XActionItem>
    <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
+    <XActionItem BaseActionName="Delete"
+     HandlerClassName="%DeleteChildren%" ICON="action.delete"
+     displayName="Delete" kind="action" name="Delete"/>
    </XActionItem>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
   </XActionItem>
@@ -1646,7 +1646,10 @@
      kind="action" name="AddAnyProvider"/>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
+    <XActionItem BaseActionName="Paste" HandlerClassName="%Paste%"
+     ICON="action.paste" displayName="Paste" kind="action" name="Paste"/>
+   </XActionItem>
    <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
     <XActionItem BaseActionName="Delete"
      HandlerClassName="%DeleteChildren%" ICON="action.delete"
@@ -2011,10 +2014,6 @@
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
    <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
     <XActionItem BaseActionName="Paste" HandlerClassName="%Paste%"
      ICON="action.paste" displayName="Paste" kind="action" name="Paste"/>
    </XActionItem>
