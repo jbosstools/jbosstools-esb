@@ -121,8 +121,8 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="Add Action..."
-     kind="action" name="AddAction">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Action..." kind="action" name="AddAction">
      <EntityData EntityName="ESBAction101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="class"/>
@@ -1359,23 +1359,24 @@
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="Listener..." kind="action" name="AddListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Listener..." kind="action" name="AddListener">
      <EntityData EntityName="ESBListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="bus id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="Scheduled Listener..."
-     kind="action" name="AddScheduledListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Scheduled Listener..." kind="action" name="AddScheduledListener">
      <EntityData EntityName="ESBScheduledListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="event processor" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="JCA Gateway..."
-     kind="action" name="AddJCAGateway">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="JCA Gateway..." kind="action" name="AddJCAGateway">
      <EntityData EntityName="ESBJCAGateway101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="adapter"/>
@@ -1383,56 +1384,56 @@
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="JMS Listener..."
-     kind="action" name="AddJMSListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="JMS Listener..." kind="action" name="AddJMSListener">
      <EntityData EntityName="ESBJMSListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="bus id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="FS Listener..."
-     kind="action" name="AddFSListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="FS Listener..." kind="action" name="AddFSListener">
      <EntityData EntityName="ESBFSListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="bus id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="FTP Listener..."
-     kind="action" name="AddFTPListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="FTP Listener..." kind="action" name="AddFTPListener">
      <EntityData EntityName="ESBFTPListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="bus id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="SQL Listener..."
-     kind="action" name="AddSQLListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="SQL Listener..." kind="action" name="AddSQLListener">
      <EntityData EntityName="ESBSQLListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="bus id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="Hibernate Listener..."
-     kind="action" name="AddHibernateListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Hibernate Listener..." kind="action" name="AddHibernateListener">
      <EntityData EntityName="ESBHibernateListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="bus id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="JBR Listener..."
-     kind="action" name="AddJBRListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="JBR Listener..." kind="action" name="AddJBRListener">
      <EntityData EntityName="ESBJBRListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="bus id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="Groovy Listener..."
-     kind="action" name="AddGroovyListener">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Groovy Listener..." kind="action" name="AddGroovyListener">
      <EntityData EntityName="ESBGroovyListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="script"/>
@@ -2003,8 +2004,8 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     WizardClassName="%Default%" displayName="Add Service..."
-     kind="action" name="AddService">
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Service..." kind="action" name="AddService">
      <EntityData EntityName="ESBService101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="category"/>
