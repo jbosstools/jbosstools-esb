@@ -3,6 +3,7 @@ package org.jboss.tools.esb.core.model.handlers;
 import java.util.Properties;
 import org.jboss.tools.common.meta.action.impl.SpecialWizardSupport;
 import org.jboss.tools.common.meta.action.impl.handlers.DefaultCreateHandler;
+import org.jboss.tools.common.model.XModelException;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.util.FindObjectHelper;
 
@@ -38,7 +39,7 @@ public class AddProviderSupport extends SpecialWizardSupport {
     }
     
     @Override
-	public void action(String name) throws Exception {
+	public void action(String name) throws XModelException {
 		if(FINISH.equals(name)) {
 			execute();
 			setFinished(true);
@@ -55,7 +56,7 @@ public class AddProviderSupport extends SpecialWizardSupport {
 		}
 	}
 	
-	protected void execute() throws Exception {
+	protected void execute() throws XModelException {
 		Properties p0 = extractStepData(0);
 		XModelObject provider = getTarget().getModel().createModelObject(providerEntity, p0);
 		
