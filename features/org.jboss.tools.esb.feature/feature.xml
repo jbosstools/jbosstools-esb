@@ -218,9 +218,6 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
-   <requires>
-   </requires>
-
    <plugin
          id="org.jboss.tools.esb.core"
          download-size="0"
