@@ -20,7 +20,9 @@
  <ICONS>
   <GROUP name="action">
    <GROUP name="new">
-    <GROUP name="esb"/>
+    <GROUP name="esb">
+     <ICON name="file" path="plugin:org.jboss.tools.esb.core:images/esb/new_esb_file.gif"/>
+    </GROUP>
    </GROUP>
   </GROUP>
   <GROUP name="main">
