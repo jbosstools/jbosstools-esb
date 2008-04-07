@@ -7,6 +7,7 @@ import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.ui.attribute.IListContentProvider;
 import org.jboss.tools.common.model.ui.attribute.adapter.DefaultComboBoxValueAdapter;
 import org.jboss.tools.common.model.ui.attribute.adapter.DefaultXAttributeListContentProvider;
+import org.jboss.tools.esb.core.model.ESBConstants;
 
 public class BusListAdapter extends DefaultComboBoxValueAdapter {
 
@@ -35,8 +36,8 @@ class BusListContentProvider extends DefaultXAttributeListContentProvider {
 		for (int i = 0; i < ps.length; i++) {
 			XModelObject[] cs = ps[i].getChildren();
 			for (int j = 0; j < cs.length; j++) {
-				if(cs[j].getModelEntity().getAttribute("bus id") != null) {
-					String v = cs[j].getAttributeValue("bus id");
+				if(cs[j].getModelEntity().getAttribute(ESBConstants.ATTR_BUS_ID) != null) {
+					String v = cs[j].getAttributeValue(ESBConstants.ATTR_BUS_ID);
 					if(v != null && v.length() > 0) {
 						set.add(v);
 					}

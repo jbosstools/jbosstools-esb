@@ -26,7 +26,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		"Properties", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 													//TODO maybe special ATTR_PRESENTATION needed as value may be inner XML
-		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 35), new FormAttributeData(ATTR_VALUE, 65, "Value")}, 
+		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 35), new FormAttributeData(ATTR_PROPERTY_VALUE_PRESENTATION, 65, "Value")}, 
 		new String[]{ENT_ESB_PROPERTY},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddProperty") //$NON-NLS-1$
 	);
@@ -102,7 +102,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 	static IFormData ESB_BUS_LIST_DEFINITION = new FormData(
 		"Bus list", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
-		new FormAttributeData[]{new FormAttributeData("bus id", 100)}, 
+		new FormAttributeData[]{new FormAttributeData(ESBConstants.ATTR_BUS_ID, 100)}, 
 		BUSES_101,
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddBus") //$NON-NLS-1$
 	);
