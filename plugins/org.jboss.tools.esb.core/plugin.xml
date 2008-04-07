@@ -22,6 +22,10 @@
 			class="org.jboss.tools.esb.core.model.ESBFileLoader"/>
 		<xclass id="org.jboss.tools.esb.core.model.ESBEntityRecognizer"
 			class="org.jboss.tools.esb.core.model.ESBEntityRecognizer"/>
+		<xclass id="org.jboss.tools.esb.core.model.ESBPropertyImpl"
+			class="org.jboss.tools.esb.core.model.ESBPropertyImpl"/>
+		<xclass id="org.jboss.tools.esb.core.model.ESBAnyElementPresentation"
+			class="org.jboss.tools.esb.core.model.ESBAnyElementPresentation"/>
 		<xclass id="org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl"
 			class="org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"

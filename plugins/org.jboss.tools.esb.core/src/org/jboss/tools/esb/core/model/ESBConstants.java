@@ -104,5 +104,8 @@ public interface ESBConstants {
 
 	public String ATTR_NAME = "name"; //$NON-NLS-1$
 	public String ATTR_VALUE = "value"; //$NON-NLS-1$
+	public String ATTR_PROPERTY_VALUE_PRESENTATION = "value presentation";
+	public String ATTR_BUS_ID = "id"; //$NON-NLS-1$
+	public String ATTR_BUS_ID_REF = "channel id ref"; //$NON-NLS-1$
 
 }

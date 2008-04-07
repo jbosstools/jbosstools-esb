@@ -4,6 +4,9 @@
 <XModelEntityGroup>
  <VERSION DEPENDS="Model:1.0" MODULE="ESB Editor" VERSION="1.0"/>
  <MAPPINGS>
+  <MAPPING name="AnyElementPresentation">
+   <PAIR name="route-to,object-path" value="org.jboss.tools.esb.core.model.ESBAnyElementPresentation"/>
+  </MAPPING>
   <MAPPING name="FileVersions">
    <PAIR name="ESB1.0.1" value="FileESB101"/>
   </MAPPING>
@@ -204,11 +207,11 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="bus" loader="ElementType" name="element type">
+   <XModelAttribute default="channel" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
-    name="bus id" xmlname="busid"/>
+    name="id" xmlname="busid"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -255,7 +258,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="Add Bus..." kind="action" name="AddBus">
      <EntityData EntityName="ESBBus">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -315,11 +318,11 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="fs bus" loader="ElementType" name="element type">
+   <XModelAttribute default="channel" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
-    name="bus id" xmlname="busid"/>
+    name="id" xmlname="busid"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -353,7 +356,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttributeReference
     attributes="poll frequency seconds,schedule frequency,schedule id ref"
@@ -466,7 +469,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="FS Bus..." kind="action" name="AddBus">
      <EntityData EntityName="ESBFSBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -491,11 +494,11 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="ftp bus" loader="ElementType" name="element type">
+   <XModelAttribute default="channel" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
-    name="bus id" xmlname="busid"/>
+    name="id" xmlname="busid"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -529,7 +532,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttributeReference
     attributes="poll frequency seconds,schedule frequency,schedule id ref"
@@ -654,7 +657,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="FTP Bus..." kind="action" name="AddBus">
      <EntityData EntityName="ESBFTPBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -682,7 +685,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="script" xmlname="script"/>
@@ -715,11 +718,11 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="hibernate bus" loader="ElementType" name="element type">
+   <XModelAttribute default="channel" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
-    name="bus id" xmlname="busid"/>
+    name="id" xmlname="busid"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -761,7 +764,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
@@ -859,7 +862,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="Hibernate Bus..." kind="action" name="AddBus">
      <EntityData EntityName="ESBHibernateBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -883,11 +886,11 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="jbr bus" loader="ElementType" name="element type">
+   <XModelAttribute default="channel" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
-    name="bus id" xmlname="busid"/>
+    name="id" xmlname="busid"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="port" xmlname="port">
     <Constraint loader="Int"/>
@@ -925,7 +928,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
@@ -983,7 +986,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="JBR Bus..." kind="action" name="AddBus">
      <EntityData EntityName="ESBJBRBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
       <AttributeData AttributeName="port"/>
      </EntityData>
     </XActionItem>
@@ -1013,7 +1016,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttribute PROPERTIES="category=advanced;id=true;save=always"
     name="adapter" xmlname="adapter"/>
@@ -1106,11 +1109,11 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="jms bus" loader="ElementType" name="element type">
+   <XModelAttribute default="channel" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
-    name="bus id" xmlname="busid"/>
+    name="id" xmlname="busid"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1144,7 +1147,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
@@ -1177,9 +1180,9 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="id=true" default="Filter" name="name" visibility="false"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
-    name="dest name" xmlname="dest-name"/>
+    name="destination name" xmlname="dest-name"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
-    default="QUEUE" name="dest type" xmlname="dest-type">
+    default="QUEUE" name="destination type" xmlname="dest-type">
     <Constraint loader="List">
      <value name="QUEUE"/>
      <value name="TOPIC"/>
@@ -1268,7 +1271,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="JMS Bus..." kind="action" name="AddBus">
      <EntityData EntityName="ESBJMSBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -1296,7 +1299,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true" name="name" xmlname="name"/>
-   <XModelAttribute PROPERTIES="category=general" name="bus id ref" xmlname="busidref">
+   <XModelAttribute PROPERTIES="category=general" name="channel id ref" xmlname="busidref">
     <Constraint loader="ListString"/>
     <Editor name="ESBBusList"/>
    </XModelAttribute>
@@ -1365,7 +1368,7 @@
      displayName="Listener..." kind="action" name="AddListener">
      <EntityData EntityName="ESBListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="bus id ref" Mandatory="no"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1390,7 +1393,7 @@
      displayName="JMS Listener..." kind="action" name="AddJMSListener">
      <EntityData EntityName="ESBJMSListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="bus id ref" Mandatory="no"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1398,7 +1401,7 @@
      displayName="FS Listener..." kind="action" name="AddFSListener">
      <EntityData EntityName="ESBFSListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="bus id ref" Mandatory="no"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1406,7 +1409,7 @@
      displayName="FTP Listener..." kind="action" name="AddFTPListener">
      <EntityData EntityName="ESBFTPListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="bus id ref" Mandatory="no"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1414,7 +1417,7 @@
      displayName="SQL Listener..." kind="action" name="AddSQLListener">
      <EntityData EntityName="ESBSQLListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="bus id ref" Mandatory="no"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1422,7 +1425,7 @@
      displayName="Hibernate Listener..." kind="action" name="AddHibernateListener">
      <EntityData EntityName="ESBHibernateListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="bus id ref" Mandatory="no"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1430,7 +1433,7 @@
      displayName="JBR Listener..." kind="action" name="AddJBRListener">
      <EntityData EntityName="ESBJBRListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="bus id ref" Mandatory="no"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1460,7 +1463,8 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="%ESB%"
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.ESBPropertyImpl"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="property" name="ESBProperty">
   <XChildrenEntities>
@@ -1480,6 +1484,9 @@
    <XModelAttribute PROPERTIES="category=general" name="value" xmlname="value"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
+   </XModelAttribute>
+   <XModelAttribute name="value presentation" visibility="false">
+    <Editor name="Uneditable"/>
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
@@ -1557,7 +1564,7 @@
       <AttributeData AttributeName="name"/>
      </EntityData>
      <EntityData EntityName="ESBBus">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -1568,7 +1575,7 @@
       <AttributeData AttributeName="protocol"/>
      </EntityData>
      <EntityData EntityName="ESBJBRBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
       <AttributeData AttributeName="port"/>
      </EntityData>
     </XActionItem>
@@ -1587,7 +1594,7 @@
       <AttributeData AttributeName="connection factory"/>
      </EntityData>
      <EntityData EntityName="ESBJMSBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -1598,7 +1605,7 @@
       <AttributeData AttributeName="connection factory"/>
      </EntityData>
      <EntityData EntityName="ESBJMSBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -1608,7 +1615,7 @@
       <AttributeData AttributeName="name"/>
      </EntityData>
      <EntityData EntityName="ESBFSBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -1619,7 +1626,7 @@
       <AttributeData AttributeName="hostname"/>
      </EntityData>
      <EntityData EntityName="ESBFTPBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -1629,7 +1636,7 @@
       <AttributeData AttributeName="name"/>
      </EntityData>
      <EntityData EntityName="ESBSQLBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -1640,7 +1647,7 @@
       <AttributeData AttributeName="hibernate cfg file"/>
      </EntityData>
      <EntityData EntityName="ESBHibernateBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HIDE="always"
@@ -1675,11 +1682,11 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="sql bus" loader="ElementType" name="element type">
+   <XModelAttribute default="channel" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
-    name="bus id" xmlname="busid"/>
+    name="id" xmlname="busid"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1713,7 +1720,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttributeReference attributes="poll frequency seconds"
     entity="ESBScheduledListener101" name="scheduled listener"/>
@@ -1819,7 +1826,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="SQL Bus..." kind="action" name="AddBus">
      <EntityData EntityName="ESBSQLBus101">
-      <AttributeData AttributeName="bus id"/>
+      <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -1903,7 +1910,7 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttributeReference
-    attributes="name,bus id ref,max threads,is gateway"
+    attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttribute PROPERTIES="category=advanced"
     name="poll frequency seconds" xmlname="poll-frequency-seconds"/>
