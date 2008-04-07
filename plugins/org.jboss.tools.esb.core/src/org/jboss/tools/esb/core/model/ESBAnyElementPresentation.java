@@ -28,10 +28,10 @@ public class ESBAnyElementPresentation implements XModelObjectPresentation {
 	public String getValue(XModelObject object) {
 		String tag = object.getAttributeValue("tag");
 		if(TAG_ROUTE_TO.equals(tag)) {
-			checkParentPropertyName(object, PROPERTY_DESTINATIONS);
+			if(!checkParentPropertyName(object, PROPERTY_DESTINATIONS)) return null;
 			return getAnyElementAttributeValue(object, ATTR_DESTINATION_NAME);
 		} else if(TAG_OBJECT_PATH.equals(tag)) {
-			checkParentPropertyName(object, PROPERTY_OBJECT_PATHS);
+			if(!checkParentPropertyName(object, PROPERTY_OBJECT_PATHS)) return null;
 			return getAnyElementAttributeValue(object, ATTR_ESB);
 		}
 		return null;
@@ -59,10 +59,6 @@ public class ESBAnyElementPresentation implements XModelObjectPresentation {
 			return v.length() == 0 ? null : v;
 		}
 		return null;
-	}
-
-	public boolean isEnabled(XModelObject object) {
-		return false;
 	}
 
 }
