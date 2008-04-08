@@ -25,7 +25,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 	static IFormData ESB_PROPERTY_LIST_DEFINITION = new FormData(
 		"Properties", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
-													//TODO maybe special ATTR_PRESENTATION needed as value may be inner XML
+													//special ATTR_PRESENTATION needed as value may be inner XML
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 35), new FormAttributeData(ATTR_PROPERTY_VALUE_PRESENTATION, 65, "Value")}, 
 		new String[]{ENT_ESB_PROPERTY},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddProperty") //$NON-NLS-1$
