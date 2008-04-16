@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3CR3//EN"
+"../../resources/support/docbook-dtd/docbookx.dtd"
+
+[
+<!ENTITY introduction SYSTEM "modules/introduction.xml">
+<!ENTITY esb_support SYSTEM "modules/esb_support.xml">
+<!ENTITY esb_editor SYSTEM "modules/esb_editor.xml">
+]>
+<book>
+    <bookinfo>
+        <title>ESB Tools Reference Guide</title>
+        <pubdate>April 2008</pubdate>
+        <copyright>
+            <year>2007</year>
+            <year>2008</year>
+            <holder>JBoss, a division of Red Hat Inc.</holder>
+        </copyright>
+        <releaseinfo>
+            <para>Version: 2.1.0.Beta1</para>
+        </releaseinfo>
+    </bookinfo>
+    
+    <toc/>  
+    
+    &introduction;
+    &esb_support;
+    &esb_editor;
+
+</book>    

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="esb_support">
+        <?dbhtml filename="esb_support.html"?>
+        <chapterinfo>
+                <keywordset>
+                        <keyword>JBoss Developer Studio</keyword>
+                        <keyword>Eclipse</keyword>
+                        <keyword>ESB</keyword>
+                        <keyword>Java</keyword>
+                        <keyword>JBoss</keyword>
+                </keywordset>
+        </chapterinfo>
+
+        <title>ESB Support</title>
+
+        <para>Since v.1.0.1 Developer Studio supports xml editor for the ESB XML file used in JBoss ESB.</para>
+        
+        <para>At this point the structured xml editor will prompt you to specify a proper ESB environment.</para>
+
+        <para>In this section we will focus more on all concepts that JBDS integrates for
+                        working with ESB.</para>
+
+                <section>
+                        <title>ESB Framework Installation</title>
+                        
+                        <para>This chapter will provide you with detailed information on how to install JBoss ESB.</para>
+                        
+                        <para>To install the JBoss ESB plugins for Eclipse, you need the following:</para>
+                        
+                        <itemizedlist>
+                                <listitem>
+                                        <para>Get Eclipse 3.3.1 and Web Tools 2.0.1</para>
+                                </listitem>
+                        </itemizedlist>
+                        <para>The quickest way to get a WTP version is to download "Eclipse IDE for Java EE Developers"
+                                via <ulink url="http://www.eclipse.org">www.eclipse.org</ulink>.</para>
+                        <note><title>Note:</title><para>Remember to choose the download that matches your OS and use Java 5 when you run it.</para></note>
+                        <itemizedlist>
+                                <listitem>
+                                        <para>Get the <ulink url="http://www.jboss.org/jbossesb/downloads/">JBoss ESB build</ulink></para>
+                                </listitem>
+                        </itemizedlist>                                                                                                                                              
+                        <para>You can also find the latest development release of JBoss ESB from <ulink url="http://www.jboss.org/jbossesb/downloads/">JBoss ESB Downloads Site</ulink></para>
+                        <itemizedlist>
+                                <listitem>
+                                        <para>Finally, install the build</para>
+                                </listitem>
+                        </itemizedlist>
+                        
+                        <para>Unzip the file(s) directly into your Eclipse <emphasis>
+                                <property>plugins/features</property>
+                        </emphasis> directory and it will be readily available. It might be necessary to start Eclipse
+                                with eclipse -clean to make sure it starts clean and rereads the new list of plugins.</para>
+                             
+                </section>
+
+                <section>
+                        <title>Creating a ESB File</title>
+                        <para>In this chapter we suggest a step-by-step walk-through of creating your own simple file. Let's try to organize a new ESB file.</para>
+                                
+                        <para>We will show you how to use the Creation wizard for creating a new ESB file.</para>
+                                
+                                <para>At first you should open any project. Select <emphasis><property>File &gt;New &gt; Other...</property>
+                                </emphasis> in the main menu bar or context menu for selected project and then <emphasis><property>ESB &gt; ESB File</property></emphasis> in the New dialog:</para>
+                                
+                                <figure>
+                                        <title>New Dialog</title>
+                                        <mediaobject>
+                                                <imageobject>
+                                                        <imagedata fileref="images/esb_support/01_create_esb.png"/>
+                                                </imageobject>
+                                        </mediaobject>
+                                </figure>
+                                
+                                <para> Clicking <emphasis><property>Next</property></emphasis> brings us to the wizard page where it&apos;s necessary to specify the
+                                        folder, name and version for the file. We choose, for example, <emphasis><property>jboss-esb.xml</property>
+                                        </emphasis> as the name and accept the selected projects folder and default version.</para>
+                                <figure>
+                                        <title>Folder, Name and Version</title>
+                                        <mediaobject>
+                                                <imageobject>
+                                                        <imagedata fileref="images/esb_support/02_create_esb.png"/>
+                                                </imageobject>
+                                        </mediaobject>
+                                </figure>
+                                
+                                <para>Thus, our file will be created in the selected projects folder by default. If you want to change the folder
+                                        for your future file click <emphasis><property>Browse...</property></emphasis> button to set needed folder or simply type it.</para>
+                                
+                                <para>Clicking on <emphasis><property>Finish</property>
+                                </emphasis> results in the file being generated. The wizard creates one xml file.</para>
+                        
+                </section>
+        
+</chapter>
