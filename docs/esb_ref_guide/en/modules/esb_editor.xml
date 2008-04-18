@@ -13,19 +13,99 @@
     <title>ESB Editor</title>
 
     <para>
-        ESB editor have  <link linkend="OpenOnSelection4Hyperlinknavigation"><property>OpenOn</property></link> and 
-        <link linkend="CodeAssistAndDynamicCodeAssist42BasedOnProjectData"><property>Content Assist</property></link> features, 
-        they are described more detail in this chapter. In addition you get to know a <link linkend="visual_page">ESB Editor</link> for combined visual and source editing
+        ESB editor have  <!--<link linkend="OpenOnSelection"><property>OpenOn</property></link> and 
+        <link linkend="CodeAssistAndDynamicCodeAssist42BasedOnProjectData"><property>Content Assist</property></link>--> some features, 
+        they are described more detail in this chapter. In addition you get to know a <link linkend="esb_filee">ESB Editor</link> for combined visual and source editing
         of esb files.</para>
 
+    <section id="esb_file">
+        
+        <title>ESB File Editor</title>
+        <para>JBoss Developer Studio comes with a powerful and customizable <property>ESB File Editor</property>. You can use the ESB File Editor to develop an
+            application using ESB technology.</para>
+        
+        <para>ESB file editor has two tabs: Tree and Source.</para>
+        
+        <para>You can switch to Tree:</para>
+        <figure>
+            <title>Tree View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/01_esb_tree_view.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        
+        <para>You can easily switch from Tree to Source by selecting the Source tab at the bottom of the editor and work in Source view.</para>
+        <figure id="sourceView">
+            <title>Source View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/02_esb_source_view.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>No matter what view you select, you get full integration with <!--Properties and -->Outline view<!-- views -->:</para>
+        <figure>
+            <title>Properties and Outline Views</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/03_esb_outline_view.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        
+        <para>You can add any new elements right in the <property>Tree viewer</property>. You can easily add a new provider:</para>
+        <para></para>
+        <figure>
+            <title>Add new provider</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/04_esb_add_provider.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+       <para>You can easily add a new service too:</para>
+        <figure>
+            <title>Add new service</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/05_esb_add_service.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        
+        <para>You can add a new listener for service and other elements of ESB file too:</para>
+        <figure>
+            <title>Add new listener for service</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/06_esb_add_listener.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+   </section>
+   
     <section id="esb_editors_features">
        
         <title>ESB Editors Features</title>
-        <para>JBoss Developer Studio has powerful editor features that help you easily navigate
-            within your application and make use of content and code assist no matter what project
-            file you are working on.</para>
-
-        <section id="OpenOnSelection4Hyperlinknavigation">
+        <para>JBoss Developer Studio has powerful editor features that help you easily make use of content and code assist.</para>
+       
+        <section id="ESBsyntaxvalidation84">
+            
+            <title>ESB syntax validation</title>
+            <para>When working in JBoss ESB editor you are constantly provided with feedback
+                and contextual error checking as you type. In the Source viewer, if at any point a tag is incorrect or incomplete, an error will be indicated next to the line and also in the Problems view below.</para>
+        </section>
+        
+       <section id="ESBSupport XMLSchema">
+            <title>Support for XML Schema</title>
+            
+           <para>JBoss Developer Studio fully 
+               <link ulinend="sourceView">supports XML files based on schemas as well as DTDs</link>.</para>
+    </section>
+       
+       <!--<section id="OpenOnSelection">
          
             <title>OpenOn</title>
 
@@ -41,10 +121,11 @@
                     in its own editor. In this example the managed bean NameBean will open.</para>
                
             </section>
+            -->
 
-        <section id="CodeAssistAndDynamicCodeAssist42BasedOnProjectData">
+         <section id="ESBContentAssist">
          
-                    <title>Content Assist</title>
+              <!--  <title>Content Assist</title>
                     <para><property>Content assist</property> is available when working with ESB file.</para>
 
                     <para>When working with ESB file in JBoss Developer Studio, you can use
@@ -54,100 +135,40 @@
                             <para>Content Assist for XML file</para>
                         </listitem>
                         <listitem>
-                            <para>Content Assist based on project data</para>
+                            <para>Content Assist with Tree View editor</para>
                         </listitem>
-                        <listitem>
-                            <para>Content Assist with graphical JSF editor</para>
-                        </listitem>
-                    </itemizedlist>
-                    <section id="ContentAssistForXMLJSPAndJSFConfigurationFiles865">
+                    </itemizedlist> 
+                    <section id="ContentAssistForESBXML">-->
                        
-                        <title>Content Assist for XML file</title>
+                        <title>Content Assist for ESB XML file</title>
 
-                        <para>At any point when working with any XML file Content Assist is available to help you. Simply type <emphasis>
+                        <para>When you work with any ESB XML file Content Assist is available to help you. Simply type <emphasis>
                                 <property>Ctrl-Space</property></emphasis> to see what is available.</para>
 
-                        <para>Content Assist for XML file:</para>
+                        <para>Content Assist for ESB XML file:</para>
                         <figure>
-                            <title>Content Assist in JSF Configuration File</title>
+                            <title>Content Assist for ESB XML file</title>
                             <mediaobject>
                                 <imageobject>
                                     <imagedata
-                                        fileref="images/editors_features/editors_features_9.png" scale="85"/>
+                                        fileref="images/esb_editor/08_esb_features.png"/>
                                 </imageobject>
                             </mediaobject>
-                        </figure>
-                       
-           </section>
-            
-          <section id="ContentAssistBasedOnProjectData86">
-                   
-                        <title>Content Assist Based on Project Data</title>
-
-                        <para>JBoss Developer Studio takes Content Assist to the next level. Studio
-                            will constantly scan your project and you will be able to insert code
-                            into the ESB page from your project that includes:</para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>Values from Property files</para>
-                            </listitem>
-                            <listitem>
-                                <para><emphasis role="italic">
-                                        <property>&quot;Managed beans&quot;</property>
-                                    </emphasis> attributes and methods</para>
-                            </listitem>
-                            <listitem>
-                                <para>Navigation Rule Outcomes</para>
-                            </listitem>
-                            <listitem>
-                                <para>JSF variables (context, request etc...)</para>
-                            </listitem>
-                        </itemizedlist>
-                        <para>The first screenshot shows how to insert message from a Properties
-                            files. You simply put the cursor inside the <emphasis role="italic">
-                                <property>&quot;value&quot;</property>
-                            </emphasis> attribute and press <emphasis>
-                                <property>Ctrl-Space</property>.
-                            </emphasis> JBoss Developer Studio will scan your project and show a
-                            list of possible values to insert.</para>
-                        <figure>
-                            <title>Inserting Message</title>
-                            <mediaobject>
-                                <imageobject>
-                                    <imagedata
-                                        fileref="images/editors_features/editors_features_12.png"/>
-                                </imageobject>
-                            </mediaobject>
-                        </figure>
-                        <para>In the following screenshot we are inserting a <emphasis role="italic"><property>&quot;Managed bean&quot;</property></emphasis>
-                            attribute value. Again, by simply clicking <emphasis><property>Ctrl-Space</property>,</emphasis> 
-                            JBoss Developer Studio will show a list of all possible values that you can insert.</para>
-
-                        <para>Once you select a Managed bean, it will show you a list of all
-                            available attributes for the selected Managed bean (userBean).</para>
-                        <figure>
-                            <title>Attributes List</title>
-                            <mediaobject>
-                                <imageobject>
-                                    <imagedata
-                                        fileref="images/editors_features/editors_features_13.png"/>
-                                </imageobject>
-                            </mediaobject>
-                        </figure>
-                        <para>Code Assist based on project data will also prompt you for navigation
-                            rules that exist in your JSF configuration file.</para>
-                        <figure>
-                            <title>Code Assist</title>
-                            <mediaobject>
-                                <imageobject>
-                                    <imagedata
-                                        fileref="images/editors_features/editors_features_14.png"/>
-                                </imageobject>
-                            </mediaobject>
-                        </figure>
-            </section>
-                    
-          <section id="ContentAssistWithinJSFGraphicalEditor44">
+                        </figure>      
+             
+             <para>Content Assist for atributes:</para>
+             <figure>
+                 <title>Content Assist for atributes:</title>
+                 <mediaobject>
+                     <imageobject>
+                         <imagedata
+                             fileref="images/esb_editor/09_esb_features.png"/>
+                     </imageobject>
+                 </mediaobject>
+             </figure>     
+            <!--          </section>
+                 
+               <section id="ContentAssistWithinTreeEditor">
                   
                         <title>Content Assist within Tree ESB Editor</title>
 
@@ -158,81 +179,14 @@
                             <mediaobject>
                                 <imageobject>
                                     <imagedata
-                                        fileref="images/editors_features/editors_features_15.png" scale="85"/>
+                                        fileref="images/esb_file/09_editors_features.png" scale="85"/>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-             </section>
+             </section> --> 
          </section>
        
-        <section>
-            <title>Code assist for ESB</title>
-            
-            <para>One more feature which comes with ESB support is code assist
-                (Ctrl + Space). It is available for <property>ESB tags</property>
-                while editing <emphasis>
-                    <property>iboss-esb.xml</property>
-                </emphasis> files.</para>
-            
-            <figure>
-                <title>XML File Code Assist</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata
-                            fileref="images/esb_support/esb_support_5.png"
-                            scale="60"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-            
-            <para>What&apos;s more, code assist is also available for <emphasis
-                role="italic">
-                <property>&quot;ESB&quot;</property>
-            </emphasis> attribute in any HTML tag.</para>
-            
-            <figure>
-                <title>Code Assist for ESB Attribute</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata
-                            fileref="images/esb_support/esb_support_6.png"
-                            scale="70"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-            
-            <para>After selecting <emphasis role="italic">
-                <property>&quot;esb&quot;</property>
-            </emphasis> you get the code assist for ESB components available on
-                a page.</para>
-            
-            <figure>
-                <title>Code Assist for ESB Components</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata
-                            fileref="images/esb_support/esb_support_7.png"
-                            scale="80"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-            
-            <para>When a component is chosen you will see all available attributes for
-                it.</para>
-            
-            <figure>
-                <title>Available Attributes for the Component</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata
-                            fileref="images/esb_support/esb_support_8.png"
-                            scale="80"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-        </section>
-       
-        <section id="FullControlOverSourceFiles-SynchronizedSourcAndVisualEditing74">
+        <section id="FullControlOverSourceFiles-SynchronizedSourcAndVisualEditing">
             
             <title>Synchronized Source and Visual Editing</title>
 
@@ -243,90 +197,17 @@
                 time, you always have full control over esb source file. Any changes you
                 make in the source view, will immediately appear in the tree view.</para>
 
-            <para>The ESB file editor has two views: <property>Tree</property> and <property>Source</property>. Both
-                views are synchronized, you can edit the file in any view.</para>
+            <para>The ESB file editor has has a graphical view (<property>Tree</property>) and source
+                (<property>Source</property>). Both views are synchronized, you can edit the file in any view.</para>
             <figure>
                 <title>Two Views are Synchronized</title>
                 <mediaobject>
                     <imageobject>
-                        <imagedata fileref="images/editors_features/editors_features_32.png" scale="75"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-          
-            <para>The same applies to all other JBoss Developer Studio editors.</para>
-
-            <para>Web XML editor is shown. Web XML editor has a graphical view (Tree) and source
-                (Source).</para>
-
-            <figure>
-                <title>Two Views are Synchronized</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata fileref="images/editors_features/editors_features_35.png" scale="75"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-           
-            <para>JBoss Developer Studio TLD file editor shown in Tree view. At any point you can
-                edit the source by going switching to Source view.</para>
-            <figure>
-                <title>Two Views are Synchronized</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata fileref="images/editors_features/editors_features_37.png" scale="75"/>
+                        <imagedata fileref="images/esb_editor/10_esb_features.png"/>
                     </imageobject>
                 </mediaobject>
             </figure>
           
         </section>
-    
     </section>
-    
-    <section id="esb_file">
-
-        <title>ESB File Editor</title>
-        <para>JBoss Developer Studio comes with a powerful and customizable <property>ESB File Editor</property>(ESBFE). You can use the ESB File Editor to develop an
-            application using ESB technology.</para>
-
-        <para>Current ESBFE version has two tabs: Tree and Source.</para>
-            
-            <para>You can switch to Tree:</para>
-            <figure>
-                <title>Tree View</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata fileref="images/visual_page/visual_page_2.png"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-
-            <para>Or work just in Source view.</para>
-            <figure>
-                <title>Source View</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata fileref="images/visual_page/visual_page_3.png"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-            <para>No matter what view you select, you get full integration with Properties and Outline views:</para>
-            <figure>
-                <title>Properties And Outline Views</title>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata fileref="images/visual_page/visual_page_4.png" scale="65"/>
-                    </imageobject>
-                </mediaobject>
-            </figure>
-
-    <section id="ESBsyntaxvalidation84">
-    
-            <title>ESB syntax validation</title>
-            <para>When working in JBoss ESB editor you are constantly provided with feedback
-                and contextual error checking as you type.</para>
-     </section>
-     
-    </section>
-
 </chapter>
