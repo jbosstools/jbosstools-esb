@@ -44,15 +44,9 @@
         
         <para>You can find a set of benefits and other extra information on:</para>
         <itemizedlist>
-            <listitem>
-                <para><ulink url="http://www.jboss.org/jbossesb">JBoss ESB</ulink></para>
-            </listitem>
-            <listitem>
-                <para><ulink url="http://wiki.jboss.org/wiki/JBossESB">JBoss Wiki</ulink></para>
-            </listitem>
-            <listitem>
-                <para><ulink url="http://www.jboss.org/jbossesb/docs/index.html">JBoss ESB Documentation Library</ulink></para>
-            </listitem>
+            <listitem><ulink url="http://www.jboss.org/jbossesb">JBoss ESB</ulink></listitem>
+            <listitem><ulink url="http://wiki.jboss.org/wiki/JBossESB">JBoss Wiki</ulink></listitem>
+            <listitem><ulink url="http://www.jboss.org/jbossesb/docs/index.html">JBoss ESB Documentation Library</ulink></listitem>
         </itemizedlist>
     
     </section>
