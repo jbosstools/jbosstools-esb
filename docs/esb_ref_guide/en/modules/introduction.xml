@@ -22,20 +22,8 @@
         
         <para>ESB (Enterprise Service Bus) - an abstraction layer on top of an implementation of an enterprise messaging system
             that provides the features with which Service Oriented Architectures may be implemented.</para>
-            
-        <para>The ESB is seen as the next generation of EAI – better and without the vendor-lockin characteristics of old.
-            As such, many of the capabilities of a good ESB mirror those of existing EAI offerings. Traditional EAI stacks consist of:
-            Business Process Monitoring, Integrated Development Environment, Human Workflow User Interface, Business Process Management,
-            Connectors, Transaction Manager, Security, Application Container, Messaging Service, Metadata Repository, Naming and Directory Service,
-            Distributed Computing Architecture.</para>
-            
-            <para>As with EAI systems, ESB is not about business logic – that is left to higher levels.
-                It is about infrastructure logic. Although there are many different definitions of what constitutes an ESB,
-                what everyone agrees on now is that an ESB is part of an SOA infrastructure. However,
-                SOA is not simply a technology or a product: it's a style of design, with many aspects
-                (such as architectural, methodological and organisational) unrelated to the actual technology.
-                But obviously at some point it becomes necessary to map the abstract SOA to a concrete
-                implementation and that's where the ESB comes in to play.</para>
+        <para>If you want to develop applications using ESB technology JBoss ESB also meet your needs. The JBoss Developer Studio provides ESB editor and all necessary wizards for creating ESB file.</para>
+        <para>In this guide we provide you with the information on ESB Editor which allows you to develop ESB file much faster and with far fewer errors so sparing your time.</para>
 
     </section>
     

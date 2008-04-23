@@ -62,11 +62,11 @@
             </mediaobject>
         </figure>
         
-        <para>Addition, editing or deleting of some artifacts operations are available right in the <property>Tree</property> view. Right-click any node and select one of the available actions in the context menu.
+        <para>Adding, editing or deleting of some artifacts operations are available right in the <property>Tree</property> view. Right-click any node and select one of the available actions in the context menu.
             For example, you can easily add a new provider:</para>
         <para></para>
         <figure>
-            <title>Add new provider</title>
+            <title>Adding new provider</title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/04_esb_add_provider.png"/>
@@ -76,7 +76,7 @@
         
        <para>You can easily add a new service too:</para>
         <figure>
-            <title>Add new service</title>
+            <title>Adding new service</title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/05_esb_add_service.png"/>
@@ -86,7 +86,7 @@
         
         <para>The same way you can create a listener for service and other elements of ESB:</para>
         <figure>
-            <title>Add new listener for service</title>
+            <title>Adding new listener for service</title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/06_esb_add_listener.png"/>
@@ -194,9 +194,8 @@
                 or extra visual modes at the same time.</para>
 
             <para>JBoss Developer Studio provides you two different editors to speed your development: a graphical view (<property>Tree</property>) and source
-                (<property>Source</property>). At the same
-                time, you always have full control over esb source file. Any changes you
-                make in the source view, will immediately appear in the tree view. Both views are synchronized, you can edit the file in any view.</para>
+                (<property>Source</property>). At the same time, you always have full control over esb source file. Any changes you
+                make in the source view will immediately appear in the tree view. Both views are synchronized, you can edit the file in any view.</para>
 
             <figure>
                 <title>Two Views are Synchronized</title>
