@@ -32,7 +32,7 @@
             <title>Tree View</title>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="images/esb_editor/01_esb_tree_view.png"/>
+                    <imagedata fileref="images/esb_editor/01_esb_tree_view.png" scale="90"/>
                 </imageobject>
             </mediaobject>
         </figure>
@@ -57,7 +57,7 @@
             <title>Outline View</title>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="images/esb_editor/03_esb_outline_view.png"/>
+                    <imagedata fileref="images/esb_editor/03_esb_outline_view.png" scale="70"/>
                 </imageobject>
             </mediaobject>
         </figure>
@@ -151,7 +151,7 @@
                             <mediaobject>
                                 <imageobject>
                                     <imagedata
-                                        fileref="images/esb_editor/08_esb_features.png"/>
+                                        fileref="images/esb_editor/08_esb_features.png" scale="80"/>
                                 </imageobject>
                             </mediaobject>
                         </figure>      
@@ -162,7 +162,7 @@
                  <mediaobject>
                      <imageobject>
                          <imagedata
-                             fileref="images/esb_editor/09_esb_features.png"/>
+                             fileref="images/esb_editor/09_esb_features.png" scale="80"/>
                      </imageobject>
                  </mediaobject>
              </figure>     
@@ -202,7 +202,7 @@
                 <title>Two Views are Synchronized</title>
                 <mediaobject>
                     <imageobject>
-                        <imagedata fileref="images/esb_editor/10_esb_features.png"/>
+                        <imagedata fileref="images/esb_editor/10_esb_features.png" scale="70"/>
                     </imageobject>
                 </mediaobject>
             </figure>
