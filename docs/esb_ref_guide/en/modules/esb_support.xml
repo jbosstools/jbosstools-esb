@@ -13,19 +13,20 @@
 
         <title>ESB Support</title>
 
-        <para>Since v.1.0.1 Developer Studio supports xml editor for the ESB XML file used in JBoss ESB.</para>
-        
-        <para>At this point the structured xml editor will prompt you to specify a proper ESB environment.</para>
-
-        <para>In this section we will focus more on all concepts that JBDS integrates for
+        <para>In this section we will focus more on all concepts that JBoss Tools integrates for
                         working with ESB.</para>
 
                 <section>
                         <title>ESB Framework Installation</title>
                         
-                        <para>This chapter will provide you with detailed information on how to install JBoss ESB.</para>
+                        <para>This chapter will provide you with detailed information on how to install JBoss ESB plugin into Eclipse.</para>
                         
-                        <para>To install the JBoss ESB plugins for Eclipse, you need the following:</para>
+                        <para>ESB Editor is a one module of JBoss Tools project. Since ESB Editor has a dependence on other JBoss
+                        Tools modules we recommend you to install a bundle of all <ulink url="http://labs.jboss.com/tools/download/index.html">JBoss Tools plug-ins</ulink>.
+                        Installation instruction you can find on JBoss Wiki in <ulink url="http://labs.jboss.com/wiki/InstallingJBossTools">InstallingJBossTools</ulink> section.</para>
+                         <!-- <para>To install the JBoss ESB plugins for Eclipse, download the appropriate installation file from <ulink url="http://www.jboss.org/jbossesb/downloads/">JBoss ESB Downloads</ulink> page 
+                                and install it. </para>
+                       you need the following:</para>
                         
                         <itemizedlist>
                                 <listitem>
@@ -51,7 +52,7 @@
                                 <property>plugins/features</property>
                         </emphasis> directory and it will be readily available. It might be necessary to start Eclipse
                                 with eclipse -clean to make sure it starts clean and rereads the new list of plugins.</para>
-                             
+                             -->
                 </section>
 
                 <section>

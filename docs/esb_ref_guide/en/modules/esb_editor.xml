@@ -3,8 +3,7 @@
     <?dbhtml filename="esbEditor.html"?>
     <chapterinfo>
         <keywordset>
-            <keyword>JBoss Developer Studio</keyword>
-            <keyword>JBDS</keyword>
+            <keyword>JBoss ESB</keyword>
             <keyword>Editor</keyword>
             <keyword>ESB</keyword>
         </keywordset>
@@ -21,7 +20,7 @@
     <section id="esb_file">
         
         <title>ESB File Editor</title>
-        <para>JBoss Developer Studio comes with a powerful and customizable <property>ESB File Editor</property>. You can use the ESB File Editor to develop an
+        <para><property>ESB File Editor</property> is  a powerful and customizable tool. ESB File Editor allows developing an
             application using ESB technology.</para>
         
         <para>ESB file editor has two tabs: Tree and Source.</para>     
@@ -51,7 +50,7 @@
             so any changes made in one of the views will immediately appear in the other.</para>
         <para>No matter what view you select, you get full integration with <!--Properties and -->Outline view<!-- views -->.
             For example, you can work in the Source view with the help of the Outline view. The Outline view shows a tree structure of the ESB file.
-            Simply select any element in the Outline view, and it will jump to the same place in the Source editor,
+            Simply select any element in the Outline view and it will jump to the same place in the Source editor,
             so you can navigate through the source code with Outline view.</para>
         <figure>
             <title>Outline View</title>
@@ -96,12 +95,12 @@
     </section>
     
     <para>The same actions can be done in the right part of <property>Tree</property> view tab
-        using <property>Add</property>, <property>Edit</property>, <property>Remove</property> buttons.</para>
+        using <property>Add</property>, <property>Edit</property> and <property>Remove</property> buttons.</para>
    
     <section id="esb_editors_features">
        
         <title>ESB Editors Features</title>
-        <para>JBoss Developer Studio has powerful editor features that help you easily make use of content and code assist.</para>
+        <para>JBoss ESB tooling has powerful editor features that help you easily make use of content and code assist.</para>
        
         <section id="ESBsyntaxvalidation84">
             
@@ -113,7 +112,7 @@
        <section id="ESBSupport XMLSchema">
             <title>Support for XML Schema</title>
             
-           <para>JBoss Developer Studio fully 
+           <para>JBoss ESB Framework fully 
                <link linkend="sourceView">supports XML files based on schemas as well as DTDs</link>.</para>
     </section>
        
@@ -156,9 +155,9 @@
                             </mediaobject>
                         </figure>      
              
-             <para>Content Assist for atributes:</para>
+             <para>Content Assist for attributes:</para>
              <figure>
-                 <title>Content Assist for atributes:</title>
+                 <title>Content Assist for attributes:</title>
                  <mediaobject>
                      <imageobject>
                          <imagedata
@@ -190,10 +189,10 @@
             
             <title>Synchronized Source and Visual Editing</title>
 
-            <para>JBoss Developer Studio offers the flexibility to edit ESB file in either source
+            <para>ESB file can be edited in either source
                 or extra visual modes at the same time.</para>
 
-            <para>JBoss Developer Studio provides you two different editors to speed your development: a graphical view (<property>Tree</property>) and source
+            <para>JBoss Tools provide you two different editors to speed your development: a graphical view (<property>Tree</property>) and source
                 (<property>Source</property>). At the same time, you always have full control over esb source file. Any changes you
                 make in the source view will immediately appear in the tree view. Both views are synchronized, you can edit the file in any view.</para>
 
@@ -208,7 +207,7 @@
           
         </section>
         
-        <para>The last chapter covers a capabilities on how you can use ESB editor.</para>
+        <para>The last chapter covers capabilities on how you can use ESB editor.</para>
         
         <para>In summary, this reference supplies you with all necessary information on the functionality
             that JBoss ESB Editor provides for work with JBoss ESB.</para>
