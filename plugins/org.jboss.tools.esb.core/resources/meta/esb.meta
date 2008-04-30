@@ -2088,7 +2088,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="jboss esb" loader="ElementType" name="element type">
+   <XModelAttribute default="JBoss esb" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="name" xmlname="NAME"/>
@@ -2185,7 +2185,7 @@
     kind="list" name="CreateActions">
     <XActionItem ICON="action.newattribute" displayName="File" group="1"
      kind="list" name="CreateFiles">
-     <XActionItem displayName="Jboss ESB" kind="list" name="ESB">
+     <XActionItem displayName="JBoss ESB" kind="list" name="ESB">
       <XActionItem HIDE="always" HandlerClassName="%SpecialWizard%"
        ICON="action.new.seam.faces-config"
        PROPERTIES="entity=FileESB101;extensions=.xml.;validator.addfile=true;support=org.jboss.tools.common.model.files.handlers.CreateFileSupport;extension=xml;entityVersion=ESB"
@@ -2215,7 +2215,7 @@
     kind="list" name="CreateActions">
     <XActionItem ICON="action.newattribute" displayName="File" group="1"
      kind="list" name="CreateFiles">
-     <XActionItem displayName="Jboss ESB" kind="list" name="ESB">
+     <XActionItem displayName="JBoss ESB" kind="list" name="ESB">
       <XActionItem HIDE="always" HandlerClassName="%SpecialWizard%"
        ICON="action.new.seam.faces-config"
        PROPERTIES="entity=FileESB101;extensions=.xml.;validator.addfile=true;support=org.jboss.tools.common.model.files.handlers.CreateFileSupport;extension=xml;entityVersion=ESB"
