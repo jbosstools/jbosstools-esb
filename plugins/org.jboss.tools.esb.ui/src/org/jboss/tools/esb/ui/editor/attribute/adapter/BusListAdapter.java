@@ -31,6 +31,8 @@ class BusListContentProvider extends DefaultXAttributeListContentProvider {
 		XModelObject f = context;
 		while(f != null && f.getFileType() != XModelObject.FILE) f = f.getParent();
 		if(f == null) return;
+		String listenerEntity = attribute.getModelEntity().getName();
+		String prefix = getBusEntityPrefix(listenerEntity);
 		XModelObject[] ps = f.getChildByPath("Providers").getChildren();
 		TreeSet<String> set = new TreeSet<String>();
 		for (int i = 0; i < ps.length; i++) {
@@ -39,13 +41,28 @@ class BusListContentProvider extends DefaultXAttributeListContentProvider {
 				if(cs[j].getModelEntity().getAttribute(ESBConstants.ATTR_BUS_ID) != null) {
 					String v = cs[j].getAttributeValue(ESBConstants.ATTR_BUS_ID);
 					if(v != null && v.length() > 0) {
-						set.add(v);
+						if(prefix == null || cs[j].getModelEntity().getName().startsWith(prefix)) {
+							set.add(v);
+						}
 					}
 				}
 			}
 		}
 		tags = set.toArray(new String[0]);
 		
+	}
+	
+	private String getBusEntityPrefix(String listenerEntity) {
+		if(listenerEntity == null) return null;
+		if(listenerEntity.startsWith("ESBListener")) {
+			return null;
+		}
+		if(listenerEntity.startsWith("ESBJCAGateway")) {
+			return "ESBJMSBus";
+		}
+		int i = listenerEntity.indexOf("Listener");
+		if(i < 0) return null;
+		return listenerEntity.substring(0, i) + "Bus";
 	}
 
 }
