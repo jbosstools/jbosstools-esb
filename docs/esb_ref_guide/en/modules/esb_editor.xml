@@ -92,10 +92,11 @@
                 </imageobject>
             </mediaobject>
         </figure>
+        <para>The same actions can be done in the right part of <property>Tree</property> view tab
+            using <property>Add</property>, <property>Edit</property> and <property>Remove</property> buttons.</para>
     </section>
     
-    <para>The same actions can be done in the right part of <property>Tree</property> view tab
-        using <property>Add</property>, <property>Edit</property> and <property>Remove</property> buttons.</para>
+    
    
     <section id="esb_editors_features">
        
@@ -109,7 +110,7 @@
                 and contextual error checking as you type. In the Source viewer, if at any point a tag is incorrect or incomplete, an error will be indicated next to the line and also in the Problems view below.</para>
         </section>
         
-       <section id="ESBSupport XMLSchema">
+       <section id="ESBSupportXMLSchema">
             <title>Support for XML Schema</title>
             
            <para>JBoss ESB Framework fully 
