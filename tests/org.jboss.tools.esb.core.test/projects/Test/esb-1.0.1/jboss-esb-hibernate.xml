@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<jbossesb xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd" parameterReloadSecs="5">
+
+    <providers>
+          <hibernate-provider name="Hibernateprovider"
+		hibernate-cfg-file="hibernate.cfg.xml">
+          	<hibernate-bus busid="helloHibernateChannel" >
+			<hibernate-message-filter
+				classname="org.jboss.soa.esb.samples.quickstart.hibernateaction.Order"
+				event="onLoad,onDelete"/>
+          	</hibernate-bus>
+          </hibernate-provider>
+          
+          <jms-provider name="JBossMQ" 
+          		connection-factory="ConnectionFactory"
+            	jndi-context-factory="org.jnp.interfaces.NamingContextFactory"
+            	jndi-URL="localhost" >
+            
+			    <jms-bus busid="quickstartEsbChannel">
+			        <jms-message-filter
+			            dest-type="QUEUE"
+			            dest-name="queue/A"
+			            selector="source='fromHelloworldHibernateAction'"
+			        />
+			    </jms-bus>
+			
+		   </jms-provider>
+
+      </providers>
+      
+      <services>
+        <service 
+			category="myCategory"
+			name="myJmsListener"
+        	description="Hello World Hibernate Action (esb hibernate listener)">
+            <listeners>
+            	<hibernate-listener name="HibernateGateway"
+            		busidref="helloHibernateChannel"
+            		maxThreads="1"
+            		is-gateway="true"/>
+                <jms-listener name="helloWorldJmsAction"
+                              busidref="quickstartEsbChannel"
+                              maxThreads="1"
+                />
+            </listeners>
+            <actions mep="OneWay">
+                   <action name="action1" 
+                   	class="org.jboss.soa.esb.samples.quickstart.hibernateaction.MyAction" 
+                   	process="displayMessage" 
+                   	/>      
+            </actions>
+        </service>
+      </services>
+     
+</jbossesb>
