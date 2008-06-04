@@ -68,7 +68,9 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 		List<IFormData> list = new ArrayList<IFormData>();
 		IFormData g = ModelFormLayoutData.createGeneralFormData(entity);
 		if(g != null) list.add(g);
-		if(entity.getChild(ENT_ESB_PROPERTY) != null) {
+		if(entityName.startsWith(PREACTION_PREFIX)) {
+			//do nothing; when specific children exist use specific forms
+		} else if(entity.getChild(ENT_ESB_PROPERTY) != null) {
 			list.add(ESBListsFormLayoutData.ESB_PROPERTY_LIST_DEFINITION);
 		} else if(entityName.equals(ENT_ESB_LISTENERS)) {
 			list.add(ESBListsFormLayoutData.ESB_LISTENER_LIST_DEFINITION);
