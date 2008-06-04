@@ -34,6 +34,8 @@ public interface ESBConstants {
 	public String ENT_ESB_FTP_PROVIDER = "ESBFTPProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_SQL_PROVIDER = "ESBSQLProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_HIBERNATE_PROVIDER = "ESBHibernateProvider101"; //$NON-NLS-1$
+
+	static String PREACTION_PREFIX = "ESBPreAction";
 	
 	public String[] PROVIDERS_101 = {
 		ENT_ESB_PROVIDER,

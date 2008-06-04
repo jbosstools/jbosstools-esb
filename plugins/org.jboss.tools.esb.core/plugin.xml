@@ -4,6 +4,7 @@
 
    <extension point="org.jboss.tools.common.model.meta">
       <meta path="meta/esb.meta"/>
+      <meta path="meta/esb-actions.meta"/>
    </extension>
 
    <extension point="org.jboss.tools.common.model.keys">

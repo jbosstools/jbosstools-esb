@@ -32,9 +32,18 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
 		return super.isSaveable(entity, n, v, dv);
 	}
 
+	public void loadChildren(Element element, XModelObject o) {
+		super.loadChildren(element, o);
+		if(SpecificActionLoader.instance.isActionsFolder(o.getModelEntity().getName())) {
+			SpecificActionLoader.instance.convertChildrenToSpecific(o);
+		}
+	}
 
     public boolean save(Element parent, XModelObject o) {
     	if(!needToSave(o)) return true;
+    	if(SpecificActionLoader.instance.isPreActionEntity(o)) {
+    		o = SpecificActionLoader.instance.convertSpecificActionToBasic(o);
+    	}
     	return super.save(parent, o);
     }
 

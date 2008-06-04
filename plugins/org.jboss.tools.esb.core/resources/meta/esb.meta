@@ -124,7 +124,7 @@
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
-   <XActionItem kind="list" name="CreateActions">
+   <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="Add Action..." kind="action" name="AddAction">
