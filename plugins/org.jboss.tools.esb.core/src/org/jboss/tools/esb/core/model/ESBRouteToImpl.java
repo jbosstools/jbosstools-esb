@@ -8,17 +8,20 @@
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
  ******************************************************************************/ 
-package org.jboss.tools.esb.core.model.converters;
-
-import org.jboss.tools.common.model.XModelObject;
+package org.jboss.tools.esb.core.model;
 
 /**
  * @author Viacheslav Kabanovich
  */
-public interface IPropertyConverter {
-	
-	public void toSpecific(XModelObject basicAction, XModelObject specificAction);
+public class ESBRouteToImpl extends ESBCustomizedObjectImpl {
+	private static final long serialVersionUID = 1L;
 
-	public void toBasic(XModelObject basicAction, XModelObject specificAction);
+	public ESBRouteToImpl() {}
+
+	public String getPresentationString() {
+		String dn = getAttributeValue("destination name");
+		if(dn != null && dn.length() > 0) return dn;
+		return super.getPresentationString();
+	}
 
 }

@@ -10,15 +10,19 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.core.model.converters;
 
-import org.jboss.tools.common.model.XModelObject;
-
 /**
  * @author Viacheslav Kabanovich
  */
-public interface IPropertyConverter {
-	
-	public void toSpecific(XModelObject basicAction, XModelObject specificAction);
+public class RouteToConverter extends ListConverter {
+	static final String ROUTE_TO_ENTITY = "ESBPreRouteTo";
+	static final String DESTINATIONS = "destinations";
 
-	public void toBasic(XModelObject basicAction, XModelObject specificAction);
+	protected String getPropertyName() {
+		return DESTINATIONS;
+	}
+
+	protected String getItemEntityName() {
+		return ROUTE_TO_ENTITY;
+	}
 
 }

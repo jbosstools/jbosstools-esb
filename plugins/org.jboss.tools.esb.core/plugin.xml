@@ -29,6 +29,8 @@
 			class="org.jboss.tools.esb.core.model.ESBAnyElementPresentation"/>
 		<xclass id="org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl"
 			class="org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl"/>
+		<xclass id="org.jboss.tools.esb.core.model.ESBRouteToImpl"
+			class="org.jboss.tools.esb.core.model.ESBRouteToImpl"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"/>
 			

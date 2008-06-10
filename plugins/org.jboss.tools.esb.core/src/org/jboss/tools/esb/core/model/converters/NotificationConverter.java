@@ -10,15 +10,19 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.core.model.converters;
 
-import org.jboss.tools.common.model.XModelObject;
-
 /**
  * @author Viacheslav Kabanovich
  */
-public interface IPropertyConverter {
-	
-	public void toSpecific(XModelObject basicAction, XModelObject specificAction);
+public class NotificationConverter extends ListConverter {
+	static final String NOTIFICATION_ENTITY = "ESBPreNotificationList";
+	static final String DESTINATIONS = "destinations";
 
-	public void toBasic(XModelObject basicAction, XModelObject specificAction);
+	protected String getPropertyName() {
+		return DESTINATIONS;
+	}
+
+	protected String getItemEntityName() {
+		return NOTIFICATION_ENTITY;
+	}
 
 }

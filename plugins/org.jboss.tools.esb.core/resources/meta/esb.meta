@@ -49,7 +49,7 @@
  </ICONS>
  <GlobalActions kind="list"/>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="action" name="ESBAction101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>

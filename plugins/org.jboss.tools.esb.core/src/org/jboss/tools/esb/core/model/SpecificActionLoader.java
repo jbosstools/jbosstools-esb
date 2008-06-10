@@ -1,3 +1,13 @@
+/******************************************************************************* 
+ * Copyright (c) 2007 Red Hat, Inc. 
+ * Distributed under license by Red Hat, Inc. All rights reserved. 
+ * This program is made available under the terms of the 
+ * Eclipse Public License v1.0 which accompanies this distribution, 
+ * and is available at http://www.eclipse.org/legal/epl-v10.html 
+ * 
+ * Contributors: 
+ * Red Hat, Inc. - initial API and implementation 
+ ******************************************************************************/ 
 package org.jboss.tools.esb.core.model;
 
 import java.util.HashMap;
@@ -12,17 +22,21 @@ import org.jboss.tools.common.model.impl.RegularObjectImpl;
 import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 import org.jboss.tools.esb.core.ESBCorePlugin;
 import org.jboss.tools.esb.core.model.converters.AliasConverter;
+import org.jboss.tools.esb.core.model.converters.NotificationConverter;
+import org.jboss.tools.esb.core.model.converters.RouteToConverter;
 
+/**
+ * @author Viacheslav Kabanovich
+ */
 public class SpecificActionLoader implements ESBConstants {
-	public static SpecificActionLoader instance = new SpecificActionLoader();
 
-	static String ACTION_ENTITY = "ESBAction";
-	static String ACTIONS_FOLDER_ENTITY = "ESBActions";
+	static final String ACTION_ENTITY = "ESBAction";
+	static final String ACTIONS_FOLDER_ENTITY = "ESBActions";
 
 	/**
 	 * Version suffix should be added to entity name
 	 */
-	String[][] SPECIFIC_ACTIONS = {
+	static final String[][] SPECIFIC_ACTIONS = {
 		{"org.jboss.soa.esb.actions.converters.ByteArrayToString", "ESBPreActionByteArrayToString"},
 			//encoding
 		{"org.jboss.soa.esb.actions.converters.LongToDateConverter", "ESBPreActionLongToDateConverter"},
@@ -41,7 +55,7 @@ public class SpecificActionLoader implements ESBConstants {
 			//class-alias, exclude-package, incoming-type, root-node, aliases
 		{"org.jboss.soa.esb.actions.jbpm.CommandInterpreter", "ESBPreActionCommandInterpreter"},
 			//
-		{"org.jboss.soa.esb.actions.scripting.GroovyActionProcessor", "ESBPreActionGroovyActionProcessor"},
+		{"org.jboss.soa.esb.actions.scripting.GroovyActionProcessor", "ESBPreActionGroovyProcessor"},
 			//script
 		{"org.jboss.soa.esb.actions.Aggregator", "ESBPreActionAggregator"},
 			//timeoutInMillies
@@ -60,6 +74,8 @@ public class SpecificActionLoader implements ESBConstants {
 		{"org.jboss.soa.esb.actions.SystemPrintln", "ESBPreActionSystemPrintln"},
 			//message, printfull, outputstream
 	};
+
+	public static final SpecificActionLoader instance = new SpecificActionLoader();
 
 	Map<String,String> classToEntity = new HashMap<String, String>();
 	Map<String,String> entityToClass = new HashMap<String, String>();
@@ -145,8 +161,11 @@ public class SpecificActionLoader implements ESBConstants {
 			String converter = childEntity.getProperty("converter");
 			if("alias".equals(converter)) {
 				new AliasConverter().toSpecific(basic, action);
+			} else if("route".equals(converter)) {
+				new RouteToConverter().toSpecific(basic, action);
+			} else if("notification".equals(converter)) {
+				new NotificationConverter().toSpecific(basic, action);
 			}
-			//TODO
 		}
 		
 		XModelObject[] cs = basic.getChildren(ESBConstants.ENT_ESB_PROPERTY);
@@ -177,8 +196,8 @@ public class SpecificActionLoader implements ESBConstants {
 			if(pre == null || pre.length() == 0) continue;
 			if("true".equals(pre)) {
 				String value = action.getAttributeValue(as[i].getName());
-				if(value == null || (value.length() == 0 && !"always".equals(as[i].getProperty("save")))) {
-					continue;
+				if(value == null || value.length() == 0 || value.equals(as[i].getDefaultValue())) {
+					if(!"always".equals(as[i].getProperty("save"))) continue;
 				}
 				XModelObject p = action.getModel().createModelObject(ESBConstants.ENT_ESB_PROPERTY, null);
 				p.setAttributeValue("name", as[i].getXMLName());
@@ -199,8 +218,11 @@ public class SpecificActionLoader implements ESBConstants {
 			String converter = childEntity.getProperty("converter");
 			if("alias".equals(converter)) {
 				new AliasConverter().toBasic(result, action);
+			} else if("route".equals(converter)) {
+				new RouteToConverter().toBasic(result, action);
+			} else if("notification".equals(converter)) {
+				new NotificationConverter().toBasic(result, action);
 			}
-			//TODO
 		}
 		
 		XModelObject[] cs = action.getChildren(ESBConstants.ENT_ESB_PROPERTY);
