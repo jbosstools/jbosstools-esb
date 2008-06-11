@@ -10,6 +10,12 @@
  ******************************************************************************/
 package org.jboss.tools.esb.ui.editor.form;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jboss.tools.common.meta.XChild;
+import org.jboss.tools.common.meta.XModelEntity;
+import org.jboss.tools.common.meta.impl.XModelMetaDataImpl;
 import org.jboss.tools.common.model.ui.forms.FormAttributeData;
 import org.jboss.tools.common.model.ui.forms.FormData;
 import org.jboss.tools.common.model.ui.forms.FormLayoutDataUtil;
@@ -48,11 +54,23 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyListener") //$NON-NLS-1$
 	);
 
+	static String[] getActionEntities() {
+		XModelEntity entity = XModelMetaDataImpl.getInstance().getEntity(ENT_ESB_ACTIONS);
+		if(entity == null) {
+			return new String[]{ENT_ESB_ACTION};
+		}
+		XChild[] cs = entity.getChildren();
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < cs.length; i++) {
+			list.add(cs[i].getName());
+		}
+		return list.toArray(new String[0]);
+	}
 	static IFormData ESB_ACTION_LIST_DEFINITION = new FormData(
 		"Actions", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
-		new String[]{ENT_ESB_ACTION},
+		getActionEntities(),
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyAction") //$NON-NLS-1$
 	);
 
