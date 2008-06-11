@@ -1128,8 +1128,7 @@
   <XActionItem kind="list">
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
-    <XActionItem displayName="Add Pre-Packed Action" group="1"
-     kind="list" name="PrePackedAction">
+    <XActionItem displayName="Add Pre-Packed Action" kind="list" name="PrePackedAction">
      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
       PROPERTIES="validator.add=true" WizardClassName="%Default%"
       displayName="Object Invoke..." kind="action" name="AddObjectInvoke">

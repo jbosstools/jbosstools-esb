@@ -127,7 +127,7 @@
    <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="Add Generic Action..." kind="action" name="AddAction">
+     displayName="Generic Action..." kind="action" name="AddAction">
      <EntityData EntityName="ESBAction101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="class"/>
