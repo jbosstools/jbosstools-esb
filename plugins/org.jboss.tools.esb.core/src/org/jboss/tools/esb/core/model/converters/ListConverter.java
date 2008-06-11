@@ -37,35 +37,10 @@ public abstract class ListConverter implements IPropertyConverter {
 		XModelObject[] as = p.getChildren();
 		for (int i = 0; i < as.length; i++) {
 			if(as[i] instanceof AnyElementObjectImpl) {
-				String tag = as[i].getAttributeValue("tag");
-				Map<String, String> attr = toMap(((AnyElementObjectImpl)as[i]).getAttributes());
-
-				XModelObject a = specificAction.getModel().createModelObject(getItemEntityName(), null);
-				if(a == null || tag == null || !tag.equals(a.getModelEntity().getXMLSubPath())) {
-					continue;
+				XModelObject a = fromAnyElement(as[i], getItemEntityName());
+				if(a != null) {
+					specificAction.addChild(a);
 				}
-				
-				XModelEntity entity = a.getModelEntity();
-				XAttribute[] attrs = entity.getAttributes();
-				for (int j = 0; j < attrs.length; j++) {
-					String name = attrs[j].getName();
-					String xml = attrs[j].getXMLName();
-					if(xml == null || xml.length() == 0) continue;
-					String value = attr.get(xml);
-					if(value == null || value.length() == 0) {
-						value = attrs[j].getDefaultValue();
-					}
-					if(value != null) {
-						a.setAttributeValue(name, value);
-					}
-				}
-				if(a.getModelEntity().getChild("AnyElement") != null) {
-					XModelObject[] cs = as[i].getChildren();
-					for (int j = 0; j < cs.length; j++) {
-						a.addChild(cs[j].copy());
-					}
-				}
-				specificAction.addChild(a);
 			}
 		}
 		p.removeFromParent();
@@ -77,36 +52,94 @@ public abstract class ListConverter implements IPropertyConverter {
 		XModelObject p = basicAction.getModel().createModelObject(ESBConstants.ENT_ESB_PROPERTY, null);
 		p.setAttributeValue(ESBConstants.ATTR_NAME, getPropertyName());
 		for (int i = 0; i < as.length; i++) {
-			XModelObject t = basicAction.getModel().createModelObject("AnyElement", null);
-			t.setAttributeValue("tag", as[i].getModelEntity().getXMLSubPath());
-			StringBuffer sb = new StringBuffer();
-			XModelEntity entity = as[i].getModelEntity();
-			XAttribute[] attrs = entity.getAttributes();
-			for (int j = 0; j < attrs.length; j++) {
-				String name = attrs[j].getName();
-				String xml = attrs[j].getXMLName();
-				if(xml == null || xml.length() == 0) continue;
-				String value = as[i].getAttributeValue(name);
-				if(value == null || value.length() == 0 || value.equals(attrs[j].getDefaultValue())) {
-					if(!"always".equals(attrs[j].getProperty("save"))) continue;
-				}
-				if(sb.length() > 0) {
-					sb.append(';');
-				}
-				sb.append(xml).append('=').append(value);
-			}
-			String attributes = sb.toString();
-			t.setAttributeValue("attributes", attributes);
-			t.setAttributeValue(XModelObjectLoaderUtil.ATTR_ID_NAME, "" + (i + 1));
-			if(as[i].getModelEntity().getChild("AnyElement") != null) {
-				XModelObject[] cs = as[i].getChildren();
-				for (int j = 0; j < cs.length; j++) {
-					t.addChild(cs[j].copy());
-				}
-			}
+			XModelObject t = toAnyElement(as[i], i);
 			p.addChild(t);
 		}
 		basicAction.addChild(p);
+	}
+
+	protected XModelObject fromAnyElement(XModelObject any, String toEntity) {
+		String tag = any.getAttributeValue("tag");
+		Map<String, String> attr = toMap(((AnyElementObjectImpl)any).getAttributes());
+
+		XModelObject a = any.getModel().createModelObject(toEntity, null);
+		if(a == null || tag == null || !tag.equals(a.getModelEntity().getXMLSubPath())) {
+			return null;
+		}
+		
+		XModelEntity entity = a.getModelEntity();
+		XAttribute[] attrs = entity.getAttributes();
+		for (int j = 0; j < attrs.length; j++) {
+			String name = attrs[j].getName();
+			String xml = attrs[j].getXMLName();
+			if(xml == null || xml.length() == 0) continue;
+			String value = attr.get(xml);
+			if(value == null || value.length() == 0) {
+				value = attrs[j].getDefaultValue();
+			}
+			if(value != null) {
+				a.setAttributeValue(name, value);
+			}
+		}
+		XModelObject[] cs = any.getChildren();
+		if(cs.length > 0 && a.getModelEntity().getChildren().length > 0) {
+			//TODO consider case of several child entities, possibly including AnyElement
+			if (a.getModelEntity().getChild("AnyElement") != null) {
+				for (int j = 0; j < cs.length; j++) {
+					a.addChild(cs[j].copy());
+				}
+			} else {
+				String toChildEntity = a.getModelEntity().getChildren()[0].getName();
+				for (int j = 0; j < cs.length; j++) {
+					XModelObject c = fromAnyElement(cs[j], toChildEntity);
+					if(c != null) {
+						a.addChild(c);
+					}
+				}				
+			}
+		}
+		return a;
+	}
+
+	protected XModelObject toAnyElement(XModelObject specific, int index) {
+		XModelObject t = specific.getModel().createModelObject("AnyElement", null);
+		t.setAttributeValue("tag", specific.getModelEntity().getXMLSubPath());
+		StringBuffer sb = new StringBuffer();
+		XModelEntity entity = specific.getModelEntity();
+		XAttribute[] attrs = entity.getAttributes();
+		for (int j = 0; j < attrs.length; j++) {
+			String name = attrs[j].getName();
+			String xml = attrs[j].getXMLName();
+			if(xml == null || xml.length() == 0) continue;
+			String value = specific.getAttributeValue(name);
+			if(value == null || value.length() == 0 || value.equals(attrs[j].getDefaultValue())) {
+				if(!"always".equals(attrs[j].getProperty("save"))) continue;
+			}
+			if(sb.length() > 0) {
+				sb.append(';');
+			}
+			sb.append(xml).append('=').append(value);
+		}
+		String attributes = sb.toString();
+		t.setAttributeValue("attributes", attributes);
+		t.setAttributeValue(XModelObjectLoaderUtil.ATTR_ID_NAME, "" + (index + 1));
+		XModelObject[] cs = specific.getChildren();
+		if (cs.length > 0) {
+				for (int j = 0; j < cs.length; j++) {
+				XModelObject c = null;
+				if (cs[j].getModelEntity().getName().equals("AnyElement")) {
+					c = cs[j].copy();
+					c.setAttributeValue(XModelObjectLoaderUtil.ATTR_ID_NAME, ""
+							+ (j + 1));
+				} else {
+					c = toAnyElement(cs[j], j);
+				}
+				if (c != null) {
+					t.addChild(c);
+				}
+			}
+		}
+		return t;
 	}
 
 	static Map<String, String> toMap(String[][] attributes) {

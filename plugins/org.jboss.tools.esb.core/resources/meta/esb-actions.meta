@@ -49,7 +49,8 @@
  </ICONS>
  <GlobalActions kind="list"/>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionAggregator101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionAggregator101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -59,7 +60,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="aggregator action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -87,7 +88,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionByteArrayToString101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionByteArrayToString101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -97,7 +99,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="byte array to string converter action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -126,7 +129,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionCommandInterpreter101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionCommandInterpreter101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -136,7 +140,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="command interpreter action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -163,7 +168,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%" name="ESBPreActionContentBasedRouter101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionContentBasedRouter101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity name="ESBPreRouteTo"/>
@@ -174,7 +180,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="content based router action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -227,7 +234,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionGroovyProcessor101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionGroovyProcessor101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -237,7 +245,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="groovy processor action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -265,7 +274,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionLongToDateConverter101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionLongToDateConverter101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -275,7 +285,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="long to date converter action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -302,7 +313,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionMessagePersister101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionMessagePersister101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -312,7 +324,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="persist action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -344,7 +356,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%" name="ESBPreActionNotifier101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionNotifier101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity name="ESBPreNotificationList"/>
@@ -355,7 +368,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="notifier action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -389,7 +402,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionObjectInvoke101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionObjectInvoke101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -399,7 +413,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="object invoke action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -432,7 +446,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionObjectToCSVString101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionObjectToCSVString101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -442,7 +457,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="object to cvs string converter action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -480,7 +496,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionObjectToXStream101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionObjectToXStream101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -490,7 +507,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="object to XStream converter action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -528,7 +546,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionSOAPClient101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionSOAPClient101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -538,7 +557,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="SOAP client action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -576,7 +595,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionSOAPProcessor101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionSOAPProcessor101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -586,7 +606,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="SOAP processor action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -614,7 +634,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionSmooksTransformer101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionSmooksTransformer101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -624,7 +645,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="smooks transformer action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -659,7 +681,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%" name="ESBPreActionStaticRouter101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionStaticRouter101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity name="ESBPreRouteTo"/>
@@ -670,7 +693,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="static router action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -710,7 +733,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%" name="ESBPreActionStaticWiretap101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionStaticWiretap101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity name="ESBPreRouteTo"/>
@@ -721,7 +745,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="static wiretap action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -760,7 +784,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData" name="ESBPreActionSystemPrintln101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionSystemPrintln101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
   </XChildrenEntities>
@@ -770,7 +795,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="system println action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -817,7 +842,8 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%" name="ESBPreActionXStreamToObject101">
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionXStreamToObject101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity name="ESBPreAlias"/>
@@ -828,7 +854,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="pre-packed action" loader="ElementType" name="element type">
+   <XModelAttribute default="XStream to object converter action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -927,7 +954,7 @@
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=notification"
   XMLSUBPATH="NotificationList" name="ESBPreNotificationList">
   <XChildrenEntities>
-   <XChildEntity name="AnyElement"/>
+   <XChildEntity name="ESBPreTarget"/>
   </XChildrenEntities>
   <XEntityRenderer>
    <ICONS>
@@ -948,9 +975,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="entity=AnyElement" WizardClassName="%Default%"
-     displayName="Add Tag..." kind="action" name="CreateTag">
-     <EntityData EntityName="AnyElementNew">
-      <AttributeData AttributeName="tag"/>
+     displayName="Add Target..." kind="action" name="CreateTarget">
+     <EntityData EntityName="ESBPreTarget">
+      <AttributeData AttributeName="class"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -1024,6 +1051,59 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="target" name="ESBPreTarget">
+  <XChildrenEntities>
+   <XChildEntity name="AnyElement"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="target" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="class" xmlname="class"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="entity=AnyElement" WizardClassName="%Default%"
+     displayName="Add Tag..." kind="action" name="CreateTag">
+     <EntityData EntityName="AnyElementNew">
+      <AttributeData AttributeName="tag"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
+    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
+     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
+    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
+     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
+   </XActionItem>
+   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
+    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
+     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" kind="list" name="Properties">
+    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
+     displayName="Properties..." kind="action" name="Properties"/>
+   </XActionItem>
+   <XActionItem displayName="move" kind="list" name="MoveActions">
+    <XActionItem HIDE="always" HandlerClassName="%Move%"
+     ICON="action.move" displayName="Move" kind="action" name="Move"/>
+   </XActionItem>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
  <XEntityExtension name="ESBActions101">
   <XChildrenEntities>
    <XChildEntity name="ESBPreActionByteArrayToString101"/>
@@ -1048,7 +1128,8 @@
   <XActionItem kind="list">
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
-    <XActionItem displayName="Pre-packed Action" group="1" kind="list" name="PrePackedAction">
+    <XActionItem displayName="Add Pre-Packed Action" group="1"
+     kind="list" name="PrePackedAction">
      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
       PROPERTIES="validator.add=true" WizardClassName="%Default%"
       displayName="Object Invoke..." kind="action" name="AddObjectInvoke">
@@ -1058,7 +1139,7 @@
        <AttributeData AttributeName="class method"/>
       </EntityData>
      </XActionItem>
-     <XActionItem displayName="Converters" group="1" kind="list" name="Converters">
+     <XActionItem displayName="Converters" kind="list" name="Converters">
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="Byte Array To String..." kind="action" name="AddByteArrayToString">
@@ -1139,7 +1220,7 @@
        <AttributeData AttributeName="script"/>
       </EntityData>
      </XActionItem>
-     <XActionItem displayName="Routers" group="1" kind="list" name="Routers">
+     <XActionItem displayName="Routers" kind="list" name="Routers">
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="Aggregator..." kind="action" name="AddAggregator">
@@ -1182,7 +1263,7 @@
        </EntityData>
       </XActionItem>
      </XActionItem>
-     <XActionItem displayName="SOAP" group="1" kind="list" name="SOAP">
+     <XActionItem displayName="SOAP" kind="list" name="SOAP">
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="SOAP Processor..." kind="action" name="SOAPProcessor">

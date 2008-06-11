@@ -127,13 +127,17 @@
    <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="Add Action..." kind="action" name="AddAction">
+     displayName="Add Generic Action..." kind="action" name="AddAction">
      <EntityData EntityName="ESBAction101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="class"/>
       <AttributeData AttributeName="process" Mandatory="no"/>
      </EntityData>
     </XActionItem>
+    <XActionItem HIDE="always"
+     HandlerClassName="org.jboss.tools.common.meta.action.impl.handlers.ShowMenuHandler"
+     PROPERTIES="actionList=CreateActions" displayName="Action..."
+     kind="action" name="AddAnyAction"/>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
    <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">

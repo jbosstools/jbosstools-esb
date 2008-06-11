@@ -102,7 +102,8 @@ public interface ESBConstants {
 
 	public String ENT_ESB_SIMPLE_SCHEDULE = "ESBSimpleSchedule101"; //$NON-NLS-1$
 	public String ENT_ESB_CRON_SCHEDULE = "ESBCronSchedule101"; //$NON-NLS-1$
-	
+
+	public String ENT_ESB_ROUTE_TO = "ESBPreRouteTo"; //$NON-NLS-1$	
 
 	public String ATTR_NAME = "name"; //$NON-NLS-1$
 	public String ATTR_VALUE = "value"; //$NON-NLS-1$

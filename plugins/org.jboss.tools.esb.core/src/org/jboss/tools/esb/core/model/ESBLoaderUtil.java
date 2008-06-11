@@ -23,6 +23,17 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
 	
 	public ESBLoaderUtil() {}
 
+    protected String getChildEntity(XModelEntity entity, Element e) {
+    	String result = super.getChildEntity(entity, e);
+    	if(result != null && result.startsWith(ESBConstants.PREACTION_PREFIX)) {
+    		if(entity.getChild(ESBConstants.ENT_ESB_ACTION) != null) {
+    			return ESBConstants.ENT_ESB_ACTION;
+    		}
+    		//TODO when different versions appear, support them!
+    	}
+    	return result;
+    }
+
 	protected boolean isSaveable(XModelEntity entity, String n, String v, String dv) {
 		if(v == null) return false;
 		if(v.length() == 0 || v.equals(dv)) {
