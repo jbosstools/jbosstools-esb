@@ -53,7 +53,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
 		new String[]{ENT_ESB_ACTION},
-		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAction") //$NON-NLS-1$
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyAction") //$NON-NLS-1$
 	);
 
 	static IFormData ESB_ACTION_SUB_LIST_DEFINITION = new FormData(
@@ -114,4 +114,13 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		new String[]{ENT_ESB_SIMPLE_SCHEDULE, ENT_ESB_CRON_SCHEDULE},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnySchedule") //$NON-NLS-1$
 	);
+
+	static IFormData ESB_ROUTE_LIST_DEFINITION = new FormData(
+		"Route List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("destination name", 50), new FormAttributeData("service name", 50)}, 
+		new String[]{ENT_ESB_ROUTE_TO},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddRouteTo") //$NON-NLS-1$
+	);
+
 }
