@@ -1265,7 +1265,7 @@
      <XActionItem displayName="SOAP" kind="list" name="SOAP">
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="SOAP Processor..." kind="action" name="SOAPProcessor">
+       displayName="SOAP Processor..." kind="action" name="AddSOAPProcessor">
        <EntityData EntityName="ESBPreActionSOAPProcessor101">
         <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="jbossws endpoint"/>
@@ -1273,7 +1273,7 @@
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="SOAP Client..." kind="action" name="SOAPClient">
+       displayName="SOAP Client..." kind="action" name="AddSOAPClient">
        <EntityData EntityName="ESBPreActionSOAPClient101">
         <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="wsdl"/>
