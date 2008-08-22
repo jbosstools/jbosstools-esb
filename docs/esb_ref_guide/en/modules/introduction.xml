@@ -15,32 +15,48 @@
     </chapterinfo>
 
     <title>Introduction</title>
-    
+
     <section>
-        
+
         <title>What is ESB?</title>
-        
-        <para>ESB (Enterprise Service Bus) - an abstraction layer on top of an implementation of an enterprise messaging system
-            that provides the features with which Service Oriented Architectures may be implemented.</para>
-        <para>If you want to develop applications using ESB technology JBoss ESB also meet your needs.
-            The JBoss Tools provide ESB editor and all necessary wizards for creating ESB file.</para>
-        <para>In this guide we provide you with the information on ESB Editor which allows you to develop ESB file much faster and with far fewer errors so sparing your time.</para>
+
+        <para>ESB (Enterprise Service Bus) - an abstraction layer on top of an implementation of an
+            enterprise messaging system that provides the features with which Service Oriented
+            Architectures may be implemented.</para>
+        <para>If you want to develop applications using ESB technology JBoss ESB also meet your
+            needs. The JBoss Tools provide ESB editor and all necessary wizards for creating ESB
+            file.</para>
+        <para>In this guide we provide you with the information on ESB Editor which allows you to
+            develop ESB file much faster and with far fewer errors so sparing your time.</para>
 
     </section>
-    
+
     <section>
         <title>Other relevant resources on the topic</title>
-        
+
         <para>You can find a set of benefits and other extra information on:</para>
         <itemizedlist>
-            <listitem><para><ulink url="http://www.jboss.org/jbossesb">JBoss ESB</ulink></para></listitem>
-            <listitem><para><ulink url="http://wiki.jboss.org/wiki/JBossESB">JBoss Wiki</ulink></para></listitem>
-            <listitem><para><ulink url="http://www.jboss.org/jbossesb/docs/index.html">JBoss ESB Documentation Library</ulink></para></listitem>
+            <listitem>
+                <para>
+                    <ulink url="http://www.jboss.org/jbossesb">JBoss ESB</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <ulink url="http://wiki.jboss.org/wiki/JBossESB">JBoss Wiki</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <ulink url="http://www.jboss.org/jbossesb/docs/index.html">JBoss ESB
+                        Documentation Library</ulink>
+                </para>
+            </listitem>
         </itemizedlist>
-        
-        <para>All JBoss Developer Studio/JBoss Tools documentation you can find <ulink url="http://www.jboss.com/products/devstudio/docs">here</ulink>.</para>
-        <para>The latest documentation builds are available <ulink url="http://download.jboss.org/jbosstools/nightly-docs/">here</ulink>.</para>
-    
+
+        <para>The latest <property>JBoss Tools/JBoss Developer Studio</property> documentation
+            builds are available <ulink url="http://download.jboss.org/jbosstools/nightly-docs/"
+                >here</ulink>.</para>
+
     </section>
-    
 </chapter>
