@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="org.jboss.tools.esb.project.ui.template" name="ESB Template" schema="schema/org.jboss.tools.esb.project.ui.template.exsd"/>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.jboss.tools.esb.category1"
+            class="org.jboss.tools.esb.project.ui.wizards.ESBProjectWizard"
+            id="JBoss.ESB.Project.Wizard"
+            name="ESB Project Wizard"
+            project="true">
+      </wizard>
+      <category
+            id="org.jboss.tools.esb.category1"
+            name="ESB Wizard">
+      </category>
+   </extension>
+
+   <extension
+         point="org.eclipse.wst.common.project.facet.ui.wizardPages">
+      <wizard-pages
+            action="jst.jboss.esb.install">
+         <page
+               class="org.jboss.tools.esb.project.ui.wizards.pages.ESBFacetInstallationPage">
+         </page>
+      </wizard-pages>
+   </extension>
+<extension
+            point="org.eclipse.ui.preferencePages">
+         <page
+               category="org.jboss.ide.eclipse.ui.MainPreferencePage"
+               class="org.jboss.tools.esb.project.ui.preference.controls.JBossESBRuntimePreferencePage"
+               id="org.jboss.tools.esb.project.runtime.preference"
+               name="JBoss ESB Runtimes">
+         </page>
+      </extension>
+   
+</plugin>
