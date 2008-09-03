@@ -40,6 +40,10 @@
                facet="jst.jboss.esb">
          </fixed>
       </template>
+      <project-facet-version
+            facet="jst.jboss.esb"
+            version="4.4">
+      </project-facet-version>
    </extension>
       <extension
          point="org.eclipse.wst.common.project.facet.core.runtimes">

@@ -137,6 +137,19 @@ public class JBossRuntimeManager {
 		return null;
 	}
 
+	public JBossRuntime[]  findRuntimeByVersion(String version) {
+		if(version == null || "".equals(version)){
+			return getRuntimes();
+		}
+		List<JBossRuntime> rts = new ArrayList<JBossRuntime>();
+		for (JBossRuntime jbossWSRuntime : runtimes.values()) {
+			if (jbossWSRuntime.getVersion().equals(version)) {
+				rts.add(jbossWSRuntime);
+			}
+		}
+		return rts.toArray(new JBossRuntime[]{});
+	}
+	
 	public List<String> getAllRuntimeJars(JBossRuntime rt){
 		List<String> jarList = new ArrayList<String>();
 		if (rt != null) {

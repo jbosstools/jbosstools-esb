@@ -52,6 +52,7 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBossWS_Runtime_List_Field_Editor_Runtime;
 	public static String Error_JBossWS_Runtime_List_Field_Editor_Runtime_Name_Is_Not_Correct;
 	public static String Error_JBossWS_Runtime_List_Field_Editor_Name_Cannot_Be_Empty;
+	public static String Error_JBossWS_Runtime_List_Field_Editor_Version_Cannot_Be_Empty;
 	public static String JBossWS_Runtime_List_Field_Editor_Create_A_Runtime;
 	public static String JBossWS_Runtime_List_Field_Editor_Home_Folder;
 	public static String JBossWS_Composite_Editor_This_Method_Can_Be_Invoked;

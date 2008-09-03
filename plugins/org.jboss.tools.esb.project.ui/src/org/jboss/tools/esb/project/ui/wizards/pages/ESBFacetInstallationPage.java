@@ -25,9 +25,16 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.wst.common.componentcore.datamodel.properties.IFacetProjectCreationDataModelProperties;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
+import org.eclipse.wst.common.project.facet.core.IProjectFacet;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectEvent;
+import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectListener;
+import org.eclipse.wst.common.project.facet.core.internal.ValidationProblem.Type;
 import org.eclipse.wst.common.project.facet.ui.AbstractFacetWizardPage;
 import org.eclipse.wst.common.project.facet.ui.IFacetWizardPage;
 import org.jboss.tools.esb.core.ESBProjectUtilities;
@@ -73,7 +80,22 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		
 		//synchHelper.synchText(configFolder, CONTENT_DIR, null);
 	    Dialog.applyDialogFont(parent);
-		
+	    
+	    // add listener to listen the changes on the project facet
+	    final IFacetedProjectWorkingCopy fpwc = getFacetedProjectWorkingCopy();
+		fpwc.addListener(new IFacetedProjectListener(){
+
+			public void handleEvent(IFacetedProjectEvent event) {
+				IProjectFacet facet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
+				IProjectFacetVersion version = fpwc.getProjectFacetVersion(facet);
+				if(version != null){
+					initializeRuntimesCombo(cmbRuntimes, null, version.getVersionString());
+				}else{
+					initializeRuntimesCombo(cmbRuntimes, null);
+				}
+				
+			}
+		}, IFacetedProjectEvent.Type.PROJECT_FACETS_CHANGED);
 	    
 		return composite;
 	}
@@ -131,13 +153,16 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	}
 	
 	
-	private JavaFacetInstallConfig findJavaFacetInstallConfig()
-	{
+	private IFacetedProjectWorkingCopy getFacetedProjectWorkingCopy(){
 		ESBProjectWizard wizard = (ESBProjectWizard)this.getWizard();
 		IDataModel wModel = wizard.getDataModel();
         final IFacetedProjectWorkingCopy fpjwc 
             = (IFacetedProjectWorkingCopy) wModel.getProperty( FACETED_PROJECT_WORKING_COPY );
-        
+        return fpjwc;
+	}
+	private JavaFacetInstallConfig findJavaFacetInstallConfig()
+	{
+        final IFacetedProjectWorkingCopy fpjwc = getFacetedProjectWorkingCopy();
         if( fpjwc != null )
         {
             final IFacetedProject.Action javaInstallAction
@@ -230,18 +255,21 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 				.getActiveShell(), newRtwizard);
 		if (dialog.open() == WizardDialog.OK) {
 			initializeRuntimesCombo(cmbRuntimes, null);
-			//cmbRuntimes.select(0);
 		}
 	}
 	
-	protected void initializeRuntimesCombo(Combo cmRuntime, String runtimeName) {
+	protected void initializeRuntimesCombo(Combo cmRuntime, String runtimeName, String version) {
 		JBossRuntime selectedJbws = null;
 		JBossRuntime defaultJbws = null;
 		int selectIndex = 0;
 		int defaultIndex = 0;
+		
 		cmRuntime.removeAll();
+		if(runtimeName == null || "".equals(runtimeName)){
+			runtimeName = model.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID);
+		}
 		JBossRuntime[] runtimes = JBossRuntimeManager.getInstance()
-				.getRuntimes();
+				.findRuntimeByVersion(version);
 		for (int i = 0; i < runtimes.length; i++) {
 			JBossRuntime jr = runtimes[i];
 			cmRuntime.add(jr.getName());
@@ -259,12 +287,31 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		}
 		
 		if(selectedJbws != null){
-		cmRuntime.select(selectIndex);
-		saveJBosswsRuntimeToModel(selectedJbws);
+			cmRuntime.select(selectIndex);
+			saveJBosswsRuntimeToModel(selectedJbws);
 		}else if(defaultJbws != null){
 			cmRuntime.select(defaultIndex);
 			saveJBosswsRuntimeToModel(defaultJbws);
 		}
+	}
+	
+	
+	protected void initializeRuntimesCombo(Combo cmRuntime, String runtimeName) {
+		IProjectFacetVersion version = getSelectedESBVersion();
+		if(version != null){
+			initializeRuntimesCombo(cmbRuntimes, null, version.getVersionString());
+
+		}else{
+			initializeRuntimesCombo(cmbRuntimes, null, "");
+
+		}
+	}
+	private IProjectFacetVersion getSelectedESBVersion(){
+		IFacetedProjectWorkingCopy fpwc = getFacetedProjectWorkingCopy();
+		IProjectFacet facet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
+		
+		return fpwc.getProjectFacetVersion(facet);
+		
 	}
 	
 	protected void saveJBosswsRuntimeToModel(JBossRuntime jbws) {
