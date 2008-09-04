@@ -166,7 +166,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 
 	protected void createCheckButton(Composite parent){
 		final Button btnDefault = new Button(parent, SWT.CHECK);
-		btnDefault.setText(JBossESBUIMessages.JBossWS_Runtime_Check_Field_Default_Classpath);
+		btnDefault.setText(JBossESBUIMessages.JBoss_Runtime_Check_Field_Default_Classpath);
 		GridData gd = new GridData();
 		gd.horizontalSpan = 2;
 		btnDefault.setLayoutData(gd);
@@ -201,8 +201,8 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 					return ((JBossRuntime) inputElement).getLibraries().toArray();
 				} else {
 					throw new IllegalArgumentException(
-							JBossESBUIMessages.JBossWS_Runtime_List_Field_Editor_Inputelement_Must_Be
-									+ JBossESBUIMessages.JBossWS_Runtime_List_Field_Editor_An_Instance_Of_List);
+							JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Inputelement_Must_Be
+									+ JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_An_Instance_Of_List);
 				}
 			}
 
@@ -303,9 +303,9 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 	@Override
 	public void doFillIntoGrid(Object parent) {
 		Assert.isTrue(parent instanceof Composite,
-				JBossESBUIMessages.Error_JBossWS_Basic_Editor_Composite);
+				JBossESBUIMessages.Error_JBoss_Basic_Editor_Composite);
 		Assert.isTrue(((Composite) parent).getLayout() instanceof GridLayout,
-				JBossESBUIMessages.Error_JBossWS_Basic_Editor_Support);
+				JBossESBUIMessages.Error_JBoss_Basic_Editor_Support);
 		Composite aComposite = (Composite) parent;
 		getEditorControls(aComposite);
 		GridLayout gl = (GridLayout) ((Composite) parent).getLayout();

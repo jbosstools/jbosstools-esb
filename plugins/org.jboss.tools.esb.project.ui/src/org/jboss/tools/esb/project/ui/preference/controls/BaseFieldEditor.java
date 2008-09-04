@@ -66,8 +66,8 @@ public abstract class BaseFieldEditor implements IFieldEditor {
 	 * @param parent
 	 */
 	public void doFillIntoGrid(Object parent) {
-		Assert.isTrue(parent instanceof Composite, JBossESBUIMessages.Error_JBossWS_Basic_Editor_Composite);
-		Assert.isTrue(((Composite)parent).getLayout() instanceof GridLayout,JBossESBUIMessages.Error_JBossWS_Basic_Editor_Support);
+		Assert.isTrue(parent instanceof Composite, JBossESBUIMessages.Error_JBoss_Basic_Editor_Composite);
+		Assert.isTrue(((Composite)parent).getLayout() instanceof GridLayout,JBossESBUIMessages.Error_JBoss_Basic_Editor_Support);
 		Composite aComposite = (Composite) parent;
 		final Control[] controls = (Control[])getEditorControls(aComposite);
 		GridLayout gl = (GridLayout)((Composite)parent).getLayout();
@@ -110,7 +110,7 @@ public abstract class BaseFieldEditor implements IFieldEditor {
 			labelControl.setText(this.labelText);
 		} else if(parent!=null) {
 			if(labelControl.getParent()!=parent)
-				throw new IllegalArgumentException(JBossESBUIMessages.Error_JBossWS_Basic_Editor_Different);
+				throw new IllegalArgumentException(JBossESBUIMessages.Error_JBoss_Basic_Editor_Different);
 		}
 		return labelControl;
 	}

@@ -40,7 +40,7 @@ public class JBossESBRuntimePreferencePage extends PreferencePage implements
 	private static final int COLUMNS = 3;
 
 	JBossRuntimeListFieldEditor jbossRuntimes = new JBossRuntimeListFieldEditor(
-			"rtlist", JBossESBUIMessages.JBossWS_Preference_Page_Runtimes, new ArrayList<JBossRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()))); //$NON-NLS-1$
+			"rtlist", JBossESBUIMessages.JBoss_Preference_Page_Runtimes, new ArrayList<JBossRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()))); //$NON-NLS-1$
 
 	/**
 	 * Create contents of JBoss ESB preferences page.  list editor

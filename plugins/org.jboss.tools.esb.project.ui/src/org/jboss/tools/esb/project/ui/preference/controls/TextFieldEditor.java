@@ -68,8 +68,8 @@ public class TextFieldEditor extends BaseFieldEditor implements PropertyChangeLi
 
 	@Override
 	public void doFillIntoGrid(Object aParent) {
-		Assert.isTrue(aParent instanceof Composite, JBossESBUIMessages.Error_JBossWS_Basic_Editor_Composite);
-		Assert.isTrue(((Composite)aParent).getLayout() instanceof GridLayout,JBossESBUIMessages.Error_JBossWS_Basic_Editor_Support);
+		Assert.isTrue(aParent instanceof Composite, JBossESBUIMessages.Error_JBoss_Basic_Editor_Composite);
+		Assert.isTrue(((Composite)aParent).getLayout() instanceof GridLayout,JBossESBUIMessages.Error_JBoss_Basic_Editor_Support);
 		Composite aComposite = (Composite) aParent;
 		getEditorControls(aComposite);
 		GridLayout gl = (GridLayout)((Composite)aParent).getLayout();
