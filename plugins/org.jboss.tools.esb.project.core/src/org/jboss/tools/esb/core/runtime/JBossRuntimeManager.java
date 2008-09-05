@@ -29,7 +29,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
-import org.jboss.tools.esb.core.ESBCorePlugin;
+import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
 
@@ -255,9 +255,9 @@ public class JBossRuntimeManager {
 	 * Save preference value and force save changes to disk
 	 */
 	public void save() {
-		ESBCorePlugin.getDefault().getPreferenceStore().setValue(
+		ESBProjectCorePlugin.getDefault().getPreferenceStore().setValue(
 				JBossFacetCoreMessages.ESB_Location, converter.getString(runtimes));
-		IPreferenceStore store = ESBCorePlugin.getDefault()
+		IPreferenceStore store = ESBProjectCorePlugin.getDefault()
 				.getPreferenceStore();
 		if (store instanceof IPersistentPreferenceStore) {
 			try {
@@ -394,7 +394,7 @@ public class JBossRuntimeManager {
 	}
 
 	public void load() {
-		IPreferenceStore ps = ESBCorePlugin.getDefault()
+		IPreferenceStore ps = ESBProjectCorePlugin.getDefault()
 				.getPreferenceStore();
 
 		String runtimeListString = ps

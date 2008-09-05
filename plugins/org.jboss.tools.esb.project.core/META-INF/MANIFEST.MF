@@ -4,7 +4,7 @@ Bundle-Name: %PLUGIN_NAME
 Bundle-SymbolicName: org.jboss.tools.esb.project.core;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Localization: plugin
-Bundle-Activator: org.jboss.tools.esb.core.ESBCorePlugin
+Bundle-Activator: org.jboss.tools.esb.core.ESBProjectCorePlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.wst.common.project.facet.core,
