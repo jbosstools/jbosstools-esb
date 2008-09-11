@@ -19,6 +19,8 @@
 	</extension>	
 
 	<extension point="org.jboss.tools.common.model.classes">
+		<xclass id="org.jboss.tools.esb.core.model.ESBFileImpl"
+			class="org.jboss.tools.esb.core.model.ESBFileImpl"/>
 		<xclass id="org.jboss.tools.esb.core.model.ESBFileLoader"
 			class="org.jboss.tools.esb.core.model.ESBFileLoader"/>
 		<xclass id="org.jboss.tools.esb.core.model.ESBEntityRecognizer"

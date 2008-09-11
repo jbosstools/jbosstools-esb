@@ -897,8 +897,6 @@
     name="id" xmlname="busid"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="port" xmlname="port">
-    <Constraint loader="Int"/>
-    <Editor name="Int"/>
    </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
@@ -2078,7 +2076,7 @@
  </XModelEntity>
  <XModelEntity
   ImplementationLoadingClass="org.jboss.tools.esb.core.model.ESBFileLoader"
-  ImplementingClass="org.jboss.tools.common.model.filesystems.impl.SimpleFileImpl"
+  ImplementingClass="org.jboss.tools.esb.core.model.ESBFileImpl"
   ObjectEditorClass="%XML%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
   XMLSUBPATH="jbossesb" name="FileESB101">
