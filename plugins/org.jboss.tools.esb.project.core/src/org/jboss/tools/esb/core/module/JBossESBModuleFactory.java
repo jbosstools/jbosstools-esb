@@ -29,6 +29,9 @@ public class JBossESBModuleFactory extends ProjectModuleFactoryDelegate {
 		IFacetedProject facetProject;
 		try {
 			facetProject = ProjectFacetsManager.create(project);
+			if (facetProject == null) {
+				return null;
+			}
 			IProjectFacet esbFacet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
 			if(facetProject.hasProjectFacet(esbFacet)){
 				JBossESBModule module = new JBossESBModule(project, this, this.getId());
