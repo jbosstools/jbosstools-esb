@@ -36,8 +36,15 @@
         <releaseinfo>
             Version: 3.0.0.alpha
         </releaseinfo>
-    </bookinfo>
     
+<abstract>
+   <title/>
+       <para>
+           <ulink url="http://download.jboss.org/jbosstools/nightly-docs/en/esb_ref_guide/pdf/ESB_Reference_Guide.pdf">PDF version</ulink>
+       </para>
+</abstract>
+
+</bookinfo>
     <toc/>  
     
     &introduction;
