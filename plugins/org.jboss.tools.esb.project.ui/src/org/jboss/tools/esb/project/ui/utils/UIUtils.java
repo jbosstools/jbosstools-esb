@@ -295,7 +295,7 @@ public class UIUtils {
 				fos.write(array, 0, c);
 			}
 		}
-		catch (Exception e)	{
+		catch (IOException e)	{
 			e.printStackTrace();
 		}
 		finally	{
@@ -303,7 +303,7 @@ public class UIUtils {
 				fos.close();
 				is.close();
 			}
-			catch (Exception e)	{
+			catch (IOException e)	{
 				e.printStackTrace();
 			}
 		}
