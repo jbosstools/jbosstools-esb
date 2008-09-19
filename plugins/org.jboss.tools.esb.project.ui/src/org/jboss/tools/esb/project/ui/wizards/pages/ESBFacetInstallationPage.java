@@ -8,6 +8,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jst.common.project.facet.JavaFacetUtils;
 import org.eclipse.jst.common.project.facet.core.JavaFacetInstallConfig;
@@ -37,6 +39,7 @@ import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectListener;
 import org.eclipse.wst.common.project.facet.core.internal.ValidationProblem.Type;
 import org.eclipse.wst.common.project.facet.ui.AbstractFacetWizardPage;
 import org.eclipse.wst.common.project.facet.ui.IFacetWizardPage;
+import org.eclipse.wst.web.ui.internal.wizards.NewProjectDataModelFacetWizard;
 import org.jboss.tools.esb.core.ESBProjectUtilities;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
@@ -149,16 +152,23 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	
 	private void setConfigFolder(String folderName){
 		JavaFacetInstallConfig cfg = findJavaFacetInstallConfig();
-		cfg.setSourceFolder(new Path(folderName));
+		if(cfg != null){
+			cfg.setSourceFolder(new Path(folderName));
+		}
 	}
 	
 	
 	private IFacetedProjectWorkingCopy getFacetedProjectWorkingCopy(){
-		ESBProjectWizard wizard = (ESBProjectWizard)this.getWizard();
-		IDataModel wModel = wizard.getDataModel();
-        final IFacetedProjectWorkingCopy fpjwc 
-            = (IFacetedProjectWorkingCopy) wModel.getProperty( FACETED_PROJECT_WORKING_COPY );
-        return fpjwc;
+		IWizard wizard = this.getWizard();
+		if(wizard instanceof NewProjectDataModelFacetWizard){
+			IDataModel wModel = ((NewProjectDataModelFacetWizard)wizard).getDataModel();
+        	final IFacetedProjectWorkingCopy fpjwc 
+            	= (IFacetedProjectWorkingCopy) wModel.getProperty( FACETED_PROJECT_WORKING_COPY );
+        	return fpjwc;
+		}
+		else{
+			return null;
+		}
 	}
 	private JavaFacetInstallConfig findJavaFacetInstallConfig()
 	{
@@ -187,7 +197,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		
 		Group runtimeGroup = new Group(parent, SWT.BORDER);
 		runtimeGroup.setText("JBoss ESB Runtime");
-		runtimeGroup.setLayout(new GridLayout(4, false));
+		runtimeGroup.setLayout(new GridLayout(2, false));
 		runtimeGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
 	/*	Button btnServerSupplied = new Button(runtimeGroup, SWT.RADIO);
@@ -228,6 +238,24 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			}
 		});
 		
+		/*Composite chkcom = new Composite(runtimeGroup, SWT.NONE);
+		chkcom.setLayout(new GridLayout(3, true));
+		chkcom.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		Button jbpm = new Button(chkcom, SWT.CHECK);
+		jbpm.setText("Depends on jbpm.esb");
+		
+		Button smooks = new Button(chkcom, SWT.CHECK);
+		smooks.setText("Depends on Smooks.esb");
+		
+		Button jbrules = new Button(chkcom, SWT.CHECK);
+		jbrules.setText("Depends on jrules.esb");
+
+		Button spring = new Button(chkcom, SWT.CHECK);
+		spring.setText("Depends on spring.esb");
+		
+		Button soap = new Button(chkcom, SWT.CHECK);
+		soap.setText("Depends on soap.esb");*/
 		
 	}
  
