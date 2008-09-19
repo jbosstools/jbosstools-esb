@@ -8,8 +8,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.wizard.IWizard;
-import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jst.common.project.facet.JavaFacetUtils;
 import org.eclipse.jst.common.project.facet.core.JavaFacetInstallConfig;
@@ -27,7 +25,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.wst.common.componentcore.datamodel.properties.IFacetProjectCreationDataModelProperties;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
@@ -36,16 +33,13 @@ import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectEvent;
 import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectListener;
-import org.eclipse.wst.common.project.facet.core.internal.ValidationProblem.Type;
 import org.eclipse.wst.common.project.facet.ui.AbstractFacetWizardPage;
 import org.eclipse.wst.common.project.facet.ui.IFacetWizardPage;
-import org.eclipse.wst.web.ui.internal.wizards.NewProjectDataModelFacetWizard;
 import org.jboss.tools.esb.core.ESBProjectUtilities;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.jboss.tools.esb.project.ui.preference.controls.JBossRuntimeListFieldEditor;
-import org.jboss.tools.esb.project.ui.wizards.ESBProjectWizard;
 
 public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements IFacetWizardPage, IJBossESBFacetDataModelProperties {
 
@@ -68,7 +62,9 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 
 	private void setDefaultOutputFolder(){
 		JavaFacetInstallConfig cfg = findJavaFacetInstallConfig();
-		cfg.setDefaultOutputFolder(new Path(ESBProjectUtilities.BUILD_CLASSES));
+		if(cfg != null){
+			cfg.setDefaultOutputFolder(new Path(ESBProjectUtilities.BUILD_CLASSES));
+		}
 	}
 
 	protected Composite createTopLevelComposite(Composite parent) {
@@ -159,16 +155,12 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	
 	
 	private IFacetedProjectWorkingCopy getFacetedProjectWorkingCopy(){
-		IWizard wizard = this.getWizard();
-		if(wizard instanceof NewProjectDataModelFacetWizard){
-			IDataModel wModel = ((NewProjectDataModelFacetWizard)wizard).getDataModel();
-        	final IFacetedProjectWorkingCopy fpjwc 
-            	= (IFacetedProjectWorkingCopy) wModel.getProperty( FACETED_PROJECT_WORKING_COPY );
-        	return fpjwc;
+		Object obj = model.getProperty(FACETED_PROJECT_WORKING_COPY);
+		if(obj instanceof IFacetedProjectWorkingCopy){
+			return (IFacetedProjectWorkingCopy)obj;
 		}
-		else{
-			return null;
-		}
+		
+		return null;
 	}
 	private JavaFacetInstallConfig findJavaFacetInstallConfig()
 	{
@@ -177,6 +169,8 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
         {
             final IFacetedProject.Action javaInstallAction
                 = fpjwc.getProjectFacetAction( JavaFacetUtils.JAVA_FACET );
+            
+            if(javaInstallAction == null) return null;
             
             final Object config = javaInstallAction.getConfig();
             
@@ -238,6 +232,9 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			}
 		});
 		
+		if("".equals(cmbRuntimes.getText())){
+			hasRuntime = false;
+		}
 		/*Composite chkcom = new Composite(runtimeGroup, SWT.NONE);
 		chkcom.setLayout(new GridLayout(3, true));
 		chkcom.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -337,8 +334,11 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	private IProjectFacetVersion getSelectedESBVersion(){
 		IFacetedProjectWorkingCopy fpwc = getFacetedProjectWorkingCopy();
 		IProjectFacet facet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
-		
-		return fpwc.getProjectFacetVersion(facet);
+		if(fpwc != null){
+			return fpwc.getProjectFacetVersion(facet);
+		}else{
+			return null;
+		}
 		
 	}
 	
@@ -387,6 +387,9 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			setErrorMessage("Please specify a valid source folder.");
 			hasValidSrc = false;
 			setPageComplete(isPageComplete());
+		}else if(!hasRuntime){
+			setErrorMessage("Please specify a ESB runtime");
+			setPageComplete(isPageComplete());
 		}
 	/*	else if (!duplicateMsg.equals("")) {
 			setErrorMessage("Duplicated jar on classpath:" + duplicateMsg);
@@ -408,14 +411,14 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	}
 
 
-	private void fillMessageGroup(Composite parent){
+/*	private void fillMessageGroup(Composite parent){
 		Group messageGroup = new Group(parent, SWT.BORDER);
 		messageGroup.setText("Target Message Product");
 		messageGroup.setLayout(new GridLayout(1, false));
 		messageGroup.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 	}
-
+*/
 	
 	public void setConfig(Object config) {
 		this.model = (IDataModel)config;
