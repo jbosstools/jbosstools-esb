@@ -7,7 +7,7 @@
       <wizard
             category="org.jboss.tools.esb.category1"
             class="org.jboss.tools.esb.project.ui.wizards.ESBProjectWizard"
-            icon="icons/wizards/esb.gif"
+            icon="$nl$/icons/wizards/esb.gif"
             id="JBoss.ESB.Project.Wizard"
             name="ESB Project Wizard"
             project="true">
