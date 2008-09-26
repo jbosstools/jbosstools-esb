@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="esb_support">
+        <?dbhtml filename="esb_support.html"?>
+        <chapterinfo>
+                <keywordset>
+                        <keyword>JBoss Developer Studio</keyword>
+                        <keyword>Eclipse</keyword>
+                        <keyword>BIRT</keyword>
+                        <keyword>Java</keyword>
+                        <keyword>JBoss</keyword>
+                </keywordset>
+        </chapterinfo>
+
+        <title>BIRT Support</title>
+
+        <para>In this section we will focus more on all concepts that JBoss Tools integrates for
+                        working with BIRT.</para>
+
+                <section>
+                        <title>BIRT Plugin Installation</title>
+                        
+                        <para>This chapter will provide you with detailed information on how to install BIRT plugin into JBoss Developer Studio.</para>
+                        
+                        <para>Since BIRT plugin is one of the modules of JBoss Tools project it has a dependence on other modules and will require their pre-installation. </para> 
+                                
+                        <para>These are the prerequisites to create a web project including Seam and BIRT capabilities:</para>
+                        <itemizedlist>
+                                <listitem><para>Eclipse Version 3.4 SDK</para></listitem>
+                                <listitem><para>DTP Version 1.6 Release</para></listitem>
+                                <listitem><para>EMF Version 2.4 Release EMF+XSD</para></listitem>
+                                <listitem><para>GEF Version 3.4 Release runtime</para></listitem>
+                                <listitem><para>WTP Version 3.0 Release</para></listitem>
+                                <listitem><para>BIRT Report Designer SDK 2.3.0 Release or BIRT Report Designer 2.3.0 Release <ulink url="http://repository.jboss.org/eclipse/birt/2.3.0/birt-report-framework-2_3_0.zip">download here</ulink></para></listitem>
+                                <listitem><para>JBoss Application Server 4.2.2 GA</para></listitem>
+                                <listitem><para>JBoss Seam 2.0.1 GA</para></listitem>
+                                <listitem><para>BIRT Web Tools Integration <ulink url="http://repository.jboss.org/eclipse/birt/2.3.0/birt-wtp-integration-sdk-2_3_0.zip">download here</ulink></para></listitem>
+                                <listitem><para>JBoss Tools nightly build</para></listitem>
+                               
+                           </itemizedlist>    
+                                
+                           
+                     
+                </section>
+
+<section>
+        
+        <title>JBoss BIRT Integration</title>
+        <para>To understand Hibernate configuration, integration with Seam, and deployment  see <ulink url="http://docs.jboss.org/tools/whatsnew/birt/birt-news-1.0.0.Alpha1.html">JBoss BIRT Integration 1.0.0.alpha1 - New and Noteworthy</ulink>.</para>
+        
+</section>
+
+                <section>
+                        <title>Creating a BIRT Report</title>
+                        <para>In this chapter we suggest a step-by-step walk-through of creating your own BIRT report.</para>
+                                
+                        <para>We will show you how to use the Creation wizard for creating a new BIRT report.</para>
+                                
+                                <para>Select <emphasis><property>File &gt;New &gt; Other...</property>
+                                </emphasis> in the main menu bar or context menu for selected project and then <emphasis><property>ESB &gt; ESB File</property></emphasis> in the New dialog:</para>
+                                
+                                <figure>
+                                        <title>New Dialog</title>
+                                        <mediaobject>
+                                                <imageobject>
+                                                        <imagedata fileref="images/esb_support/01_create_esb.png"/>
+                                                </imageobject>
+                                        </mediaobject>
+                                </figure>
+                                
+                                <para> Clicking <emphasis><property>Next</property></emphasis> brings us to the wizard page where it&apos;s necessary to specify the
+                                        folder, name and version for the file. We choose, for example, <emphasis><property>jboss-esb.xml</property>
+                                        </emphasis> as the name and accept the selected projects folder and default version.</para>
+                                <figure>
+                                        <title>Folder, Name and Version</title>
+                                        <mediaobject>
+                                                <imageobject>
+                                                        <imagedata fileref="images/esb_support/02_create_esb.png"/>
+                                                </imageobject>
+                                        </mediaobject>
+                                </figure>
+                                
+                                <para>Thus, our file will be created in the selected projects folder by default. If you want to change the folder
+                                        for your future file click <emphasis><property>Browse...</property></emphasis> button to set needed folder or simply type it.</para>
+                                
+                                <para>Clicking on <emphasis><property>Finish</property>
+                                </emphasis> results in the file being generated. The wizard creates one xml file.</para>
+                        
+                </section>
+        
+</chapter>

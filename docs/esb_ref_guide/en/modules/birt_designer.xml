@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter id="birt_designer" xreflabel="birt_designer">
+    <?dbhtml filename="birtDesigner.html"?>
+    <chapterinfo>
+        <keywordset>
+            <keyword>JBoss BIRT</keyword>
+            <keyword>BIRT</keyword>
+            <keyword>BIRT Designer</keyword>
+            
+        </keywordset>
+    </chapterinfo>
+
+    <title>BIRT Designer</title>
+
+    <para>text here</para>
+
+    <section id="esb_file">
+        
+        <title>ESB File Editor</title>
+        <para><property>ESB File Editor</property> is  a powerful and customizable tool. ESB File Editor allows developing an
+            application using ESB technology.</para>
+        
+        <para>ESB file editor has two tabs: Tree and Source.</para>     
+        
+        <para>You can switch to Tree. The Tree view for the editor displays all ESB artifacts in a tree format. 
+            By selecting any node you can see and edit its properties which will appear in the right-hand area. For example, a Provider:</para>
+        <figure>
+            <title>Tree View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/01_esb_tree_view.png" scale="90"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        
+        <para>You can easily switch from Tree to Source by selecting the Source tab at the bottom of the editor and work in <link linkend="sourceView">Source view</link>.</para>
+            
+        <figure id="sourceView">
+            <title>Source View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/02_esb_source_view.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>The Source view for the editor displays a text content of the ESB file. It is always synchronized with tree view,
+            so any changes made in one of the views will immediately appear in the other.</para>
+        <para>No matter what view you select, you get full integration with <!--Properties and -->Outline view<!-- views -->.
+            For example, you can work in the Source view with the help of the Outline view. The Outline view shows a tree structure of the ESB file.
+            Simply select any element in the Outline view and it will jump to the same place in the Source editor,
+            so you can navigate through the source code with Outline view.</para>
+        <figure>
+            <title>Outline View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/03_esb_outline_view.png" scale="70"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        
+        <para>Adding, editing or deleting of some artifacts operations are available right in the <property>Tree</property> view. Right-click any node and select one of the available actions in the context menu.
+            For example, you can easily add a new provider:</para>
+        <para></para>
+        <figure>
+            <title>Adding new provider</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/04_esb_add_provider.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        
+       <para>You can easily add a new service too:</para>
+        <figure>
+            <title>Adding new service</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/05_esb_add_service.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        
+        <para>The same way you can create a listener for service and other elements of ESB:</para>
+        <figure>
+            <title>Adding new listener for service</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/06_esb_add_listener.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>The same actions can be done in the right part of <property>Tree</property> view tab
+            using <property>Add</property>, <property>Edit</property> and <property>Remove</property> buttons.</para>
+    </section>
+    
+    
+   
+    <section id="esb_editors_features">
+       
+        <title>ESB Editors Features</title>
+        <para>JBoss ESB tooling has powerful editor features that help you easily make use of content and code assist.</para>
+       
+        <section id="ESBsyntaxvalidation84">
+            
+            <title>ESB syntax validation</title>
+            <para>When working in JBoss ESB editor you are constantly provided with feedback
+                and contextual error checking as you type. In the Source viewer, if at any point a tag is incorrect or incomplete, an error will be indicated next to the line and also in the Problems view below.</para>
+        </section>
+        
+       <section id="ESBSupportXMLSchema">
+            <title>Support for XML Schema</title>
+            
+           <para>JBoss ESB Framework fully 
+               <link linkend="sourceView">supports XML files based on schemas as well as DTDs</link>.</para>
+    </section>
+       
+       <!--<section id="OpenOnSelection">
+         
+            <title>OpenOn</title>
+
+            <para><property>OpenOn</property> let&apos;s you easily navigate through your
+                project without using the Package Explorer view (project tree). With OpenOn, you can
+                simply click on a reference to another file and that file will be opened.</para>
+
+            <para>OpenOn is available for the XML files </para>
+
+                <para>Press and hold down the Ctrl key. As you move the mouse cursor over different
+                    file references in the file, they display an underline. When you have the mouse
+                    cursor over the name of the file you want to open, click and the file will open
+                    in its own editor. In this example the managed bean NameBean will open.</para>
+               
+            </section>
+            -->
+
+         <section id="ESBContentAssist">
+                       
+                        <title>Content Assist for ESB XML file</title>
+
+                        <para>When you work with any ESB XML file <property>Content Assist</property> is available to help you.
+                            It provides pop-up tip to help you complete your code statements.
+                            It allows you to write your code faster and with more accuracy.
+                            Content assist is always available in the Source mode. Simply type <emphasis>
+                                <property>Ctrl-Space</property></emphasis> to see what is available.</para>
+
+                        <para>Content Assist for ESB XML file:</para>
+                        <figure>
+                            <title>Content Assist for ESB XML file</title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata
+                                        fileref="images/esb_editor/08_esb_features.png" scale="80"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>      
+             
+             <para>Content Assist for attributes:</para>
+             <figure>
+                 <title>Content Assist for attributes:</title>
+                 <mediaobject>
+                     <imageobject>
+                         <imagedata
+                             fileref="images/esb_editor/09_esb_features.png" scale="80"/>
+                     </imageobject>
+                 </mediaobject>
+             </figure>     
+            <!--          </section>
+                 
+               <section id="ContentAssistWithinTreeEditor">
+                  
+                        <title>Content Assist within Tree ESB Editor</title>
+
+                        <para>JBoss Developer Studio also provides Content Assist when working within the Tree ESB editor.
+                            Just click <emphasis><property>Ctrl-Space</property>.</emphasis></para>
+                        <figure>
+                            <title>Content Assist in Tree ESB Editor</title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata
+                                        fileref="images/esb_file/09_editors_features.png" scale="85"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>
+             </section> --> 
+         </section>
+       
+        <section id="FullControlOverSourceFiles-SynchronizedSourcAndVisualEditing">
+            
+            <title>Synchronized Source and Visual Editing</title>
+
+            <para>ESB file can be edited in either source
+                or extra visual modes at the same time.</para>
+
+            <para>JBoss Tools provide you two different editors to speed your development: a graphical view (<property>Tree</property>) and source
+                (<property>Source</property>). At the same time, you always have full control over esb source file. Any changes you
+                make in the source view will immediately appear in the tree view. Both views are synchronized, you can edit the file in any view.</para>
+
+            <figure>
+                <title>Two Views are Synchronized</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/10_esb_features.png" scale="70"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+          
+        </section>
+        
+        <para>The last chapter covers capabilities on how you can use ESB editor.</para>
+        
+        <para>In summary, this reference supplies you with all necessary information on the functionality
+            that JBoss ESB Editor provides for work with JBoss ESB.</para>
+    </section>
+</chapter>
