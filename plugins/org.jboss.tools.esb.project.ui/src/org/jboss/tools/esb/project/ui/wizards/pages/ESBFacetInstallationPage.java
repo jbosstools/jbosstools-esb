@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.wst.common.componentcore.datamodel.properties.IFacetDataModelProperties;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
@@ -155,7 +156,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	
 	
 	private IFacetedProjectWorkingCopy getFacetedProjectWorkingCopy(){
-		Object obj = model.getProperty(FACETED_PROJECT_WORKING_COPY);
+		Object obj = model.getProperty(IFacetDataModelProperties.FACETED_PROJECT_WORKING_COPY);
 		if(obj instanceof IFacetedProjectWorkingCopy){
 			return (IFacetedProjectWorkingCopy)obj;
 		}
