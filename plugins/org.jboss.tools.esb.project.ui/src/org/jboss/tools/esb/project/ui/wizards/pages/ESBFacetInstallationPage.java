@@ -87,12 +87,18 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 
 			public void handleEvent(IFacetedProjectEvent event) {
 				IProjectFacet facet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
-				IProjectFacetVersion version = fpwc.getProjectFacetVersion(facet);
-				if(version != null){
-					initializeRuntimesCombo(cmbRuntimes, null, version.getVersionString());
-				}else{
-					initializeRuntimesCombo(cmbRuntimes, null);
-				}
+				final IProjectFacetVersion version = fpwc.getProjectFacetVersion(facet);
+				Display.getDefault().syncExec(new Runnable() {
+
+					public void run() {
+						if(version != null){
+							initializeRuntimesCombo(cmbRuntimes, null, version.getVersionString());
+						}else{
+							initializeRuntimesCombo(cmbRuntimes, null);
+						}
+					}
+					
+				});
 				
 			}
 		}, IFacetedProjectEvent.Type.PROJECT_FACETS_CHANGED);

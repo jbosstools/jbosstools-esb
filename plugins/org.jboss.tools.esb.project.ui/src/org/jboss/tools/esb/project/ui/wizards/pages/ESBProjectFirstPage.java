@@ -2,6 +2,7 @@ package org.jboss.tools.esb.project.ui.wizards.pages;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.web.ui.internal.wizards.DataModelFacetCreationWizardPage;
@@ -21,6 +22,18 @@ public class ESBProjectFirstPage extends DataModelFacetCreationWizardPage {
 	
 	protected void createPresetPanel(Composite top) {
 		new Label(top, SWT.NONE);
+	}
+
+	@Override
+	protected void validatePage() {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				validatePage(true);
+			}
+			
+		});
+		
 	}
 	
 }
