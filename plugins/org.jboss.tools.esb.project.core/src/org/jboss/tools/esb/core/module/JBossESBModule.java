@@ -41,6 +41,9 @@ public class JBossESBModule implements IModule{
 		IFacetedProject facetPrj;
 		try {
 			facetPrj = ProjectFacetsManager.create(project);
+			if (facetPrj == null) {
+				return null;
+			}
 			final IProjectFacet esbfacet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
 			final IProjectFacetVersion fv = facetPrj.getInstalledVersion(esbfacet);
 			return ModuleType.getModuleType(esbfacet.getId(), fv.getVersionString());
