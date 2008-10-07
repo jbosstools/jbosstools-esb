@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Grid Qian
+ * @author Denny Xu
  */
 public class JBossRuntime {
 

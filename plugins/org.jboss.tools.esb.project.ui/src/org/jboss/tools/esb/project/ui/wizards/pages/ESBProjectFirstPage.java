@@ -6,18 +6,19 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.web.ui.internal.wizards.DataModelFacetCreationWizardPage;
-import org.jboss.tools.esb.core.ESBProjectUtilities;
+import org.jboss.tools.esb.core.ESBProjectConstant;
+import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
 public class ESBProjectFirstPage extends DataModelFacetCreationWizardPage {
 
 	public ESBProjectFirstPage(IDataModel dataModel, String pageName) {
 		super(dataModel, pageName);
-		setTitle("JBoss ESB Project");
-		setDescription("Create a new JBoss ESB project.");
+		setTitle(JBossESBUIMessages.ESBProjectFirstPage_Title);
+		setDescription(JBossESBUIMessages.ESBProjectFirstPage_Description);
 	}
 
 	protected String getModuleTypeID() {
-		return ESBProjectUtilities.ESB_PROJECT_FACET;
+		return ESBProjectConstant.ESB_PROJECT_FACET;
 	}
 	
 	protected void createPresetPanel(Composite top) {

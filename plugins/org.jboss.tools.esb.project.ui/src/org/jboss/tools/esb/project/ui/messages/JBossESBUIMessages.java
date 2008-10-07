@@ -9,7 +9,7 @@
  * Red Hat, Inc. - initial API and implementation 
  ******************************************************************************/ 
 
-package org.jboss.tools.esb.project.ui.preference.messages;
+package org.jboss.tools.esb.project.ui.messages;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -19,7 +19,7 @@ import org.eclipse.osgi.util.NLS;
 public final class JBossESBUIMessages extends NLS {
 
 	private static final String BUNDLE_NAME = 
-			"org.jboss.tools.esb.project.ui.preference.messages.JBossESBUI";		//$NON-NLS-1$
+			"org.jboss.tools.esb.project.ui.messages.JBossESBUI";		//$NON-NLS-1$
 
 	private JBossESBUIMessages() {
 		// Do not instantiate
@@ -59,6 +59,49 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_Preference_Page_Runtimes;
 	
 	
+	//esb facet messages
+	public static String ESBFacetInstallationPage_Button_Text_New;
+
+	public static String ESBFacetInstallationPage_Default_SRC_Folder;
+
+	public static String ESBFacetInstallationPage_Description;
+
+	public static String ESBFacetInstallationPage_Error_Message_Have_Not_Set_Target_Runtime;
+
+	public static String ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime;
+
+	public static String ESBFacetInstallationPage_Error_Message_No_Target_Runtime;
+
+	public static String ESBFacetInstallationPage_Error_Message_Specify_Content_Folder;
+
+	public static String ESBFacetInstallationPage_Error_Message_Specify_ESB_Runtime;
+
+	public static String ESBFacetInstallationPage_Error_Message_Specify_Source_Folder;
+
+	public static String ESBFacetInstallationPage_Group_Runtime_Text;
+
+	public static String ESBFacetInstallationPage_Group_Text_Folder;
+
+	public static String ESBFacetInstallationPage_Label_Content_Directory;
+
+	public static String ESBFacetInstallationPage_Label_Server_Supplied_Runtime;
+
+	public static String ESBFacetInstallationPage_Label_Source_Directory;
+
+	public static String ESBFacetInstallationPage_Title;
+
+	 
+	
+	
+	public static String ESBProjectFirstPage_Description;
+
+	public static String ESBProjectFirstPage_Title;
+
+	public static String ESBProjectWizard_Title;
+
+
+
+
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, JBossESBUIMessages.class);
 	}

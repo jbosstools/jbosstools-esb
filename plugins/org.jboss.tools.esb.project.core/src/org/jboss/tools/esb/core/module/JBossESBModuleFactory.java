@@ -7,9 +7,9 @@ import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.server.core.IModule;
 import org.eclipse.wst.server.core.model.ModuleDelegate;
-import org.eclipse.wst.server.core.util.ProjectModule;
 import org.eclipse.wst.server.core.util.ProjectModuleFactoryDelegate;
-import org.jboss.tools.esb.core.ESBProjectUtilities;
+import org.jboss.tools.esb.core.ESBProjectConstant;
+import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 
 public class JBossESBModuleFactory extends ProjectModuleFactoryDelegate {
 
@@ -32,13 +32,14 @@ public class JBossESBModuleFactory extends ProjectModuleFactoryDelegate {
 			if (facetProject == null) {
 				return null;
 			}
-			IProjectFacet esbFacet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
+			IProjectFacet esbFacet = ProjectFacetsManager.getProjectFacet(ESBProjectConstant.ESB_PROJECT_FACET);
+
 			if(facetProject.hasProjectFacet(esbFacet)){
 				JBossESBModule module = new JBossESBModule(project, this, this.getId());
 				return new IModule[]{ module };
 			}
 		} catch (CoreException e) {
-			e.printStackTrace();
+			ESBProjectCorePlugin.getDefault().getLog().log(e.getStatus());
 		}
 		return null;
 		

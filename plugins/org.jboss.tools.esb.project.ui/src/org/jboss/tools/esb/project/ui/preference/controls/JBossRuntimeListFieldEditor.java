@@ -60,10 +60,10 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
-import org.jboss.tools.esb.core.ESBProjectUtilities;
+import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
-import org.jboss.tools.esb.project.ui.preference.messages.JBossESBUIMessages;
+import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
 /**
  * @author Grid Qian
@@ -578,7 +578,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 
 		private List<String> getESBFacetVersions(){
 			List<String> versions = new ArrayList<String>();
-			IProjectFacet esbfacet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
+			IProjectFacet esbfacet = ProjectFacetsManager.getProjectFacet(ESBProjectConstant.ESB_PROJECT_FACET);
 			for(IProjectFacetVersion version: esbfacet.getVersions()){
 				versions.add(version.getVersionString());
 			}
@@ -661,8 +661,8 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			if (!jbosswsHomeDir.isDirectory())
 				return false;
 			
-			if(!isValidESBStandaloneRuntimeDir(path) 
-					&& !isValidESBServer(path)){
+			if(!JBossRuntimeManager.isValidESBStandaloneRuntimeDir(path) 
+					&& !JBossRuntimeManager.isValidESBServer(path)){
 				return false;
 			}
 			
@@ -670,42 +670,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			return true;
 		}	
 		
-		private boolean isValidESBStandaloneRuntimeDir(String path) {
-			IPath location = new Path(path);
-			IPath esblocation = location.append("lib").append("jbossesb.esb");
-			IPath sarLocation = location.append("lib").append("jbossesb.sar");
-			if (!esblocation.toFile().isDirectory()) {
-				return false;
-			}
-			if (!sarLocation.toFile().isDirectory()) {
-				return false;
-			}
-
-			return true;
-		}
 		
-		private boolean isValidESBServer(String path){
-			IPath serverLocation = new Path(path);
-			
-			String esbLcoationSeg = "server" + File.separator + "default"
-					+ File.separator + "deploy" + File.separator
-					+ "jbossesb.esb";
-			String sarLocationSeg = "server" + File.separator + "default"
-			+ File.separator + "deploy" + File.separator
-			+ "jbossesb.sar";
-			IPath esbLocation = serverLocation.append(esbLcoationSeg);
-			IPath sarLocation = serverLocation.append(sarLocationSeg);
-			
-			if(!esbLocation.toFile().isDirectory()){
-				return false;
-			}
-			if(!sarLocation.toFile().isDirectory()){
-				return false;
-			}
-			
-			
-			return true;
-		}
 		
 	}
 	

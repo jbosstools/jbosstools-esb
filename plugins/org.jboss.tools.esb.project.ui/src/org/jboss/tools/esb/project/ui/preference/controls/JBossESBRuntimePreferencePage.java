@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
-import org.jboss.tools.esb.project.ui.preference.messages.JBossESBUIMessages;
+import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
 /**
  * @author Grid Qian

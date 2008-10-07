@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -27,17 +28,21 @@ import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.wst.common.frameworks.datamodel.AbstractDataModelOperation;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
+import org.eclipse.wst.common.project.facet.core.IFacetedProject;
+import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
 import org.jboss.tools.esb.core.StatusUtils;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeClassPathInitializer;
 
 /**
- * @author Grid Qian
+ * @author Denny Xu
  */
 public class JBossClassPathCommand extends AbstractDataModelOperation {
 
 	IProject project;
 	private IDataModel model;
+	private String serverRuntimeId;
 
 	public JBossClassPathCommand(IProject project, IDataModel model) {
 		this.project = project;
@@ -54,42 +59,57 @@ public class JBossClassPathCommand extends AbstractDataModelOperation {
 		try {
 
 				// store runtime name and runtime location to the project
-
-				String runtimeName = model
-						.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID);
-				String runtimeLocation = model
-						.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_HOME);
-				String esbcontentFolder = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
-				project
-						.setPersistentProperty(
-								IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_QNAME_RUNTIME_NAME,
-								runtimeName);
-				project
-						.setPersistentProperty(
-								IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_RNTIME_LOCATION,
-								runtimeLocation);
-				project.setPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER, esbcontentFolder);
-				status = addClassPath(project, runtimeName);
+				boolean isServerSupplied = model.getBooleanProperty(IJBossESBFacetDataModelProperties.RUNTIME_IS_SERVER_SUPPLIED);
+				if(isServerSupplied){
+					serverRuntimeId = getProjectTargetRuntimeID(project);
+					String[] segments = new String[]{JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED,
+														serverRuntimeId};
+					status = addClassPath(project, segments);
+				}else{
+					String runtimeName = model
+							.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID);
+					String runtimeLocation = model
+							.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_HOME);
+					String esbcontentFolder = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
+					project
+							.setPersistentProperty(
+									IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_QNAME_RUNTIME_NAME,
+									runtimeName);
+					project
+							.setPersistentProperty(
+									IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_RNTIME_LOCATION,
+									runtimeLocation);
+					project.setPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER, esbcontentFolder);
+					status = addClassPath(project, new String[]{runtimeName});
+				}
+				
 			
 
 		} catch (CoreException e) {
 			status = StatusUtils.errorStatus(
-					JBossFacetCoreMessages.Error_Add_Facet_JBossWS, e);
+					JBossFacetCoreMessages.Error_Add_Facet_JBossESB, e);
 		}
 		return status;
 	}
 
-	public IStatus addClassPath(IProject project, String segment) {
+	private String getProjectTargetRuntimeID(IProject project) throws CoreException{
+		IFacetedProject fp = ProjectFacetsManager.create(project);
+		IRuntime runtime = fp.getPrimaryRuntime();
+		return runtime.getProperty("id");
+		
+	}
+	
+	public IStatus addClassPath(IProject project, String[] segments) {
 		IStatus status = Status.OK_STATUS;
 		try {
 
 			IClasspathEntry newClasspath;
 			IJavaProject javaProject = JavaCore.create(project);
-
-			newClasspath = JavaCore
-					.newContainerEntry(new Path(
-							JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_CONTAINER_ID)
-							.append(segment));
+			IPath path = new Path(JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_CONTAINER_ID);
+			for(String segment: segments ){
+				path = path.append(segment);
+			}
+			newClasspath = JavaCore.newContainerEntry(path);
 
 			IClasspathEntry[] oldClasspathEntries = javaProject
 					.readRawClasspath();

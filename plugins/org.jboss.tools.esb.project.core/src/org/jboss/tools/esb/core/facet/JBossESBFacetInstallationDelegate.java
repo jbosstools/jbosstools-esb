@@ -63,13 +63,11 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 
 		String runtimeId = model
 				.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID);
-		if (runtimeId != null && !runtimeId.equals("")) {
-			JBossClassPathCommand command = new JBossClassPathCommand(project,
+		JBossClassPathCommand command = new JBossClassPathCommand(project,
 					model);
-			IStatus status = command.executeOverride(monitor);
-			if (!status.equals(Status.OK_STATUS)) {
-				throw new CoreException(status);
-			}
+		IStatus status = command.executeOverride(monitor);
+		if (!status.equals(Status.OK_STATUS)) {
+			throw new CoreException(status);
 		}
 		
 		ClasspathHelper.removeClasspathEntries(project, fv);

@@ -2,8 +2,11 @@ package org.jboss.tools.esb.project.ui.wizards.pages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EventObject;
 import java.util.List;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -14,6 +17,8 @@ import org.eclipse.jst.common.project.facet.core.JavaFacetInstallConfig;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -34,12 +39,16 @@ import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectEvent;
 import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectListener;
+import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
 import org.eclipse.wst.common.project.facet.ui.AbstractFacetWizardPage;
 import org.eclipse.wst.common.project.facet.ui.IFacetWizardPage;
-import org.jboss.tools.esb.core.ESBProjectUtilities;
+import org.eclipse.wst.server.core.ServerCore;
+import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
+import org.jboss.tools.esb.project.ui.ESBProjectPlugin;
+import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.preference.controls.JBossRuntimeListFieldEditor;
 
 public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements IFacetWizardPage, IJBossESBFacetDataModelProperties {
@@ -51,20 +60,23 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	private IDataModel model;
 	private boolean hasValidContentFolder = true;
 	private boolean hasValidSrc = true;
-	private boolean hasRuntime = true;
+	private boolean hasRuntime = false;
 	private Combo cmbRuntimes;
+	private Button btnUserSupplied;
+	private Button btnServerSupplied;
+	private Button btnNew;
 	
 	public ESBFacetInstallationPage() {
 		super( "esb.facet.install.page"); //$NON-NLS-1$
-		setTitle("Install ESB Facet");
-		setDescription("Configure project structure and classpath");
+		setTitle(JBossESBUIMessages.ESBFacetInstallationPage_Title);
+		setDescription(JBossESBUIMessages.ESBFacetInstallationPage_Description);
 		
 	}
 
 	private void setDefaultOutputFolder(){
 		JavaFacetInstallConfig cfg = findJavaFacetInstallConfig();
 		if(cfg != null){
-			cfg.setDefaultOutputFolder(new Path(ESBProjectUtilities.BUILD_CLASSES));
+			cfg.setDefaultOutputFolder(new Path(ESBProjectConstant.BUILD_CLASSES));
 		}
 	}
 
@@ -75,7 +87,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		
 		createProjectGroup(composite);
 		createRuntimeGroup(composite);
-		
+		setPageComplete(false);
 		setDefaultOutputFolder();
 		
 		//synchHelper.synchText(configFolder, CONTENT_DIR, null);
@@ -86,7 +98,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		fpwc.addListener(new IFacetedProjectListener(){
 
 			public void handleEvent(IFacetedProjectEvent event) {
-				IProjectFacet facet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
+				IProjectFacet facet = ProjectFacetsManager.getProjectFacet(ESBProjectConstant.ESB_PROJECT_FACET);
 				final IProjectFacetVersion version = fpwc.getProjectFacetVersion(facet);
 				Display.getDefault().syncExec(new Runnable() {
 
@@ -109,13 +121,13 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	private void createProjectGroup(Composite parent){
 		
 		Group prjGroup = new Group(parent, SWT.BORDER);
-		prjGroup.setText("Project Folders");
+		prjGroup.setText(JBossESBUIMessages.ESBFacetInstallationPage_Group_Text_Folder);
 		prjGroup.setLayout(new GridLayout(1, false));
 		prjGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
 		
 		this.contextRootLabel = new Label(prjGroup, SWT.NONE);
-		this.contextRootLabel.setText("Content Directory");
+		this.contextRootLabel.setText(JBossESBUIMessages.ESBFacetInstallationPage_Label_Content_Directory);
 		this.contextRootLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		this.contentFolder = new Text(prjGroup, SWT.BORDER);
@@ -125,7 +137,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		contentFolder.addModifyListener(new ModifyListener(){
 			public void modifyText(ModifyEvent e){
 				 String content = contentFolder.getText();
-				 if(content != null && !content.equals("")){
+				 if(content != null && !content.equals("")){ //$NON-NLS-1$
 					 model.setProperty(ESB_CONTENT_FOLDER, content);
 				 }
 				 changePageStatus();
@@ -133,17 +145,17 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		});
 		
 		configFolderLabel = new Label(prjGroup, SWT.NONE);
-		configFolderLabel.setText("Java Source Directory");
+		configFolderLabel.setText(JBossESBUIMessages.ESBFacetInstallationPage_Label_Source_Directory);
 		configFolderLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		configFolder = new Text(prjGroup, SWT.BORDER);
 		configFolder.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		configFolder.setData("label", configFolderLabel); //$NON-NLS-1$
-		configFolder.setText("src");
+		configFolder.setText(JBossESBUIMessages.ESBFacetInstallationPage_Default_SRC_Folder);
 		configFolder.addModifyListener(new ModifyListener(){
 			public void modifyText(ModifyEvent e){
 				String srcFolder = configFolder.getText();
-				 if(srcFolder != null && !srcFolder.equals("")){
+				 if(srcFolder != null && !srcFolder.equals("")){ //$NON-NLS-1$
 					 model.setProperty(ESB_SOURCE_FOLDER, srcFolder);
 					 setConfigFolder(srcFolder);
 				 }
@@ -197,26 +209,40 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	private void createRuntimeGroup(Composite parent){
 		
 		Group runtimeGroup = new Group(parent, SWT.BORDER);
-		runtimeGroup.setText("JBoss ESB Runtime");
-		runtimeGroup.setLayout(new GridLayout(2, false));
+		runtimeGroup.setText(JBossESBUIMessages.ESBFacetInstallationPage_Group_Runtime_Text);
+		runtimeGroup.setLayout(new GridLayout(3, false));
 		runtimeGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
-	/*	Button btnServerSupplied = new Button(runtimeGroup, SWT.RADIO);
-		 
+		btnServerSupplied = new Button(runtimeGroup, SWT.RADIO);
+		btnServerSupplied.addMouseListener(new MouseAdapter(){
+			public void mouseDown(MouseEvent e) {
+				setServerSuppliedSelection(e);
+			}
+		});
 		GridData gd = new GridData();
 
 		gd.horizontalSpan = 1;
-		btnServerSupplied.setLayoutData(gd);*/
+		btnServerSupplied.setLayoutData(gd);
 
-		/*Label lblServerSupplied = new Label(runtimeGroup, SWT.NONE);
+		Label lblServerSupplied = new Label(runtimeGroup, SWT.NONE);
+		lblServerSupplied.addMouseListener(new MouseAdapter(){
+			public void mouseDown(MouseEvent e) {
+				btnServerSupplied.setSelection(true);
+				setServerSuppliedSelection(e);
+			}
+		});
 		
-		lblServerSupplied.setText("Server supplied ESB Runtime");
+		lblServerSupplied.setText(JBossESBUIMessages.ESBFacetInstallationPage_Label_Server_Supplied_Runtime);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = 3;
+		gd.horizontalSpan = 2;
 		lblServerSupplied.setLayoutData(gd);
 
-		Button btnUserSupplied = new Button(runtimeGroup, SWT.RADIO);*/
-		
+		btnUserSupplied = new Button(runtimeGroup, SWT.RADIO);
+		btnUserSupplied.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				setUserSuppliedSelection(e);
+			}
+		});
 
 		cmbRuntimes = new Combo(runtimeGroup, SWT.READ_ONLY);
 		cmbRuntimes.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -225,50 +251,129 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 				String runtimeName = cmbRuntimes.getText();
 				JBossRuntime jr = (JBossRuntime) cmbRuntimes
 						.getData(runtimeName);
-				saveJBosswsRuntimeToModel(jr);
+				saveJBossESBRuntimeToModel(jr);
+				changePageStatus();
 			}
 		});
 		initializeRuntimesCombo(cmbRuntimes, null);
 
-		Button btnNew = new Button(runtimeGroup, SWT.NONE);
-		btnNew.setText("New");
+		btnNew = new Button(runtimeGroup, SWT.NONE);
+		btnNew.setText(JBossESBUIMessages.ESBFacetInstallationPage_Button_Text_New);
 		btnNew.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				newJBossWSRuntime();
+				newJBossRuntime();
 				changePageStatus();
 			}
 		});
 		
-		if("".equals(cmbRuntimes.getText())){
+		if("".equals(cmbRuntimes.getText())){ //$NON-NLS-1$
 			hasRuntime = false;
 		}
-		/*Composite chkcom = new Composite(runtimeGroup, SWT.NONE);
-		chkcom.setLayout(new GridLayout(3, true));
-		chkcom.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
-		Button jbpm = new Button(chkcom, SWT.CHECK);
-		jbpm.setText("Depends on jbpm.esb");
-		
-		Button smooks = new Button(chkcom, SWT.CHECK);
-		smooks.setText("Depends on Smooks.esb");
-		
-		Button jbrules = new Button(chkcom, SWT.CHECK);
-		jbrules.setText("Depends on jrules.esb");
-
-		Button spring = new Button(chkcom, SWT.CHECK);
-		spring.setText("Depends on spring.esb");
-		
-		Button soap = new Button(chkcom, SWT.CHECK);
-		soap.setText("Depends on soap.esb");*/
 		
 	}
  
+	protected void setServerSuppliedSelection(EventObject e) {
+		btnServerSupplied.setSelection(true);
+		btnUserSupplied.setSelection(false);
+		model
+				.setBooleanProperty(
+						IJBossESBFacetDataModelProperties.RUNTIME_IS_SERVER_SUPPLIED,
+						true);
+		//remove user supplied properties
+		model.setStringProperty(
+				IJBossESBFacetDataModelProperties.RUNTIME_ID, null);
+		model.setStringProperty(
+				IJBossESBFacetDataModelProperties.RUNTIME_HOME,	null);		
+		enableUserSupplied(false);		
+		//checkServerSuppliedESBRuntime();
+		changePageStatus();
 
+	}
+
+	protected void setUserSuppliedSelection(EventObject e) {
+		btnServerSupplied.setSelection(false);
+		btnUserSupplied.setSelection(true);
+		model
+				.setBooleanProperty(
+						IJBossESBFacetDataModelProperties.RUNTIME_IS_SERVER_SUPPLIED,
+						false);
+		String runtimename = cmbRuntimes.getText();	
+		if(runtimename == null || runtimename.equals("")){ //$NON-NLS-1$
+			hasRuntime = false;
+		}
+		JBossRuntime jbRuntime = JBossRuntimeManager.getInstance().findRuntimeByName(runtimename);
+		
+		
+		if (jbRuntime != null) {
+			saveJBossESBRuntimeToModel(jbRuntime);
+		}
+		enableUserSupplied(true);
+		changePageStatus();
+
+	}
 	
+	private void checkServerSuppliedESBRuntime() {
+		String prjname = model.getStringProperty(FACET_PROJECT_NAME);
+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(
+				prjname);
+
+		try {
+			IFacetedProject fp = ProjectFacetsManager.create(project);
+			if (fp != null) {
+				IRuntime runtime = fp.getPrimaryRuntime();
+				if (runtime == null) {
+					setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_No_Target_Runtime);
+					hasRuntime = false;
+					setPageComplete(isPageComplete());
+					return;
+				}
+				org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore
+						.findRuntime(runtime.getProperty("id"));
+				if (!JBossRuntimeManager.isValidESBServer(serverRuntime
+						.getLocation().toOSString())) {
+					setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime);
+					hasRuntime = false;
+					setPageComplete(isPageComplete());
+					return;
+				}
+			} else {
+				IFacetedProjectWorkingCopy ifpwc = getFacetedProjectWorkingCopy();
+				IRuntime runtime = ifpwc.getPrimaryRuntime();
+				if (runtime == null) {
+					setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Have_Not_Set_Target_Runtime);
+					hasRuntime = false;
+					setPageComplete(isPageComplete());
+					return;
+				}
+
+				org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore
+						.findRuntime(runtime.getProperty("id")); //$NON-NLS-1$
+				if (!JBossRuntimeManager.isValidESBServer(serverRuntime
+						.getLocation().toOSString())) {
+					hasRuntime = false;
+					setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime);
+					setPageComplete(isPageComplete());
+					return;
+				}
+			}
+
+		} catch (CoreException e) {
+			ESBProjectPlugin.getDefault().getLog().log(e.getStatus());
+		}
+
+	}
+	
+	
+	
+	private void enableUserSupplied(boolean enabled){
+		cmbRuntimes.setEnabled(enabled);
+		btnNew.setEnabled(enabled);
+	}
 	/*
-	 * create a new jbossws runtime and set user supplied runtime to the new one
+	 * create a new jboss ESB runtime and set user supplied runtime to the new one
 	 */
-	protected void newJBossWSRuntime() {
+	protected void newJBossRuntime() {
 		List<JBossRuntime> exists = new ArrayList<JBossRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()));
 		List<JBossRuntime> added = new ArrayList<JBossRuntime>();
 		
@@ -291,13 +396,13 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	}
 	
 	protected void initializeRuntimesCombo(Combo cmRuntime, String runtimeName, String version) {
-		JBossRuntime selectedJbws = null;
+		JBossRuntime selectedJbRuntime = null;
 		JBossRuntime defaultJbws = null;
 		int selectIndex = 0;
 		int defaultIndex = 0;
 		
 		cmRuntime.removeAll();
-		if(runtimeName == null || "".equals(runtimeName)){
+		if(runtimeName == null || "".equals(runtimeName)){ //$NON-NLS-1$
 			runtimeName = model.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID);
 		}
 		JBossRuntime[] runtimes = JBossRuntimeManager.getInstance()
@@ -308,7 +413,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			cmRuntime.setData(jr.getName(), jr);
 			
 			if(jr.getName().equals(runtimeName)){
-				selectedJbws = jr;
+				selectedJbRuntime = jr;
 				selectIndex = i;
 			}
 			// get default jbossws runtime
@@ -318,12 +423,12 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			}
 		}
 		
-		if(selectedJbws != null){
+		if(selectedJbRuntime != null){
 			cmRuntime.select(selectIndex);
-			saveJBosswsRuntimeToModel(selectedJbws);
+			saveJBossESBRuntimeToModel(selectedJbRuntime);
 		}else if(defaultJbws != null){
 			cmRuntime.select(defaultIndex);
-			saveJBosswsRuntimeToModel(defaultJbws);
+			saveJBossESBRuntimeToModel(defaultJbws);
 		}
 	}
 	
@@ -334,13 +439,13 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			initializeRuntimesCombo(cmbRuntimes, null, version.getVersionString());
 
 		}else{
-			initializeRuntimesCombo(cmbRuntimes, null, "");
+			initializeRuntimesCombo(cmbRuntimes, null, ""); //$NON-NLS-1$
 
 		}
 	}
 	private IProjectFacetVersion getSelectedESBVersion(){
 		IFacetedProjectWorkingCopy fpwc = getFacetedProjectWorkingCopy();
-		IProjectFacet facet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
+		IProjectFacet facet = ProjectFacetsManager.getProjectFacet(ESBProjectConstant.ESB_PROJECT_FACET);
 		if(fpwc != null){
 			return fpwc.getProjectFacetVersion(facet);
 		}else{
@@ -349,14 +454,8 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		
 	}
 	
-	protected void saveJBosswsRuntimeToModel(JBossRuntime jbws) {
-	/*	String duplicateMsg = "";
-		try {
-			duplicateMsg = ESBProjectUtil.getDuplicateJars(model, jbws.getName());
-		} catch (JavaModelException e1) {
-			JBossESBPlugin.getDefault().getLog().log(
-					StatusUtils.errorStatus(e1));
-		}*/
+	protected void saveJBossESBRuntimeToModel(JBossRuntime jbws) {
+
 		if (jbws != null) {
 			model.setStringProperty(
 					IJBossESBFacetDataModelProperties.RUNTIME_HOME,
@@ -385,18 +484,20 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 					StatusUtils.errorStatus(e1));
 		}*/
 		
-		if(contentFolder.getText().trim().equals("")){
-			setErrorMessage("Please specify a valid content folder.");
+		if(contentFolder.getText().trim().equals("")){ //$NON-NLS-1$
+			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_Content_Folder);
 			hasValidContentFolder = false;
 			setPageComplete(isPageComplete());
 		}
-		else if(configFolder.getText().trim().equals("")){
-			setErrorMessage("Please specify a valid source folder.");
+		else if(configFolder.getText().trim().equals("")){ //$NON-NLS-1$
+			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_Source_Folder);
 			hasValidSrc = false;
 			setPageComplete(isPageComplete());
-		}else if(!hasRuntime){
-			setErrorMessage("Please specify a ESB runtime");
+		}else if(btnUserSupplied.getSelection() && !hasRuntime){
+			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_ESB_Runtime);
 			setPageComplete(isPageComplete());
+		}else if(btnServerSupplied.getSelection()){
+			checkServerSuppliedESBRuntime();
 		}
 	/*	else if (!duplicateMsg.equals("")) {
 			setErrorMessage("Duplicated jar on classpath:" + duplicateMsg);

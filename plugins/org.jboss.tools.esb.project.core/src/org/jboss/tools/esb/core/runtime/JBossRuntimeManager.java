@@ -34,7 +34,7 @@ import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
 
 /**
- * @author Grid Qian
+ * @author Denny Xu
  */
 public class JBossRuntimeManager {
 
@@ -158,36 +158,42 @@ public class JBossRuntimeManager {
 				 
 			} else {
 
-				IPath rtHome = new Path(rt.getHomeDir());
-				IPath deployPath = rtHome.append("server").append("default").append("deploy");
-				
-				IPath esbPath = deployPath.append(JBOSSESB_ESB);
-				IPath sarPath = deployPath.append(JBOSSESB_SAR);
-				
-				IPath libPath = rtHome.append("lib");
-				
-				if (!esbPath.toFile().exists() || !sarPath.toFile().exists()) {
-					esbPath = libPath.append(JBOSSESB_ESB);
-					sarPath = libPath.append(JBOSSESB_SAR);
-					
-				}
-				
-				List<File> esblibs = getJarsOfFolder(esbPath.toFile());
-				IPath sarLibPath = sarPath.append("lib");
-				List<File> sarJars = getJarsOfFolder(sarLibPath.toFile());
-				///List<File> commonLibs = getJarsOfFolder(libPath.toFile());
-				//List<File> tmpLibs = mergeTwoFileList(esblibs, sarJars);
-				//libs.addAll(commonLibs);
-
-				jarList = mergeTwoList(esblibs, sarJars);
-		
+				jarList = getAllRuntimeJars(rt.getHomeDir());
 			}
 			
 		}
 		return jarList;
 	}
 	
+	public List<String> getAllRuntimeJars(String runtimeLocation) {
+		List<String> jarList = new ArrayList<String>();
 
+		IPath rtHome = new Path(runtimeLocation);
+		IPath deployPath = rtHome.append("server").append("default").append(
+				"deploy");
+
+		IPath esbPath = deployPath.append(JBOSSESB_ESB);
+		IPath sarPath = deployPath.append(JBOSSESB_SAR);
+
+		IPath libPath = rtHome.append("lib");
+
+		if (!esbPath.toFile().exists() || !sarPath.toFile().exists()) {
+			esbPath = libPath.append(JBOSSESB_ESB);
+			sarPath = libPath.append(JBOSSESB_SAR);
+
+		}
+
+		List<File> esblibs = getJarsOfFolder(esbPath.toFile());
+		IPath sarLibPath = sarPath.append("lib");
+		List<File> sarJars = getJarsOfFolder(sarLibPath.toFile());
+		// /List<File> commonLibs = getJarsOfFolder(libPath.toFile());
+		// List<File> tmpLibs = mergeTwoFileList(esblibs, sarJars);
+		// libs.addAll(commonLibs);
+
+		jarList = mergeTwoList(esblibs, sarJars);
+
+		return jarList;
+	}
 	
 	private List<File> getJarsOfFolder(File folder){
 		List<File> jars = new ArrayList<File>();
@@ -376,8 +382,7 @@ public class JBossRuntimeManager {
 		try {
 			facetedProjects = ProjectFacetsManager.getFacetedProjects(facet);
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
 		for (IFacetedProject facetedProject : facetedProjects) {
 			QualifiedName qRuntimeName = IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_QNAME_RUNTIME_NAME;
@@ -401,6 +406,43 @@ public class JBossRuntimeManager {
 				.getString(JBossFacetCoreMessages.ESB_Location);
 
 		runtimes = converter.getMap(runtimeListString);
+	}
+	
+	public static boolean isValidESBServer(String path){
+		IPath serverLocation = new Path(path);
+		
+		String esbLcoationSeg = "server" + File.separator + "default"
+				+ File.separator + "deploy" + File.separator
+				+ "jbossesb.esb";
+		String sarLocationSeg = "server" + File.separator + "default"
+		+ File.separator + "deploy" + File.separator
+		+ "jbossesb.sar";
+		IPath esbLocation = serverLocation.append(esbLcoationSeg);
+		IPath sarLocation = serverLocation.append(sarLocationSeg);
+		
+		if(!esbLocation.toFile().isDirectory()){
+			return false;
+		}
+		if(!sarLocation.toFile().isDirectory()){
+			return false;
+		}
+		
+		
+		return true;
+	}
+	
+	public static boolean isValidESBStandaloneRuntimeDir(String path) {
+		IPath location = new Path(path);
+		IPath esblocation = location.append("lib").append("jbossesb.esb");
+		IPath sarLocation = location.append("lib").append("jbossesb.sar");
+		if (!esblocation.toFile().isDirectory()) {
+			return false;
+		}
+		if (!sarLocation.toFile().isDirectory()) {
+			return false;
+		}
+
+		return true;
 	}
 
 }

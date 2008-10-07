@@ -9,20 +9,21 @@ import org.eclipse.wst.common.project.facet.core.IFacetedProjectTemplate;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.web.ui.internal.wizards.NewProjectDataModelFacetWizard;
 import org.jboss.tools.common.model.ui.ModelUIImages;
-import org.jboss.tools.esb.core.ESBProjectUtilities;
+import org.jboss.tools.esb.core.ESBProjectConstant;
+import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.wizards.pages.ESBProjectFirstPage;
 
 public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 		INewWizard {
 
 	public ESBProjectWizard() {
-		setWindowTitle("New ESB Project Wizard");
+		setWindowTitle(JBossESBUIMessages.ESBProjectWizard_Title);
 		setDefaultPageImageDescriptor(ModelUIImages.getImageDescriptor(ModelUIImages.WIZARD_NEW_PROJECT));
 	}
 
 	public ESBProjectWizard(IDataModel model) {
 		super(model);
-		setWindowTitle("New ESB Project Wizard");
+		setWindowTitle(JBossESBUIMessages.ESBProjectWizard_Title);
 		setDefaultPageImageDescriptor(ModelUIImages.getImageDescriptor(ModelUIImages.WIZARD_NEW_PROJECT));
 		
 	}
@@ -34,7 +35,7 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 
 	@Override
 	protected IWizardPage createFirstPage() {
-		return new ESBProjectFirstPage(model, "first.page");
+		return new ESBProjectFirstPage(model, "first.page"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 
 	@Override
 	protected IFacetedProjectTemplate getTemplate() {
-		return ProjectFacetsManager.getTemplate(ESBProjectUtilities.ESB_PROJECT_FACET_TEMPLATE);
+		return ProjectFacetsManager.getTemplate(ESBProjectConstant.ESB_PROJECT_FACET_TEMPLATE);
 	}
 	
 	

@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 
 /**
  * 
- * @author Grid Qian
+ * @author Denny Xu
  *
  */
 public class JBossRuntimeListConverter {

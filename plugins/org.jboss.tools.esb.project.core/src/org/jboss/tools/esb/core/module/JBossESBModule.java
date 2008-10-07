@@ -9,13 +9,11 @@ import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.server.core.IModule;
 import org.eclipse.wst.server.core.IModuleType;
-import org.eclipse.wst.server.core.ServerCore;
-import org.eclipse.wst.server.core.ServerUtil;
-import org.eclipse.wst.server.core.internal.ModuleFactory;
 import org.eclipse.wst.server.core.internal.ModuleType;
 import org.eclipse.wst.server.core.model.ModuleDelegate;
 import org.eclipse.wst.server.core.model.ModuleFactoryDelegate;
-import org.jboss.tools.esb.core.ESBProjectUtilities;
+import org.jboss.tools.esb.core.ESBProjectConstant;
+import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 
 public class JBossESBModule implements IModule{
  
@@ -29,7 +27,6 @@ public class JBossESBModule implements IModule{
 		 
 	}
 	public Object getAdapter(Class adapter) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -44,11 +41,11 @@ public class JBossESBModule implements IModule{
 			if (facetPrj == null) {
 				return null;
 			}
-			final IProjectFacet esbfacet = ProjectFacetsManager.getProjectFacet(ESBProjectUtilities.ESB_PROJECT_FACET);
+			final IProjectFacet esbfacet = ProjectFacetsManager.getProjectFacet(ESBProjectConstant.ESB_PROJECT_FACET);
 			final IProjectFacetVersion fv = facetPrj.getInstalledVersion(esbfacet);
 			return ModuleType.getModuleType(esbfacet.getId(), fv.getVersionString());
 		} catch (CoreException e) {
-			e.printStackTrace();
+			ESBProjectCorePlugin.getDefault().getLog().log(e.getStatus());
 		}
 		
 		return null;

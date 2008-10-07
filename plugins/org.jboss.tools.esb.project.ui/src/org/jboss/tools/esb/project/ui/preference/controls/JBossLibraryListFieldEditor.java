@@ -49,8 +49,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
+import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.preference.JBossESBUIPlugin;
-import org.jboss.tools.esb.project.ui.preference.messages.JBossESBUIMessages;
 
 /**
  * @author Grid Qian

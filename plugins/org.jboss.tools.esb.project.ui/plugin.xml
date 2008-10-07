@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="org.jboss.tools.esb.project.ui.template" name="ESB Template" schema="schema/org.jboss.tools.esb.project.ui.template.exsd"/>
    <extension
          point="org.eclipse.ui.newWizards">
       <wizard
-            category="org.jboss.tools.esb.category1"
+            category="org.jboss.tools.esb.ui"
             class="org.jboss.tools.esb.project.ui.wizards.ESBProjectWizard"
             icon="$nl$/icons/wizards/esb.gif"
             id="JBoss.ESB.Project.Wizard"
-            name="ESB Project Wizard"
+            name="ESB Project"
             project="true">
       </wizard>
-      <category
-            id="org.jboss.tools.esb.category1"
-            name="ESB Wizard">
-      </category>
    </extension>
 
    <extension

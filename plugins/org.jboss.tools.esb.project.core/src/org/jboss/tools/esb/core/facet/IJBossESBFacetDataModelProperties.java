@@ -1,9 +1,9 @@
 package org.jboss.tools.esb.core.facet;
 
 import org.eclipse.core.runtime.QualifiedName;
-import org.eclipse.wst.common.componentcore.datamodel.properties.IFacetProjectCreationDataModelProperties;
+import org.eclipse.wst.common.componentcore.datamodel.properties.IFacetDataModelProperties;
 
-public interface IJBossESBFacetDataModelProperties extends IFacetProjectCreationDataModelProperties {
+public interface IJBossESBFacetDataModelProperties extends IFacetDataModelProperties {
 
 	public static final String USER_DEFINED_LOCATION = "IProjectCreationPropertiesNew.USER_DEFINED_LOCATION"; //$NON-NLS-1$
 	public static final String DEFAULT_LOCATION = "IProjectCreationPropertiesNew.DEFAULT_LOCATION"; //$NON-NLS-1$
