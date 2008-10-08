@@ -177,6 +177,11 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 				tempJbesb.setUserConfigClasspath(btnDefault.getSelection());
 				setJarGroupStatus();
 				setValue(null);
+				if(btnDefault.getSelection()){
+					jarGroup.setVisible(true);
+				}else{
+					jarGroup.setVisible(false);
+				}
 			}
 		});
 		
@@ -188,6 +193,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 		jarGroup.setEnabled(isUserConfig);
 		listView.getTree().setEnabled(isUserConfig);
 		actionPanel.setEnabled(isUserConfig);
+		jarGroup.setVisible(isUserConfig);			
 	}
 
 	protected void createListView(Composite parent) {
