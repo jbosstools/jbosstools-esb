@@ -6,6 +6,7 @@ import org.jboss.tools.common.meta.action.impl.handlers.DefaultCreateHandler;
 import org.jboss.tools.common.model.XModelException;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.util.FindObjectHelper;
+import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 
 public class AddProviderSupport extends SpecialWizardSupport {
 	String providerEntity;
@@ -61,7 +62,7 @@ public class AddProviderSupport extends SpecialWizardSupport {
 		XModelObject provider = getTarget().getModel().createModelObject(providerEntity, p0);
 		
 		Properties p1 = extractStepData(1);
-		XModelObject bus = getTarget().getModel().createModelObject(busEntity, p1);
+		XModelObject bus = XModelObjectLoaderUtil.createValidObject(getTarget().getModel(), busEntity, p1);
 		
 		provider.addChild(bus);
 		
