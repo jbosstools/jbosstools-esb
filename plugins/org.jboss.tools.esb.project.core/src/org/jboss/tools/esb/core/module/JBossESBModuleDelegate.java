@@ -15,10 +15,12 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.wst.server.core.IModule;
+import org.eclipse.wst.server.core.model.IModuleFile;
 import org.eclipse.wst.server.core.model.IModuleResource;
 import org.eclipse.wst.server.core.util.ModuleFile;
 import org.eclipse.wst.server.core.util.ModuleFolder;
 import org.eclipse.wst.server.core.util.ProjectModule;
+import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 
 public class JBossESBModuleDelegate extends ProjectModule {
@@ -37,11 +39,38 @@ public class JBossESBModuleDelegate extends ProjectModule {
 		IFolder configFolder = project.getFolder(esbFolder);
 		IJavaProject javaPrj = JavaCore.create(project);
 		IPath output = javaPrj.getOutputLocation();		
+		// if the jboss-esb.xml file is not in META-INF folder, try to get it from other folder of the project
+		List<IModuleResource> mrs = new ArrayList<IModuleResource>();		
+		IFolder metainf = configFolder.getFolder(ESBProjectConstant.META_INF);
+		IResource res = metainf.findMember(ESBProjectConstant.ESB_CONFIG_JBOSSESB);
+		if(res == null){
+			mrs.add(getModuleResourcesOutofESBContent(new Path(ESBProjectConstant.META_INF), project, ESBProjectConstant.ESB_CONFIG_JBOSSESB));
+		}
+		
+		//check the deployment.xml just like jboss-esb.xml
+		res = metainf.findMember(ESBProjectConstant.ESB_CONFIG_DEPLOYMENT);
+		if(res == null){
+			mrs.add(getModuleResourcesOutofESBContent(new Path(ESBProjectConstant.META_INF), project, ESBProjectConstant.ESB_CONFIG_DEPLOYMENT));
+		}
+		
+		res = configFolder.findMember(ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBM);
+		if(res == null){
+			mrs.add(getModuleResourcesOutofESBContent(Path.EMPTY, project, ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBM));
+		}
+		res = configFolder.findMember(ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBMQ);
+		if(res == null){
+			mrs.add(getModuleResourcesOutofESBContent(Path.EMPTY, project, ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBMQ));
+		}
+		
 		IModuleResource[] esbContent = getModuleResources(Path.EMPTY, configFolder);
 		IModuleResource[] classes = getModuleResources(Path.EMPTY, project.getWorkspace().getRoot().getFolder(output));
-		IModuleResource[] allResource = new IModuleResource[esbContent.length + classes.length];
+		IModuleResource[] allResource = new IModuleResource[esbContent.length + classes.length + mrs.size()];
 		System.arraycopy(esbContent, 0, allResource, 0, esbContent.length);
 		System.arraycopy(classes, 0, allResource, esbContent.length, classes.length);
+		if(mrs.size() > 0){
+			IModuleResource[] mr = mrs.toArray(new IModuleResource[]{});
+			System.arraycopy(mr, 0, allResource, esbContent.length + classes.length, mr.length);
+		}
 		return allResource;
 	}
 	
@@ -78,5 +107,30 @@ public class JBossESBModuleDelegate extends ProjectModule {
 		return new IModuleResource[0];
 	}
 	
-	
+	// create moduleresource for a name specified resource 
+	protected IModuleFile getModuleResourcesOutofESBContent(IPath path, IContainer container, String fileName) throws CoreException {
+		
+		IResource file = container.findMember(fileName, false);
+		if(file != null){
+			return new ModuleFile((IFile)file, file.getName(), path);
+		}
+		
+		IResource[] resources = container.members();
+		if (resources != null) {
+			int size = resources.length;
+			for (int i = 0; i < size; i++) {
+				IResource resource = resources[i];
+				if (resource != null && resource.exists()) {
+					if (resource instanceof IContainer) {
+						IModuleFile mf = getModuleResourcesOutofESBContent(path, (IContainer)resource, fileName);
+						
+						if(mf != null) return mf;
+					}  
+				}
+			}
+			
+		}
+		
+		return null;
+	}
 }
