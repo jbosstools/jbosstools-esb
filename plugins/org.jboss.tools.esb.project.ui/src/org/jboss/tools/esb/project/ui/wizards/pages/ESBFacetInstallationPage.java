@@ -361,6 +361,9 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		} catch (CoreException e) {
 			ESBProjectPlugin.getDefault().getLog().log(e.getStatus());
 		}
+		hasRuntime = true;
+		setPageComplete(isPageComplete());
+		setErrorMessage(null);
 
 	}
 	
