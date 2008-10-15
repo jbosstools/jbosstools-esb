@@ -31,5 +31,12 @@
                name="JBoss ESB Runtimes">
          </page>
       </extension>
-   
+   <extension
+          point="org.eclipse.wst.server.ui.serverImages">
+       <image
+             icon="icons/wizards/esb.gif"
+             id="org.jboss.tools.esb.project.ui.image"
+             typeIds="jst.jboss.esb">
+       </image>
+    </extension>
 </plugin>

@@ -40,27 +40,7 @@ public class JBossESBModuleDelegate extends ProjectModule {
 		IJavaProject javaPrj = JavaCore.create(project);
 		IPath output = javaPrj.getOutputLocation();		
 		// if the jboss-esb.xml file is not in META-INF folder, try to get it from other folder of the project
-		List<IModuleResource> mrs = new ArrayList<IModuleResource>();		
-		IFolder metainf = configFolder.getFolder(ESBProjectConstant.META_INF);
-		IResource res = metainf.findMember(ESBProjectConstant.ESB_CONFIG_JBOSSESB);
-		if(res == null){
-			mrs.add(getModuleResourcesOutofESBContent(new Path(ESBProjectConstant.META_INF), project, ESBProjectConstant.ESB_CONFIG_JBOSSESB));
-		}
-		
-		//check the deployment.xml just like jboss-esb.xml
-		res = metainf.findMember(ESBProjectConstant.ESB_CONFIG_DEPLOYMENT);
-		if(res == null){
-			mrs.add(getModuleResourcesOutofESBContent(new Path(ESBProjectConstant.META_INF), project, ESBProjectConstant.ESB_CONFIG_DEPLOYMENT));
-		}
-		
-		res = configFolder.findMember(ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBM);
-		if(res == null){
-			mrs.add(getModuleResourcesOutofESBContent(Path.EMPTY, project, ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBM));
-		}
-		res = configFolder.findMember(ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBMQ);
-		if(res == null){
-			mrs.add(getModuleResourcesOutofESBContent(Path.EMPTY, project, ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBMQ));
-		}
+		List<IModuleResource> mrs = getConfigModuleFile(project, configFolder);
 		
 		IModuleResource[] esbContent = getModuleResources(Path.EMPTY, configFolder);
 		IModuleResource[] classes = getModuleResources(Path.EMPTY, project.getWorkspace().getRoot().getFolder(output));
@@ -73,6 +53,46 @@ public class JBossESBModuleDelegate extends ProjectModule {
 		}
 		return allResource;
 	}
+	
+	private List<IModuleResource> getConfigModuleFile(IProject project, IFolder configFolder) throws CoreException {
+		List<IModuleResource> mrs = new ArrayList<IModuleResource>();		
+		IFolder metainf = configFolder.getFolder(ESBProjectConstant.META_INF);
+		IResource res = metainf.findMember(ESBProjectConstant.ESB_CONFIG_JBOSSESB);
+		IModuleFile tmpmf;
+		if(res == null){
+			tmpmf = getModuleResourcesOutofESBContent(new Path(ESBProjectConstant.META_INF), project, ESBProjectConstant.ESB_CONFIG_JBOSSESB);
+			if( tmpmf != null){
+				mrs.add(tmpmf);
+			}
+		}
+		
+		//check the deployment.xml just like jboss-esb.xml
+		res = metainf.findMember(ESBProjectConstant.ESB_CONFIG_DEPLOYMENT);
+		if(res == null){
+			tmpmf = getModuleResourcesOutofESBContent(new Path(ESBProjectConstant.META_INF), project, ESBProjectConstant.ESB_CONFIG_DEPLOYMENT);
+			if(tmpmf != null){
+				mrs.add(tmpmf);
+			}
+		}
+		
+		res = configFolder.findMember(ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBM);
+		if(res == null){
+			tmpmf = getModuleResourcesOutofESBContent(Path.EMPTY, project, ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBM);
+			if(tmpmf != null){
+				mrs.add(tmpmf);
+			}
+		}
+		res = configFolder.findMember(ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBMQ);
+		if(res == null){
+			tmpmf = getModuleResourcesOutofESBContent(Path.EMPTY, project, ESBProjectConstant.ESB_CONFIG_QUEUE_SERVICE_JBMQ);
+			if( tmpmf != null ){
+				mrs.add(tmpmf);
+			}
+		}
+		
+		return mrs;
+	}
+	
 	
 	@Override
 	public IStatus validate() {

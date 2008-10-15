@@ -6,6 +6,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jst.j2ee.internal.J2EEVersionConstants;
 import org.eclipse.jst.j2ee.project.facet.J2EEModuleFacetInstallDataModelProvider;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.jboss.tools.esb.core.ESBProjectConstant;
 
 public class JBossESBFacetDataModelProvider extends J2EEModuleFacetInstallDataModelProvider implements IJBossESBFacetDataModelProperties{
 
@@ -28,15 +29,17 @@ public class JBossESBFacetDataModelProvider extends J2EEModuleFacetInstallDataMo
 			return JBOSSESB_PROJECT_FACET;
 		}
 		else if(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER.equals(propertyName)){
-			return "esbcontent";
+			return "esbcontent";//ESBProjectConstant.DEFAULT_ESB_CONFIG_RESOURCE_FOLDER;
 		}
 		else if(IJBossESBFacetDataModelProperties.ESB_SOURCE_FOLDER.equals(propertyName)){
-			return "src";
+			return ESBProjectConstant.DEFAULT_ESB_SOURCE_FOLDER;
 		}
 		 else if(propertyName.equals(RUNTIME_ID)){
 			return "";
 		}else if(propertyName.equals(FACET_ID)){
 			return IJBossESBFacetDataModelProperties.JBOSS_ESB_FACET_ID;
+		} else if( propertyName.equals(RUNTIME_IS_SERVER_SUPPLIED)){
+			return true;
 		}
 		return super.getDefaultProperty(propertyName);
 	}
