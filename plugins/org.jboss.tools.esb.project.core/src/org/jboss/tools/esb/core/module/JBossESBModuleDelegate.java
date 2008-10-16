@@ -40,7 +40,10 @@ public class JBossESBModuleDelegate extends ProjectModule {
 		IJavaProject javaPrj = JavaCore.create(project);
 		IPath output = javaPrj.getOutputLocation();		
 		// if the jboss-esb.xml file is not in META-INF folder, try to get it from other folder of the project
-		List<IModuleResource> mrs = getConfigModuleFile(project, configFolder);
+		// block this logic as Max's suggestion
+		//List<IModuleResource> mrs = getConfigModuleFile(project, configFolder);
+		
+		List<IModuleResource> mrs = new ArrayList<IModuleResource>();
 		
 		IModuleResource[] esbContent = getModuleResources(Path.EMPTY, configFolder);
 		IModuleResource[] classes = getModuleResources(Path.EMPTY, project.getWorkspace().getRoot().getFolder(output));
