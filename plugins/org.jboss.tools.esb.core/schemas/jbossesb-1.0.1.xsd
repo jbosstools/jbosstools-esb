@@ -198,7 +198,7 @@
                             <xsd:documentation xml:lang="en">Schedule frequency time units.</xsd:documentation>
                         </xsd:annotation>
                     </xsd:attribute>
-					<xsd:attribute default="-1" name="execCount" type="xsd:int" use="optional">
+					<xsd:attribute default="-1" name="execCount" type="jesb:int" use="optional">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">
 								Schedule execution count. -1 to execute indefinitely.
@@ -431,7 +431,7 @@
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute default="1" name="maxThreads" type="xsd:int"
+		<xsd:attribute default="1" name="maxThreads" type="jesb:int"
 			use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">
@@ -463,7 +463,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="jesb:listener">
 				<xsd:attribute default="-1"
-					name="poll-frequency-seconds" type="xsd:int" use="optional">
+					name="poll-frequency-seconds" type="jesb:int" use="optional">
 <!-- Purposely defaults to -1 -->
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">
@@ -475,7 +475,7 @@
 					</xsd:annotation>
 				</xsd:attribute>
 				<xsd:attribute default="-1" name="schedule-frequency"
-					type="xsd:int" use="optional">
+					type="jesb:int" use="optional">
 <!-- Purposely defaults to -1 -->
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">
@@ -1532,7 +1532,7 @@
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="jesb:bus">
-					<xsd:attribute name="port" type="xsd:int"
+					<xsd:attribute name="port" type="jesb:int"
 						use="required">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">
@@ -1623,5 +1623,26 @@
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
+
+    <xsd:simpleType name="elType1">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="\#\{.+\}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="elType2">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="\$\{.+\}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="expressionType">
+        <xsd:union memberTypes="jesb:elType1 jesb:elType2"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="int">
+        <xsd:union memberTypes="xsd:int jesb:expressionType"/>
+    </xsd:simpleType>
+   
 
 </xsd:schema>
