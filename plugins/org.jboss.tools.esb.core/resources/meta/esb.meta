@@ -408,6 +408,14 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced" name="post rename" xmlname="post-rename">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced" name="post directory" xmlname="post-directory"/>
    <XModelAttribute PROPERTIES="category=advanced" name="post suffix" xmlname="post-suffix"/>
    <XModelAttribute PROPERTIES="category=advanced" name="error delete" xmlname="error-delete">
@@ -599,6 +607,10 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced"
     name="certificate url" xmlname="certificate-url"/>
+   <XModelAttribute PROPERTIES="category=advanced"
+    name="certificate name" xmlname="certificate-name"/>
+   <XModelAttribute PROPERTIES="category=advanced"
+    name="certificate passphrase" xmlname="certificate-passphrase"/>
    <XModelAttribute PROPERTIES="category=advanced" name="read only" xmlname="read-only">
     <Constraint loader="ListString">
      <value/>
@@ -897,6 +909,7 @@
     name="id" xmlname="busid"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="port" xmlname="port">
+    <Constraint loader="%IntEL%"/>
    </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
@@ -971,7 +984,9 @@
     default="http" name="protocol" xmlname="protocol">
     <Constraint loader="List">
      <value name="http"/>
+     <value name="https"/>
      <value name="socket"/>
+     <value name="sslsocket"/>
     </Constraint>
     <Editor name="List"/>
    </XModelAttribute>
@@ -1055,6 +1070,7 @@
    <XChildEntity name="ESBProperty"/>
    <XChildEntity name="ESBBus"/>
    <XChildEntity name="ESBJMSBus101"/>
+   <XChildEntity maxCount="1" name="ESBActivationConfig101" required="yes"/>
   </XChildrenEntities>
   <XEntityRenderer>
    <ICONS>
@@ -1079,7 +1095,16 @@
     <Editor name="AccessibleJava"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced;id=true"
-    name="transacted" xmlname="transacted"/>
+    name="transacted" xmlname="transacted">
+    <Constraint loader="List">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="Lit"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced"
+    name="provider adapter JNDI" xmlname="providerAdapterJNDI"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1214,6 +1239,15 @@
     name="jms security principal" xmlname="jms-security-principal"/>
    <XModelAttribute PROPERTIES="category=advanced"
     name="jms security credential" xmlname="jms-security-credential"/>
+   <XModelAttribute PROPERTIES="category=advanced;id=true"
+    name="transacted" xmlname="transacted">
+    <Constraint loader="List">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="Lit"/>
+   </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1305,7 +1339,9 @@
     <Constraint loader="ListString"/>
     <Editor name="ESBBusList"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general" name="max threads" xmlname="maxThreads"/>
+   <XModelAttribute PROPERTIES="category=general" name="max threads" xmlname="maxThreads">
+    <Constraint loader="%IntEL%"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="is gateway" xmlname="is-gateway">
     <Constraint loader="ListString">
      <value/>
@@ -1915,9 +1951,13 @@
     attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttribute PROPERTIES="category=advanced"
-    name="poll frequency seconds" xmlname="poll-frequency-seconds"/>
+    name="poll frequency seconds" xmlname="poll-frequency-seconds">
+    <Constraint loader="%IntEL%"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced"
-    name="schedule frequency" xmlname="schedule-frequency"/>
+    name="schedule frequency" xmlname="schedule-frequency">
+    <Constraint loader="%IntEL%"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced"
     name="schedule id ref" xmlname="scheduleidref"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
@@ -1947,9 +1987,10 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%"
   XMLSUBPATH="service" name="ESBService101">
   <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
    <XChildEntity maxCount="1" name="ESBListeners101" required="yes"/>
    <XChildEntity maxCount="1" name="ESBActions101" required="yes"/>
   </XChildrenEntities>
@@ -1967,6 +2008,14 @@
     name="category" xmlname="category"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="description" xmlname="description"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="invm scope" xmlname="invmScope">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="NONE"/>
+     <value name="GLOBAL"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -2057,7 +2106,17 @@
    <XModelAttribute PROPERTIES="category=general" name="start date" xmlname="startDate"/>
    <XModelAttribute PROPERTIES="category=general" name="end date" xmlname="endDate"/>
    <XModelAttribute PROPERTIES="category=general" name="frequency" xmlname="frequency"/>
-   <XModelAttribute name="exec count" xmlname="execCount"/>
+   <XModelAttribute PROPERTIES="category=general" name="frequency units" xmlname="frequencyUnits">
+    <Constraint loader="List">
+     <value/>
+     <value name="seconds"/>
+     <value name="milliseconds"/>
+    </Constraint>
+    <Editor name="List"/>
+   </XModelAttribute>
+   <XModelAttribute name="exec count" xmlname="execCount">
+    <Constraint loader="%IntEL%"/>
+   </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>

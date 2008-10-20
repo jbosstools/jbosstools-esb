@@ -188,20 +188,20 @@
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="jesb:schedule">
-					<xsd:attribute default="10" name="frequency"
-						type="xsd:long" use="optional">
+                    <xsd:attribute name="frequency" use="optional" type="xsd:long" default="10">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="en">Schedule frequency.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="frequencyUnits" use="optional" type="jesb:frequency-unit" default="seconds">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="en">Schedule frequency time units.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+					<xsd:attribute default="-1" name="execCount" type="xsd:int" use="optional">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">
-								Schedule frequency, in seconds.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute default="-1" name="execCount"
-						type="xsd:int" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								Schedule execution count. -1 to execute
-								indefinitely.
+								Schedule execution count. -1 to execute indefinitely.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
@@ -210,7 +210,14 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="cron-schedule"
+    <xsd:simpleType name="frequency-unit">
+        <xsd:restriction base="xsd:NMTOKEN">
+            <xsd:enumeration value="seconds"/>
+            <xsd:enumeration value="milliseconds"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:element name="cron-schedule"
 		substitutionGroup="jesb:schedule">
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -254,7 +261,9 @@
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element maxOccurs="1" minOccurs="1"
+                <xsd:element maxOccurs="unbounded" minOccurs="0"
+                    ref="jesb:property" />
+				<xsd:element maxOccurs="1" minOccurs="0"
 					ref="jesb:listeners" />
 				<xsd:element maxOccurs="1" minOccurs="0"
 					ref="jesb:actions" />
@@ -287,10 +296,33 @@
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
+            <xsd:attribute name="invmScope" type="jesb:invmScope" use="optional">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">
+                        All services are locally invokable over an "in VM" transport.  Invokability
+                        can be scoped using this attribute.  An "invmScope" value of "NONE" means that
+                        the Service should not be locally invokable over the "in VM" transport.
+                        More fine grained scoping will be added in the future.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:attribute>
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:simpleType name="mepType">
+    <xsd:simpleType name="invmScope">
+        <xsd:restriction base="xsd:NMTOKEN">
+            <!-- Not invokable over InVM -->
+            <xsd:enumeration value="NONE" />
+
+            <!-- Invokable over InVM only from within the same/local deployment. -->
+            <!-- xsd:enumeration value="LOCAL" / -->
+
+            <!-- (DEFAULT) Invokable over InVM from within the same classloader scope. -->
+            <xsd:enumeration value="GLOBAL" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="mepType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="RequestResponse" />
 			<xsd:enumeration value="OneWay" />
@@ -626,6 +658,15 @@
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
+			<xsd:attribute default="false" name="transacted"
+				type="xsd:boolean" use="optional">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+						If true, JMS sessions will be transaction aware.
+						Default is false.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="jms-bus" substitutionGroup="jesb:bus">
@@ -705,6 +746,10 @@
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="jesb:jms-provider-type">
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="0"
+                        ref="jesb:activation-config" />
+                    </xsd:sequence>
 					<xsd:attribute name="adapter" type="xsd:string">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">
@@ -742,6 +787,13 @@
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">
 								The transacted flag.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="providerAdapterJNDI" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">
+								The JNDI location of an alternate provider adapter
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
@@ -788,7 +840,7 @@
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="input-suffix" type="xsd:string"
-				use="required">
+				use="optional">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
 						The file suffix used to filter files targeted
@@ -812,6 +864,16 @@
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
 						If true, the file will be deleted after it is
+						processed. Note that in that case post-directory
+						and post-suffix have no effect.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute default="true" name="post-rename"
+				type="xsd:boolean" use="optional">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+						If true, the file will be renamed after it is
 						processed. Note that in that case post-directory
 						and post-suffix have no effect.
 					</xsd:documentation>
@@ -941,8 +1003,7 @@
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
-			<xsd:attribute name="password" type="xsd:string"
-				use="required">
+			<xsd:attribute name="password" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
 						The password used to access the ftp server.
@@ -1056,8 +1117,26 @@
 				use="optional">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
-						The url to a certificate, which can be needed
-						for secure protocols (sftp and ftps).
+						The url to a public server certificate for ftps, or to a
+						private certificate for sftp client verification. sftp certificate
+						can be located via a resource.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="certificate-name" type="xsd:string"
+				use="optional">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+						The common name of a certificate, which may be needed
+						for ftps.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="certificate-passphrase" type="xsd:string"
+				use="optional">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+						The passphrase of the private key, if necessary, for sftp client verification.
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
@@ -1156,24 +1235,24 @@
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
-			<xsd:attribute default="message_id" name="message-id-column"
-				type="xsd:string" use="optional">
+			<xsd:attribute name="message-id-column"
+				type="xsd:string" use="required">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
 						A unique key (PK) in the table.
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
-			<xsd:attribute default="message" name="message-column"
-				type="xsd:string" use="optional">
+			<xsd:attribute name="message-column"
+				type="xsd:string" use="required">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
 						The field that holds the serialized message.
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
-			<xsd:attribute default="status" name="status-column"
-				type="xsd:string" use="optional">
+			<xsd:attribute name="status-column"
+				type="xsd:string" use="required">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
 						This column contents ('P', 'W', 'E' or 'D')
@@ -1203,7 +1282,7 @@
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="insert-timestamp-column" use="optional"
-				type="xsd:string" default="insert_timestamp">
+				type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
 						Holds the timestamp when the record was
@@ -1484,7 +1563,9 @@
 						<xsd:simpleType>
 							<xsd:restriction base="xsd:NMTOKEN">
 								<xsd:enumeration value="http" />
+                                <xsd:enumeration value="https" />
 								<xsd:enumeration value="socket" />
+                                <xsd:enumeration value="sslsocket" />
 							</xsd:restriction>
 						</xsd:simpleType>
 					</xsd:attribute>
