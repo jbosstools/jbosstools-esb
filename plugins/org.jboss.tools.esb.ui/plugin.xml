@@ -10,7 +10,7 @@
       <wizard 
          category="org.jboss.tools.esb.ui" 
          class="org.jboss.tools.esb.ui.wizard.newfile.NewESBFileWizard" 
-         icon="images/esb16.png"
+         icon="images/esb16.gif"
          id="org.jboss.tools.esb.ui.wizard.newfile.NewESBFileWizard" 
          name="ESB File" 
          project="false">

@@ -34,7 +34,7 @@
    <extension
           point="org.eclipse.wst.server.ui.serverImages">
        <image
-             icon="icons/wizards/esb.gif"
+             icon="icons/obj16/esb_module.gif"
              id="org.jboss.tools.esb.project.ui.image"
              typeIds="jst.jboss.esb">
        </image>
