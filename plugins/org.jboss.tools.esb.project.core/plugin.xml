@@ -12,6 +12,56 @@
       <project-facet-version
             facet="jst.jboss.esb"
             version="4.2">
+         <group-member
+               id="modules">
+         </group-member>
+         <constraint>
+            <and>
+               <conflicts
+                     group="modules">
+               </conflicts>
+               <requires
+                     facet="jst.java"
+                     version="[5.0">
+               </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
+      <project-facet-version
+            facet="jst.jboss.esb"
+            version="4.4">
+            <group-member
+               id="modules">
+         </group-member>
+         <constraint>
+            <and>
+               <conflicts
+                     group="modules">
+               </conflicts>
+               <requires
+                     facet="jst.java"
+                     version="[5.0">
+               </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
+      <project-facet-version
+            facet="jst.jboss.esb"
+            version="4.3">
+            <group-member
+               id="modules">
+         </group-member>
+         <constraint>
+            <and>
+               <conflicts
+                     group="modules">
+               </conflicts>
+               <requires
+                     facet="jst.java"
+                     version="[5.0">
+               </requires>
+            </and>
+         </constraint>
       </project-facet-version>
       <action
             facet="jst.jboss.esb"
@@ -24,10 +74,6 @@
                class="org.jboss.tools.esb.core.facet.JBossESBFacetDataModelProvider">
          </config-factory>
       </action>
-      <project-facet-version
-            facet="jst.jboss.esb"
-            version="4.3">
-      </project-facet-version>
       <template
             id="template.jst.jboss.esb">
          <label>
@@ -40,10 +86,6 @@
                facet="jst.jboss.esb">
          </fixed>
       </template>
-      <project-facet-version
-            facet="jst.jboss.esb"
-            version="4.4">
-      </project-facet-version>
    </extension>
       <extension
          point="org.eclipse.wst.common.project.facet.core.runtimes">
