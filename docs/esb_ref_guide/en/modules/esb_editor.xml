@@ -275,12 +275,10 @@
                     </imageobject>
                 </mediaobject>
             </figure>
-
+            <para>The last chapter covers capabilities on how you can use ESB editor.</para>
+            
+            <para>In summary, this reference supplies you with all necessary information on the
+                functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
         </section>
-
-        <para>The last chapter covers capabilities on how you can use ESB editor.</para>
-
-        <para>In summary, this reference supplies you with all necessary information on the
-            functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
     </section>
 </chapter>
