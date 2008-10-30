@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-"?http://www.docbook.org/xsd/4.3/docbook.xsd"
+"http://www.docbook.org/xml/4.3/docbookx.dtd"
 
-[
-<!ENTITY introduction SYSTEM "modules/introduction.xml">
+[<!ENTITY introduction SYSTEM "modules/introduction.xml">
 <!ENTITY esb_support SYSTEM "modules/esb_support.xml">
 <!ENTITY esb_editor SYSTEM "modules/esb_editor.xml">
 
@@ -21,9 +20,9 @@
 
 ]>
 <book>
+    
     <bookinfo>
         <title>ESB Tools Reference Guide</title>
-
         <author><firstname>Svetlana</firstname><surname>Mukhina</surname><email>smukhina@exadel.com</email></author> 
         <author><firstname>Tatyana</firstname><surname>Romanovich</surname></author>  
         
@@ -47,8 +46,8 @@
 </bookinfo>
     <toc/>  
     
-    &introduction;
+	&introduction;
     &esb_support;
-    &esb_editor;
+    &esb_editor; 
 
 </book>    
