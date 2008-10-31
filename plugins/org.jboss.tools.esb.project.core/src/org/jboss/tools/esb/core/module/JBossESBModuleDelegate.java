@@ -36,6 +36,9 @@ public class JBossESBModuleDelegate extends ProjectModule {
 	public IModuleResource[] members() throws CoreException {
 		IProject project = getProject();
 		String esbFolder = (String)project.getPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER);
+		if(esbFolder == null || "".equals(esbFolder)){
+			esbFolder = ESBProjectConstant.DEFAULT_ESB_CONFIG_RESOURCE_FOLDER;
+		}
 		IFolder configFolder = project.getFolder(esbFolder);
 		IJavaProject javaPrj = JavaCore.create(project);
 		IPath output = javaPrj.getOutputLocation();		

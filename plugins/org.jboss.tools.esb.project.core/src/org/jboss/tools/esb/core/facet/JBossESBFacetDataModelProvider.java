@@ -29,7 +29,7 @@ public class JBossESBFacetDataModelProvider extends J2EEModuleFacetInstallDataMo
 			return JBOSSESB_PROJECT_FACET;
 		}
 		else if(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER.equals(propertyName)){
-			return "esbcontent";//ESBProjectConstant.DEFAULT_ESB_CONFIG_RESOURCE_FOLDER;
+			return ESBProjectConstant.DEFAULT_ESB_CONFIG_RESOURCE_FOLDER;
 		}
 		else if(IJBossESBFacetDataModelProperties.ESB_SOURCE_FOLDER.equals(propertyName)){
 			return ESBProjectConstant.DEFAULT_ESB_SOURCE_FOLDER;

@@ -12,7 +12,7 @@ public class ESBProjectConstant {
 	public final static String ESB_CONFIG_QUEUE_SERVICE_JBM = "jbm-queue-service.xml";
 	public final static String ESB_CONFIG_QUEUE_SERVICE_JBMQ = "jbmq-queue-service.xml";
 	
-	public final static String DEFAULT_ESB_CONFIG_RESOURCE_FOLDER = "resources";
+	public final static String DEFAULT_ESB_CONFIG_RESOURCE_FOLDER = "esbcontent";
 	public final static String DEFAULT_ESB_SOURCE_FOLDER = "src";
 	
 	public final static String ESB_PROJECT_NATURE = "org.jboss.tools.esb.project.ESBNature";
