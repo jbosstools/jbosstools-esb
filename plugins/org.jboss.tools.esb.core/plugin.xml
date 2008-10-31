@@ -8,8 +8,8 @@
    </extension>
 
    <extension point="org.jboss.tools.common.model.keys">
-      <keys path="help/keys-esb.properties">
-      </keys>
+      <keys path="help/keys-esb.properties"/>
+      <keys path="help/keys-esb-attrs.properties"/>
    </extension>
 
    	<extension
