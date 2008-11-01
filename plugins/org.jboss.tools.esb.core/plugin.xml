@@ -10,6 +10,7 @@
    <extension point="org.jboss.tools.common.model.keys">
       <keys path="help/keys-esb.properties"/>
       <keys path="help/keys-esb-attrs.properties"/>
+      <keys path="help/keys-esb-menu.properties"/>
    </extension>
 
    	<extension
