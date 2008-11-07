@@ -39,4 +39,24 @@
              typeIds="jst.jboss.esb">
        </image>
     </extension>
+    <!--extension
+          point="org.eclipse.ui.ide.projectNatureImages">
+       <image
+             icon="icons/obj16/esb_module_ovr.gif"
+             id="org.jboss.tools.esb.project.core.image"
+             natureId="org.jboss.tools.esb.project.core.ESBNature">
+       </image>
+    </extension-->
+    <extension
+          point="org.eclipse.ui.decorators">
+       <decorator
+             class="org.jboss.tools.esb.project.ui.ESBProjectDecorator"
+             icon="icons/obj16/esb_module_ovr.gif"
+             id="org.jboss.tools.esb.project.ui.decorator"
+             label="label"
+             lightweight="true"
+             location="TOP_LEFT"
+             state="false">
+       </decorator>
+    </extension>
 </plugin>
