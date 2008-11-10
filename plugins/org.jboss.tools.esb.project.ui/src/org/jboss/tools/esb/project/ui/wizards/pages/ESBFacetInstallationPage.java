@@ -6,8 +6,11 @@ import java.util.EventObject;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.Dialog;
@@ -330,7 +333,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 
 	}
 	
-	private void checkServerSuppliedESBRuntime() {
+	private boolean checkServerSuppliedESBRuntime() {
 
 		try {
 			IFacetedProjectWorkingCopy ifpwc = getFacetedProjectWorkingCopy();
@@ -341,7 +344,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 					setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Have_Not_Set_Target_Runtime);
 					hasRuntime = false;
 					setPageComplete(isPageComplete());
-					return;
+					return false;
 				}
 
 				org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore
@@ -351,7 +354,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 					hasRuntime = false;
 					setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime);
 					setPageComplete(isPageComplete());
-					return;
+					return false;
 				}
 			} 
 			// when the UI loaded from project facet properties page 
@@ -366,7 +369,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 						setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_No_Target_Runtime);
 						hasRuntime = false;
 						setPageComplete(isPageComplete());
-						return;
+						return false;
 					}
 					org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore
 							.findRuntime(runtime.getProperty("id"));
@@ -375,17 +378,17 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 						setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime);
 						hasRuntime = false;
 						setPageComplete(isPageComplete());
-						return;
+						return false;
 					}
 				} 
 			}
 			
 		} catch (CoreException e) {
 			ESBProjectPlugin.getDefault().getLog().log(e.getStatus());
+			return false;
 		}
-		hasRuntime = true;
-		setPageComplete(isPageComplete());
-		setErrorMessage(null);
+		
+		return true;
 
 	}
 	
@@ -513,31 +516,33 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 					StatusUtils.errorStatus(e1));
 		}*/
 		
-		if(contentFolder.getText().trim().equals("")){ //$NON-NLS-1$
+		if(!validFolderName(contentFolder.getText())){
 			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_Content_Folder);
 			hasValidContentFolder = false;
 			setPageComplete(isPageComplete());
 		}
-		else if(configFolder.getText().trim().equals("")){ //$NON-NLS-1$
+		else if(!validFolderName(configFolder.getText())){
 			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_Source_Folder);
 			hasValidSrc = false;
 			setPageComplete(isPageComplete());
 		}else if(btnUserSupplied.getSelection() && !hasRuntime){
 			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_ESB_Runtime);
 			setPageComplete(isPageComplete());
-		}else if(btnServerSupplied.getSelection()){
-			checkServerSuppliedESBRuntime();
-		}
-	/*	else if (!duplicateMsg.equals("")) {
-			setErrorMessage("Duplicated jar on classpath:" + duplicateMsg);
-		}*/
-		else{
-			setErrorMessage(null);			
+		}else if(btnServerSupplied.getSelection() && !checkServerSuppliedESBRuntime()){
+			return;
+		}else{
+			setErrorMessage(null);
+			hasRuntime = true;
 			hasValidSrc = true;
 			hasValidContentFolder = true;
 			setPageComplete(isPageComplete());
 
 		}
+	}
+	
+	private boolean validFolderName(String folderName) {
+		IWorkspace ws = ResourcesPlugin.getWorkspace();
+		return ws.validateName(folderName, IResource.FOLDER).isOK();
 	}
 	
 	@Override
