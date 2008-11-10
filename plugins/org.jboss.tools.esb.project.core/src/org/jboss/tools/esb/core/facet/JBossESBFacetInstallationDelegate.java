@@ -96,7 +96,6 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 	
 
 	private void createProjectStructure(IProject project) throws CoreException{
-		IFile esbFile = null;
 		String strContentFolder = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		project.setPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER, strContentFolder);
 		IFolder esbContent = project.getFolder(strContentFolder);
@@ -106,7 +105,7 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		
 		esbContent.getFolder("lib").create(true, true, null);
 		esbContent.getFolder("META-INF").create(true, true, null);
-		esbFile = createJBossESBXML(esbContent.getFolder("META-INF"));
+		createJBossESBXML(esbContent.getFolder("META-INF"));
 		
 		project.refreshLocal(IResource.DEPTH_ZERO, null);
 	}

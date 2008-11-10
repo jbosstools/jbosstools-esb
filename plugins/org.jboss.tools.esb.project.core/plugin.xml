@@ -139,4 +139,11 @@
           </moduleType>
        </moduleFactory>
     </extension>
+    <extension
+          point="org.eclipse.wst.server.core.moduleArtifactAdapters">
+       <moduleArtifactAdapter
+             id="org.jboss.tools.esb.project.core.moduleArtifactAdapter1">
+          <enablement></enablement>
+       </moduleArtifactAdapter>
+    </extension>
 </plugin>
