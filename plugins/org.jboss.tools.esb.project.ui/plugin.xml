@@ -51,12 +51,21 @@
           point="org.eclipse.ui.decorators">
        <decorator
              class="org.jboss.tools.esb.project.ui.ESBProjectDecorator"
-             icon="icons/obj16/esb_module_ovr.gif"
              id="org.jboss.tools.esb.project.ui.decorator"
-             label="label"
+             label="JBoss ESB Project Decorator"
              lightweight="true"
              location="TOP_LEFT"
-             state="false">
+             state="true">
+          <enablement>
+             <or>
+                <objectClass
+                      name="org.eclipse.core.resources.IProject">
+                </objectClass>
+                <objectClass
+                      name="org.eclipse.jdt.core.IJavaProject">
+                </objectClass>
+             </or>
+          </enablement>
        </decorator>
     </extension>
 </plugin>
