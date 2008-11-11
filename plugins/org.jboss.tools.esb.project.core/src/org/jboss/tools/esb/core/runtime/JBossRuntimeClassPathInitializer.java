@@ -18,14 +18,17 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.jdt.core.ClasspathContainerInitializer;
+import org.eclipse.jdt.core.IAccessRule;
+import org.eclipse.jdt.core.IClasspathAttribute;
 import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.launching.JavaRuntime;
 import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
+import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainer;
+import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainerInitializer;
+import org.jboss.ide.eclipse.as.classpath.core.xpl.ClasspathDecorations;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.StatusUtils;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
@@ -34,10 +37,11 @@ import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
  * @author Denny Xu
  */
 public class JBossRuntimeClassPathInitializer extends
-		ClasspathContainerInitializer {
+		AbstractClasspathContainerInitializer {
 
 	public final static String JBOSS_ESB_RUNTIME_CLASSPATH_CONTAINER_ID = "org.jboss.esb.runtime.classpath";
 	public final static String JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED = "server.supplied";
+
 	public JBossRuntimeClassPathInitializer() {
 	}
 
@@ -51,36 +55,40 @@ public class JBossRuntimeClassPathInitializer extends
 		this.javaProject = project;
 		if (containerPath.segment(0).equals(
 				JBOSS_ESB_RUNTIME_CLASSPATH_CONTAINER_ID)) {
-			if(containerPath.segmentCount() == 3 
-					&& containerPath.segment(1).equals(JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED)){
+			if (containerPath.segmentCount() == 3
+					&& containerPath.segment(1).equals(
+							JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED)) {
 				segment = containerPath.segment(2);
 				isServerSupplied = true;
-			}else{
+			} else {
 				segment = containerPath.segment(1);
 				isServerSupplied = false;
 			}
-			
+
 			JBossRuntimeClasspathContainer container = new JBossRuntimeClasspathContainer(
 					containerPath, project, isServerSupplied);
 			JavaCore.setClasspathContainer(containerPath,
 					new IJavaProject[] { project },
-					new IClasspathContainer[] { container }, null);	
+					new IClasspathContainer[] { container }, null);
 		}
 	}
 
 	public IClasspathEntry[] getEntries(IPath path) {
-		return new JBossRuntimeClasspathContainer(path, javaProject, isServerSupplied).getClasspathEntries();
+		return new JBossRuntimeClasspathContainer(path, javaProject,
+				isServerSupplied).getClasspathEntries();
 	}
 
-	public class JBossRuntimeClasspathContainer implements
-			IClasspathContainer {
+	public class JBossRuntimeClasspathContainer extends
+			AbstractClasspathContainer {
 		private IPath path;
 		private boolean isFromServer = false;
 		private IClasspathEntry[] entries = null;
 		private IJavaProject jproject;
 		private List<String> jars;
 
-		public JBossRuntimeClasspathContainer(IPath path, IJavaProject project, boolean isFromServer) {
+		public JBossRuntimeClasspathContainer(IPath path, IJavaProject project,
+				boolean isFromServer) {
+			super(path, JBossFacetCoreMessages.JBoss_Runtime, null);
 			this.path = path;
 			this.isFromServer = isFromServer;
 			this.jproject = project;
@@ -98,45 +106,61 @@ public class JBossRuntimeClassPathInitializer extends
 			return path;
 		}
 
-		public IClasspathEntry[] getClasspathEntries() {
-			if (entries == null) {
-				ArrayList<IClasspathEntry> entryList = new ArrayList<IClasspathEntry>();
-				if (isFromServer) {
-						IRuntime serverRuntime = ServerCore.findRuntime(segment);
+		public IClasspathEntry[] computeEntries() {
+			ArrayList<IClasspathEntry> entryList = new ArrayList<IClasspathEntry>();
+			if (isFromServer) {
+				IRuntime serverRuntime = ServerCore.findRuntime(segment);
 
-						if(serverRuntime == null){
-							IStatus status = StatusUtils.errorStatus("Can not find the runtime: "+ segment);
-							ESBProjectCorePlugin.getDefault().getLog().log(status);
-						}
-						String runtimeLocation = serverRuntime.getLocation().toOSString();
-						jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(runtimeLocation);
-
-				} else {
-
-					JBossRuntime jbws = JBossRuntimeManager.getInstance()
-							.findRuntimeByName(segment);
-					if (jbws != null) {
-						jars = JBossRuntimeManager.getInstance()
-								.getAllRuntimeJars(jbws);
-					}
+				if (serverRuntime == null) {
+					IStatus status = StatusUtils
+							.errorStatus("Can not find the runtime: " + segment);
+					ESBProjectCorePlugin.getDefault().getLog().log(status);
 				}
-				
-				if(jars == null) return new IClasspathEntry[0];
-				
-				for (String jar : jars) {
-					entryList.add(getEntry(new Path(jar)));
+				String runtimeLocation = serverRuntime.getLocation()
+						.toOSString();
+				jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(
+						runtimeLocation);
+
+			} else {
+
+				JBossRuntime jbws = JBossRuntimeManager.getInstance()
+						.findRuntimeByName(segment);
+				if (jbws != null) {
+					jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(
+							jbws);
 				}
-				entries = entryList.toArray(new IClasspathEntry[entryList
-						.size()]);
-				if (entries == null)
-					return new IClasspathEntry[0];
 			}
-			return entries;
-		}
 
-		protected IClasspathEntry getEntry(IPath path) {
-			return JavaRuntime.newArchiveRuntimeClasspathEntry(path)
-					.getClasspathEntry();
+			if (jars == null)
+				return new IClasspathEntry[0];
+
+			for (String jar : jars) {
+
+				IPath entryPath = new Path(jar);
+
+				IPath sourceAttachementPath = null;
+				IPath sourceAttachementRootPath = null;
+
+				final ClasspathDecorations dec = decorations.getDecorations(
+						getDecorationManagerKey(getPath().toString()),
+						entryPath.toString());
+
+				IClasspathAttribute[] attrs = {};
+				if (dec != null) {
+					sourceAttachementPath = dec.getSourceAttachmentPath();
+					sourceAttachementRootPath = dec
+							.getSourceAttachmentRootPath();
+					attrs = dec.getExtraAttributes();
+				}
+
+				IAccessRule[] access = {};
+				IClasspathEntry entry = JavaCore.newLibraryEntry(entryPath,
+						sourceAttachementPath, sourceAttachementRootPath,
+						access, attrs, false);
+				entryList.add(entry);
+			}
+			entries = entryList.toArray(new IClasspathEntry[entryList.size()]);
+			return entries;
 		}
 
 		public void removeEntry(String jarName) {
@@ -162,6 +186,17 @@ public class JBossRuntimeClassPathInitializer extends
 			}
 		}
 		return true;
+	}
+
+	@Override
+	protected AbstractClasspathContainer createClasspathContainer(IPath path) {
+		return new JBossRuntimeClasspathContainer(path, javaProject,
+				isServerSupplied);
+	}
+
+	@Override
+	protected String getClasspathContainerID() {
+		return JBOSS_ESB_RUNTIME_CLASSPATH_CONTAINER_ID;
 	}
 
 }
