@@ -83,7 +83,6 @@ public class JBossRuntimeClassPathInitializer extends
 		private IPath path;
 		private boolean isFromServer = false;
 		private IClasspathEntry[] entries = null;
-		private IJavaProject jproject;
 		private List<String> jars;
 
 		public JBossRuntimeClasspathContainer(IPath path, IJavaProject project,
@@ -91,7 +90,6 @@ public class JBossRuntimeClassPathInitializer extends
 			super(path, JBossFacetCoreMessages.JBoss_Runtime, null);
 			this.path = path;
 			this.isFromServer = isFromServer;
-			this.jproject = project;
 		}
 
 		public String getDescription() {
@@ -163,30 +161,8 @@ public class JBossRuntimeClassPathInitializer extends
 			return entries;
 		}
 
-		public void removeEntry(String jarName) {
-			if (entries == null) {
-				return;
-			}
-			IClasspathEntry[] newEntries = new IClasspathEntry[entries.length - 1];
-			int i = 0;
-			for (IClasspathEntry entry : entries) {
-				if (!entry.toString().contains(jarName)) {
-					newEntries[i++] = entry;
-				}
-			}
-			entries = newEntries;
-		}
-
 	}
 
-	public boolean filterJars(String jarName, ArrayList<IClasspathEntry> list) {
-		for (IClasspathEntry entry : list) {
-			if (entry.getPath().lastSegment().equals(jarName)) {
-				return false;
-			}
-		}
-		return true;
-	}
 
 	@Override
 	protected AbstractClasspathContainer createClasspathContainer(IPath path) {
