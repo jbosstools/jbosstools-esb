@@ -11,6 +11,7 @@
       <keys path="help/keys-esb.properties"/>
       <keys path="help/keys-esb-attrs.properties"/>
       <keys path="help/keys-esb-menu.properties"/>
+      <keys path="help/keys-esb-lists.properties"/>
    </extension>
 
    	<extension
