@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jst.common.project.facet.WtpUtils;
@@ -43,26 +44,34 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		// Setup the flexible project structure.
 		final IVirtualComponent c = ComponentCore.createComponent(project);
 		c.create(0, null);
-		String esbContent = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
-		c.setMetaProperty("java-output-path", "/" + esbContent + "/build/classes/");
+		//String esbContent = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
+		c.setMetaProperty("java-output-path", "/build/classes/");
 
 		final IVirtualFolder jbiRoot = c.getRootFolder();
 
 		// Create directory structure
-		String srcFolder = null;
+		/*String srcFolder = null;
 		srcFolder = model
 				.getStringProperty(IJBossESBFacetDataModelProperties.ESB_SOURCE_FOLDER);
-		jbiRoot.createLink(new Path("/" + srcFolder), 0, null);
+		jbiRoot.createLink(new Path("/" + srcFolder), 0, null);*/
 		String resourcesFolder = model
 				.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		jbiRoot.createLink(new Path("/" + resourcesFolder), 0, null);
 		
 		
+		final IVirtualFolder jsrc = c.getRootFolder().getFolder("/esbcontent"); //$NON-NLS-1$
+		final IClasspathEntry[] cp = jproj.getRawClasspath();
+		for (int i = 0; i < cp.length; i++) {
+			final IClasspathEntry cpe = cp[i];
+			if (cpe.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
+				if( cpe.getPath().removeFirstSegments(1).segmentCount() > 0 )
+					jsrc.createLink(cpe.getPath().removeFirstSegments(1), 0, null);
+			}
+		}
 		
 		//addESBNature(project);
 
-		String runtimeId = model
-				.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID);
+		
 		JBossClassPathCommand command = new JBossClassPathCommand(project,
 					model);
 		IStatus status = command.executeOverride(monitor);

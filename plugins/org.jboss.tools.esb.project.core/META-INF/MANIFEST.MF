@@ -28,7 +28,8 @@ Require-Bundle: org.eclipse.ui,
  org.jboss.ide.eclipse.as.classpath.core,
  org.eclipse.wst.web;bundle-version="1.1.204",
  org.eclipse.jem.util;bundle-version="2.0.100",
- org.eclipse.wst.common.emfworkbench.integration;bundle-version="1.1.201"
+ org.eclipse.wst.common.emfworkbench.integration;bundle-version="1.1.201",
+ org.eclipse.emf.ecore;bundle-version="2.4.1"
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Export-Package: org.jboss.tools.esb.core,
