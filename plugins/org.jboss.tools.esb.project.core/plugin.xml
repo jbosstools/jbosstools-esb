@@ -143,29 +143,36 @@
           point="org.eclipse.wst.server.core.moduleArtifactAdapters">
        <moduleArtifactAdapter
              class="org.jboss.tools.esb.core.module.JBossESBModuleArtifactAdapter"
-             id="org.jboss.tools.esb.project.core.moduleArtifactAdapter">
+             id="org.jboss.tools.esb.project.core.moduleArtifactAdapter1">
           <enablement>
              <with
                    variable="selection">
-                <or>
-                   <adapt
-                         type="org.eclipse.core.resources.IProject">
-                      <test
-                            forcePluginActivation="true"
-                            property="org.eclipse.wst.common.project.facet.core.projectFacet"
-                            value="jst.jboss.esb">
-                      </test>
-                   </adapt>
-                   <adapt
-                         type="org.eclipse.core.resources.IFile">
-                      <test
-                            forcePluginActivation="true"
-                            property="org.eclipse.wst.common.project.facet.core.projectFacet"
-                            value="jst.jboss.esb">
-                      </test>
-                   </adapt>
-                </or>
+                <adapt
+                      type="org.eclipse.core.resources.IProject">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.wst.common.project.facet.core.projectFacet"
+                         value="jst.jboss.esb">
+                   </test>
+                </adapt>
              </with></enablement>
+       </moduleArtifactAdapter>
+       <moduleArtifactAdapter
+             class="org.jboss.tools.esb.core.module.JBossESBModuleArtifactAdapter"
+             id="org.jboss.tools.esb.project.core.moduleArtifactAdapter2">
+          <enablement>
+             <with
+                   variable="selection">
+                <adapt
+                      type="org.eclipse.core.resources.IFile">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.wst.common.project.facet.core.projectFacet"
+                         value="jst.jboss.esb">
+                   </test>
+                </adapt>
+             </with>
+          </enablement>
        </moduleArtifactAdapter>
     </extension>
 </plugin>
