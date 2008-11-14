@@ -351,10 +351,10 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 						.findRuntime(runtime.getProperty("id")); //$NON-NLS-1$
 				if (!JBossRuntimeManager.isValidESBServer(serverRuntime
 						.getLocation().toOSString())) {
-					hasRuntime = false;
-					setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime);
+					hasRuntime = true;
+					setMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime, WARNING);
 					setPageComplete(isPageComplete());
-					return false;
+					return true;
 				}
 			} 
 			// when the UI loaded from project facet properties page 
@@ -375,10 +375,10 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 							.findRuntime(runtime.getProperty("id"));
 					if (!JBossRuntimeManager.isValidESBServer(serverRuntime
 							.getLocation().toOSString())) {
-						setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime);
-						hasRuntime = false;
+						setMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime, WARNING);
+						hasRuntime = true;
 						setPageComplete(isPageComplete());
-						return false;
+						return true;
 					}
 				} 
 			}
