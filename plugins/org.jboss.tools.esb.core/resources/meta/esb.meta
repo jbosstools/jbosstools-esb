@@ -232,6 +232,24 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
+ <XModelEntity name="ESBBusCreator">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.bus" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="id" xmlname="busid"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    name="port" xmlname="port">
+    <Constraint loader="%IntEL%"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list"/>
+  <XDependencies/>
+ </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%"
   XMLSUBPATH="bus-provider" name="ESBBusProvider101">
@@ -1596,23 +1614,23 @@
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBBus"
      displayName="Bus Provider..." kind="action" name="AddBusProvider">
      <EntityData EntityName="ESBBusProvider101">
       <AttributeData AttributeName="name"/>
      </EntityData>
-     <EntityData EntityName="ESBBus">
+     <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJBRBus101"
      displayName="JBR Provider..." kind="action" name="AddJBRProvider">
      <EntityData EntityName="ESBJBRProvider101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="protocol"/>
      </EntityData>
-     <EntityData EntityName="ESBJBRBus101">
+     <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
       <AttributeData AttributeName="port"/>
      </EntityData>
@@ -1625,66 +1643,66 @@
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJMSBus101"
      displayName="JMS Provider..." kind="action" name="AddJMSProvider">
      <EntityData EntityName="ESBJMSProvider101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="connection factory"/>
      </EntityData>
-     <EntityData EntityName="ESBJMSBus101">
+     <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJMSBus101"
      displayName="JCA Provider..." kind="action" name="AddJCAProvider">
      <EntityData EntityName="ESBJCAProvider101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="connection factory"/>
      </EntityData>
-     <EntityData EntityName="ESBJMSBus101">
+     <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBFSBus101"
      displayName="FS Provider..." kind="action" name="AddFSProvider">
      <EntityData EntityName="ESBFSProvider101">
       <AttributeData AttributeName="name"/>
      </EntityData>
-     <EntityData EntityName="ESBFSBus101">
+     <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBFTPBus101"
      displayName="FTP Provider..." kind="action" name="AddFTPProvider">
      <EntityData EntityName="ESBFTPProvider101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="hostname"/>
      </EntityData>
-     <EntityData EntityName="ESBFTPBus101">
+     <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBSQLBus101"
      displayName="SQL Provider..." kind="action" name="AddSQLProvider">
      <EntityData EntityName="ESBSQLProvider101">
       <AttributeData AttributeName="name"/>
      </EntityData>
-     <EntityData EntityName="ESBSQLBus101">
+     <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBHibernateBus101"
      displayName="Hibernate Provider..." kind="action" name="AddHibernateProvider">
      <EntityData EntityName="ESBHibernateProvider101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="hibernate cfg file"/>
      </EntityData>
-     <EntityData EntityName="ESBHibernateBus101">
+     <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>

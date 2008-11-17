@@ -17,6 +17,9 @@ public class AddProviderSupport extends SpecialWizardSupport {
     protected void reset() {
     	providerEntity = getEntityData()[0].getModelEntity().getName();
     	busEntity = getEntityData()[1].getModelEntity().getName();
+    	if("ESBBusCreator".equals(busEntity)) {
+    		busEntity = action.getProperty("busEntity");
+    	}
     }
 
     public String[] getActionNames(int stepId) {
