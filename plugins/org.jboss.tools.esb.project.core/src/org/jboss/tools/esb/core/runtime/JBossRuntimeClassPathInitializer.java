@@ -93,7 +93,7 @@ public class JBossRuntimeClassPathInitializer extends
 		}
 
 		public String getDescription() {
-			return JBossFacetCoreMessages.JBoss_Runtime;
+			return JBossFacetCoreMessages.JBoss_Runtime + " [" + path.segment(path.segmentCount() - 1) + "]";
 		}
 
 		public int getKind() {

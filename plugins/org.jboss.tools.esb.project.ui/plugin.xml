@@ -68,4 +68,12 @@
           </enablement>
        </decorator>
     </extension>
+    <extension
+          point="org.eclipse.jdt.ui.classpathContainerPage">
+       <classpathContainerPage
+             class="org.jboss.tools.esb.project.ui.wizards.pages.JBossESBRuntimeContainerPage"
+             id="org.jboss.esb.runtime.classpath"
+             name="JBoss ESB  Libraries">
+       </classpathContainerPage>
+    </extension>
 </plugin>
