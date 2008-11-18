@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ESB Project Core Test Plug-in
+Bundle-SymbolicName: org.jboss.tools.esb.project.core.test
+Bundle-Version: 1.0.0
