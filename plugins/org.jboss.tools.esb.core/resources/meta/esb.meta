@@ -274,7 +274,7 @@
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
-   <XActionItem kind="list" name="CreateActions">
+   <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
