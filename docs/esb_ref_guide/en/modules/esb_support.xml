@@ -30,6 +30,84 @@
                                 >InstallingJBossTools</ulink> section.</para>
         </section>
 
+		 <section>
+                <title>Creating a ESB Project</title>
+                <para>In this chapter we suggest a step-by-step walk-through of creating a new
+                        ESB project. Let&apos;s try to create a new JBoss ESB project.</para>
+
+                <para>We will show you how to use the ESB Project Creation wizard for creating a new ESB project and setting basic ESB classpath.</para>
+
+                <para>Select <emphasis>
+                                <property>File &gt;New &gt; Project...</property>
+                        </emphasis> in the main menu bar or context menu for selected project and
+                        then <emphasis>
+                                <property>ESB &gt; ESB Project</property>
+                        </emphasis> in the New dialog:</para>
+
+                <figure>
+                        <title>New Dialog</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/01_create_esb_project.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+                <para> Clicking <emphasis>
+                                <property>Next</property>
+                        </emphasis> brings us to the first wizard page where it&apos;s necessary to
+                        specify the project name, ESB version and target JBoss Runtime. We set, for example, <emphasis>
+                                <property>helloworld</property>
+                        </emphasis> as the name and accept default ESB version.</para>
+                <figure>
+                        <title>Project Name, Target JBoss Runtime and ESB Version</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/02_create_esb_project.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para> Clicking <emphasis>
+                                <property>Next</property>
+                        </emphasis> brings us to the ESB facet installation page where we can 
+                        specify source folder name, ESB content folder name, ESB content folder is the folder that contains the most of
+                         artifacts that an ESB archive needs,  we also can configure ESB libraries to the project by selecting a ESB runtime,
+                         there are two ways to set ESB runtime: </para>
+                         <para>1. Use <emphasis>
+                                <property>Server Supplied ESB Runtime</property>
+                        </emphasis>  
+                         
+                         </para>
+                         <para> 2. Select an ESB runtime from JBoss ESB runtime list predefined in preference                           
+                         </para>
+                         <para>If choose the first option, we have to make sure that the project has Target JBoss Runtime set and the runtime has a ESB runtime installed.
+                         </para>
+                <figure>
+                        <title>JBoss ESB facet installation</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/03_create_esb_project.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                <para>Clicking <emphasis>
+                                <property>Finish</property>
+                        </emphasis>, an ESB project with default <emphasis><property>jboss-esb.xml</property></emphasis> 
+                              will be created. </para>
+
+                     <figure>
+                        <title>The generated ESB project structure</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/04_create_esb_project.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+        </section>
+        
+
         <section>
                 <title>Creating a ESB File</title>
                 <para>In this chapter we suggest a step-by-step walk-through of creating your own
