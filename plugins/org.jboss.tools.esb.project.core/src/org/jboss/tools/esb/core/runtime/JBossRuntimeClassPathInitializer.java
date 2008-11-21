@@ -113,6 +113,7 @@ public class JBossRuntimeClassPathInitializer extends
 					IStatus status = StatusUtils
 							.errorStatus("Can not find the runtime: " + segment);
 					ESBProjectCorePlugin.getDefault().getLog().log(status);
+					return new IClasspathEntry[0];
 				}
 				String runtimeLocation = serverRuntime.getLocation()
 						.toOSString();

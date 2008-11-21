@@ -51,6 +51,20 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_Runtime_List_Field_Editor_Home_Folder;
 	public static String JBoss_Composite_Editor_This_Method_Can_Be_Invoked;
 	public static String JBoss_Button_Field_Editor_Browse;
+	public static String JBoss_ESBRuntime_Classpath_Container_5;
+
+	public static String JBoss_ESBRuntime_Classpath_Container_Description;
+
+	public static String JBoss_ESBRuntime_Classpath_Container_Name;
+
+	public static String JBoss_ESBRuntime_Classpath_Container_RuntimeType;
+
+	public static String JBoss_ESBRuntime_Classpath_Container_RuntimeType_ESBLibrariesOnly;
+
+	public static String JBoss_ESBRuntime_Classpath_Container_RuntimeType_ServerContained;
+
+	public static String JBoss_ESBRuntime_Classpath_Container_Title;
+
 	public static String Error_JBoss_Button_Field_Editor_Not_Implemented_Yet;
 	public static String JBoss_SWT_Field_Editor_Factory_Browse;
 	public static String JBoss_SWT_Field_Editor_Factory_Select_Home_Folder;

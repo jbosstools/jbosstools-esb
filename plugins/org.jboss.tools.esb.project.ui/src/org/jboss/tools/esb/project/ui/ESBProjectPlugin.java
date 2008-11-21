@@ -1,5 +1,6 @@
 package org.jboss.tools.esb.project.ui;
 
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -27,6 +28,8 @@ public class ESBProjectPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		Image img = imageDescriptorFromPlugin(PLUGIN_ID, "icons/wizards/esb_runtime.gif").createImage();
+		getImageRegistry().put("esb_runtime", img);
 	}
 
 	/*

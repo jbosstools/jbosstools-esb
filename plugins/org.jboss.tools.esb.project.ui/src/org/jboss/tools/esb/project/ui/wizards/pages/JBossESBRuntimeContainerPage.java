@@ -3,7 +3,6 @@ package org.jboss.tools.esb.project.ui.wizards.pages;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -12,7 +11,6 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.ui.wizards.IClasspathContainerPage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ColumnLayoutData;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -23,9 +21,10 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -38,6 +37,8 @@ import org.eclipse.wst.server.ui.ServerUICore;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeClassPathInitializer;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
+import org.jboss.tools.esb.project.ui.ESBProjectPlugin;
+import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
 public class JBossESBRuntimeContainerPage extends WizardPage implements
 		IClasspathContainerPage {
@@ -47,9 +48,9 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 	private Object selectedRuntime;
 	
 	public JBossESBRuntimeContainerPage(){
-		super("JBoss ESB Runtime Library");
-		setTitle("JBoss ESB Library");
-		setDescription("Select a ESB runtime to add to the project classpath");
+		super(JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_Title);
+		setTitle(JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_Title);
+		setDescription(JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_Description);
 	}
 	
 	public JBossESBRuntimeContainerPage(String pageName) {
@@ -78,16 +79,17 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 				setPageComplete(isPageComplete());
 				
 			}});
+		runtimeViewer.addFilter(new ESBRuntimeFilter());
 		
 		TableLayout tablelayout = new TableLayout();
 		table.setLayout(tablelayout);
 		
 		tablelayout.addColumnData(new ColumnWeightData(60));
 		TableColumn tc1 = new TableColumn(table, SWT.NONE);
-		tc1.setText("Name");		
+		tc1.setText(JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_Name);		
 		tablelayout.addColumnData(new ColumnWeightData(40));
 		TableColumn tc2 = new TableColumn(table, SWT.NONE);
-		tc2.setText("Runtime Type");
+		tc2.setText(JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_RuntimeType);
 		
 		tc1.pack();
 		tc2.pack();
@@ -123,7 +125,6 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 
 	public void setSelection(IClasspathEntry containerEntry) {
 		entry = containerEntry;
-		System.out.print(containerEntry);
 	}
 
 	private List getAllAvailableESBRuntimes(){
@@ -147,7 +148,19 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 		return selectedRuntime != null;
 	}
 
+	class ESBRuntimeFilter extends ViewerFilter{
 
+		@Override
+		public boolean select(Viewer viewer, Object parentElement,
+				Object element) {
+			if(element instanceof IRuntime){
+				IPath location = ((IRuntime)element).getLocation();
+				return JBossRuntimeManager.isValidESBServer(location.toOSString());
+			}
+			return true;
+		}
+		
+	}
 
 	class RuntimeLabelProvider implements ITableLabelProvider{
 
@@ -157,6 +170,8 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 			if(columnIndex == 0){
 				if(element instanceof IRuntime){
 					return serverLabel.getImage(element);
+				}else{
+					return ESBProjectPlugin.getDefault().getImageRegistry().get(JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_5);
 				}
 			}
 			return null;
@@ -173,9 +188,9 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 				break;
 			case 1:
 				if(element instanceof IRuntime){
-					return "Server contained";
+					return JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_RuntimeType_ServerContained;
 				}else if(element instanceof JBossRuntime){
-					return "ESB Runtime Only";
+					return JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_RuntimeType_ESBLibrariesOnly;
 				}
 				break;
 			}
