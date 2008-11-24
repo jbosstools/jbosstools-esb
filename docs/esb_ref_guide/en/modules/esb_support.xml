@@ -107,7 +107,95 @@
                 
         </section>
         
+ <section>
+                <title>Creating ESB Project using JBoss Tools Project Examples Wizard</title>
+                <para>JBoss Tools provides a Project Example wizard, it provides a easy way for users to create some kinds of project, so far, 
+                you can find some ESB samples and Seam, Portlet samples as well, now let's start to 
+                create a ESB project using the Project Examples wizard.</para>
+                
+                <para>Before create a ESB project example, you should create JBoss Runtime with the name is <emphasis><property>
+                JBoss 4.2 Runtime</property></emphasis>, it will be used by the ESB examples. </para>
 
+                <para>Select <emphasis>
+                                <property>File &gt;New &gt; Others </property>
+                        </emphasis> , in the main menu bar or context menu for selected project and
+                        then <emphasis>
+                                <property>JBoss Tools &gt; Project Examples</property>
+                        </emphasis> in the New dialog:</para>
+
+                <figure>
+                        <title>New Dialog</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/05_esb_project_example.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para> Clicking <emphasis>
+                                <property>Next</property>
+                        </emphasis>, it brings us to the wizard page where we can select a ESB project example from the example list.
+                         Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
+                <figure>
+                        <title>JBoss Tools Project Examples</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/06_esb_project_example.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para>Select <emphasis><property>JBoss ESB HelloWorld Example</property> </emphasis> ESB and Client project, and then click 
+				<emphasis><property>Finish</property></emphasis>, then you can get two projects created. </para>
+				                <figure>
+                        <title>JBoss ESB Project Examples</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/07_esb_project_example.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para> Deploying the HelloWorld ESB project and run a test class in the client Java project, see the the test result in Console view.</para>
+        </section>
+
+ 		<section>
+                <title>Deploying a ESB Project</title>
+                <para>In this chapter we will show you how to deploy a ESB project using WTP deployment framework.</para>
+
+                <para>Before deploy the project, open the JBoss Server View by selecting <emphasis><property>Window &gt; Show View &gt; Other &gt; 
+                Server &gt; JBoss Server View</property></emphasis>, 
+                and then create a JBoss Server in the server view and start it, and then right click the created JBoss server, 
+                select <emphasis><property> </property> Add and Remove Projects</emphasis>, 
+                add ESB projects which you want to deploy from left side to right side on the popped up dialog. </para>
+
+                <figure>
+                        <title>Add and Remove Projects</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/08_esb_project_deploy.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para>Clicking <emphasis><property>Finish</property> </emphasis> button, thus, the project is added into the JBoss Server. 
+                You also can drag the ESB project from Project View to the JBoss server.</para>
+                
+                 <figure>
+                        <title>Configure new JBoss ESB Runtime</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/09_esb_runtime_new.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para>So far, we add the ESB project to the JBoss server module list, then we should publish the project the server, 
+                right click the JBoss Server and select <emphasis><property>Publish</property></emphasis>, 
+                you can check the deploying result in Console view.</para> 
+                
+        </section>
+		        
         <section>
                 <title>Creating a ESB File</title>
                 <para>In this chapter we suggest a step-by-step walk-through of creating your own
@@ -157,6 +245,46 @@
                         </emphasis> results in the file being generated. The wizard creates one xml
                         file.</para>
 
+        </section>
+        
+         <section>
+                <title>Configuring ESB Runtime in Preference</title>
+                <para>In this chapter we will show you how to predefine a JBoss ESB runtime on preference page.</para>
+
+                <para>You may already know, there are two ways to set JBoss ESB runtime when creating a ESB project,
+                one way is to use the project target JBoss runtime, another way is to select a JBoss ESB runtime which predefined in JBoss Tools preference.
+                Let's configure it.</para>
+
+                <para>Select <emphasis>
+                                <property>Window &gt;Preferences &gt; JBoss Tools  &gt; JBoss ESB Runtime</property>
+                        </emphasis> , it bring us to the JBoss ESB Runtime preference page where you can add, remove and Edit a JBoss ESB runtime.</para>
+
+                <figure>
+                        <title>New JBoss ESB Runtime</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/10_esb_runtime.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para> Select <emphasis>
+                                <property>Add</property>
+                        </emphasis>, it pop up a dialog where we can specify the JBoss ESB runtime location, name and version number, 
+                         you also can customize the libraries of the runtime by checking the <emphasis><property>Customize JBoss ESB Runtime jars</property> </emphasis> checkbox. </para>
+                        
+                <figure>
+                        <title>Configure new JBoss ESB Runtime</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/11_esb_runtime_new.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para>The new JBoss ESB Runtime will be configured, click <emphasis> <property>OK</property> </emphasis> to finish the dialog and save the preference,
+				 then you can use the configuration when creating JBoss ESB project. </para>
+                
         </section>
 
 </chapter>
