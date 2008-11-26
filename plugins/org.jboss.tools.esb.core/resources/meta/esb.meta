@@ -264,7 +264,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="bus provider" loader="ElementType" name="element type">
+   <XModelAttribute default="channel provider" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -1615,7 +1615,7 @@
     kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
      PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBBus"
-     displayName="Bus Provider..." kind="action" name="AddBusProvider">
+     displayName="Channel Provider..." kind="action" name="AddBusProvider">
      <EntityData EntityName="ESBBusProvider101">
       <AttributeData AttributeName="name"/>
      </EntityData>
@@ -2252,6 +2252,19 @@
    <XActionItemReference entity="FileTXT" name="DeleteActions"/>
    <XActionItemReference entity="FileTXT" name="Properties"/>
    <XActionItemReference entity="FileTXT" name="DiscardActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity name="FileESB101_EditorActionList">
+  <XChildrenEntities/>
+  <XEntityRenderer/>
+  <XModelAttributes/>
+  <XActionItem kind="list">
+   <XActionItem displayName="New" group="1" kind="list" name="CreateActions"/>
+   <XActionItem ICON="action.empty" kind="list" name="Properties">
+    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
+     displayName="Properties..." kind="action" name="Properties"/>
+   </XActionItem>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
