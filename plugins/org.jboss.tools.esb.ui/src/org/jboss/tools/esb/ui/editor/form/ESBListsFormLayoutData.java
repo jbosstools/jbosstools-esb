@@ -118,7 +118,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 	);
 
 	static IFormData ESB_BUS_LIST_DEFINITION = new FormData(
-		"Bus list", //$NON-NLS-1$
+		"Channel list", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		new FormAttributeData[]{new FormAttributeData(ESBConstants.ATTR_BUS_ID, 100)}, 
 		BUSES_101,
