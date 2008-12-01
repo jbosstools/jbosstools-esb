@@ -1119,7 +1119,7 @@
      <value name="true"/>
      <value name="false"/>
     </Constraint>
-    <Editor name="Lit"/>
+    <Editor name="ListString"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced"
     name="provider adapter JNDI" xmlname="providerAdapterJNDI"/>
@@ -1264,7 +1264,7 @@
      <value name="true"/>
      <value name="false"/>
     </Constraint>
-    <Editor name="Lit"/>
+    <Editor name="ListString"/>
    </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
