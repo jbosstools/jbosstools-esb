@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.jboss.tools.esb.feature"
-      label="ESBTools Feature"
+      label="JBoss ESB Tools"
       version="1.0.0"
       provider-name="RedHat, Inc.">
 
    <description url="http://www.jboss.org/tools">
-      JBossTools ESB Feature
+      JBoss ESB Tools
    </description>
 
    <copyright>
