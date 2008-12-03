@@ -35,14 +35,15 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		model = (IDataModel) config;
 
 		createProjectStructure(project);
-
+		
+		
 		final IJavaProject jproj = JavaCore.create(project);
 
 		// Add WTP natures.
 		WtpUtils.addNatures(project);
 
 		// Setup the flexible project structure.
-		final IVirtualComponent c = ComponentCore.createComponent(project);
+		final IVirtualComponent c = ComponentCore.createComponent(project, false);
 		c.create(0, null);
 		//String esbContent = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		c.setMetaProperty("java-output-path", "/build/classes/");
