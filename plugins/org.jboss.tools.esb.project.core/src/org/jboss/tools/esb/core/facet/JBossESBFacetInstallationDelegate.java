@@ -1,6 +1,8 @@
 package org.jboss.tools.esb.core.facet;
 
 import java.io.ByteArrayInputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -43,7 +45,15 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		WtpUtils.addNatures(project);
 
 		// Setup the flexible project structure.
-		final IVirtualComponent c = ComponentCore.createComponent(project, false);
+		IVirtualComponent c = null;
+		try {
+			Method createMethod = ComponentCore.class.getMethod("createComponent", IProject.class, boolean.class);
+			c = (IVirtualComponent)createMethod.invoke(null, project, false);
+		} catch (Exception e) {
+			c = ComponentCore.createComponent(project);
+		}
+		
+		
 		c.create(0, null);
 		//String esbContent = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		c.setMetaProperty("java-output-path", "/build/classes/");
