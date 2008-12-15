@@ -20,11 +20,11 @@
 
         <title>What is ESB?</title>
 
-        <para>ESB (Enterprise Service Bus) - an abstraction layer on top of an implementation of an
-            enterprise messaging system that provides the features with which Service Oriented
-            Architectures may be implemented.</para>
-        <para>If you want to develop applications using ESB technology JBoss ESB also meet your
-            needs. The JBoss Tools provide ESB editor and all necessary wizards for creating ESB
+        <para>ESB (Enterprise Service Bus) - an abstraction layer on top of  implementation of an
+            enterprise messaging system that provides the features Service Oriented
+            Architectures may be implemented with.</para>
+        <para>If you want to develop applications using ESB technology JBoss ESB also meets your
+            needs. The JBoss Tools provide ESB editor and all necessary wizards for creating an ESB
             file.</para>
         <para>In this guide we provide you with the information on ESB Editor which allows you to
             develop ESB file much faster and with far fewer errors so sparing your time.</para>
