@@ -56,7 +56,7 @@
                                 <property>Next</property>
                         </emphasis> brings you to the JBoss ESB Project wizard page where a project name, ESB version and target JBoss Runtime are to be specified. Specify, for example, <emphasis>
                                 <property>helloworld</property>
-                        </emphasis> as the name and accept default ESB version.</para>
+                        </emphasis> as a Project name and accept the default ESB version.</para>
                 <figure>
                         <title>JBoss ESB Project wizard</title>
                         <mediaobject>
