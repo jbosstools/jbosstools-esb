@@ -281,7 +281,7 @@
         </section>
 
 
-        <section  id="using_SOA" role="updated"> 
+        <section  id="using_SOA"> 
         <title>Using and Configuring SOA Platform</title>
              
                 <para>In this chapter you will know what is JBoss Enterprise SOA Platform  and how you can configure it to use for your ESB projects. </para>
@@ -289,7 +289,7 @@
                 <para>JBoss Enterprise SOA Platform delivers a flexible, standards-based platform to integrate applications, SOA services, business events and automate business processes. The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</para>
                 <para>Having configured JBoss Enterprise SOA Platform for your ESB project you don't need to install and configure ESB server and runtime as they are already included.</para>
 
-                <para>Check here to find more details on the platform: <ulink url="http://www.jboss.com/products/platforms/soa">JBoss Enterprise SOA Platform</ulink>     <ulink url="http://www.jboss.com/products/platforms/soa/components">JBoss Enterprise SOA Platform Component Details</ulink>  JBoss Enterprise SOA Platform Component Details and here to view Answers to Frequently Asked Questions</para>
+                <para>Check here to find more details on the platform: <ulink url="http://www.jboss.com/products/platforms/soa">JBoss Enterprise SOA Platform</ulink> and <ulink url="http://www.jboss.com/products/platforms/soa/components">JBoss Enterprise SOA Platform Component Details</ulink>.</para>
                <para>You can know what is SOA here: <ulink url="http://www.jboss.org/jbossesb/resources/SOABasics.html">Basics of SOA</ulink> and    <ulink url="http://www.jboss.org/jbossesb/resources/SOAEOA.html">SOA and EOA</ulink>.</para>
                        
         
