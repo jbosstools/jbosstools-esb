@@ -243,7 +243,7 @@
         </section>
         
          <section>
-                <title>Configuring ESB Runtime in Preference</title>
+                <title>Configuring ESB Runtime in Preferences</title>
                 <para>In this chapter you will know how to predefine a JBoss ESB runtime on the Preferences page.</para>
 
                 <para>You may already know, there are two ways to set JBoss ESB runtime when creating a ESB project,
@@ -276,8 +276,39 @@
                 </figure>
 
 				<para>The new JBoss ESB Runtime will be configured. Click <emphasis> <property>OK</property> </emphasis> to finish and save the preferences.
-				 You can use the configuration when creating a JBoss ESB project. </para>
+		 		 You can use the configuration when creating a JBoss ESB project. </para>
                 
         </section>
 
+
+        <section  id="using_SOA" role="updated"> 
+        <title>Using and Configuring SOA Platform</title>
+             
+                <para>In this chapter you will know what is JBoss Enterprise SOA Platform  and how you can configure it to use for your ESB projects. </para>
+                <literallayout> </literallayout>
+                <para>JBoss Enterprise SOA Platform delivers a flexible, standards-based platform to integrate applications, SOA services, business events and automate business processes. The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</para>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+</section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 </chapter>
