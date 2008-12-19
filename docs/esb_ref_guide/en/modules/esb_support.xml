@@ -335,9 +335,41 @@
                                 </imageobject>
                         </mediaobject>
                 </figure>
-                <para>Then you will need to add JBoss ESB libraries to your projects to configure the SOA server runtime exactly for your ptojects. Right-click on your project, select <emphasis><property>Build Path &gt; Add JBoss ESB libraries</property></emphasis>. Now you can deploy your Helloworld project  to the server and run a test class in the client Java project to see the test result in the Console view.</para>
+                <para>Then you will need to add JBoss ESB libraries to your projects to configure the SOA server runtime exactly for your projects. Right-click on your project, select <emphasis><property>Build Path &gt; Add JBoss ESB libraries</property></emphasis>: </para>
         
+                <figure>
+                        <title>Add ESB Libraries</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/17_Add_new_libraries.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
         
+        <para>Choose <emphasis><property>JBoss ESB Libraries</property></emphasis>:</para>
+                
+                <figure>
+                        <title>ESB Libraries</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/18_select_libraries.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para>Select the necessary runtime to add to the project classpath:</para>
+                
+               
+                <figure>
+                        <title>Select a ESB runtime</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/19_select_runtime.png"/>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+               
+                <para>Now you can deploy your Helloworld project  to the server and run a test class in the client Java project to see the test result in the Console view.</para>
         
         
         
