@@ -277,7 +277,7 @@
 
 				<para>The new JBoss ESB Runtime will be configured. Click <emphasis> <property>OK</property> </emphasis> to finish and save the preferences.
 		 		 You can use the configuration when creating a JBoss ESB project. </para>
-                 <para>When a ESB runtime is configured for your ESB project you are able to change the ESB runtime to any other using the classpath container page for ESB runtime. To do that, turn to the Package Explorer view and right-click the "JBoss ESB Runtime" library. Select <emphasis><property>Properties</property></emphasis> and a table listing all available JBoss ESB runtimes will appear:</para>
+                 <para>When a ESB runtime is configured for your ESB project you are able to change it to any other using the classpath container page for ESB runtime. To do that, turn to the Package Explorer view and right-click the "JBoss ESB Runtime" library. Select <emphasis><property>Properties</property></emphasis> and a table listing all available JBoss ESB runtimes will appear:</para>
         
                  <figure>
                          <title>Classpath Container Page to change ESB runtime</title>
