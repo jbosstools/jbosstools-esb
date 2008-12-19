@@ -285,14 +285,17 @@
         <title>Using and Configuring SOA Platform</title>
              
                 <para>In this chapter you will know what is JBoss Enterprise SOA Platform  and how you can configure it to use for your ESB projects. </para>
-                <literallayout> </literallayout>
+        
                 <para>JBoss Enterprise SOA Platform delivers a flexible, standards-based platform to integrate applications, SOA services, business events and automate business processes. The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</para>
                 <para>Having configured JBoss Enterprise SOA Platform for your ESB project you don't need to install and configure ESB server and runtime as they are already included.</para>
 
                 <para>Check here to find more details on the platform: <ulink url="http://www.jboss.com/products/platforms/soa">JBoss Enterprise SOA Platform</ulink> and <ulink url="http://www.jboss.com/products/platforms/soa/components">JBoss Enterprise SOA Platform Component Details</ulink>.</para>
                <para>You can know what is SOA here: <ulink url="http://www.jboss.org/jbossesb/resources/SOABasics.html">Basics of SOA</ulink> and    <ulink url="http://www.jboss.org/jbossesb/resources/SOAEOA.html">SOA and EOA</ulink>.</para>
                        
-        
+                <para>To configure the SOA platform select <emphasis>
+                        <property>Window &gt;Preferences &gt; Server  &gt; Runtime Enironments</property>
+                </emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
+                <para>Select <emphasis><property>Add</property></emphasis>, choose <emphasis><property>JBoss 4.2 Runtime</property></emphasis> as a type of runtime environment, check the <emphasis><property>Create a new local server</property></emphasis> checkbox and click <emphasis><property>Next</property></emphasis>. On the next step you can specify a name of the server runtime environement and browse to its location. Click <emphasis><property>Finish</property></emphasis> to add the server runtime environment.</para>
         
         
         
