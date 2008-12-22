@@ -24,10 +24,10 @@
             enterprise messaging system that provides the features Service Oriented
             Architectures may be implemented with.</para>
         <para>If you want to develop applications using ESB technology JBoss ESB also meets your
-            needs. The JBoss Tools provide ESB editor and all necessary wizards for creating an ESB
+            needs. The JBoss Tools provide an ESB editor and all necessary wizards for creating an ESB
             file.</para>
-        <para>In this guide we provide you with the information on ESB Editor which allows you to
-            develop ESB file much faster and with far fewer errors so sparing your time.</para>
+        <para>In this guide we provide you with the information on JBoss ESB support (installation, configuration and deployment) and usage of ESB Editor which allows you to
+            develop an ESB file much faster and with far fewer errors so sparing your time.</para>
 
     </section>
 
