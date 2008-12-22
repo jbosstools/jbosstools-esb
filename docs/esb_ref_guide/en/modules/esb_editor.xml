@@ -169,7 +169,8 @@
 
         <title>ESB Editors Features</title>
         <para>JBoss ESB tooling has powerful editor features that help you easily make use of
-            content and code assist.</para>
+        content and code assist.</para>
+        <para>This last chapter covers capabilities on how you can use ESB editor.</para>
 
         <section id="ESBsyntaxvalidation84">
 
@@ -275,8 +276,7 @@
                     </imageobject>
                 </mediaobject>
             </figure>
-            <para>The last chapter covers capabilities on how you can use ESB editor.</para>
-            
+                   
             <para>In summary, this reference supplies you with all necessary information on the
                 functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
         </section>
