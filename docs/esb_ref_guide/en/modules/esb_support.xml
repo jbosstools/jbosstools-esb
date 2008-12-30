@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<chapter id="esb_support">
+<chapter id="esb_support" role="updated">
         <?dbhtml filename="esb_support.html"?>
         <chapterinfo>
                 <keywordset>
@@ -29,7 +29,7 @@
                                 >InstallingJBossTools</ulink> section.</para>
         </section>
 
-		 <section>
+		 <section role="new">
                 <title>Creating a ESB Project</title>
                 <para>In this chapter we suggest a step-by-step walk-through of creating a new
                         ESB project. Let&apos;s try to create a new JBoss ESB project.</para>
@@ -105,7 +105,7 @@
                 
         </section>
         
-        <section id="ESB_project_wizard" xreflabel="here">
+        <section id="ESB_project_wizard" xreflabel="here" role="new">
                 <title>Creating ESB Project using JBoss Tools Project Examples Wizard</title>
                 <para>JBoss Tools provides a Project Example wizard that is an easy way for users to create some kinds of projects to be used as examples with some predefined structure. Let's start 
                 creating a ESB project using this wizard.</para>
@@ -156,7 +156,7 @@
                 <para> Deploy the HelloWorld ESB project and run a test class in the client Java project to see the test result in the Console view.</para>
         </section>
 
- 		<section>
+ 		<section role="new">
                 <title>Deploying a ESB Project</title>
                 <para>In this chapter youwill see how to deploy a ESB project using the WTP deployment framework.</para>
 
@@ -242,7 +242,7 @@
 
         </section>
         
-         <section>
+         <section role="new">
                 <title>Configuring ESB Runtime in Preferences</title>
                 <para>In this chapter you will know how to predefine a JBoss ESB runtime on the Preferences page.</para>
 
@@ -296,7 +296,7 @@
          </section>
 
 
-        <section  id="using_SOA"> 
+        <section  id="using_SOA" role="new"> 
         <title>Using and Configuring SOA Platform</title>
              
                 <para>In this chapter you will know what is JBoss Enterprise SOA Platform  and how you can configure it to use for your ESB projects. </para>
