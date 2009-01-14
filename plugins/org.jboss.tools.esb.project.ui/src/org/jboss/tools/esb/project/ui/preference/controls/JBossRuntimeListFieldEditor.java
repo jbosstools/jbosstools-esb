@@ -411,9 +411,9 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	public static class JBossWSRuntimeWizardPage extends WizardPage implements
 			PropertyChangeListener {
 
-		private static final String SRT_NAME = "name";
-		private static final String SRT_VERSION = "version";
-		private static final String SRT_HOMEDIR = "homeDir";
+		private static final String SRT_NAME = "name"; //$NON-NLS-1$
+		private static final String SRT_VERSION = "version"; //$NON-NLS-1$
+		private static final String SRT_HOMEDIR = "homeDir"; //$NON-NLS-1$
 
 		private static final int GL_PARENT_COLUMNS = 1;
 		private static final int GL_CONTENT_COLUMNS = 3;
@@ -466,7 +466,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			homeDir.doFillIntoGrid(root);
 			homeDir.addPropertyChangeListener(this);
 
-			jars = new JBossLibraryListFieldEditor("", "", current);
+			jars = new JBossLibraryListFieldEditor("", "", current); //$NON-NLS-1$ //$NON-NLS-2$
 			jars.doFillIntoGrid(root);
 			jars.addPropertyChangeListener(this);
 			setPageComplete(false);
@@ -481,12 +481,12 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		 *            PropertyChangeEvent describes changes in wizard
 		 */
 		public void propertyChange(java.beans.PropertyChangeEvent evt) {
-			if ("homeDir".equals(evt.getPropertyName())) {
+			if ("homeDir".equals(evt.getPropertyName())) { //$NON-NLS-1$
 				if (name.getValueAsString() == null
-						|| "".equals(name.getValueAsString().trim())
+						|| "".equals(name.getValueAsString().trim()) //$NON-NLS-1$
 						|| this.getErrorMessage() != null) {
 					String homeDirName = homeDir.getValueAsString();
-					if (homeDirName != null && !"".equals(homeDirName.trim())) {
+					if (homeDirName != null && !"".equals(homeDirName.trim())) { //$NON-NLS-1$
 						File folder = new File(homeDirName);
 						homeDirName = folder.getName();
 					}
@@ -501,7 +501,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				return;
 			}
 			
-			if(version.getValueAsString() == null || "".equals(version.getValueAsString())){
+			if(version.getValueAsString() == null || "".equals(version.getValueAsString())){ //$NON-NLS-1$
 				setErrorMessage(JBossESBUIMessages.Error_JBoss_Runtime_List_Field_Editor_Version_Cannot_Be_Empty);
 				setPageComplete(false);
 				return;
@@ -543,7 +543,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 
 			if (jarJbws.isUserConfigClasspath()
 					&& jarJbws.getLibraries().size() == 0) {
-				setErrorMessage("The library must contian at least one jar.");
+				setErrorMessage(JBossESBUIMessages.JBossRuntimeListFieldEditor_ErrorMessageAtLeastOneJar);
 				setPageComplete(false);
 				return;
 			}
@@ -969,13 +969,11 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 */
 	public class AddAction extends BaseAction {
 
-		static final String ACTION_NAME = "&Add";
-
 		/**
 		 * Constructor create Add action with default name
 		 */
 		public AddAction() {
-			super(ACTION_NAME);
+			super(JBossESBUIMessages.JBossRuntimeListFieldEditor_ActionAdd);
 			// This action is always available
 			setEnabled(true);
 		}
@@ -1013,15 +1011,13 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 */
 	public class EditAction extends BaseAction {
 
-		static final String ACTION_NAME = "&Edit";
-
 		/**
 		 * Create EditAction with default name
 		 * 
 		 * @param text
 		 */
 		public EditAction() {
-			super(ACTION_NAME);
+			super(JBossESBUIMessages.JBossRuntimeListFieldEditor_ActionEdit);
 		}
 
 		/**
@@ -1080,13 +1076,11 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 */
 	public class RemoveAction extends BaseAction {
 
-		static final String ACTION_NAME = "&Remove";
-
 		/**
 		 * Create DeleteAction action with default name
 		 */
 		public RemoveAction() {
-			super(ACTION_NAME);
+			super(JBossESBUIMessages.JBossRuntimeListFieldEditor_ActionRemove);
 		}
 
 		@Override

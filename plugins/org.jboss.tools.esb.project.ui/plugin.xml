@@ -28,7 +28,7 @@
                category="org.jboss.tools.common.model.ui.MainPreferencePage"
                class="org.jboss.tools.esb.project.ui.preference.controls.JBossESBRuntimePreferencePage"
                id="org.jboss.tools.esb.project.runtime.preference"
-               name="JBoss ESB Runtimes">
+               name="%Preference_Page_Runtimes">
          </page>
       </extension>
    <extension

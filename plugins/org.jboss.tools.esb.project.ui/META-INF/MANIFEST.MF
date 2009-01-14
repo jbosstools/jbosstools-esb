@@ -4,6 +4,7 @@ Bundle-Name: JBoss ESB Project UI Plugin
 Bundle-SymbolicName: org.jboss.tools.esb.project.ui;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: org.jboss.tools.esb.project.ui.ESBProjectPlugin
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.pde.ui,
