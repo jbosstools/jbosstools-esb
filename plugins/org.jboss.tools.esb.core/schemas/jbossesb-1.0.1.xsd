@@ -198,7 +198,7 @@
                             <xsd:documentation xml:lang="en">Schedule frequency time units.</xsd:documentation>
                         </xsd:annotation>
                     </xsd:attribute>
-					<xsd:attribute default="-1" name="execCount" type="jesb:int" use="optional">
+					<xsd:attribute default="-1" name="execCount" type="xsd:int" use="optional">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">
 								Schedule execution count. -1 to execute indefinitely.
@@ -261,6 +261,7 @@
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="0" ref="jesb:security" />
                 <xsd:element maxOccurs="unbounded" minOccurs="0"
                     ref="jesb:property" />
 				<xsd:element maxOccurs="1" minOccurs="0"
@@ -268,7 +269,7 @@
 				<xsd:element maxOccurs="1" minOccurs="0"
 					ref="jesb:actions" />
 			</xsd:sequence>
-			<xsd:attribute name="category" type="xsd:string"
+			<xsd:attribute name="category"
 				use="required">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
@@ -276,8 +277,13 @@
 						a reference to this service in the registry.
 					</xsd:documentation>
 				</xsd:annotation>
+                                <xsd:simpleType>
+                                        <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="255"/>
+                                        </xsd:restriction>
+				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="name" type="xsd:string"
+			<xsd:attribute name="name"
 				use="required">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
@@ -285,8 +291,13 @@
 						reference to this service in the registry.
 					</xsd:documentation>
 				</xsd:annotation>
+                                <xsd:simpleType>
+                                        <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="255"/>
+                                        </xsd:restriction>
+                                </xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="description" type="xsd:string"
+			<xsd:attribute name="description"
 				use="required">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
@@ -295,6 +306,11 @@
 						this service can be understood by a human.
 					</xsd:documentation>
 				</xsd:annotation>
+                                <xsd:simpleType>
+                                        <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="255"/>
+                                        </xsd:restriction>
+                                </xsd:simpleType>
 			</xsd:attribute>
             <xsd:attribute name="invmScope" type="jesb:invmScope" use="optional">
                 <xsd:annotation>
@@ -303,6 +319,13 @@
                         can be scoped using this attribute.  An "invmScope" value of "NONE" means that
                         the Service should not be locally invokable over the "in VM" transport.
                         More fine grained scoping will be added in the future.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="invmTransacted" type="xsd:boolean">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">
+                        Should the InVM listener execute in a transacted environment?
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:attribute>
@@ -341,6 +364,11 @@
 					ref="jesb:action" />
 			</xsd:sequence>
 			<xsd:attribute name="mep" type="jesb:mepType" />
+                        <xsd:attribute name="inXsd" type="xsd:string" />
+                        <xsd:attribute name="outXsd" type="xsd:string" />
+                        <xsd:attribute name="faultXsd" type="xsd:string" />
+                        <xsd:attribute name="webservice" type="xsd:boolean" default="true"/>
+                        <xsd:attribute name="validate" type="xsd:boolean" default="false"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="action">
@@ -380,6 +408,55 @@
 					<xsd:documentation xml:lang="en">
 						The name of the method on the action that needs
 						to be called when the message is received.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="security">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="0" ref="jesb:property" />
+			</xsd:sequence>
+			<xsd:attribute name="runAs" type="xsd:string" use="optional">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+					 Is used to specify that a specific security role given by the role-name value should be used 
+					 as the security identity for this service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="rolesAllowed" type="xsd:string" use="optional">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+					Specifies one or more logical roles that are allowed to acccess the service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="moduleName" type="xsd:string" use="required">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="useCallerIdentity" type="xsd:string" use="optional">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+					Is used to indicate that the current caller's identity should be propagated as the security identity
+					this service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="callbackHandler" type="xsd:string" use="optional">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+					CallbackHandler implementation class. This will override the global callbackhandler 
+					which can be specified in jbossesb-properties.xml
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
@@ -431,7 +508,7 @@
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute default="1" name="maxThreads" type="jesb:int"
+		<xsd:attribute default="1" name="maxThreads" type="xsd:int"
 			use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">
@@ -463,7 +540,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="jesb:listener">
 				<xsd:attribute default="-1"
-					name="poll-frequency-seconds" type="jesb:int" use="optional">
+					name="poll-frequency-seconds" type="xsd:int" use="optional">
 <!-- Purposely defaults to -1 -->
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">
@@ -475,7 +552,7 @@
 					</xsd:annotation>
 				</xsd:attribute>
 				<xsd:attribute default="-1" name="schedule-frequency"
-					type="jesb:int" use="optional">
+					type="xsd:int" use="optional">
 <!-- Purposely defaults to -1 -->
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">
@@ -1532,7 +1609,7 @@
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="jesb:bus">
-					<xsd:attribute name="port" type="jesb:int"
+					<xsd:attribute name="port" type="xsd:int"
 						use="required">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">
@@ -1623,26 +1700,5 @@
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-
-    <xsd:simpleType name="elType1">
-        <xsd:restriction base="xsd:string">
-            <xsd:pattern value="\#\{.+\}"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="elType2">
-        <xsd:restriction base="xsd:string">
-            <xsd:pattern value="\$\{.+\}"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="expressionType">
-        <xsd:union memberTypes="jesb:elType1 jesb:elType2"/>
-    </xsd:simpleType>
-    
-    <xsd:simpleType name="int">
-        <xsd:union memberTypes="xsd:int jesb:expressionType"/>
-    </xsd:simpleType>
-   
 
 </xsd:schema>

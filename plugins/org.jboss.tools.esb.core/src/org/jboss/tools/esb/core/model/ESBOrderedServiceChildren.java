@@ -10,26 +10,28 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.core.model;
 
-import org.jboss.tools.common.model.impl.CustomizedObjectImpl;
-import org.jboss.tools.common.model.impl.RegularChildren;
+import org.jboss.tools.common.model.XModelObject;
+import org.jboss.tools.common.model.impl.GroupOrderedChildren;
 
 /**
  * @author Viacheslav Kabanovich
  */
-public class ESBCustomizedObjectImpl extends CustomizedObjectImpl {
-	private static final long serialVersionUID = 1L;
+public class ESBOrderedServiceChildren extends GroupOrderedChildren {
 
-	public ESBCustomizedObjectImpl() {}
-	
-    protected RegularChildren createChildren() {
-    	String children = getModelEntity().getProperty("children");
-    	if(children != null && "%ESBOrderedService%".equals(children)) {
-    		return new ESBOrderedServiceChildren();
+    protected int getGroupCount() {
+        return 3;
+    }
+
+    protected int getGroup(XModelObject o) {
+    	if(o == null) return 0;
+    	String entity = o.getModelEntity().getName();
+    	if(ESBConstants.ENT_ESB_SECURITY.equals(entity)) {
+    		return 0;
     	}
-    	if(children != null && children.equals("%ESBOrdered%")) {
-    		return new ESBOrderedChildren();
+    	if(ESBConstants.ENT_ESB_PROPERTY.equals(entity)) {
+    		return 1;
     	}
-    	return super.createChildren();    	
+        return 2;
     }
 
 }

@@ -25,6 +25,7 @@ public interface ESBConstants {
 	
 	public String ENT_ESB_PROVIDERS = "ESBProviders101"; //$NON-NLS-1$
 
+	public String ENT_ESB_SECURITY = "ESBSecurity101P"; //$NON-NLS-1$
 	public String ENT_ESB_PROVIDER = "ESBBusProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_JBR_PROVIDER = "ESBJBRProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_SCHEDULE_PROVIDER = "ESBScheduleProvider101"; //$NON-NLS-1$

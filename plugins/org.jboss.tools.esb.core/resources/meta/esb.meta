@@ -42,6 +42,7 @@
     <ICON name="provider" path="plugin:org.jboss.tools.esb.core:images/esb/provider.gif"/>
     <ICON name="providers" path="images/file/closed_folder.gif"/>
     <ICON name="schedule" path="plugin:org.jboss.tools.esb.core:images/esb/schedule.gif"/>
+    <ICON name="security" path="images/webxml/security_role.gif"/>
     <ICON name="service" path="plugin:org.jboss.tools.esb.core:images/esb/service.gif"/>
     <ICON name="services" path="images/file/closed_folder.gif"/>
    </GROUP>
@@ -116,6 +117,48 @@
     <Constraint loader="ListString">
      <value name="RequestResponse"/>
      <value name="OneWay"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="in xsd"
+    visibility="false" xmlname="inXsd">
+    <Constraint loader="ListString">
+     <value name="RequestResponse"/>
+     <value name="OneWay"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="out xsd"
+    visibility="false" xmlname="outXsd">
+    <Constraint loader="ListString">
+     <value name="RequestResponse"/>
+     <value name="OneWay"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="fault xsd"
+    visibility="false" xmlname="faultXsd">
+    <Constraint loader="ListString">
+     <value name="RequestResponse"/>
+     <value name="OneWay"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced" name="webservice"
+    visibility="false" xmlname="webservice">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced" name="validate"
+    visibility="false" xmlname="validate">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
@@ -2005,9 +2048,49 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="security" name="ESBSecurity101P">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.security" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="security" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true"
+    name="module name" xmlname="moduleName"/>
+   <XModelAttribute PROPERTIES="category=general" name="run as" xmlname="runAs"/>
+   <XModelAttribute PROPERTIES="category=general" name="roles allowed" xmlname="rolesAllowed"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="use caller identity" xmlname="useCallerIdentity"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="callback handler" xmlname="callbackHandler"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrderedService%"
   XMLSUBPATH="service" name="ESBService101">
   <XChildrenEntities>
+   <XChildEntity maxCount="1" name="ESBSecurity101P"/>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity maxCount="1" name="ESBListeners101" required="yes"/>
    <XChildEntity maxCount="1" name="ESBActions101" required="yes"/>
@@ -2034,12 +2117,23 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced"
+    name="invm transacted" xmlname="invmTransacted">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
-   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
+   </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
    <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
     <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
