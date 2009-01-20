@@ -44,6 +44,7 @@ public class JBossRuntimeManager {
 	
 	private final static String JBOSSESB_ESB = "jbossesb.esb";
 	private final static String JBOSSESB_SAR = "jbossesb.sar";
+	private final static String SOAP_AS_LOCATION = "jboss-as";
 
 	/**
 	 * Private constructor
@@ -169,6 +170,8 @@ public class JBossRuntimeManager {
 		List<String> jarList = new ArrayList<String>();
 
 		IPath rtHome = new Path(runtimeLocation);
+		IPath soapDeployPath = rtHome.append(SOAP_AS_LOCATION).append("server").append("default").append(
+		"deploy");
 		IPath deployPath = rtHome.append("server").append("default").append(
 				"deploy");
 
@@ -177,12 +180,17 @@ public class JBossRuntimeManager {
 
 		IPath libPath = rtHome.append("lib");
 
+		//if it's not a normal jboss AS , try to treat it as standalone esb runtme
 		if (!esbPath.toFile().exists() || !sarPath.toFile().exists()) {
 			esbPath = libPath.append(JBOSSESB_ESB);
 			sarPath = libPath.append(JBOSSESB_SAR);
-
 		}
-
+		
+		if (!esbPath.toFile().exists() || !sarPath.toFile().exists()) {
+			esbPath = soapDeployPath.append(JBOSSESB_ESB);
+			sarPath = soapDeployPath.append(JBOSSESB_SAR);
+		}
+		
 		List<File> esblibs = getJarsOfFolder(esbPath.toFile());
 		IPath sarLibPath = sarPath.append("lib");
 		List<File> sarJars = getJarsOfFolder(sarLibPath.toFile());
@@ -409,26 +417,27 @@ public class JBossRuntimeManager {
 	}
 	
 	public static boolean isValidESBServer(String path){
+		File resttaJar = getResttaJar(path, "");
+		return resttaJar != null && resttaJar.exists() || isValidSoapContainedESBRuntime(path);
+	}
+	
+	private static boolean isValidSoapContainedESBRuntime(String path){
+		File resttaJar = getResttaJar(path, SOAP_AS_LOCATION);
+		return resttaJar != null && resttaJar.exists();
+	}
+	
+	public static File getResttaJar(String path, String asFoldername){
 		IPath serverLocation = new Path(path);
+		if(asFoldername != null && !"".equals(asFoldername)){
+			serverLocation = serverLocation.append(asFoldername);
+		}
 		
-		String esbLcoationSeg = "server" + File.separator + "default"
-				+ File.separator + "deploy" + File.separator
-				+ "jbossesb.esb";
-		String sarLocationSeg = "server" + File.separator + "default"
+		String rosettaJar = "server" + File.separator + "default"
 		+ File.separator + "deploy" + File.separator
-		+ "jbossesb.sar";
-		IPath esbLocation = serverLocation.append(esbLcoationSeg);
-		IPath sarLocation = serverLocation.append(sarLocationSeg);
+		+ "jbossesb.sar" + File.separator + "lib" + File.separator +  "jbossesb-rosetta.jar";
+		IPath esbLocation = serverLocation.append(rosettaJar);
 		
-		if(!esbLocation.toFile().isDirectory()){
-			return false;
-		}
-		if(!sarLocation.toFile().isDirectory()){
-			return false;
-		}
-		
-		
-		return true;
+		return esbLocation.toFile(); 
 	}
 	
 	public static boolean isValidESBStandaloneRuntimeDir(String path) {
@@ -445,4 +454,10 @@ public class JBossRuntimeManager {
 		return true;
 	}
 
+	public String getESBVersionNumber(File rosettaJar){
+		
+		return "";
+		
+	}
+	
 }
