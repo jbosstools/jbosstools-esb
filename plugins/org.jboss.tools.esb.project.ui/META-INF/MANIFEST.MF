@@ -35,3 +35,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.ui;bundle-version="3.4.1"
 Eclipse-LazyStart: true
 Bundle-Vendor: %Bundle-Vendor.0
+Export-Package: org.jboss.tools.esb.project.ui

@@ -387,7 +387,8 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			ESBProjectPlugin.getDefault().getLog().log(e.getStatus());
 			return false;
 		}
-		
+		// remove the warning message when users change server runtime to a server runtime that contains  ESB runtime 
+		setMessage(null);
 		return true;
 
 	}
@@ -532,6 +533,10 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			return;
 		}else{
 			setErrorMessage(null);
+			// try to remove the warning message once the target server runtime doesn't contains a ESB runtime.
+			if(btnUserSupplied.getSelection()){
+				setMessage(null);
+			}
 			hasRuntime = true;
 			hasValidSrc = true;
 			hasValidContentFolder = true;
