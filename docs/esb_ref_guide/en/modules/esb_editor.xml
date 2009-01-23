@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<chapter id="esb_editor" xreflabel="esb_editor">
+<chapter id="esb_editor" xreflabel="esb_editor" role="updated">
     <?dbhtml filename="esbEditor.html"?>
     <chapterinfo>
         <keywordset>
@@ -15,7 +15,7 @@
         addition you&apos;ll get to know with how <property>ESB Editor</property> uses combined
         visual and source editing of esb files.</para>
 
-    <section id="esb_file">
+    <section id="esb_file" role="updated">
 
         <title>ESB File Editor</title>
         <para><property>ESB File Editor</property> is a powerful and customizable tool. ESB File
