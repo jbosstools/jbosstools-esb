@@ -2298,7 +2298,7 @@
     <Editor name="ListString"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general"
-    default="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd"
+    default="180"
     name="parameter reload secs" xmlname="parameterReloadSecs"/>
   </XModelAttributes>
   <XActionItem kind="list">
