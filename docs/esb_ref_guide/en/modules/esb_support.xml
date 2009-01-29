@@ -242,7 +242,7 @@
 
         </section>
         
-         <section>
+         <section role="updated">
                 <title>Configuring ESB Runtime in Preferences</title>
                 <para>In this chapter you will know how to predefine a JBoss ESB runtime on the Preferences page.</para>
 
