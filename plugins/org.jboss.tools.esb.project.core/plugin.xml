@@ -99,6 +99,16 @@
                version="4.2">
          </runtime-component>
       </supported>
+      <supported>
+         <facet
+               id="jst.jboss.esb"
+               version="4.2,4.3,4.4">
+         </facet>
+         <runtime-component
+               id="org.jboss.ide.eclipse.eap.runtime.component"
+               version="4.3">
+         </runtime-component>
+      </supported>
    </extension>
     <extension
          id="ESBNature"
