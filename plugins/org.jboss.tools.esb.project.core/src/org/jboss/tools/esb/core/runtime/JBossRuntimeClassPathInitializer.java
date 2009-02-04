@@ -47,8 +47,7 @@ public class JBossRuntimeClassPathInitializer extends
 
 	private String segment;
 	private boolean isServerSupplied = false;
-	private IJavaProject javaProject;
-
+	
 	@Override
 	public void initialize(IPath containerPath, IJavaProject project)
 			throws CoreException {
@@ -87,7 +86,7 @@ public class JBossRuntimeClassPathInitializer extends
 
 		public JBossRuntimeClasspathContainer(IPath path, IJavaProject project,
 				boolean isFromServer) {
-			super(path, JBossFacetCoreMessages.JBoss_Runtime, null);
+			super(path, JBossFacetCoreMessages.JBoss_Runtime, null, project);
 			this.path = path;
 			this.isFromServer = isFromServer;
 		}
@@ -160,6 +159,11 @@ public class JBossRuntimeClassPathInitializer extends
 			}
 			entries = entryList.toArray(new IClasspathEntry[entryList.size()]);
 			return entries;
+		}
+
+		@Override
+		public void refresh() {
+			new JBossRuntimeClasspathContainer(path,javaProject,isServerSupplied).install();
 		}
 
 	}
