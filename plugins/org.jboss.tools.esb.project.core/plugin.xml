@@ -185,4 +185,10 @@
           </enablement>
        </moduleArtifactAdapter>
     </extension>
+    <extension
+          point="org.eclipse.jst.j2ee.classpathdep">
+       <filteredClasspathContainer
+             containerID="org.jboss.esb.runtime.classpath">
+       </filteredClasspathContainer>
+    </extension>
 </plugin>
