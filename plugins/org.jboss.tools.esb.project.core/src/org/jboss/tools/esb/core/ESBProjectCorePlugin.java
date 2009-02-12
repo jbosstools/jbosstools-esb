@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.jboss.tools.esb.core;
 
+import org.eclipse.core.runtime.ILog;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -57,4 +60,9 @@ public class ESBProjectCorePlugin extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	public static void log(String msg,Throwable e) {
+		ILog log = ESBProjectCorePlugin.getDefault().getLog();
+        IStatus status = new Status(Status.ERROR,ESBProjectCorePlugin.PLUGIN_ID,msg,e);
+        log.log(status);
+	}	
 }

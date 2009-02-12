@@ -26,12 +26,12 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
-import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainer;
-import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainerInitializer;
-import org.jboss.ide.eclipse.as.classpath.core.xpl.ClasspathDecorations;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.StatusUtils;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
+import org.jboss.tools.esb.core.runtime.classpath.AbstractClasspathContainer;
+import org.jboss.tools.esb.core.runtime.classpath.AbstractClasspathContainerInitializer;
+import org.jboss.tools.esb.core.runtime.classpath.ClasspathDecorations;
 
 /**
  * @author Denny Xu
