@@ -28,6 +28,7 @@ import org.eclipse.wst.server.core.ServerUtil;
 import org.eclipse.wst.server.core.model.ModuleArtifactAdapterDelegate;
 import org.eclipse.wst.server.core.util.WebResource;
 import org.jboss.tools.esb.core.ESBProjectConstant;
+import org.jboss.tools.esb.core.utils.JBossESBProjectUtil;
 
 public class JBossESBModuleArtifactAdapter extends
 		ModuleArtifactAdapterDelegate {
@@ -50,12 +51,12 @@ public class JBossESBModuleArtifactAdapter extends
 		
 		if (resource instanceof IProject) {
 			IProject project = (IProject) resource;
-			if (isESBProject(project))
+			if (JBossESBProjectUtil.isESBProject(project))
 				return new WebResource(getModule(project), new Path("")); //$NON-NLS-1$
 			return null;	
 		}
 		IProject project = ProjectUtilities.getProject(resource);
-		if (project != null && !isESBProject(project))
+		if (project != null && !JBossESBProjectUtil.isESBProject(project))
 			return null;
 		
 		IVirtualComponent comp = ComponentCore.createComponent(project);
@@ -74,28 +75,11 @@ public class JBossESBModuleArtifactAdapter extends
 	}
 	
 	protected static IModule getModule(IProject project) {
-		if (isESBProject(project))
+		if (JBossESBProjectUtil.isESBProject(project))
 			return ServerUtil.getModule(project);
 		return null;
 	}
 	
-	protected static boolean isESBProject(IProject project) {
-		return isProjectOfType(project, ESBProjectConstant.ESB_PROJECT_FACET);
-	}
-	
-	protected static boolean isProjectOfType(IProject project, String typeID) {
-		IFacetedProject facetedProject = null;
-		try {
-			facetedProject = ProjectFacetsManager.create(project);
-		} catch (CoreException e) {
-			return false;
-		}
 
-		if (facetedProject != null && ProjectFacetsManager.isProjectFacetDefined(typeID)) {
-			IProjectFacet projectFacet = ProjectFacetsManager.getProjectFacet(typeID);
-			return projectFacet != null && facetedProject.hasProjectFacet(projectFacet);
-		}
-		return false;
-	}
 
 }
