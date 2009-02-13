@@ -17,8 +17,14 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IClasspathAttribute;
 import org.eclipse.jdt.core.JavaCore;
 
+/*
+ * Things in this package are duplicate code from as.classpath.core
+ * and must be refactored out after 3.0 GA release.
+ */
 /**
- * @author <a href="mailto:kosta@bea.com">Konstantin Komissarchik</a>
+ * 
+ * @author Rob Stryker <rob.stryker@redhat.com>
+ * @deprecated
  */
 
 public final class ClasspathDecorations {

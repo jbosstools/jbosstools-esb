@@ -9,6 +9,9 @@
  *     Red Hat, Inc. - initial API and implementation
  ******************************************************************************/
 
+/*
+ * 
+ */
 package org.jboss.tools.esb.core.runtime.classpath;
 
 import java.io.File;
@@ -31,10 +34,14 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 
+/*
+ * Things in this package are duplicate code from as.classpath.core
+ * and must be refactored out after 3.0 GA release.
+ */
 /**
  * 
  * @author Rob Stryker <rob.stryker@redhat.com>
- *
+ * @deprecated
  */
 public abstract class AbstractClasspathContainer implements IClasspathContainer {
 

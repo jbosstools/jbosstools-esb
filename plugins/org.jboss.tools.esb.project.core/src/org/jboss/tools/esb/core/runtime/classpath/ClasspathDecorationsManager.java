@@ -33,8 +33,12 @@ import org.xml.sax.InputSource;
 
 /**
  * @author <a href="mailto:kosta@bea.com">Konstantin Komissarchik</a>
+ * @deprecated
  */
-
+/*
+ * Things in this package are duplicate code from as.classpath.core
+ * and must be refactored out after 3.0 GA release.
+ */
 public final class ClasspathDecorationsManager {
 	private static final String CLASSPATH_PREFERENCES = "classpathPreferences"; //$NON-NLS-1$
 	private static final String SEPARATOR = System

@@ -20,11 +20,16 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 
+/*
+ * Things in this package are duplicate code from as.classpath.core
+ * and must be refactored out after 3.0 GA release.
+ */
 /**
  * 
  * @author Rob Stryker <rob.stryker@redhat.com>
- * 
+ * @deprecated
  */
+
 public abstract class AbstractClasspathContainerInitializer extends
 		ClasspathContainerInitializer {
 	
