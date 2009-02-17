@@ -29,6 +29,24 @@
       </project-facet-version>
       <project-facet-version
             facet="jst.jboss.esb"
+            version="4.3">
+            <group-member
+               id="modules">
+         </group-member>
+         <constraint>
+            <and>
+               <conflicts
+                     group="modules">
+               </conflicts>
+               <requires
+                     facet="jst.java"
+                     version="[5.0">
+               </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
+      <project-facet-version
+            facet="jst.jboss.esb"
             version="4.4">
             <group-member
                id="modules">
@@ -47,8 +65,8 @@
       </project-facet-version>
       <project-facet-version
             facet="jst.jboss.esb"
-            version="4.3">
-            <group-member
+            version="4.5">
+         <group-member
                id="modules">
          </group-member>
          <constraint>
@@ -92,7 +110,7 @@
       <supported>
          <facet
                id="jst.jboss.esb"
-               version="4.2,4.3,4.4">
+               version="4.2,4.3,4.4,4.5">
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.as.runtime.component"
@@ -102,7 +120,7 @@
       <supported>
          <facet
                id="jst.jboss.esb"
-               version="4.2,4.3,4.4">
+               version="4.2,4.3,4.4,4.5">
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.eap.runtime.component"
@@ -145,7 +163,7 @@
              projects="true">
           <moduleType
                 types="jst.jboss.esb"
-                versions="4.2,4.3,4.4">
+                versions="4.2,4.3,4.4,4.5">
           </moduleType>
        </moduleFactory>
     </extension>
