@@ -69,9 +69,7 @@ public abstract class AbstractClasspathContainer implements IClasspathContainer 
 	}
 
 	public IClasspathEntry[] getClasspathEntries() {
-		if (entries == null) {
-			entries = computeEntries();
-		}
+		entries = computeEntries();
 		return entries;
 	}
 

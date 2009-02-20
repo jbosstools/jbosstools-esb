@@ -83,6 +83,7 @@ public class JBossRuntimeClassPathInitializer extends
 		private boolean isFromServer = false;
 		private IClasspathEntry[] entries = null;
 		private List<String> jars;
+		private boolean unbound = false;
 
 		public JBossRuntimeClasspathContainer(IPath path, IJavaProject project,
 				boolean isFromServer) {
@@ -92,6 +93,9 @@ public class JBossRuntimeClassPathInitializer extends
 		}
 
 		public String getDescription() {
+			if(unbound){
+				return JBossFacetCoreMessages.JBoss_Runtime + " [" + path.segment(path.segmentCount() - 1) + "] (unbound)";
+			}
 			return JBossFacetCoreMessages.JBoss_Runtime + " [" + path.segment(path.segmentCount() - 1) + "]";
 		}
 
@@ -109,11 +113,13 @@ public class JBossRuntimeClassPathInitializer extends
 				IRuntime serverRuntime = ServerCore.findRuntime(segment);
 
 				if (serverRuntime == null) {
-					IStatus status = StatusUtils
-							.errorStatus("Can not find the runtime: " + segment);
-					ESBProjectCorePlugin.getDefault().getLog().log(status);
+//					IStatus status = StatusUtils
+//							.errorStatus("Can not find the runtime: " + segment);
+//					ESBProjectCorePlugin.getDefault().getLog().log(status);
+					unbound = true;
 					return new IClasspathEntry[0];
 				}
+				unbound = false;
 				String runtimeLocation = serverRuntime.getLocation()
 						.toOSString();
 				jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(
@@ -126,6 +132,10 @@ public class JBossRuntimeClassPathInitializer extends
 				if (jbws != null) {
 					jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(
 							jbws);
+					unbound = false;
+				}
+				else{
+					unbound = true;
 				}
 			}
 
