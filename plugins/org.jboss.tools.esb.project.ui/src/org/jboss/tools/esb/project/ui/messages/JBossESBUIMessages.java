@@ -121,8 +121,11 @@ public final class JBossESBUIMessages extends NLS {
 
 	public static String ESBProjectWizard_Title;
 
-
-
+	public static String ESBExportWizard_NotValidProject;
+	public static String ESBExportWizard_Title;
+	public static String ESBExportWizard_Description;
+	public static String ESBExportWizard_ESBProject;
+	
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, JBossESBUIMessages.class);

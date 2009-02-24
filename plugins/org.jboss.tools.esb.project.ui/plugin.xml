@@ -73,7 +73,29 @@
        <classpathContainerPage
              class="org.jboss.tools.esb.project.ui.wizards.pages.JBossESBRuntimeContainerPage"
              id="org.jboss.esb.runtime.classpath"
-             name="JBoss ESB  Libraries">
+             name="JBoss ESB Libraries">
        </classpathContainerPage>
+    </extension>
+    
+    
+     <extension
+         point="org.eclipse.ui.exportWizards">
+     <category
+            name="ESB"
+            id="org.jboss.tools.esb.category">
+      </category>         
+    <wizard
+            name="ESB File"
+            icon="icons/obj16/esb_module.gif"
+            class="org.jboss.tools.esb.project.ui.wizards.export.ESBComponentExportWizard"
+            category="org.jboss.tools.esb.category"
+            id="org.jboss.tools.esb.project.ui.wizards.temp.ESBExportWizard">
+         <description>
+            ESB File
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
     </extension>
 </plugin>

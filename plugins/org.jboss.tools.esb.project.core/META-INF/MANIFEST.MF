@@ -34,6 +34,7 @@ Bundle-Vendor: %providerName
 Export-Package: org.jboss.tools.esb.core,
  org.jboss.tools.esb.core.facet,
  org.jboss.tools.esb.core.messages,
+ org.jboss.tools.esb.core.module,
  org.jboss.tools.esb.core.runtime,
  org.jboss.tools.esb.core.utils
 
