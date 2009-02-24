@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IAccessRule;
 import org.eclipse.jdt.core.IClasspathAttribute;
@@ -26,12 +25,10 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
-import org.jboss.tools.esb.core.ESBProjectCorePlugin;
-import org.jboss.tools.esb.core.StatusUtils;
+import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainer;
+import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainerInitializer;
+import org.jboss.ide.eclipse.as.classpath.core.xpl.ClasspathDecorations;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
-import org.jboss.tools.esb.core.runtime.classpath.AbstractClasspathContainer;
-import org.jboss.tools.esb.core.runtime.classpath.AbstractClasspathContainerInitializer;
-import org.jboss.tools.esb.core.runtime.classpath.ClasspathDecorations;
 
 /**
  * @author Denny Xu
@@ -105,6 +102,10 @@ public class JBossRuntimeClassPathInitializer extends
 
 		public IPath getPath() {
 			return path;
+		}
+		
+		public IClasspathEntry[] getClasspathEntries() {
+			return computeEntries();
 		}
 
 		public IClasspathEntry[] computeEntries() {
