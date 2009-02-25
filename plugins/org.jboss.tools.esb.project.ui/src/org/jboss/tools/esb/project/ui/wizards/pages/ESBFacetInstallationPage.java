@@ -20,13 +20,13 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jst.common.project.facet.JavaFacetUtils;
 import org.eclipse.jst.common.project.facet.core.JavaFacetInstallConfig;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -360,9 +360,9 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 				org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore
 						.findRuntime(runtime.getProperty("id")); //$NON-NLS-1$
 				if (!JBossRuntimeManager.isValidESBServer(serverRuntime
-						.getLocation().toOSString())) {
+						.getLocation().toOSString(), getSelectedESBVersion().getVersionString())) {
 					hasRuntime = true;
-					setMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime, WARNING);
+					setMessage(NLS.bind(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime, getSelectedESBVersion().getVersionString()), WARNING);
 					setPageComplete(isPageComplete());
 					return true;
 				}
@@ -384,8 +384,8 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 					org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore
 							.findRuntime(runtime.getProperty("id"));
 					if (!JBossRuntimeManager.isValidESBServer(serverRuntime
-							.getLocation().toOSString())) {
-						setMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime, WARNING);
+							.getLocation().toOSString(), getSelectedESBVersion().getVersionString())) {
+						setMessage(NLS.bind(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime, getSelectedESBVersion().getVersionString()), WARNING);
 						hasRuntime = true;
 						setPageComplete(isPageComplete());
 						return true;

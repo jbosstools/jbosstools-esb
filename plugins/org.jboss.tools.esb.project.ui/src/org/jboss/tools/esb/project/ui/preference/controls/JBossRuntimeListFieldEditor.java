@@ -555,8 +555,8 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				return;
 			}
 
-			if (!runtimeExist(homeDir.getValueAsString())) {
-				setErrorMessage(JBossESBUIMessages.Label_JBoss_Runtime_Load_Error);
+			if (!runtimeExist(homeDir.getValueAsString(),  (String)version.getValue())) {
+				setErrorMessage(NLS.bind(JBossESBUIMessages.Label_JBoss_Runtime_Load_Error, version.getValue()));
 				setPageComplete(false);
 				return;
 			}
@@ -655,14 +655,14 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			};
 		}
 
-		private boolean runtimeExist(String path) {
+		private boolean runtimeExist(String path, String version) {
 
 			File jbosswsHomeDir = new File(path);
 			if (!jbosswsHomeDir.isDirectory())
 				return false;
 			
-			if(!JBossRuntimeManager.isValidESBStandaloneRuntimeDir(path) 
-					&& !JBossRuntimeManager.isValidESBServer(path)){
+			if(!JBossRuntimeManager.isValidESBStandaloneRuntimeDir(path, version) 
+					&& !JBossRuntimeManager.isValidESBServer(path, version)){
 				return false;
 			}
 			

@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -416,31 +417,35 @@ public class JBossRuntimeManager {
 		runtimes = converter.getMap(runtimeListString);
 	}
 	
-	public static boolean isValidESBServer(String path){
-		File resttaJar = getResttaJar(path, "");
-		return resttaJar != null && resttaJar.exists() || isValidSoapContainedESBRuntime(path);
+	public static boolean isValidESBServer(String path, String version){
+		return getResttaJar(path, "" , version) || isValidSoapContainedESBRuntime(path, version);
 	}
 	
-	private static boolean isValidSoapContainedESBRuntime(String path){
-		File resttaJar = getResttaJar(path, SOAP_AS_LOCATION);
-		return resttaJar != null && resttaJar.exists();
+	private static boolean isValidSoapContainedESBRuntime(String path, String version){
+		return  getResttaJar(path, SOAP_AS_LOCATION, version);
 	}
 	
-	public static File getResttaJar(String path, String asFoldername){
+	public static boolean getResttaJar(String path, String asFoldername, String version){
 		IPath serverLocation = new Path(path);
 		if(asFoldername != null && !"".equals(asFoldername)){
 			serverLocation = serverLocation.append(asFoldername);
 		}
-		
-		String rosettaJar = "server" + File.separator + "default"
+		IPath sarLocation = serverLocation.append( "server" + File.separator + "default"
 		+ File.separator + "deploy" + File.separator
-		+ "jbossesb.sar" + File.separator + "lib" + File.separator +  "jbossesb-rosetta.jar";
-		IPath esbLocation = serverLocation.append(rosettaJar);
+		+ "jbossesb.sar");
+		IPath rosettaJar  = sarLocation.append("lib" + File.separator +  "jbossesb-rosetta.jar");
 		
-		return esbLocation.toFile(); 
+		try{
+			double versionNumber = Double.valueOf(version);
+			if(versionNumber >= 4.5){
+				return isVersion45(sarLocation);
+			}
+		}catch(NumberFormatException e){
+		}
+		return rosettaJar.toFile().exists(); 
 	}
 	
-	public static boolean isValidESBStandaloneRuntimeDir(String path) {
+	public static boolean isValidESBStandaloneRuntimeDir(String path, String version) {
 		IPath location = new Path(path);
 		IPath esblocation = location.append("lib").append("jbossesb.esb");
 		IPath sarLocation = location.append("lib").append("jbossesb.sar");
@@ -450,8 +455,22 @@ public class JBossRuntimeManager {
 		if (!sarLocation.toFile().isDirectory()) {
 			return false;
 		}
+		
+		try{
+			double versionNumber = Double.valueOf(version);
+			if(versionNumber >= 4.5){
+				return isVersion45(sarLocation);
+			}
+		}catch(NumberFormatException e){
+		}
 
 		return true;
+	}
+	
+	private static boolean isVersion45(IPath sarLocation){
+		IPath libPath = sarLocation.append("lib");
+		File jbossesbConfigModel110 = libPath.append("jbossesb-config-model-1.1.0.jar").toFile();
+		return jbossesbConfigModel110 != null && jbossesbConfigModel110.exists();
 	}
 
 	public String getESBVersionNumber(File rosettaJar){
