@@ -10,11 +10,19 @@
  ******************************************************************************/
 package org.jboss.tools.esb.project.ui.wizards.pages;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.jst.common.project.facet.JavaFacetUtils;
+import org.eclipse.jst.common.project.facet.core.internal.JavaFacetUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
+import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
+import org.eclipse.wst.common.project.facet.core.IProjectFacet;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.web.ui.internal.wizards.DataModelFacetCreationWizardPage;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
@@ -45,6 +53,27 @@ public class ESBProjectFirstPage extends DataModelFacetCreationWizardPage {
 			
 		});
 		
+	}
+	
+	@Override
+	protected Set<IProjectFacetVersion> getFacetConfiguration( final IProjectFacetVersion primaryFacetVersion )
+	{
+	    final Set<IProjectFacetVersion> config = new HashSet<IProjectFacetVersion>();
+		IFacetedProjectWorkingCopy fpjwc = (IFacetedProjectWorkingCopy) this.model
+				.getProperty(FACETED_PROJECT_WORKING_COPY);
+		for (IProjectFacet fixedFacet : fpjwc.getFixedProjectFacets()) {
+			if (fixedFacet == primaryFacetVersion.getProjectFacet()) {
+				config.add(primaryFacetVersion);
+			} else if (fixedFacet == JavaFacetUtils.JAVA_FACET) {
+				String compilerLevel = JavaFacetUtil.getCompilerLevel();
+				IProjectFacetVersion facetVersion = JavaFacetUtil.compilerLevelToFacet(compilerLevel);
+				config.add(facetVersion);
+			} else {
+				config.add(fpjwc.getHighestAvailableVersion(fixedFacet));
+			}
+		}
+	    
+	    return config;
 	}
 	
 }
