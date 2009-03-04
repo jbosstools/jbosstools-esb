@@ -77,6 +77,8 @@
                 </imageobject>
             </mediaobject>
         </figure>
+        <para>Then you can add Channels and Properties for the Providers the same way or using the forms with <property>Add</property>, <property>Edit</property> and
+            <property>Remove</property> buttons to the right.</para>
 
         <para>You can easily add a new Service too:</para>
         <figure>
