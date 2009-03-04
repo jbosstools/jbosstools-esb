@@ -70,7 +70,7 @@
                                 <property>Next</property>
                         </emphasis> brings you to the ESB facet installation page where you can 
                         specify Java Source Directory and ESB Content Directory. ESB Content Directory is a folder that contains the most of
-                         artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:,
+                         artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:
                         </para>
                          <para>1. Use <emphasis>
                                 <property>Server Supplied ESB Runtime</property>
@@ -188,7 +188,17 @@
                 </figure>
                 
  		        <para>Thus, you have just added the ESB project to the JBoss server module list. Right click the JBoss Server and select <emphasis><property>Publish</property></emphasis> to publish the project on the server.
-                You can check the deploying result in the Console view.</para> 
+ 		        You can check the deploying result in the Console view.</para> 
+ 		        <para>You can also use the "Finger touch" for a quick restart of the project without restarting the server:</para>
+ 		        <figure>
+ 		                <title>Finger Touch button</title>
+ 		                <mediaobject>
+ 		                        <imageobject>
+ 		                                <imagedata fileref="images/esb_project/23_finger_touch.png"/>
+ 		                        </imageobject>
+ 		                </mediaobject>
+ 		        </figure>	        
+ 		        <para>The "Finger" touches descriptors dependent on project (i.e. web.xml for WAR, application.xml for EAR) and now it is also available for jboss-esb.xml in ESB projects.</para>
                 
         </section>
 		        
