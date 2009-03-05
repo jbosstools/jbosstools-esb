@@ -149,17 +149,23 @@
                         
                 </itemizedlist>
                 
-                <figure>
-                        <title>JBoss Tools ESB Project Examples</title>
-                        <mediaobject>
-                                <imageobject>
-                                        <imagedata fileref="images/esb_project/06_esb_project_example.png"/>
-                                </imageobject>
-                        </mediaobject>
-                </figure>
+               
 
-				<para>We will take as our example <emphasis><property>JBoss ESB HelloWorld Example</property> </emphasis> ESB and Client project, choose them using the Ctrl button and then click 
-				<emphasis><property>Finish</property></emphasis>. As a result you will get two projects created. </para>
+				<para>We will take as our example <emphasis><property>JBoss ESB HelloWorld Example</property> </emphasis> ESB and Client project:</para>
+				        
+				        
+				        <figure>
+				                <title>JBoss Tools ESB Project Examples</title>
+				                <mediaobject>
+				                        <imageobject>
+				                                <imagedata fileref="images/esb_project/06_esb_project_example.png"/>
+				                        </imageobject>
+				                </mediaobject>
+				        </figure>
+				        
+				        
+				       <para>Choose them using the Ctrl button and then click 
+				<emphasis><property>Finish</property></emphasis>. As a result you will get two projects created:</para>
 				                <figure>
                         <title>JBoss ESB Project Examples: helloworld and helloworld_testclient</title>
                         <mediaobject>
