@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.docbook.org/xml/4.3/docbookx.dtd"
+
+[<!ENTITY introduction SYSTEM "modules/introduction.xml">
+<!ENTITY esb_support SYSTEM "modules/esb_support.xml">
+<!ENTITY esb_editor SYSTEM "modules/esb_editor.xml">
+
+<!ENTITY seamlink "../../seam/html_single/index.html">
+<!ENTITY aslink "../../as/html_single/index.html">
+<!ENTITY esblink "../../esb_ref_guide/html_single/index.html">
+<!ENTITY gsglink "../../GettingStartedGuide/html_single/index.html">
+<!ENTITY hibernatelink "../../hibernatetools/html_single/index.html">
+<!ENTITY jbpmlink "../../jbpm/html_single/index.html">
+<!ENTITY jsflink "../../jsf/html_single/index.html">
+<!ENTITY jsfreflink "../../jsf_tools_ref_guide/html_single/index.html">
+<!ENTITY jsftutoriallink "../../jsf_tools_tutorial/html_single/index.html">
+<!ENTITY strutsreflink "../../struts_tools_ref_guide/html_single/index.html">
+<!ENTITY strutstutoriallink "../../struts_tools_tutorial/html_single/index.html">                         
+
+]><book xmlns:diffmk="http://diffmk.sf.net/ns/diff">
+    
+    <bookinfo>
+        <title>ESB Tools Reference Guide</title>
+        <author><firstname>Svetlana</firstname><surname>Mukhina</surname><email>smukhina@exadel.com</email></author> 
+        <author><firstname>Tatyana</firstname><surname>Romanovich</surname></author>  
+        
+        <pubdate>April 2008</pubdate>
+        <copyright>
+            <year>2007</year>
+            <year>2009</year>
+            <holder>JBoss, a division of Red Hat</holder>
+        </copyright>
+        <releaseinfo>
+            Version: 1.1.0.GA
+        </releaseinfo>
+    
+<abstract>
+   <title></title>
+       <para>
+           <ulink url="http://download.jboss.org/jbosstools/nightly-docs/en/esb_ref_guide/pdf/ESB_Reference_Guide.pdf">PDF version</ulink>
+       </para>
+</abstract>
+
+</bookinfo>
+    <toc></toc>  
+    
+	
+<chapter id="introduction" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/introduction.xml">
+    <?dbhtml filename="introduction.html"?>
+
+    <chapterinfo>
+        <keywordset>
+            <keyword>JBoss Developer Studio</keyword>
+            <keyword>Eclipse</keyword>
+            <keyword>Java</keyword>
+            <keyword>JBoss</keyword>
+            <keyword>JBoss Tools</keyword>
+            <keyword>JBDS</keyword>
+            <keyword>ESB</keyword>
+        </keywordset>
+    </chapterinfo>
+
+    <title>Introduction</title>
+
+    <section>
+
+        <title>What is ESB?</title>
+
+        <para>ESB (Enterprise Service Bus) - an abstraction layer on top of  implementation of an
+            enterprise messaging system that provides the features Service Oriented
+            Architectures may be implemented with.</para>
+        <para>If you want to develop applications using ESB technology JBoss ESB also meets your
+            needs. The JBoss Tools provide an ESB editor and all necessary wizards for creating an ESB
+            file.</para>
+        <para>In this guide we provide you with the information on JBoss ESB support (installation, configuration and deployment) and usage of ESB Editor which allows you to
+            develop an ESB file much faster and with far fewer errors so sparing your time.</para>
+
+    </section>
+
+    <section>
+        <title>Other relevant resources on the topic</title>
+
+        <para>You can find a set of benefits and other extra information on:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <ulink url="http://www.jboss.org/jbossesb">JBoss ESB</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <ulink url="http://wiki.jboss.org/wiki/JBossESB">JBoss Wiki</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <ulink url="http://www.jboss.org/jbossesb/docs/index.html">JBoss ESB
+                        Documentation Library</ulink>
+                </para>
+            </listitem>
+        </itemizedlist>
+
+        <para>The latest <property moreinfo="none">JBoss Tools/JBoss Developer Studio</property> documentation
+            builds are available <ulink url="http://download.jboss.org/jbosstools/nightly-docs/">here</ulink>.</para>
+
+    </section>
+</chapter>
+
+    
+<chapter id="esb_support" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/esb_support.xml">
+        <?dbhtml filename="esb_support.html"?>
+        <chapterinfo>
+                <keywordset>
+                        <keyword>JBoss Developer Studio</keyword>
+                        <keyword>Eclipse</keyword>
+                        <keyword>ESB</keyword>
+                        <keyword>Java</keyword>
+                        <keyword>JBoss</keyword>
+                </keywordset>
+        </chapterinfo>
+
+        <title>ESB Support</title>
+
+        <para>In this section we will focus on all concepts that <property moreinfo="none">JBoss Tools</property>
+                integrate for working with JBoss ESB.</para>
+
+        <section>
+                <title>ESB Tools Installation</title>
+
+                <para>This chapter will provide you with the information on how to install
+                        JBoss ESB plugin into Eclipse.</para>
+
+                <para>ESB Tools come as one module of JBoss Tools project. Since ESB Tools have a
+                        dependence on other JBoss Tools modules we recommend you to install a bundle
+                        of all <ulink url="http://labs.jboss.com/tools/download/index.html">JBoss
+                                Tools plug-ins</ulink>. You can find all  necessary installation instructions on JBoss Wiki in the <ulink url="http://labs.jboss.com/wiki/InstallingJBossTools">InstallingJBossTools</ulink> section.</para>
+        </section>
+
+		 <section>
+                <title>Creating a ESB Project</title>
+                <para>In this chapter we suggest a step-by-step walk-through of creating a new
+                        ESB project. Let's try to create a new JBoss ESB project.</para>
+
+                <para>We will show you how to use the ESB Project Creation wizard for creating a new ESB project and setting basic ESB classpath.</para>
+
+                <para>Select <emphasis>
+                                <property moreinfo="none">File &gt;New &gt; Project...</property>
+                        </emphasis> in the main menu bar or context menu for selected project and
+                        then <emphasis>
+                                <property moreinfo="none">ESB &gt; ESB Project</property>
+                        </emphasis> in the dialog opened:</para>
+
+                <figure float="0">
+                        <title>Select a Wizard dialog</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/01_create_esb_project.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+                <para> Clicking <emphasis>
+                                <property moreinfo="none">Next</property>
+                        </emphasis> brings you to the JBoss ESB Project wizard page where a project name, ESB version and target JBoss Runtime are to be specified. Specify, for example, <emphasis>
+                                <property moreinfo="none">helloworld</property>
+                        </emphasis> as a Project name and accept the default ESB version.</para>
+                <figure float="0">
+                        <title>JBoss ESB Project wizard</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/02_create_esb_project.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para> Clicking <emphasis>
+                                <property moreinfo="none">Next</property>
+                        </emphasis> brings you to the ESB facet installation page where you can 
+                        specify Java Source Directory and ESB Content Directory. ESB Content Directory is a folder that contains the most of
+                         artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:
+                        </para>
+                         <para>1. Use <emphasis>
+                                <property moreinfo="none">Server Supplied ESB Runtime</property>
+                        </emphasis>  
+                         
+                         </para>
+                         <para> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences                           
+                         </para>
+                         <para>If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.
+                         </para>
+                <figure float="0">
+                        <title>Install ESB facet step</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/03_create_esb_project.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                <para>Click <emphasis>
+                                <property moreinfo="none">Finish</property>
+                        </emphasis> and a ESB project with the default <emphasis><property moreinfo="none">jboss-esb.xml</property></emphasis> 
+                              will be created. </para>
+
+                     <figure float="0">
+                        <title>The generated ESB project structure</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/04_create_esb_project.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+        </section>
+        
+        <section id="ESB_project_wizard" xreflabel="here">
+                <title>Creating ESB Project using JBoss Tools Project Examples Wizard</title>
+                <para>JBoss Tools provides a Project Example wizard that is an easy way for users to create some kinds of projects to be used as examples with some predefined structure. Let's start 
+                creating a ESB project using this wizard.</para>
+                
+                <para>Before creating a ESB project example create JBoss Runtime with name <emphasis><property moreinfo="none">
+                JBoss 4.2 Runtime</property></emphasis>, it will be used by your ESB project example. </para>
+
+                <para>Select <emphasis>
+                                <property moreinfo="none">File &gt;New &gt; Others </property>
+                        </emphasis> , in the main menu bar or context menu for selected project and
+                        then <emphasis>
+                                <property moreinfo="none">JBoss Tools &gt; Project Examples</property>
+                        </emphasis> in the New dialog:</para>
+
+                <figure float="0">
+                        <title>Select a wizard - Project Examples</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/05_esb_project_example.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para> Clicking <emphasis>
+                                <property moreinfo="none">Next</property>
+                        </emphasis> brings you to the wizard page where you can select a ESB project example from the example list.
+                        Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
+                <para>Here is a list of ready examples available:</para>
+              
+                <itemizedlist>
+                        
+                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Example</emphasis> - demonstrates the minimal files necessary to make a basic ESB component execute as well as to prove that the ESB os properly configured.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Action Example</emphasis> - demonstrates the use of multiple action invocations from a single configuration. You can use a single Action class and make multiple method calls or use multiple Action classes. </para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld File Action Example</emphasis> - demonstrates using the File gateway feature of the JBoss ESB. Files that are found in a particular directory with a particular extension are sent to a JMS queue with actions for processing.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Web Service consumer1 Example</emphasis> - demonstrates how to consume a 181 Web Service in an ESB action.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Web Service producer Example</emphasis> - demonstrates how to deploy a JSR181 Webservice endpoint on JBossESB using the SOAPProcessor action.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks CSV -&gt; XML Example</emphasis> - demonstrates how to transform a comma separated value (CSV) file to an XML.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; POJO Example</emphasis> - demonstrates the use of Smooks performing a simpe transformation by converting an XML file into Java POJOs.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; XML date-manipulation Example</emphasis> - demonstrates how to manually define and apply a Message Transformation within JBoss ESB.</para></listitem>     
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; XML Example</emphasis> - a very basic example of how to manually define and apply a Message Transformation within JBoss ESB. It applies a very simple XSLT to a SampleOrder.xml message and prints the before and after XML to the console. </para></listitem>
+                        
+                </itemizedlist>
+                
+               
+
+				<para>We will take as our example <emphasis><property moreinfo="none">JBoss ESB HelloWorld Example</property> </emphasis> ESB and Client project:</para>
+				        
+				        
+				        <figure float="0">
+				                <title>JBoss Tools ESB Project Examples</title>
+				                <mediaobject>
+				                        <imageobject>
+				                                <imagedata fileref="images/esb_project/06_esb_project_example.png"></imagedata>
+				                        </imageobject>
+				                </mediaobject>
+				        </figure>
+				        
+				        
+				       <para>Choose them using the Ctrl button and then click 
+				<emphasis><property moreinfo="none">Finish</property></emphasis>. As a result you will get two projects created:</para>
+				                <figure float="0">
+                        <title>JBoss ESB Project Examples: helloworld and helloworld_testclient</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/07_esb_project_example.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para> Deploy the HelloWorld ESB project and run a test class in the client Java project to see the test result in the Console view.</para>
+        </section>
+
+ 		<section>
+                <title>Deploying a ESB Project</title>
+                <para>In this chapter youwill see how to deploy a ESB project using the WTP deployment framework.</para>
+
+                <para>Before deploying the project, open the JBoss Server View by selecting <emphasis><property moreinfo="none">Window &gt; Show View &gt; Other &gt; 
+                Server &gt; JBoss Server View</property></emphasis>, 
+                create a JBoss Server in the Server view and start it, and then right click the created JBoss server, 
+                select <emphasis><property moreinfo="none"> </property> Add and Remove Projects</emphasis>, 
+                and add the ESB projects you want to deploy from the left side to the right side in the opened dialog. </para>
+
+                <figure float="0">
+                        <title>Add and Remove Projects</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/08_esb_project_deploy.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para>Click <emphasis><property moreinfo="none">Finish</property> </emphasis> to add the project to the server. 
+                You also can drag the ESB project from the Project View to the server.</para>
+                
+                 <figure float="0">
+                        <title>JBoss Server View</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/09_esb_runtime_new.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+ 		        <para>Thus, you have just added the ESB project to the JBoss server module list. Right click the JBoss Server and select <emphasis><property moreinfo="none">Publish</property></emphasis> to publish the project on the server.
+ 		        You can check the deploying result in the Console view.</para> 
+ 		        <para>The <emphasis><property moreinfo="none">Run</property></emphasis> and <emphasis><property moreinfo="none">Debug</property></emphasis> options work on ESB projects causing a (re)deploy for a user designated server.</para>
+ 		        <para>You can also use the "Finger touch" for a quick restart of the project without restarting the server:</para>
+ 		        <figure float="0">
+ 		                <title>Finger Touch button</title>
+ 		                <mediaobject>
+ 		                        <imageobject>
+ 		                                <imagedata fileref="images/esb_project/23_finger_touch.png"></imagedata>
+ 		                        </imageobject>
+ 		                </mediaobject>
+ 		        </figure>	        
+ 		        <para>The "Finger" touches descriptors dependent on project (i.e. web.xml for WAR, application.xml for EAR) and now it is also available for jboss-esb.xml in ESB projects.</para>
+                
+        </section>
+		        
+        <section>
+                <title>Creating a ESB File</title>
+                <para>In this chapter we suggest a step-by-step walk-through of creating your own
+                        simple file. Let's try to organize a new ESB file.</para>
+
+                <para>We will show you how to use the Creation wizard for creating a new ESB file.</para>
+
+                <para>At first you should open any project. Select <emphasis>
+                                <property moreinfo="none">File &gt;New &gt; Other...</property>
+                        </emphasis> in the main menu bar or context menu for selected project and
+                        then <emphasis>
+                                <property moreinfo="none">ESB &gt; ESB File</property>
+                        </emphasis> in the New dialog:</para>
+
+                <figure float="0">
+                        <title>Select a wizard - ESB File</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_support/01_create_esb.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+                <para> Clicking <emphasis>
+                                <property moreinfo="none">Next</property>
+                        </emphasis> brings you to the wizard page where a folder, a name and a version for the file should be specified. Choose, for example, <emphasis>
+                                <property moreinfo="none">jboss-esb.xml</property>
+                        </emphasis> as the name and accept the selected projects folder and the default
+                        version.</para>
+                <figure float="0">
+                        <title>Folder, Name and Version for ESB file</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_support/02_create_esb.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+                <para>Thus, your file will be created in the selected projects folder by default. If
+                        you want to change the folder for your future file click <emphasis>
+                                <property moreinfo="none">Browse...</property>
+                        </emphasis> button to set needed folder or simply type it.</para>
+
+                <para>Clicking on <emphasis>
+                                <property moreinfo="none">Finish</property>
+                        </emphasis> results in the file being generated. The wizard creates one xml
+                        file.</para>
+
+        </section>
+        
+         <section role="updated">
+                <title>Configuring ESB Runtime in Preferences</title>
+                <para>In this chapter you will know how to predefine a JBoss ESB runtime on the Preferences page.</para>
+
+                <para>You may already know, there are two ways to set JBoss ESB runtime when creating a ESB project,
+                one is to use the project target JBoss runtime, and another is to select a JBoss ESB runtime predefined in JBoss Tools preferences.
+                Let's configure it.</para>
+
+                <para>Select <emphasis>
+                                <property moreinfo="none">Window &gt;Preferences &gt; JBoss Tools  &gt; JBoss ESB Runtime</property>
+                        </emphasis>, to open the JBoss ESB Runtime Preferences page where you can add, remove and Edit a JBoss ESB runtime.</para>
+
+                <figure float="0">
+                        <title>JBoss ESB Runtimes</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/10_esb_runtime.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para> Select <emphasis><property moreinfo="none">Add</property></emphasis> to open a dialog where you can specify the JBoss ESB runtime location, name and version number. 
+                         You also can customize the libraries of the runtime by checking the <emphasis><property moreinfo="none">Customize JBoss ESB Runtime jars</property> </emphasis> checkbox. </para>
+                        
+                <figure float="0">
+                        <title>Configure new JBoss ESB Runtime</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/11_esb_runtime_new.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+
+				<para>The new JBoss ESB Runtime will be configured. Click <emphasis> <property moreinfo="none">OK</property> </emphasis> to finish and save the preferences.
+		 		 You can use the configuration when creating a JBoss ESB project. </para>
+                 <para>When a ESB runtime is configured for your ESB project you are able to change it to any other using the classpath container page for ESB runtime. To do that, turn to the Package Explorer view and right-click the "JBoss ESB Runtime" library. Select <emphasis><property moreinfo="none">Properties</property></emphasis> and a table listing all available JBoss ESB runtimes will appear:</para>
+        
+                 <figure float="0">
+                         <title>Classpath Container Page to change ESB runtime</title>
+                         <mediaobject>
+                                 <imageobject>
+                                         <imagedata fileref="images/esb_project/20_classpath_container.png"></imagedata>
+                                 </imageobject>
+                         </mediaobject>
+                 </figure>
+                 
+        
+         
+                 <para>Choose one of them to set to the ESB project and click <emphasis><property moreinfo="none">Ok</property></emphasis>.</para>
+                 <para>ESB container allows Source and JavaDoc locations to be set via the Properties dialog on each contained .jar: right-click on any .jar file, select <emphasis><property moreinfo="none">Properties</property></emphasis>. Choose <emphasis><property moreinfo="none">Java Source Attachment</property></emphasis> and select location (folder, JAR or zip) containing new source for the chosen .jar using one of the suggested options (workspace, external folder or file) or enter the path manually:</para>
+         
+                 <figure float="0">
+                         <title>Classpath Container: Java Source Attachment</title>
+                         <mediaobject>
+                                 <imageobject>
+                                         <imagedata fileref="images/esb_project/21_source.png"></imagedata>
+                                 </imageobject>
+                         </mediaobject>
+                 </figure>
+         <para>Click on <emphasis><property moreinfo="none">Apply</property></emphasis> and then on <emphasis><property moreinfo="none">Ok</property></emphasis>.</para>
+         <para>To change Javadoc Location choose <emphasis><property moreinfo="none">Javadoc Location</property></emphasis> and specify URL to the documentation generated by Javadoc. The Javadoc location will contain a file called <emphasis><property moreinfo="none">package-list</property></emphasis>:</para>
+         
+                 <figure float="0">
+                         <title>Classpath Container: Javadoc Location</title>
+                         <mediaobject>
+                                 <imageobject>
+                                         <imagedata fileref="images/esb_project/22_Javadoc.png"></imagedata>
+                                 </imageobject>
+                         </mediaobject>
+                 </figure>
+                 <para>Click on <emphasis><property moreinfo="none">Apply</property></emphasis> and then on <emphasis><property moreinfo="none">Ok</property></emphasis>.</para>
+         
+         </section>
+
+
+        <section id="using_SOA"> 
+        <title>Using and Configuring SOA Platform</title>
+             
+                <para>In this chapter you will know what is JBoss Enterprise SOA Platform  and how you can configure it to use for your ESB projects. </para>
+        
+                <para>JBoss Enterprise SOA Platform delivers a flexible, standards-based platform to integrate applications, SOA services, business events and automate business processes. The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</para>
+                <para>Having configured JBoss Enterprise SOA Platform for your ESB project you don't need to install and configure ESB server and runtime as they are already included.</para>
+
+                <para>Check here to find more details on the platform: <ulink url="http://www.jboss.com/products/platforms/soa">JBoss Enterprise SOA Platform</ulink> and <ulink url="http://www.jboss.com/products/platforms/soa/components">JBoss Enterprise SOA Platform Component Details</ulink>.</para>
+               <para>You can find out what is SOA here: <ulink url="http://www.jboss.org/jbossesb/resources/SOABasics.html">Basics of SOA</ulink> and    <ulink url="http://www.jboss.org/jbossesb/resources/SOAEOA.html">SOA and EOA</ulink>.</para>
+                       
+                <para>To configure the JBoss Enterprise SOA platform select <emphasis>
+                        <property moreinfo="none">Window &gt; Preferences &gt; Server  &gt; Runtime Enironments</property></emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
+             
+                <figure float="0">
+                        <title>Configure new Server Runtime Environment</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/13NewServerRuntimeEnv.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para>Select <emphasis><property moreinfo="none">Add</property></emphasis>, choose <emphasis><property moreinfo="none">JBoss 4.2 Runtime</property></emphasis> as a type of runtime environment, check the <emphasis><property moreinfo="none">Create a new local server</property></emphasis> checkbox and click <emphasis><property moreinfo="none">Next</property></emphasis>:</para> 
+                <figure float="0">
+                        <title>Type of Server Runtime Environment</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/14typeOfRuntime.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para>On the next step you can specify a name of the server runtime environement and browse to its location. Click <emphasis><property moreinfo="none">Finish</property></emphasis> to add the server runtime environment.</para>
+        
+        
+                <figure float="0">
+                        <title>New Server Runtime Environment Details</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/15AddNew.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                <para>Now you have your SOA platform configured. To check the configuration create a ESB Project using instructions described <xref linkend="ESB_project_wizard"></xref>. As a result you will have two projects created:</para>
+        
+                <figure float="0">
+                        <title>Helloworld Projects Created</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/16HelloworldProjects.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                <para>Then you will need to add JBoss ESB libraries to your projects to configure the SOA server runtime exactly for your projects. Right-click on your project, select <emphasis><property moreinfo="none">Build Path &gt; Add Libraries</property></emphasis>:</para>
+        
+                <figure float="0">
+                        <title>Add Libraries</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/17_Add_new_libraries.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+        
+        <para>Choose <emphasis><property moreinfo="none">JBoss ESB Libraries</property></emphasis> and click <emphasis><property moreinfo="none">Next</property></emphasis>:</para>
+                
+                <figure float="0">
+                        <title>ESB Libraries</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/18_select_libraries.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+                
+                <para>Select the necessary runtime to add to the project classpath:</para>
+                
+               
+                <figure float="0">
+                        <title>Select a ESB runtime</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_project/19_select_runtime.png"></imagedata>
+                                </imageobject>
+                        </mediaobject>
+                </figure>
+               <para>Click <emphasis><property moreinfo="none">Finish</property></emphasis>.</para>
+                <para>Now you can deploy your Helloworld project  to the server and run a test class in the client Java project to see the test result in the Console view.</para>
+        
+        
+        
+</section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+</chapter>
+
+    
+<chapter id="esb_editor" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/esb_editor.xml" xreflabel="esb_editor">
+    <?dbhtml filename="esbEditor.html"?>
+    <chapterinfo>
+        <keywordset>
+            <keyword>JBoss ESB</keyword>
+            <keyword>Editor</keyword>
+            <keyword>ESB</keyword>
+        </keywordset>
+    </chapterinfo>
+
+    <title>ESB Editor</title>
+
+    <para> ESB editor has lots of useful features, they are described in details in this chapter. In
+        addition you'll get to know with how <property moreinfo="none">ESB Editor</property> uses combined
+        visual and source editing of esb files.</para>
+
+    <section id="esb_file" role="updated">
+
+        <title>ESB File Editor</title>
+        <para><property moreinfo="none">ESB File Editor</property> is a powerful and customizable tool. ESB File
+            Editor allows developing an application using ESB technology.</para>
+
+        <para>ESB file editor has two tabs: Tree and Source.</para>
+
+        <para>You can switch to Tree. The Tree view for the editor displays all ESB artifacts in a
+            tree format. By selecting any node you can see and edit its properties which will appear
+            in the right-hand area. For example, a Provider:</para>
+        <figure float="0">
+            <title>Tree View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/01_esb_tree_view.png" scale="90"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+
+        <para>You can easily switch from Tree to Source by selecting the Source tab at the bottom of
+            the editor and work in <property moreinfo="none">Source view</property>.</para>
+
+        <figure float="0" id="sourceView">
+            <title>Source View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/02_esb_source_view.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+
+        <para>The Source view for the editor displays a text content of the ESB file. It is always
+            synchronized with <property moreinfo="none">Tree view</property>, so any changes made in one of the
+            views will immediately appear in the other.</para>
+
+        <para>No matter what view you select, you get full integration with <property moreinfo="none">Outline
+            view</property>. For example, you can work in the Source view with the help of the
+            Outline view. The Outline view shows a tree structure of the ESB file. Simply select any
+            element in the <property moreinfo="none">Outline view</property> and it will jump to the same place in
+            the Source editor, so you can navigate through the source code with Outline view.</para>
+        <figure float="0">
+            <title>Outline View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/03_esb_outline_view.png" scale="70"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+
+        <para>Adding, editing or deleting of some artifacts operations are available right in the
+                <property moreinfo="none">Tree view</property> . Right-click any node and select one of the
+            available actions in the context menu. For example, you can easily add a new Provider:</para>
+        <para></para>
+        <figure float="0">
+            <title>Adding New Provider</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/04_esb_add_provider.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>Then you can add Channels and Properties for the Providers the same way or using the forms with <property moreinfo="none">Add</property>, <property moreinfo="none">Edit</property> and
+            <property moreinfo="none">Remove</property> buttons to the right.</para>
+
+        <para>You can easily add a new Service too:</para>
+        <figure float="0">
+            <title>Adding New Service</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/05_esb_add_service.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+
+        <para>The same way you can create a listener for service and other elements of ESB:</para>
+        <figure float="0">
+            <title>Adding New Listener for Service</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/06_esb_add_listener.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>The same actions can be done in the right part of <property moreinfo="none">Tree view</property> tab
+            (Form editor) using <property moreinfo="none">Add</property>, <property moreinfo="none">Edit</property> and
+                <property moreinfo="none">Remove</property> buttons.</para>
+
+
+        <para>In order to add a new generic Action to your ESB XML file you should select the
+            Actions node under the Services, then right-click and choose <emphasis>
+                <property moreinfo="none">New &gt; Generic Action</property>. </emphasis></para>
+
+        <figure float="0">
+            <title>Adding New Action in the Tree View</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/11_esb_editor.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+
+        <para>Or instead make use of <emphasis>
+                <property moreinfo="none">Add...</property>
+            </emphasis> button in the <property moreinfo="none">Form editor</property> on the left.</para>
+        <figure float="0">
+            <title>Adding New Action in the Form Editor</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/12_esb_editor.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+
+        <para>As you can see on the bath figures above, the context menu will also prompt you to
+            insert one of the Actions that are supplied out-of-the-box with <property moreinfo="none">JBoss
+            ESB</property>. After choosing one an appeared <property moreinfo="none">New Action wizard</property>
+            will ask you to fill out a name field and other fields specific for each Action
+            property. For example, for <emphasis>
+                <property moreinfo="none">Content Based Router</property>
+            </emphasis> Action the wizard looks as follows:</para>
+
+        <figure float="0">
+            <title>New Action Wizard</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/13_esb_editor.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+
+        <para>After confirming creating the Action you can see it in the Tree under the <emphasis>
+                <property moreinfo="none">Actions</property>
+            </emphasis> node and preview as well as edit its settings in the <property moreinfo="none">Form
+            editor</property> on the left.</para>
+
+        <figure float="0">
+            <title>Form Editor for Content Based Router</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/14_esb_editor.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+
+        <para><property moreinfo="none">ESB editor</property> can recognize some specific objects. On the figure you
+            can see <emphasis>org.jboss.soa.esb.actions.ContentBasedRouter</emphasis> in the <emphasis>
+                <property moreinfo="none">Class</property>
+            </emphasis> section.</para>
+
+    </section>
+
+    <section id="esb_editors_features">
+
+        <title>ESB Editors Features</title>
+        <para>JBoss ESB tooling has powerful editor features that help you easily make use of
+        content and code assist.</para>
+        <para>This last chapter covers capabilities on how you can use ESB editor.</para>
+
+        <section id="ESBsyntaxvalidation84">
+
+            <title>ESB syntax validation</title>
+            <para>When working in <property moreinfo="none">JBoss ESB editor</property> you are constantly provided
+                with feedback and contextual error checking as you type. In the Source viewer, if at
+                any point a tag is incorrect or incomplete, an error will be indicated next to the
+                line and also in the <property moreinfo="none">Problems view</property> below.</para>
+        </section>
+
+        <section id="ESBSupportXMLSchema">
+            <title>Support for XML Schema</title>
+
+            <para>JBoss ESB Framework fully <link linkend="sourceView">supports XML files based on
+            schemas as well as DTDs</link>.</para>
+            <note><title>Note:</title>
+                <para>The schema used behind ESB editor now uses the latest version available (from SOA-P 4.3). This removes the errors/warnings some users have reported seeing when using SOA-P specific esb.xml files.</para>  </note>
+            
+        </section>
+
+        <!--<section id="OpenOnSelection">
+         
+            <title>OpenOn</title>
+
+            <para><property>OpenOn</property> let&apos;s you easily navigate through your
+                project without using the Package Explorer view (project tree). With OpenOn, you can
+                simply click on a reference to another file and that file will be opened.</para>
+
+            <para>OpenOn is available for the XML files </para>
+
+                <para>Press and hold down the Ctrl key. As you move the mouse cursor over different
+                    file references in the file, they display an underline. When you have the mouse
+                    cursor over the name of the file you want to open, click and the file will open
+                    in its own editor. In this example the managed bean NameBean will open.</para>
+               
+            </section>
+            -->
+
+        <section id="ESBContentAssist">
+
+            <title>Content Assist for ESB XML file</title>
+
+            <para>When you work with any ESB XML file <property moreinfo="none">Content Assist</property> is
+                available to help you. It provides pop-up tip to help you complete your code
+                statements. It allows you to write your code faster and with more accuracy. Content
+                assist is always available in the Source mode. Simply type <emphasis>
+                    <property moreinfo="none">Ctrl-Space</property>
+                </emphasis> to see what is available.</para>
+
+            <para>Content Assist for ESB XML file:</para>
+            <figure float="0">
+                <title>Content Assist for ESB XML file</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/08_esb_features.png" scale="80"></imagedata>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+
+            <para>Content Assist for attributes:</para>
+            <figure float="0">
+                <title>Content Assist for attributes:</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/09_esb_features.png" scale="80"></imagedata>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <!--          </section>
+                 
+               <section id="ContentAssistWithinTreeEditor">
+                  
+                        <title>Content Assist within Tree ESB Editor</title>
+
+                        <para>JBoss Developer Studio also provides Content Assist when working within the Tree ESB editor.
+                            Just click <emphasis><property>Ctrl-Space</property>.</emphasis></para>
+                        <figure>
+                            <title>Content Assist in Tree ESB Editor</title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata
+                                        fileref="images/esb_file/09_editors_features.png" scale="85"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>
+             </section> -->
+        </section>
+
+        <section id="FullControlOverSourceFiles-SynchronizedSourcAndVisualEditing">
+
+            <title>Synchronized Source and Visual Editing</title>
+
+            <para>ESB file can be edited in either source or extra visual modes at the same time.</para>
+
+            <para>JBoss Tools provide you two different editors to speed your development: a
+                graphical view (<property moreinfo="none">Tree</property>) and source (<property moreinfo="none">Source</property>).
+                At the same time, you always have full control over esb source file. Any changes you
+                make in the source view will immediately appear in the tree view. Both views are
+                synchronized, you can edit the file in any view.</para>
+
+            <figure float="0">
+                <title>Two Views are Synchronized</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/10_esb_features.png" scale="70"></imagedata>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+                   
+            <para>In summary, this reference supplies you with all necessary information on the
+                functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
+        </section>
+    </section>
+</chapter>
+ 
+
+</book>
