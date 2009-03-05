@@ -189,6 +189,7 @@
                 
  		        <para>Thus, you have just added the ESB project to the JBoss server module list. Right click the JBoss Server and select <emphasis><property>Publish</property></emphasis> to publish the project on the server.
  		        You can check the deploying result in the Console view.</para> 
+ 		        <para>The <emphasis><property>Run</property></emphasis> and <emphasis><property>Debug</property></emphasis> options work on ESB projects causing a (re)deploy for a user designated server.</para>
  		        <para>You can also use the "Finger touch" for a quick restart of the project without restarting the server:</para>
  		        <figure>
  		                <title>Finger Touch button</title>
