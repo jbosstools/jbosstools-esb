@@ -59,10 +59,12 @@ public class ESBComponentExportDataModelProvider extends
 	public IStatus validate(String propertyName) {
 		if (PROJECT_NAME.equals(propertyName)) {
 			String projectName = (String) model.getProperty(PROJECT_NAME);
-			IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-			if( project != null ) {
-				if(JBossESBProjectUtil.isESBProject(project))
-					return Status.OK_STATUS;
+			if( projectName != null ) {
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+				if( project != null ) {
+					if(JBossESBProjectUtil.isESBProject(project))
+						return Status.OK_STATUS;
+				}
 			}
 			return new Status(IStatus.ERROR, ESBProjectPlugin.PLUGIN_ID, 
 					NLS.bind(JBossESBUIMessages.ESBExportWizard_NotValidProject, projectName));
