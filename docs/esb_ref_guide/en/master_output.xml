@@ -108,7 +108,7 @@
 </chapter>
 
     
-<chapter id="esb_support" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/esb_support.xml">
+<chapter id="esb_support" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/esb_support.xml">
         <?dbhtml filename="esb_support.html"?>
         <chapterinfo>
                 <keywordset>
@@ -330,7 +330,41 @@
  		                </mediaobject>
  		        </figure>	        
  		        <para>The "Finger" touches descriptors dependent on project (i.e. web.xml for WAR, application.xml for EAR) and now it is also available for jboss-esb.xml in ESB projects.</para>
+                <para>You can also deploy your ESB project as an .esb archive. Right-click on the project, choose <emphasis><property moreinfo="none">Export</property></emphasis>:</para>
                 
+                <figure float="0">
+ 		        <title>Export of ESB project</title>
+ 		        <mediaobject>
+ 		                <imageobject>
+ 		                        <imagedata fileref="images/esb_project/24_export_button.png"></imagedata>
+ 		                </imageobject>
+ 		        </mediaobject>
+ 		        </figure>	
+ 		        
+ 	<para>Choose <emphasis><property moreinfo="none">ESB</property></emphasis> &gt; <emphasis><property moreinfo="none">ESB File</property></emphasis> and click <emphasis><property moreinfo="none">Next</property></emphasis>:</para>	        
+ 	
+ 		        <figure float="0"><title>Choosing ESB File</title>
+ 		        <mediaobject>
+ 		                <imageobject>
+ 		                        <imagedata fileref="images/esb_project/25_esb_file.png"></imagedata>
+ 		                </imageobject>
+ 		        </mediaobject>
+ 		        </figure>	
+ 	
+ 	<para>And finally export the ESB project to the file system: choose the destination, choose the target runtime if need a specific one and make the appropriate settings for the archive. Then click <emphasis><property moreinfo="none">Finish</property></emphasis>.</para>
+ 	
+ 		        <figure float="0"><title>ESB Export</title>
+ 		                <mediaobject>
+ 		                        <imageobject>
+ 		                                <imagedata fileref="images/esb_project/26_esb_export.png"></imagedata>
+ 		                        </imageobject>
+ 		                </mediaobject>
+ 		        </figure>        
+ 		        
+ 		        <para>Your project is deployed as an .esb archive.</para>
+ 		        <para>An ESB archive can be created for ESB projects only. It is also possible to deploy an .esb archive to a JBoss AS based server with JBoss ESB installed.</para>		        
+ 		        
+ 		        
         </section>
 		        
         <section>
@@ -383,7 +417,7 @@
 
         </section>
         
-         <section role="updated">
+         <section>
                 <title>Configuring ESB Runtime in Preferences</title>
                 <para>In this chapter you will know how to predefine a JBoss ESB runtime on the Preferences page.</para>
 
@@ -564,7 +598,7 @@
 </chapter>
 
     
-<chapter id="esb_editor" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/esb_editor.xml" xreflabel="esb_editor">
+<chapter id="esb_editor"  xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/esb_editor.xml" xreflabel="esb_editor">
     <?dbhtml filename="esbEditor.html"?>
     <chapterinfo>
         <keywordset>
@@ -580,7 +614,7 @@
         addition you'll get to know with how <property moreinfo="none">ESB Editor</property> uses combined
         visual and source editing of esb files.</para>
 
-    <section id="esb_file" role="updated">
+    <section id="esb_file">
 
         <title>ESB File Editor</title>
         <para><property moreinfo="none">ESB File Editor</property> is a powerful and customizable tool. ESB File
