@@ -222,7 +222,41 @@
  		                </mediaobject>
  		        </figure>	        
  		        <para>The "Finger" touches descriptors dependent on project (i.e. web.xml for WAR, application.xml for EAR) and now it is also available for jboss-esb.xml in ESB projects.</para>
+                <para>You can also deploy your ESB project as an .esb archive. Right-click on the project, choose <emphasis><property>Export</property></emphasis>:</para>
                 
+                <figure>
+ 		        <title>Export of ESB project</title>
+ 		        <mediaobject>
+ 		                <imageobject>
+ 		                        <imagedata fileref="images/esb_project/24_export_button.png"/>
+ 		                </imageobject>
+ 		        </mediaobject>
+ 		        </figure>	
+ 		        
+ 	<para>Choose <emphasis><property>ESB</property></emphasis> &gt; <emphasis><property>ESB File</property></emphasis> and click <emphasis><property>Next</property></emphasis>:</para>	        
+ 	
+ 		        <figure><title>Choosing ESB File</title>
+ 		        <mediaobject>
+ 		                <imageobject>
+ 		                        <imagedata fileref="images/esb_project/25_esb_file.png"/>
+ 		                </imageobject>
+ 		        </mediaobject>
+ 		        </figure>	
+ 	
+ 	<para>And finally export the ESB project to the file system: choose the destination, choose the target runtime if need a specific one and make the appropriate settings for the archive. Then click <emphasis><property>Finish</property></emphasis>.</para>
+ 	
+ 		        <figure><title>ESB Export</title>
+ 		                <mediaobject>
+ 		                        <imageobject>
+ 		                                <imagedata fileref="images/esb_project/26_esb_export.png"/>
+ 		                        </imageobject>
+ 		                </mediaobject>
+ 		        </figure>        
+ 		        
+ 		        <para>Your project is deployed as an .esb archive.</para>
+ 		        <para>An ESB archive can be created for ESB projects only. It is also possible to deploy an .esb archive to a JBoss AS based server with JBoss ESB installed.</para>		        
+ 		        
+ 		        
         </section>
 		        
         <section>
