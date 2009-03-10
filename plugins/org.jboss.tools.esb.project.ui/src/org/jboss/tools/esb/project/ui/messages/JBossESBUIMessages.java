@@ -72,6 +72,12 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_Runtime_Check_Field_Default_Classpath;
 	public static String JBoss_Preference_Page_Runtimes;
 
+	public static String JBossLibraryListFieldEditor_ActionAdd;
+
+	public static String JBossLibraryListFieldEditor_ActionRemove;
+
+	public static String JBossLibraryListFieldEditor_LIBRARY_JARS;
+
 	public static String JBossRuntimeListFieldEditor_ActionAdd;
 
 	public static String JBossRuntimeListFieldEditor_ActionEdit;

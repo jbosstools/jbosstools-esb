@@ -135,7 +135,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 		createCheckButton(root);
 		
 		jarGroup = new Group(root, SWT.BORDER);
-		jarGroup.setText("Library Jars");
+		jarGroup.setText(JBossESBUIMessages.JBossLibraryListFieldEditor_LIBRARY_JARS);
 		gd = new GridData(GridData.FILL_BOTH);
 		gd.horizontalAlignment = GridData.FILL;
 		gd.grabExcessHorizontalSpace = true; 
@@ -254,7 +254,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 
 			public Image getImage(Object element) {
 				if (jarImg == null){
-					ImageDescriptor jarImgDesc = JBossESBUIPlugin.getImageDescriptor("obj16/jar_obj.gif"); 
+					ImageDescriptor jarImgDesc = JBossESBUIPlugin.getImageDescriptor("obj16/jar_obj.gif");  //$NON-NLS-1$
 					jarImg = jarImgDesc.createImage();
 				}
 				return jarImg;
@@ -263,7 +263,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 			public String getText(Object element) {
 				String fullName = (String)element;
 				File jarFile = new File(fullName);
-				return jarFile.getName() + " - " + jarFile.getParentFile().toString();
+				return jarFile.getName() + " - " + jarFile.getParentFile().toString(); //$NON-NLS-1$
 			}
 		});
 
@@ -500,13 +500,11 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 	 */
 	public class AddAction extends BaseAction {
 
-		static final String ACTION_NAME = "&Add";
-
 		/**
 		 * Constructor create Add action with default name
 		 */
 		public AddAction() {
-			super(ACTION_NAME);
+			super(JBossESBUIMessages.JBossLibraryListFieldEditor_ActionAdd);
 			// This action is always available
 			setEnabled(true);
 		}
@@ -528,7 +526,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 		public void run() {
 			FileDialog dialog = new FileDialog(Display.getCurrent()
 					.getActiveShell(), SWT.MULTI);
-			dialog.setFilterExtensions(new String[] { "*.jar;*.zip" });
+			dialog.setFilterExtensions(new String[] { "*.jar;*.zip" }); //$NON-NLS-1$
 			String fileName = dialog.open();
 			String[] fileNames = dialog.getFileNames();
 			if (fileName != null) {
@@ -556,13 +554,11 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 	 */
 	public class RemoveAction extends BaseAction {
 
-		static final String ACTION_NAME = "&Remove";
-
 		/**
 		 * Create DeleteAction action with default name
 		 */
 		public RemoveAction() {
-			super(ACTION_NAME);
+			super(JBossESBUIMessages.JBossLibraryListFieldEditor_ActionRemove);
 		}
 
 		@Override
