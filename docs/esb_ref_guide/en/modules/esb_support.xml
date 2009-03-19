@@ -143,7 +143,7 @@
                         <listitem><para><emphasis role="bold">JBoss ESB Web Service consumer1 Example</emphasis> - demonstrates how to consume a 181 Web Service in an ESB action.</para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB Web Service producer Example</emphasis> - demonstrates how to deploy a JSR181 Webservice endpoint on JBossESB using the SOAPProcessor action.</para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB Smooks CSV -&gt; XML Example</emphasis> - demonstrates how to transform a comma separated value (CSV) file to an XML.</para></listitem>
-                        <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; POJO Example</emphasis> - demonstrates the use of Smooks performing a simpe transformation by converting an XML file into Java POJOs.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; POJO Example</emphasis> - demonstrates the use of Smooks performing a simple transformation by converting an XML file into Java POJOs.</para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; XML date-manipulation Example</emphasis> - demonstrates how to manually define and apply a Message Transformation within JBoss ESB.</para></listitem>     
                         <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; XML Example</emphasis> - a very basic example of how to manually define and apply a Message Transformation within JBoss ESB. It applies a very simple XSLT to a SampleOrder.xml message and prints the before and after XML to the console. </para></listitem>
                         
@@ -180,7 +180,7 @@
 
  		<section>
                 <title>Deploying a ESB Project</title>
-                <para>In this chapter youwill see how to deploy a ESB project using the WTP deployment framework.</para>
+                <para>In this chapter you will see how to deploy a ESB project using the WTP deployment framework.</para>
 
                 <para>Before deploying the project, open the JBoss Server View by selecting <emphasis><property>Window &gt; Show View &gt; Other &gt; 
                 Server &gt; JBoss Server View</property></emphasis>, 
@@ -396,7 +396,7 @@
                <para>You can find out what is SOA here: <ulink url="http://www.jboss.org/jbossesb/resources/SOABasics.html">Basics of SOA</ulink> and    <ulink url="http://www.jboss.org/jbossesb/resources/SOAEOA.html">SOA and EOA</ulink>.</para>
                        
                 <para>To configure the JBoss Enterprise SOA platform select <emphasis>
-                        <property>Window &gt; Preferences &gt; Server  &gt; Runtime Enironments</property></emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
+                        <property>Window &gt; Preferences &gt; Server  &gt; Runtime Environments</property></emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
              
                 <figure>
                         <title>Configure new Server Runtime Environment</title>
@@ -417,7 +417,7 @@
                         </mediaobject>
                 </figure>
                 
-                <para>On the next step you can specify a name of the server runtime environement and browse to its location. Click <emphasis><property>Finish</property></emphasis> to add the server runtime environment.</para>
+                <para>On the next step you can specify a name of the server runtime environment and browse to its location. Click <emphasis><property>Finish</property></emphasis> to add the server runtime environment.</para>
         
         
                 <figure>
