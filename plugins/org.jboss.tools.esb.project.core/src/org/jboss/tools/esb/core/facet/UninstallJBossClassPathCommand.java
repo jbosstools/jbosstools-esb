@@ -72,7 +72,7 @@ public class UninstallJBossClassPathCommand {
 
 		} catch (CoreException e) {
 			status = StatusUtils.errorStatus(
-					JBossFacetCoreMessages.Error_Remove_Facet_JBossWS, e);
+					JBossFacetCoreMessages.Error_Remove_Facet_JBossESB, e);
 		}
 		return status;
 	}
@@ -101,7 +101,7 @@ public class UninstallJBossClassPathCommand {
 			}
 		} catch (JavaModelException e) {
 			status = StatusUtils.errorStatus(NLS.bind(
-					JBossFacetCoreMessages.Error_Remove_Facet_JBossWS,
+					JBossFacetCoreMessages.Error_Remove_Facet_JBossESB,
 					new String[] { e.getLocalizedMessage() }), e);
 			return status;
 		}
