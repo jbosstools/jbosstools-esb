@@ -54,8 +54,8 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyListener") //$NON-NLS-1$
 	);
 
-	static String[] getActionEntities() {
-		XModelEntity entity = XModelMetaDataImpl.getInstance().getEntity(ENT_ESB_ACTIONS);
+	static String[] getActionEntities(String actionsEntity) {
+		XModelEntity entity = XModelMetaDataImpl.getInstance().getEntity(actionsEntity);
 		if(entity == null) {
 			return new String[]{ENT_ESB_ACTION};
 		}
@@ -66,11 +66,19 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		}
 		return list.toArray(new String[0]);
 	}
-	static IFormData ESB_ACTION_LIST_DEFINITION = new FormData(
+	static IFormData ESB_ACTION_101_LIST_DEFINITION = new FormData(
 		"Actions", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
-		getActionEntities(),
+		getActionEntities(ENT_ESB_ACTIONS_101),
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyAction") //$NON-NLS-1$
+	);
+
+	static IFormData ESB_ACTION_110_LIST_DEFINITION = new FormData(
+		"Actions", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
+		getActionEntities(ENT_ESB_ACTIONS_110),
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyAction") //$NON-NLS-1$
 	);
 
@@ -87,7 +95,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		"Services", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
-		new String[]{ENT_ESB_SERVICE},
+		new String[]{ENT_ESB_SERVICE_101, ENT_ESB_SERVICE_110},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddService") //$NON-NLS-1$
 	);
 				
@@ -96,7 +104,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		"Services", //$NON-NLS-1$
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
-		new String[]{ENT_ESB_SERVICE},
+		new String[]{ENT_ESB_SERVICE_101, ENT_ESB_SERVICE_110},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddService") //$NON-NLS-1$
 	);
 					

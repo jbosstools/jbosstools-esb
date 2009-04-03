@@ -75,18 +75,20 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 			//do nothing; when specific children exist use specific forms
 		} else if(entity.getChild(ENT_ESB_PROPERTY) != null) {
 			list.add(ESBListsFormLayoutData.ESB_PROPERTY_LIST_DEFINITION);
-		} else if(entityName.equals(ENT_ESB_LISTENERS)) {
+		} else if(entityName.startsWith(ENT_ESB_LISTENERS)) {
 			list.add(ESBListsFormLayoutData.ESB_LISTENER_LIST_DEFINITION);
-		} else if(entityName.equals(ENT_ESB_ACTIONS)) {
-			list.add(ESBListsFormLayoutData.ESB_ACTION_LIST_DEFINITION);
-		} else if(entityName.equals(ENT_ESB_SERVICES)) {
+		} else if(entityName.equals(ENT_ESB_ACTIONS_101)) {
+			list.add(ESBListsFormLayoutData.ESB_ACTION_101_LIST_DEFINITION);
+		} else if(entityName.equals(ENT_ESB_ACTIONS_110)) {
+			list.add(ESBListsFormLayoutData.ESB_ACTION_110_LIST_DEFINITION);
+		} else if(entityName.startsWith(ENT_ESB_SERVICES)) {
 			list.add(ESBListsFormLayoutData.ESB_SERVICE_LIST_DEFINITION);
-		} else if(entityName.equals(ENT_ESB_SERVICE)) {
+		} else if(entityName.startsWith(ENT_ESB_SERVICE)) {
 			list.add(ESBListsFormLayoutData.ESB_LISTENER_SUB_LIST_DEFINITION);
 			list.add(ESBListsFormLayoutData.ESB_ACTION_SUB_LIST_DEFINITION);
-		} else if(entityName.equals(ENT_ESB_PROVIDERS)) {
+		} else if(entityName.startsWith(ENT_ESB_PROVIDERS)) {
 			list.add(ESBListsFormLayoutData.ESB_PROVIDER_LIST_DEFINITION);
-		} else if(entityName.equals(ENT_ESB_FILE_101)) {
+		} else if(entityName.startsWith(ENT_ESB_FILE)) {
 			list.add(ESBListsFormLayoutData.ESB_PROVIDER_SUB_LIST_DEFINITION);
 			list.add(ESBListsFormLayoutData.ESB_SERVICE_SUB_LIST_DEFINITION);
 		} else if(entityName.equals(ENT_ESB_PROPERTY)) {
