@@ -51,6 +51,10 @@
             name="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd" 
             uri="schemas/jbossesb-1.0.1.xsd"/>
 
+         <uri 
+            name="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd" 
+            uri="schemas/jbossesb-1.1.0.xsd"/>
+
       </catalogContribution>
    </extension>
 

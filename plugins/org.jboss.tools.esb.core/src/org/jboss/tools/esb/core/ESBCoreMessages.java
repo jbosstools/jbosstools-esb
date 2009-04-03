@@ -10,23 +10,13 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.core;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import org.eclipse.osgi.util.NLS;
 
-public class ESBCoreMessages {
+public class ESBCoreMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.jboss.tools.esb.core.messages"; //$NON-NLS-1$
 
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
-			.getBundle(BUNDLE_NAME);
-
-	private ESBCoreMessages() {
-	}
-
-	public static String getString(String key) {
-		try {
-			return RESOURCE_BUNDLE.getString(key);
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
+	public static String ESB_CORE_PLUGIN_NO_MESSAGE;
+	static {
+		NLS.initializeMessages(BUNDLE_NAME, ESBCoreMessages.class);
 	}
 }

@@ -101,10 +101,18 @@ public class SpecificActionLoader implements ESBConstants {
 		return entity.startsWith(ACTIONS_FOLDER_ENTITY);
 	}
 
+	private String addSuffix(String entityName, XModelObject actions) {
+		for (String suff: KNOWN_SUFFIXES) {
+			if(actions.getModelEntity().getChild(entityName + suff) != null) {
+				return entityName + suff;
+			}
+		}
+		return entityName;
+	}
+
 	public void convertChildrenToSpecific(XModelObject actions) {
 		if(!isActionsFolder(actions.getModelEntity().getName())) return;
 
-		String suffix = actions.getModelEntity().getName().substring(ACTIONS_FOLDER_ENTITY.length());
 		boolean modified = false;
 
 		XModelObject[] as = actions.getChildren();
@@ -113,7 +121,7 @@ public class SpecificActionLoader implements ESBConstants {
 			if(cls == null) continue;
 			String entityName = classToEntity.get(cls);
 			if(entityName == null) continue;
-			entityName += suffix;
+			entityName = addSuffix(entityName, actions);
 			XModelObject action = convertBasicActionToSpecific(as[i], entityName);
 			if(action != null) {
 				as[i] = action;
@@ -180,9 +188,9 @@ public class SpecificActionLoader implements ESBConstants {
 		String entityName = action.getModelEntity().getName();
 		if(!isPreActionEntity(entityName)) return action;
 
-		String suffix = "101"; //compute
+		String basicActionEntity = addSuffix(ACTION_ENTITY, action.getParent());
 		
-		XModelObject result = action.getModel().createModelObject(ACTION_ENTITY + suffix, null);
+		XModelObject result = action.getModel().createModelObject(basicActionEntity, null);
 		try {
 			XModelObjectLoaderUtil.mergeAttributes(result, action);
 		} catch (XModelException e) {

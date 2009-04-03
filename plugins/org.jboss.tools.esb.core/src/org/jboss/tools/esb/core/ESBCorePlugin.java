@@ -37,7 +37,7 @@ public class ESBCorePlugin extends AbstractUIPlugin {
 	}
 	
 	public static void log(Exception ex) {
-		INSTANCE.getLog().log(new Status(Status.ERROR, PLUGIN_ID, Status.OK, ESBCoreMessages.getString("ESB_CORE_PLUGIN_NO_MESSAGE"), ex)); //$NON-NLS-1$
+		INSTANCE.getLog().log(new Status(Status.ERROR, PLUGIN_ID, Status.OK, ESBCoreMessages.ESB_CORE_PLUGIN_NO_MESSAGE, ex));
 	}
 
 	public static boolean isDebugEnabled() {

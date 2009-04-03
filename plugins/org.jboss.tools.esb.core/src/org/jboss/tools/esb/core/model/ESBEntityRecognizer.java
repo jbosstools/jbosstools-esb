@@ -10,11 +10,8 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.core.model;
 
-import java.io.IOException;
 
 import org.jboss.tools.common.model.loaders.EntityRecognizer;
-import org.jboss.tools.common.xml.XMLEntityResolver;
-import org.jboss.tools.esb.core.ESBCorePlugin;
 
 /**
  * @author Viacheslav Kabanovich
@@ -42,6 +39,10 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
     	if(i101 >= 0) {
     		return ENT_ESB_FILE_101;
     	}
+    	int i110 = schemaLocation.indexOf("1.1.0"); //$NON-NLS-1$
+    	if(i110 >= 0) {
+    		return ENT_ESB_FILE_110;
+    	}
         return null;
     }
     
@@ -51,7 +52,8 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
     	int j = body.indexOf(">", i); //$NON-NLS-1$
     	if(j < 0) return false;
     	String s = body.substring(i, j);
-    	return s.indexOf("\"" + SCHEMA_101 + "\"") > 0; //$NON-NLS-1$
+    	return s.indexOf("\"" + SCHEMA_101 + "\"") > 0
+    		|| s.indexOf("\"" + SCHEMA_110 + "\"") > 0; //$NON-NLS-1$
     }
     
 }

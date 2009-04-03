@@ -15,15 +15,23 @@ package org.jboss.tools.esb.core.model;
  */
 public interface ESBConstants {
 	public String SCHEMA_101 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd"; //$NON-NLS-1$
+	public String SCHEMA_110 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd"; //$NON-NLS-1$
 	
 	public String SUFF_101 = "101"; //$NON-NLS-1$
+	public String SUFF_110 = "110"; //$NON-NLS-1$
 
+	public String[] KNOWN_SUFFIXES = {
+		SUFF_101,
+		SUFF_110,
+	};
 	public String ENT_ESB_FILE = "FileESB"; //$NON-NLS-1$
 	public String ENT_ESB_FILE_101 = ENT_ESB_FILE + SUFF_101;
+	public String ENT_ESB_FILE_110 = ENT_ESB_FILE + SUFF_110;
 	
 	public String ENT_ESB_PROPERTY = "ESBProperty"; //$NON-NLS-1$
 	
-	public String ENT_ESB_PROVIDERS = "ESBProviders101"; //$NON-NLS-1$
+	//prefix
+	public String ENT_ESB_PROVIDERS = "ESBProviders"; //$NON-NLS-1$
 
 	public String ENT_ESB_SECURITY = "ESBSecurity101P"; //$NON-NLS-1$
 	public String ENT_ESB_PROVIDER = "ESBBusProvider101"; //$NON-NLS-1$
@@ -35,8 +43,9 @@ public interface ESBConstants {
 	public String ENT_ESB_FTP_PROVIDER = "ESBFTPProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_SQL_PROVIDER = "ESBSQLProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_HIBERNATE_PROVIDER = "ESBHibernateProvider101"; //$NON-NLS-1$
+	public String ENT_ESB_HTTP_PROVIDER = "ESBHTTPProvider110"; //$NON-NLS-1$
 
-	static String PREACTION_PREFIX = "ESBPreAction";
+	static String PREACTION_PREFIX = "ESBPreAction"; //$NON-NLS-1$
 	
 	public String[] PROVIDERS_101 = {
 		ENT_ESB_PROVIDER,
@@ -48,6 +57,7 @@ public interface ESBConstants {
 		ENT_ESB_FTP_PROVIDER,
 		ENT_ESB_SQL_PROVIDER,
 		ENT_ESB_HIBERNATE_PROVIDER,
+		ENT_ESB_HTTP_PROVIDER,
 	};
 
 	
@@ -58,6 +68,7 @@ public interface ESBConstants {
 	public String ENT_ESB_JMS_BUS = "ESBJMSBus101"; //$NON-NLS-1$
 	public String ENT_ESB_HIBERNATE_BUS = "ESBHibernateBus101"; //$NON-NLS-1$
 	public String ENT_ESB_SQL_BUS = "ESBSQLBus101"; //$NON-NLS-1$
+	public String ENT_ESB_HTTP_BUS = "ESBHTTPBus110"; //$NON-NLS-1$
 
 	public String[] BUSES_101 = {
 		ENT_ESB_BUS,
@@ -67,9 +78,11 @@ public interface ESBConstants {
 		ENT_ESB_JMS_BUS,
 		ENT_ESB_HIBERNATE_BUS,
 		ENT_ESB_SQL_BUS,
+		ENT_ESB_HTTP_BUS,
 	};		
 
-	public String ENT_ESB_LISTENERS = "ESBListeners101"; //$NON-NLS-1$
+	//prefix
+	public String ENT_ESB_LISTENERS = "ESBListeners"; //$NON-NLS-1$
 
 	public String ENT_ESB_LISTENER = "ESBListener101"; //$NON-NLS-1$
 	public String ENT_ESB_SH_LISTENER = "ESBScheduledListener101"; //$NON-NLS-1$
@@ -81,6 +94,8 @@ public interface ESBConstants {
 	public String ENT_ESB_HIB_LISTENER = "ESBHibernateListener101"; //$NON-NLS-1$
 	public String ENT_ESB_JBR_LISTENER = "ESBJBRListener101"; //$NON-NLS-1$
 	public String ENT_ESB_GROOVY_LISTENER = "ESBGroovyListener101"; //$NON-NLS-1$
+	public String ENT_ESB_HTTP_LISTENER = "ESBHTTPListener110"; //$NON-NLS-1$
+	public String ENT_ESB_UDP_LISTENER = "ESBUDPListener110"; //$NON-NLS-1$
 	
 	public String[] LISTENERS_101 = {
 		ENT_ESB_LISTENER,
@@ -93,12 +108,21 @@ public interface ESBConstants {
 		ENT_ESB_HIB_LISTENER,
 		ENT_ESB_JBR_LISTENER,
 		ENT_ESB_GROOVY_LISTENER,
+		ENT_ESB_HTTP_LISTENER,
+		ENT_ESB_UDP_LISTENER,
 	};
 
-	public String ENT_ESB_SERVICES = "ESBServices101"; //$NON-NLS-1$
-	public String ENT_ESB_SERVICE = "ESBService101"; //$NON-NLS-1$
-	
-	public String ENT_ESB_ACTIONS = "ESBActions101"; //$NON-NLS-1$
+	//prefix
+	public String ENT_ESB_SERVICES = "ESBServices"; //$NON-NLS-1$
+	//prefix
+	public String ENT_ESB_SERVICE = "ESBService"; //$NON-NLS-1$
+	public String ENT_ESB_SERVICE_101 = ENT_ESB_SERVICE + SUFF_101;
+	public String ENT_ESB_SERVICE_110 = ENT_ESB_SERVICE + SUFF_110;
+
+	//prefix
+	public String ENT_ESB_ACTIONS = "ESBActions"; //$NON-NLS-1$
+	public String ENT_ESB_ACTIONS_101 = ENT_ESB_ACTIONS + SUFF_101;
+	public String ENT_ESB_ACTIONS_110 = ENT_ESB_ACTIONS + SUFF_110;
 	public String ENT_ESB_ACTION = "ESBAction101"; //$NON-NLS-1$
 
 	public String ENT_ESB_SIMPLE_SCHEDULE = "ESBSimpleSchedule101"; //$NON-NLS-1$
@@ -108,7 +132,7 @@ public interface ESBConstants {
 
 	public String ATTR_NAME = "name"; //$NON-NLS-1$
 	public String ATTR_VALUE = "value"; //$NON-NLS-1$
-	public String ATTR_PROPERTY_VALUE_PRESENTATION = "value presentation";
+	public String ATTR_PROPERTY_VALUE_PRESENTATION = "value presentation"; //$NON-NLS-1$
 	public String ATTR_BUS_ID = "id"; //$NON-NLS-1$
 	public String ATTR_BUS_ID_REF = "channel id ref"; //$NON-NLS-1$
 

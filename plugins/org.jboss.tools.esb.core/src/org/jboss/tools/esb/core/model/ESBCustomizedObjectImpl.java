@@ -22,11 +22,11 @@ public class ESBCustomizedObjectImpl extends CustomizedObjectImpl {
 	public ESBCustomizedObjectImpl() {}
 	
     protected RegularChildren createChildren() {
-    	String children = getModelEntity().getProperty("children");
-    	if(children != null && "%ESBOrderedService%".equals(children)) {
+    	String children = getModelEntity().getProperty("children"); //$NON-NLS-1$
+    	if(children != null && "%ESBOrderedService%".equals(children)) { //$NON-NLS-1$
     		return new ESBOrderedServiceChildren();
     	}
-    	if(children != null && children.equals("%ESBOrdered%")) {
+    	if(children != null && children.equals("%ESBOrdered%")) { //$NON-NLS-1$
     		return new ESBOrderedChildren();
     	}
     	return super.createChildren();    	
