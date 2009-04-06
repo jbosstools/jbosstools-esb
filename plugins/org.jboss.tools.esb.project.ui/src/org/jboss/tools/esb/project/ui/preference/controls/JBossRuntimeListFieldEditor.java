@@ -518,9 +518,9 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 					continue;
 				}
 				if (rt.getName().equals(name.getValueAsString())) {
-					setErrorMessage(JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Runtime
-							+ name.getValueAsString()
-							+ JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Already_Exists);
+					setErrorMessage(NLS.bind(
+							JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Runtime_Already_Exists,
+							name.getValueAsString()));
 					setPageComplete(false);
 					return;
 				}

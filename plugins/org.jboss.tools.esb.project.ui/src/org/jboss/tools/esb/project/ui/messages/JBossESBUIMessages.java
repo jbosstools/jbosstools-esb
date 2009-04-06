@@ -42,7 +42,7 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_Runtime_List_Field_Editor_Modify_Runtime;
 	public static String JBoss_Runtime_List_Field_Editor_New_Runtime;
 	public static String Error_JBoss_Runtime_List_Field_Editor_Path_To_Home_Diretory_Cannot_Be_Empty;
-	public static String JBoss_Runtime_List_Field_Editor_Already_Exists;
+	public static String JBoss_Runtime_List_Field_Editor_Runtime_Already_Exists;
 	public static String JBoss_Runtime_List_Field_Editor_Runtime;
 	public static String Error_JBoss_Runtime_List_Field_Editor_Runtime_Name_Is_Not_Correct;
 	public static String Error_JBoss_Runtime_List_Field_Editor_Name_Cannot_Be_Empty;
