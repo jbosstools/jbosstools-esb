@@ -79,5 +79,9 @@ public class JBossESBModule implements IModule{
 			return delegate;
 		return null;
 	}
+	
+	public boolean exists() {
+		return false;
+	}
 
 }
