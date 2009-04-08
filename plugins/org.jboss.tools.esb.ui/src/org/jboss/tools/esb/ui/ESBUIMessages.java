@@ -10,26 +10,19 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.ui;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import org.eclipse.osgi.util.NLS;
 
-/**
- * @author Viacheslav Kabanovich
- */
-public class ESBUIMessages {
-	private static final String BUNDLE_NAME = "org.jboss.tools.esb.ui.messages"; //$NON-NLS-1$
+public final class ESBUIMessages extends NLS {
 
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
-			.getBundle(BUNDLE_NAME);
+	private static final String BUNDLE_NAME = "org.jboss.tools.esb.ui.messages";//$NON-NLS-1$
 
 	private ESBUIMessages() {
+		// Do not instantiate
 	}
 
-	public static String getString(String key) {
-		try {
-			return RESOURCE_BUNDLE.getString(key);
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
+	public static String ESB_UI_PLUGIN_NO_MESSAGES;
+
+	static {
+		NLS.initializeMessages(BUNDLE_NAME, ESBUIMessages.class);
 	}
 }
