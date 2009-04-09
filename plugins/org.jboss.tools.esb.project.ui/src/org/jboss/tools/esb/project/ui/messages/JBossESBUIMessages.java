@@ -33,8 +33,7 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_Runtime_List_Field_Editor_Name;
 	public static String JBoss_Runtime_List_Field_Editor_Version;
 	public static String JBoss_Runtime_List_Field_Editor_Path;
-	public static String JBoss_Runtime_List_Field_Editor_Inputelement_Must_Be;
-	public static String JBoss_Runtime_List_Field_Editor_An_Instance_Of_List;
+	public static String JBoss_Runtime_List_Field_Editor_Inputelement_Must_Be_List;
 	public static String JBoss_Runtime_Delete_Confirm_Title;
 	public static String JBoss_Runtime_Delete_Used_Confirm;
 	public static String JBoss_Runtime_Delete_Not_Used_Confirm;

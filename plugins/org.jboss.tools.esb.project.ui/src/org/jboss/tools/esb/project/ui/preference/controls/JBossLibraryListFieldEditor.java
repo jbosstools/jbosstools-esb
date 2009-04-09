@@ -207,8 +207,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 					return ((JBossRuntime) inputElement).getLibraries().toArray();
 				} else {
 					throw new IllegalArgumentException(
-							JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Inputelement_Must_Be
-									+ JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_An_Instance_Of_List);
+							JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Inputelement_Must_Be_List);
 				}
 			}
 
