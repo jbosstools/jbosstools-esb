@@ -78,7 +78,9 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	private Button btnUserSupplied;
 	private Button btnServerSupplied;
 	private Button btnNew;
-	
+
+	private Combo cmbConfigVersions;
+
 	private IFacetedProjectListener fpListerner;
 	private IFacetedProjectWorkingCopy fpwc;
 	
@@ -103,6 +105,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		
 		createProjectGroup(composite);
 		createRuntimeGroup(composite);
+		createConfigVersionGroup(composite);
 		setPageComplete(false);
 		setDefaultOutputFolder();
 		
@@ -122,9 +125,11 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 						public void run() {
 							if(version != null){
 								initializeRuntimesCombo(cmbRuntimes, null, version.getVersionString());
+								initializeConfigVersionCombo(cmbConfigVersions, null, version.getVersionString());
 								
 							}else{
 								initializeRuntimesCombo(cmbRuntimes, null);
+								initializeConfigVersionCombo(cmbConfigVersions, null);
 							}
 							changePageStatus();
 						}
@@ -600,8 +605,52 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		}
 		super.dispose();
 	}
-	
-	
 
+	private void createConfigVersionGroup(Composite parent) {		
+		Group configGroup = new Group(parent, SWT.NONE);
+		configGroup.setText("ESB Config Version"); //TODO move to messages
+		configGroup.setLayout(new GridLayout(3, false));
+		configGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		GridData gd = new GridData();
+
+		cmbConfigVersions = new Combo(configGroup, SWT.READ_ONLY);
+		cmbConfigVersions.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		cmbConfigVersions.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				String convigVersionName = cmbConfigVersions.getText();
+				saveESBConfigVersionToModel(convigVersionName);
+				changePageStatus();
+			}
+		});
+		initializeConfigVersionCombo(cmbConfigVersions, null);
+	}
+
+	protected void saveESBConfigVersionToModel(String convigVersionName) {
+		model.setStringProperty(
+				IJBossESBFacetDataModelProperties.ESB_CONFIG_VERSION, convigVersionName);
+	}
+ 
+	protected void initializeConfigVersionCombo(Combo cmVersions, String runtimeName) {
+		IProjectFacetVersion version = getSelectedESBVersion();
+		if(version != null) {
+			initializeConfigVersionCombo(cmbConfigVersions, null, version.getVersionString());
+
+		} else {
+			initializeConfigVersionCombo(cmbConfigVersions, null, ""); //$NON-NLS-1$
+		}
+	}
+
+	protected void initializeConfigVersionCombo(Combo cmVersions, String currentName, String version) {
+		cmVersions.removeAll();
+		cmVersions.add("1.0.1"); //$NON-NLS-1$
+		if(version != null && version.equals("4.5")) { //$NON-NLS-1$
+			cmVersions.add("1.1.0"); //$NON-NLS-1$
+		}
+		int index = cmVersions.getItemCount() - 1;
+		String convigVersionName = cmVersions.getItem(index);
+		cmVersions.select(index);
+		saveESBConfigVersionToModel(convigVersionName);
+	}
 	 
 }

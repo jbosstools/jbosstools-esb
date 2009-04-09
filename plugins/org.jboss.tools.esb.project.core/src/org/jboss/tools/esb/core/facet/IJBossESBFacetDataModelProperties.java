@@ -23,6 +23,8 @@ public interface IJBossESBFacetDataModelProperties extends IFacetDataModelProper
 	public static final String ESB_CONTENT_FOLDER = "JBoss.Project.Content_Folder";
 	public static final String ESB_SOURCE_FOLDER = "JBoss.Project.Src_Folder";
 	
+	public static final String ESB_CONFIG_VERSION = "JBoss.Project.Config_Version";
+	
 	public static final QualifiedName QNAME_ESB_CONTENT_FOLDER = new QualifiedName("jboss", ESB_CONTENT_FOLDER);
 	public static final QualifiedName QNAME_ESB_SRC_FOLDER = new QualifiedName("jboss", ESB_SOURCE_FOLDER);
 

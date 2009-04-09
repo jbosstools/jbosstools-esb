@@ -31,6 +31,7 @@ public class JBossESBFacetDataModelProvider extends J2EEModuleFacetInstallDataMo
 		names.add(RUNTIME_ID);
 		names.add(RUNTIME_HOME);
 		names.add(RUNTIME_IS_SERVER_SUPPLIED);
+		names.add(IJBossESBFacetDataModelProperties.ESB_CONFIG_VERSION);
 		return names;
 	}
 

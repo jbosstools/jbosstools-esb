@@ -111,19 +111,17 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 	
 	private IFile createJBossESBXML(IFolder folder) throws CoreException{
 		StringBuffer emptyESB = new StringBuffer();
+		String configVersion = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONFIG_VERSION);
 		emptyESB.append("<?xml version = \"1.0\" encoding = \"UTF-8\"?>");
 		emptyESB.append("\n");
-		emptyESB.append("<jbossesb xmlns=\"http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd\" parameterReloadSecs=\"5\">");
+		emptyESB.append("<jbossesb xmlns=\"http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-" + configVersion + ".xsd\" parameterReloadSecs=\"5\">");
 		emptyESB.append("\n");
 		emptyESB.append("</jbossesb>");
 		IFile esbfile = folder.getFile("jboss-esb.xml");
 		esbfile.create(new ByteArrayInputStream(emptyESB.toString().getBytes()), true, null);
 		
 		return esbfile;
-	}
-	
-
-	
+	}	
 
 	private void createProjectStructure(IProject project) throws CoreException{
 		String strContentFolder = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
