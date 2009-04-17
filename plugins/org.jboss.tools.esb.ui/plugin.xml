@@ -44,4 +44,87 @@
    <extension point="org.jboss.tools.common.model.ui.attributeEditor">
       <attributeEditor class="org.jboss.tools.common.model.ui.attribute.editor.ComboBoxEditor" id="ESBBusList"/>
    </extension>
+
+
+	<extension 
+		point="org.jboss.tools.common.text.ext.hyperlinkPartitioner"
+		id="org.jboss.tools.esb.ui.hyperlinkPartitioner"
+		name="org.jboss.tools.esb.ui.hyperlinkPartitioner">
+		
+		<hyperlinkPartitioner 
+         	id="org.jboss.tools.common.text.ext.jsf.hyperlink.XMLClassHyperlinkPartitioner"
+         	class="org.jboss.tools.common.text.ext.hyperlink.xml.XMLClassHyperlinkPartitioner">
+         	
+         	<contentType id="org.eclipse.wst.xml.core.xmlsource">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="/jbossesb/services/service/actions/action/class" />
+           		</partitionType>
+         	</contentType>
+         	<contentType id="org.eclipse.core.runtime.xml">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="/jbossesb/services/service/actions/action/class" />
+           		</partitionType>
+         	</contentType>
+
+         	<contentType id="org.jboss.tools.common.model.ui.xml">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="/jbossesb/services/service/actions/action/class" />
+           		</partitionType>
+         	</contentType>
+
+		</hyperlinkPartitioner>
+
+
+		<hyperlinkPartitioner 
+			id="org.jboss.tools.esb.ui.hyperlink.ESBXMLLinkHyperlinkPartitioner"
+         	class="org.jboss.tools.esb.ui.hyperlink.ESBXMLLinkHyperlinkPartitioner">
+         	<contentType id="org.eclipse.wst.xml.core.xmlsource">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="*/service/actions/inXsd" />
+         			<axis path="*/service/actions/outXsd" />
+         			<axis path="*/service/actions/faultXsd" />
+           		</partitionType>
+         	</contentType>
+         	<contentType id="org.jboss.tools.common.model.ui.xml">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="*/service/actions/inXsd" />
+         			<axis path="*/service/actions/outXsd" />
+         			<axis path="*/service/actions/faultXsd" />
+           		</partitionType>
+         	</contentType>
+         	<contentType id="org.eclipse.core.runtime.xml">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="*/service/actions/inXsd" />
+         			<axis path="*/service/actions/outXsd" />
+         			<axis path="*/service/actions/faultXsd" />
+           		</partitionType>
+         	</contentType>
+
+		</hyperlinkPartitioner>
+
+   </extension>
+
+	<extension 
+		point="org.jboss.tools.common.text.ext.hyperlink"
+		id="org.jboss.tools.esb.ui.hyperlink"
+		name="org.jboss.tools.esb.ui.hyperlink">
+
+		<hyperlink 
+			class="org.jboss.tools.esb.ui.hyperlink.ESBLinkHyperlink" 
+    		id="org.jboss.tools.esb.ui.hyperlink.ESBLinkHyperlink">
+			<contenttypeidentifier id="org.eclipse.wst.xml.core.xmlsource">
+				<partitiontype id="org.jboss.tools.common.text.ext.xml.ESB_XML_LINK" />
+			</contenttypeidentifier>
+			<contenttypeidentifier id="org.eclipse.core.runtime.xml">
+				<partitiontype id="org.jboss.tools.common.text.ext.xml.ESB_XML_LINK" />
+			</contenttypeidentifier>
+			<contenttypeidentifier id="org.jboss.tools.common.model.ui.xml">
+				<partitiontype id="org.jboss.tools.common.text.ext.xml.ESB_XML_LINK" />
+			</contenttypeidentifier>
+		</hyperlink>
+
+
+   </extension>
+
+
 </plugin>
