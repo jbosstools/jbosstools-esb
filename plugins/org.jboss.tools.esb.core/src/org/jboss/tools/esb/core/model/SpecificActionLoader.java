@@ -49,6 +49,8 @@ public class SpecificActionLoader implements ESBConstants {
 			//class-alias, exclude-package
 		{"org.jboss.soa.esb.actions.converters.SmooksTransformer", "ESBPreActionSmooksTransformer"},
 			//resource-config; from, from-type, to, to-type
+		{"org.jboss.soa.esb.smooks.SmooksAction", "ESBPreActionSmooksAction"},
+			//smooksConfig
 		{"org.jboss.soa.esb.actions.MessagePersister", "ESBPreActionMessagePersister"},
 			//classification, message-store-class
 		{"org.jboss.soa.esb.actions.converters.XStreamToObject", "ESBPreActionXStreamToObject"},

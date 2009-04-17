@@ -635,6 +635,76 @@
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionSmooksAction101">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="smooks action"
+    loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.smooks.SmooksAction" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;save=always;pre=true"
+    name="smooks config" xmlname="smooksConfig"/>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="get payload location" xmlname="get-payload-location"/>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="set payload location" xmlname="set-payload-location"/>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="exclude non-serializables" xmlname="excludeNonSerializables">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="result type" xmlname="resultType">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="STRING"/>
+     <value name="BYTES"/>
+     <value name="JAVA"/>
+     <value name="NORESULT"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="java result bean id" xmlname="javaResultBeanId"/>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="report path" xmlname="reportPath"/>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="message profile" xmlname="messageProfile"/>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="action" name="ESBPreActionSmooksTransformer101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
@@ -1111,6 +1181,7 @@
    <XChildEntity name="ESBPreActionObjectInvoke101"/>
    <XChildEntity name="ESBPreActionObjectToCSVString101"/>
    <XChildEntity name="ESBPreActionObjectToXStream101"/>
+   <XChildEntity name="ESBPreActionSmooksAction101"/>
    <XChildEntity name="ESBPreActionSmooksTransformer101"/>
    <XChildEntity name="ESBPreActionMessagePersister101"/>
    <XChildEntity name="ESBPreActionXStreamToObject101"/>
@@ -1170,6 +1241,17 @@
         <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="class alias" Mandatory="no"/>
         <AttributeData AttributeName="exclude package" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Smooks Action..." kind="action" name="AddSmooksAction">
+       <EntityData EntityName="ESBPreActionSmooksAction101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="smooks config"/>
+        <AttributeData AttributeName="get payload location" Mandatory="no"/>
+        <AttributeData AttributeName="set payload location" Mandatory="no"/>
+        <AttributeData AttributeName="result type" Mandatory="no"/>
        </EntityData>
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1300,6 +1382,7 @@
    <XChildEntity name="ESBPreActionObjectInvoke101"/>
    <XChildEntity name="ESBPreActionObjectToCSVString101"/>
    <XChildEntity name="ESBPreActionObjectToXStream101"/>
+   <XChildEntity name="ESBPreActionSmooksAction101"/>
    <XChildEntity name="ESBPreActionSmooksTransformer101"/>
    <XChildEntity name="ESBPreActionMessagePersister101"/>
    <XChildEntity name="ESBPreActionXStreamToObject101"/>
