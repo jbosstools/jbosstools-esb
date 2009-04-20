@@ -58,17 +58,32 @@
          	<contentType id="org.eclipse.wst.xml.core.xmlsource">
          		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
          			<axis path="/jbossesb/services/service/actions/action/class" />
+         			<axis path="/jbossesb/services/service/listeners/scheduled-listener/event-processor" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/endpointClass" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/jcaBridge" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/messagingType" />
+         			<axis path="/jbossesb/providers/hibernate-provider/hibernate-bus/hibernate-message-filter/classname" />
            		</partitionType>
          	</contentType>
          	<contentType id="org.eclipse.core.runtime.xml">
          		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
          			<axis path="/jbossesb/services/service/actions/action/class" />
+         			<axis path="/jbossesb/services/service/listeners/scheduled-listener/event-processor" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/endpointClass" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/jcaBridge" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/messagingType" />
+         			<axis path="/jbossesb/providers/hibernate-provider/hibernate-bus/hibernate-message-filter/classname" />
            		</partitionType>
          	</contentType>
 
          	<contentType id="org.jboss.tools.common.model.ui.xml">
          		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
          			<axis path="/jbossesb/services/service/actions/action/class" />
+         			<axis path="/jbossesb/services/service/listeners/scheduled-listener/event-processor" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/endpointClass" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/jcaBridge" />
+         			<axis path="/jbossesb/providers/jms-jca-provider/messagingType" />
+         			<axis path="/jbossesb/providers/hibernate-provider/hibernate-bus/hibernate-message-filter/classname" />
            		</partitionType>
          	</contentType>
 
