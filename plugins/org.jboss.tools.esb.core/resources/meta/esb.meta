@@ -2344,7 +2344,9 @@
    <XModelAttribute PROPERTIES="category=advanced"
     name="schedule id ref" xmlname="scheduleidref"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
-    name="event processor" xmlname="event-processor"/>
+    name="event processor" xmlname="event-processor">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced" name="transacted" xmlname="transacted">
     <Constraint loader="ListString">
      <value/>
