@@ -102,6 +102,27 @@
 
 		</hyperlinkPartitioner>
 
+		<hyperlinkPartitioner 
+			id="org.jboss.tools.esb.ui.hyperlink.ESBPropertyLinkHyperlinkPartitioner"
+         	class="org.jboss.tools.esb.ui.hyperlink.ESBPropertyLinkHyperlinkPartitioner">
+         	<contentType id="org.eclipse.wst.xml.core.xmlsource">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="*/service/actions/action/property/value" />
+           		</partitionType>
+         	</contentType>
+         	<contentType id="org.jboss.tools.common.model.ui.xml">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="*/service/actions/action/property/value" />
+           		</partitionType>
+         	</contentType>
+         	<contentType id="org.eclipse.core.runtime.xml">
+         		<partitionType id="org.jboss.tools.common.text.ext.xml.XML_ATTRIBUTE_VALUE">
+         			<axis path="*/service/actions/action/property/value" />
+           		</partitionType>
+         	</contentType>
+
+		</hyperlinkPartitioner>
+
    </extension>
 
 	<extension 
