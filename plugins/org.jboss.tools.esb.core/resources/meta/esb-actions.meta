@@ -11,7 +11,9 @@
    <PAIR name="ESB1.0.1" value="FileESB101"/>
   </MAPPING>
   <MAPPING name="FilteredTreeConstraints"/>
-  <MAPPING name="FilteredTrees"/>
+  <MAPPING name="FilteredTrees">
+   <PAIR name="ESBResourceTree" value="org.jboss.tools.jst.web.model.tree.WebPagesTree"/>
+  </MAPPING>
   <MAPPING name="Handlers"/>
   <MAPPING name="Implementations">
    <PAIR name="ESB" value="org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl"/>
@@ -645,8 +647,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="smooks action"
-    loader="ElementType" name="element type">
+   <XModelAttribute default="smooks action" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -656,7 +657,13 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;save=always;pre=true"
-    name="smooks config" xmlname="smooksConfig"/>
+    name="smooks config" xmlname="smooksConfig">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=xml"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced;pre=true"
     name="get payload location" xmlname="get-payload-location"/>
    <XModelAttribute PROPERTIES="category=advanced;pre=true"
