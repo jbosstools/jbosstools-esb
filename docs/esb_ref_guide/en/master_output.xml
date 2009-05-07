@@ -28,11 +28,11 @@
         <pubdate>April 2008</pubdate>
         <copyright>
             <year>2007</year>
-            <year><diffmk:wrapper diffmk:change="changed">2009</diffmk:wrapper></year>
-            <holder><diffmk:wrapper diffmk:change="changed">JBoss, a division of Red Hat</diffmk:wrapper></holder>
+            <year>2009</year>
+            <holder>JBoss, a division of Red Hat</holder>
         </copyright>
         <releaseinfo><diffmk:wrapper diffmk:change="changed">
-            Version: 1.1.0.GA
+            Version: 1.1.1.GA
         </diffmk:wrapper></releaseinfo>
     
 <abstract>
@@ -251,7 +251,7 @@
                         <listitem diffmk:change="added"><para diffmk:change="added"><emphasis diffmk:change="added" role="bold"><diffmk:wrapper diffmk:change="added">JBoss ESB Web Service consumer1 Example</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> - demonstrates how to consume a 181 Web Service in an ESB action.</diffmk:wrapper></para></listitem>
                         <listitem diffmk:change="added"><para diffmk:change="added"><emphasis diffmk:change="added" role="bold"><diffmk:wrapper diffmk:change="added">JBoss ESB Web Service producer Example</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> - demonstrates how to deploy a JSR181 Webservice endpoint on JBossESB using the SOAPProcessor action.</diffmk:wrapper></para></listitem>
                         <listitem diffmk:change="added"><para diffmk:change="added"><emphasis diffmk:change="added" role="bold"><diffmk:wrapper diffmk:change="added">JBoss ESB Smooks CSV -&gt; XML Example</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> - demonstrates how to transform a comma separated value (CSV) file to an XML.</diffmk:wrapper></para></listitem>
-                        <listitem diffmk:change="added"><para diffmk:change="added"><emphasis diffmk:change="added" role="bold"><diffmk:wrapper diffmk:change="added">JBoss ESB Smooks XML -&gt; POJO Example</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> - demonstrates the use of Smooks performing a simpe transformation by converting an XML file into Java POJOs.</diffmk:wrapper></para></listitem>
+                        <listitem diffmk:change="added"><para diffmk:change="added"><emphasis diffmk:change="added" role="bold"><diffmk:wrapper diffmk:change="added">JBoss ESB Smooks XML -&gt; POJO Example</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> - demonstrates the use of Smooks performing a simple transformation by converting an XML file into Java POJOs.</diffmk:wrapper></para></listitem>
                         <listitem diffmk:change="added"><para diffmk:change="added"><emphasis diffmk:change="added" role="bold"><diffmk:wrapper diffmk:change="added">JBoss ESB Smooks XML -&gt; XML date-manipulation Example</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> - demonstrates how to manually define and apply a Message Transformation within JBoss ESB.</diffmk:wrapper></para></listitem>     
                         <listitem diffmk:change="added"><para diffmk:change="added"><emphasis diffmk:change="added" role="bold"><diffmk:wrapper diffmk:change="added">JBoss ESB Smooks XML -&gt; XML Example</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> - a very basic example of how to manually define and apply a Message Transformation within JBoss ESB. It applies a very simple XSLT to a SampleOrder.xml message and prints the before and after XML to the console. </diffmk:wrapper></para></listitem>
                         
@@ -288,7 +288,7 @@
 
  		<section>
                 <title>Deploying a ESB Project</title>
-                <para>In this chapter youwill see how to deploy a ESB project using the WTP deployment framework.</para>
+                <para><diffmk:wrapper diffmk:change="changed">In this chapter you will see how to deploy a ESB project using the WTP deployment framework.</diffmk:wrapper></para>
 
                 <para>Before deploying the project, open the JBoss Server View by selecting <emphasis><property moreinfo="none">Window &gt; Show View &gt; Other &gt; 
                 Server &gt; JBoss Server View</property></emphasis>, 
@@ -504,7 +504,7 @@
                <para>You can find out what is SOA here: <ulink url="http://www.jboss.org/jbossesb/resources/SOABasics.html">Basics of SOA</ulink> and    <ulink url="http://www.jboss.org/jbossesb/resources/SOAEOA.html">SOA and EOA</ulink>.</para>
                        
                 <para>To configure the JBoss Enterprise SOA platform select <emphasis>
-                        <property moreinfo="none">Window &gt; Preferences &gt; Server  &gt; Runtime Enironments</property></emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
+                        <property moreinfo="none"><diffmk:wrapper diffmk:change="changed">Window &gt; Preferences &gt; Server  &gt; Runtime Environments</diffmk:wrapper></property></emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
              
                 <figure float="0">
                         <title>Configure new Server Runtime Environment</title>
@@ -525,7 +525,7 @@
                         </mediaobject>
                 </figure>
                 
-                <para>On the next step you can specify a name of the server runtime environement and browse to its location. Click <emphasis><property moreinfo="none">Finish</property></emphasis> to add the server runtime environment.</para>
+                <para><diffmk:wrapper diffmk:change="changed">On the next step you can specify a name of the server runtime environment and browse to its location. Click </diffmk:wrapper><emphasis><property moreinfo="none">Finish</property></emphasis> to add the server runtime environment.</para>
         
         
                 <figure float="0">
@@ -785,10 +785,10 @@
         <section id="ESBSupportXMLSchema">
             <title>Support for XML Schema</title>
 
-            <para>JBoss ESB Framework fully <link linkend="sourceView"><diffmk:wrapper diffmk:change="changed">supports XML files based on
-            schemas as well as DTDs</diffmk:wrapper></link>.</para>
-            <note diffmk:change="added"><title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Note:</diffmk:wrapper></title>
-                <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">The schema used behind ESB editor now uses the latest version available (from SOA-P 4.3). This removes the errors/warnings some users have reported seeing when using SOA-P specific esb.xml files.</diffmk:wrapper></para>  </note>
+            <para>JBoss ESB Framework fully <link linkend="sourceView">supports XML files based on
+            schemas as well as DTDs</link>.</para>
+            <note><title>Note:</title>
+                <para>The schema used behind ESB editor now uses the latest version available (from SOA-P 4.3). This removes the errors/warnings some users have reported seeing when using SOA-P specific esb.xml files.</para>  </note>
             
         </section>
 
@@ -881,8 +881,11 @@
                 </mediaobject>
             </figure>
                    
-            <para>In summary, this reference supplies you with all necessary information on the
-                functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
+            <para><diffmk:wrapper diffmk:change="changed">In summary, this reference supplies you with all necessary information on the
+            functionality that JBoss ESB Editor provides for work with JBoss ESB.</diffmk:wrapper></para>
+            
+            <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">We hope, this guide helped you to get started with the JBoss ESB Tools. Besides, for additional information you are welcome on </diffmk:wrapper><ulink diffmk:change="added" url="http://www.jboss.com/index.html?module=bb&op=viewforum&f=201"><diffmk:wrapper diffmk:change="added">JBoss forum</diffmk:wrapper></ulink><diffmk:wrapper diffmk:change="added">.</diffmk:wrapper></para>
+            
         </section>
     </section>
 </chapter>
