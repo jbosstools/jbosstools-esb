@@ -77,6 +77,8 @@
                 </imageobject>
             </mediaobject>
         </figure>
+        <para>Then you can add Channels and Properties for the Providers the same way or using the forms with <property>Add</property>, <property>Edit</property> and
+            <property>Remove</property> buttons to the right.</para>
 
         <para>You can easily add a new Service too:</para>
         <figure>
@@ -281,7 +283,11 @@
             </figure>
                    
             <para>In summary, this reference supplies you with all necessary information on the
-                functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
+            functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
+            
+            <para>We hope, this guide helped you to get started with the JBoss ESB Tools. Besides, for additional information you are welcome on <ulink
+                url="http://www.jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=201">JBoss forum</ulink>.</para>
+            
         </section>
     </section>
 </chapter>

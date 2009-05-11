@@ -70,7 +70,7 @@
                                 <property>Next</property>
                         </emphasis> brings you to the ESB facet installation page where you can 
                         specify Java Source Directory and ESB Content Directory. ESB Content Directory is a folder that contains the most of
-                         artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:,
+                         artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:
                         </para>
                          <para>1. Use <emphasis>
                                 <property>Server Supplied ESB Runtime</property>
@@ -132,18 +132,40 @@
 				<para> Clicking <emphasis>
                                 <property>Next</property>
                         </emphasis> brings you to the wizard page where you can select a ESB project example from the example list.
-                         Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
-                <figure>
-                        <title>JBoss Tools ESB Project Examples</title>
-                        <mediaobject>
-                                <imageobject>
-                                        <imagedata fileref="images/esb_project/06_esb_project_example.png"/>
-                                </imageobject>
-                        </mediaobject>
-                </figure>
+                        Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
+                <para>Here is a list of ready examples available:</para>
+              
+                <itemizedlist>
+                        
+                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Example</emphasis> - demonstrates the minimal files necessary to make a basic ESB component execute as well as to prove that the ESB os properly configured.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Action Example</emphasis> - demonstrates the use of multiple action invocations from a single configuration. You can use a single Action class and make multiple method calls or use multiple Action classes. </para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld File Action Example</emphasis> - demonstrates using the File gateway feature of the JBoss ESB. Files that are found in a particular directory with a particular extension are sent to a JMS queue with actions for processing.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Web Service consumer1 Example</emphasis> - demonstrates how to consume a 181 Web Service in an ESB action.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Web Service producer Example</emphasis> - demonstrates how to deploy a JSR181 Webservice endpoint on JBossESB using the SOAPProcessor action.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks CSV -&gt; XML Example</emphasis> - demonstrates how to transform a comma separated value (CSV) file to an XML.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; POJO Example</emphasis> - demonstrates the use of Smooks performing a simple transformation by converting an XML file into Java POJOs.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; XML date-manipulation Example</emphasis> - demonstrates how to manually define and apply a Message Transformation within JBoss ESB.</para></listitem>     
+                        <listitem><para><emphasis role="bold">JBoss ESB Smooks XML -&gt; XML Example</emphasis> - a very basic example of how to manually define and apply a Message Transformation within JBoss ESB. It applies a very simple XSLT to a SampleOrder.xml message and prints the before and after XML to the console. </para></listitem>
+                        
+                </itemizedlist>
+                
+               
 
-				<para>Select <emphasis><property>JBoss ESB HelloWorld Example</property> </emphasis> ESB and Client project, and then click 
-				<emphasis><property>Finish</property></emphasis>, then you will get two projects created. </para>
+				<para>We will take as our example <emphasis><property>JBoss ESB HelloWorld Example</property> </emphasis> ESB and Client project:</para>
+				        
+				        
+				        <figure>
+				                <title>JBoss Tools ESB Project Examples</title>
+				                <mediaobject>
+				                        <imageobject>
+				                                <imagedata fileref="images/esb_project/06_esb_project_example.png"/>
+				                        </imageobject>
+				                </mediaobject>
+				        </figure>
+				        
+				        
+				       <para>Choose them using the Ctrl button and then click 
+				<emphasis><property>Finish</property></emphasis>. As a result you will get two projects created:</para>
 				                <figure>
                         <title>JBoss ESB Project Examples: helloworld and helloworld_testclient</title>
                         <mediaobject>
@@ -158,7 +180,7 @@
 
  		<section>
                 <title>Deploying a ESB Project</title>
-                <para>In this chapter youwill see how to deploy a ESB project using the WTP deployment framework.</para>
+                <para>In this chapter you will see how to deploy a ESB project using the WTP deployment framework.</para>
 
                 <para>Before deploying the project, open the JBoss Server View by selecting <emphasis><property>Window &gt; Show View &gt; Other &gt; 
                 Server &gt; JBoss Server View</property></emphasis>, 
@@ -188,8 +210,53 @@
                 </figure>
                 
  		        <para>Thus, you have just added the ESB project to the JBoss server module list. Right click the JBoss Server and select <emphasis><property>Publish</property></emphasis> to publish the project on the server.
-                You can check the deploying result in the Console view.</para> 
+ 		        You can check the deploying result in the Console view.</para> 
+ 		        <para>The <emphasis><property>Run</property></emphasis> and <emphasis><property>Debug</property></emphasis> options work on ESB projects causing a (re)deploy for a user designated server.</para>
+ 		        <para>You can also use the "Finger touch" for a quick restart of the project without restarting the server:</para>
+ 		        <figure>
+ 		                <title>Finger Touch button</title>
+ 		                <mediaobject>
+ 		                        <imageobject>
+ 		                                <imagedata fileref="images/esb_project/23_finger_touch.png"/>
+ 		                        </imageobject>
+ 		                </mediaobject>
+ 		        </figure>	        
+ 		        <para>The "Finger" touches descriptors dependent on project (i.e. web.xml for WAR, application.xml for EAR) and now it is also available for jboss-esb.xml in ESB projects.</para>
+                <para>You can also deploy your ESB project as an .esb archive. Right-click on the project, choose <emphasis><property>Export</property></emphasis>:</para>
                 
+                <figure>
+ 		        <title>Export of ESB project</title>
+ 		        <mediaobject>
+ 		                <imageobject>
+ 		                        <imagedata fileref="images/esb_project/24_export_button.png"/>
+ 		                </imageobject>
+ 		        </mediaobject>
+ 		        </figure>	
+ 		        
+ 	<para>Choose <emphasis><property>ESB</property></emphasis> &gt; <emphasis><property>ESB File</property></emphasis> and click <emphasis><property>Next</property></emphasis>:</para>	        
+ 	
+ 		        <figure><title>Choosing ESB File</title>
+ 		        <mediaobject>
+ 		                <imageobject>
+ 		                        <imagedata fileref="images/esb_project/25_esb_file.png"/>
+ 		                </imageobject>
+ 		        </mediaobject>
+ 		        </figure>	
+ 	
+ 	<para>And finally export the ESB project to the file system: choose the destination, choose the target runtime if need a specific one and make the appropriate settings for the archive. Then click <emphasis><property>Finish</property></emphasis>.</para>
+ 	
+ 		        <figure><title>ESB Export</title>
+ 		                <mediaobject>
+ 		                        <imageobject>
+ 		                                <imagedata fileref="images/esb_project/26_esb_export.png"/>
+ 		                        </imageobject>
+ 		                </mediaobject>
+ 		        </figure>        
+ 		        
+ 		        <para>Your project is deployed as an .esb archive.</para>
+ 		        <para>An ESB archive can be created for ESB projects only. It is also possible to deploy an .esb archive to a JBoss AS based server with JBoss ESB installed.</para>		        
+ 		        
+ 		        
         </section>
 		        
         <section>
@@ -329,7 +396,7 @@
                <para>You can find out what is SOA here: <ulink url="http://www.jboss.org/jbossesb/resources/SOABasics.html">Basics of SOA</ulink> and    <ulink url="http://www.jboss.org/jbossesb/resources/SOAEOA.html">SOA and EOA</ulink>.</para>
                        
                 <para>To configure the JBoss Enterprise SOA platform select <emphasis>
-                        <property>Window &gt; Preferences &gt; Server  &gt; Runtime Enironments</property></emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
+                        <property>Window &gt; Preferences &gt; Server  &gt; Runtime Environments</property></emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
              
                 <figure>
                         <title>Configure new Server Runtime Environment</title>
@@ -350,7 +417,7 @@
                         </mediaobject>
                 </figure>
                 
-                <para>On the next step you can specify a name of the server runtime environement and browse to its location. Click <emphasis><property>Finish</property></emphasis> to add the server runtime environment.</para>
+                <para>On the next step you can specify a name of the server runtime environment and browse to its location. Click <emphasis><property>Finish</property></emphasis> to add the server runtime environment.</para>
         
         
                 <figure>
