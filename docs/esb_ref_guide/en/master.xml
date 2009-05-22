@@ -23,6 +23,17 @@
     
     <bookinfo>
         <title>ESB Tools Reference Guide</title>
+        
+        <corpauthor>
+            <inlinemediaobject>
+                <imageobject role="fo">
+                    <imagedata format="PNG" fileref="images/jbosstools_logo.png" />
+                </imageobject>	
+                <imageobject role="html">
+                    <imagedata/>
+                </imageobject>	
+            </inlinemediaobject>           
+        </corpauthor>
         <author><firstname>Svetlana</firstname><surname>Mukhina</surname><email>smukhina@exadel.com</email></author> 
         <author><firstname>Tatyana</firstname><surname>Romanovich</surname></author>  
         
