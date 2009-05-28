@@ -24,7 +24,7 @@
 
                 <para>ESB Tools come as one module of JBoss Tools project. Since ESB Tools have a
                         dependence on other JBoss Tools modules we recommend you to install a bundle
-                        of all <ulink url="http://labs.jboss.com/tools/download/index.html">JBoss
+                        of all <ulink url="http://labs.jboss.com/tools/download.html">JBoss
                                 Tools plug-ins</ulink>. You can find all  necessary installation instructions on JBoss Wiki in the <ulink url="http://labs.jboss.com/wiki/InstallingJBossTools"
                                 >InstallingJBossTools</ulink> section.</para>
         </section>
