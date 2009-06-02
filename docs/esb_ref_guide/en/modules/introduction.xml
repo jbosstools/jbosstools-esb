@@ -31,6 +31,62 @@
 
     </section>
 
+<section>
+    <title>Key Features of ESB Tools</title>
+    <para>For a start, we propose you to look through the table of main features of BIRT plugin:</para>
+
+    <table>
+        
+        <title>Key Functionality of ESB Tools</title>
+        <tgroup cols="3">
+            
+            <colspec colnum="1" align="left" colwidth="2*"/>
+            <colspec colnum="2" colwidth="4*"/>
+            <colspec colnum="3" align="left" colwidth="2*"/>
+            
+            <thead>
+                <row>
+                    <entry>Feature</entry>
+                    <entry>Benefit</entry>
+                    <entry>Chapter</entry>
+                </row>
+            </thead>
+            
+            <tbody>
+                
+                <row>
+                    <entry><para>JBoss Tools Project Examples Wizard</para></entry>
+                    <entry><para>Some kinds of projects with predefined structure are available for usage.</para></entry>
+                    <entry>
+                        <link linkend="ESB_project_wizard">Creating ESB Project using JBoss Tools Project Examples Wizard</link>
+                    </entry>
+                </row>
+                
+                <row>
+                    <entry><para>JBoss Enterprise SOA Platform</para></entry>
+                    <entry><para>The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</para></entry>
+                    <entry>
+                        <link linkend="using_SOA">using and configuring SOA Platform</link>
+                    </entry>
+                </row>
+                
+                <row>
+                    <entry><para>ESB Editor</para></entry>
+                    <entry><para>JBoss ESB tooling has powerful editor features including syntax validation, support for XML Schema and other.</para></entry>
+                    <entry>
+                        <link linkend="esb_editor">ESB editor</link>
+                    </entry>
+                </row>
+                
+            </tbody>
+            
+        </tgroup>
+    </table>
+    
+
+</section>
+    
+    
     <section>
         <title>Other relevant resources on the topic</title>
 
