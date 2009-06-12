@@ -77,10 +77,10 @@
                         </emphasis>  
                          
                          </para>
-                         <para> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences                           
-                         </para>
-                         <para>If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.
-                         </para>
+		         <para> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences. If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.                         
+                         </para>           
+		         <para>3. Choose ESB Config Vertion. From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</para>	         
+                         
                 <figure>
                         <title>Install ESB facet step</title>
                         <mediaobject>
@@ -288,6 +288,9 @@
                                 <property>jboss-esb.xml</property>
                         </emphasis> as the name and accept the selected projects folder and the default
                         version.</para>
+                
+               <note><title>Note:</title>
+                       <para>From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</para></note>
                 <figure>
                         <title>Folder, Name and Version for ESB file</title>
                         <mediaobject>
