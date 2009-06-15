@@ -181,6 +181,7 @@
                 with feedback and contextual error checking as you type. In the Source viewer, if at
                 any point a tag is incorrect or incomplete, an error will be indicated next to the
                 line and also in the <property>Problems view</property> below.</para>
+            
         </section>
 
         <section id="ESBSupportXMLSchema">
@@ -188,6 +189,7 @@
 
             <para>JBoss ESB Framework fully <link linkend="sourceView">supports XML files based on
             schemas as well as DTDs</link>.</para>
+            <para>The schema checks the child elements of any kind of provider element; the ESB generates errors on startup if you attempt to define an incorrect combination (e.g.: a jms-bus inside an ftp-provider).</para>
             <note><title>Note:</title>
                 <para>The schema used behind ESB editor now uses the latest version available (from SOA-P 4.3). This removes the errors/warnings some users have reported seeing when using SOA-P specific esb.xml files.</para>  </note>
             
