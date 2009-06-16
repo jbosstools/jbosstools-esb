@@ -1925,6 +1925,7 @@
      <EntityData EntityName="ESBJBRProvider101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="protocol"/>
+      <AttributeData AttributeName="host" Mandatory="no"/>
      </EntityData>
      <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
