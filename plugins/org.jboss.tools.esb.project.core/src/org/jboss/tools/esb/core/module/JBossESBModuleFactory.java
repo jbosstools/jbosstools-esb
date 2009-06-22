@@ -10,11 +10,14 @@
  ******************************************************************************/
 package org.jboss.tools.esb.core.module;
 
+import java.util.HashMap;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.server.core.IModule;
 import org.eclipse.wst.server.core.internal.ModuleFactory;
@@ -23,9 +26,12 @@ import org.eclipse.wst.server.core.model.ModuleDelegate;
 import org.eclipse.wst.server.core.util.ProjectModuleFactoryDelegate;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
+import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 
 public class JBossESBModuleFactory extends ProjectModuleFactoryDelegate {
 	public static final String FACTORY_ID = "org.jboss.tools.esb.project.core.moduleFactory";
+	public static final String MODULE_TYPE = IJBossESBFacetDataModelProperties.JBOSS_ESB_FACET_ID;
+	public static final String MODULE_ID_PREFIX = IJBossESBFacetDataModelProperties.JBOSS_ESB_FACET_ID + ".";
 	private static ModuleFactory factory;
 	private static JBossESBModuleFactory factDelegate;
 
@@ -47,16 +53,21 @@ public class JBossESBModuleFactory extends ProjectModuleFactoryDelegate {
 		return factDelegate;
 	}
 
+	
+	private HashMap<IModule, JBossESBModuleDelegate> moduleToDelegate;
 	public JBossESBModuleFactory() {
+		moduleToDelegate = new HashMap<IModule, JBossESBModuleDelegate>();
 	}
 
 	@Override
+	protected void clearCache(IProject project) {
+		super.clearCache(project);
+		moduleToDelegate.remove(project);
+	}
+	
+	@Override
 	public ModuleDelegate getModuleDelegate(IModule module) {
-		if (module instanceof JBossESBModule) {
-			IProject project = module.getProject();
-			return new JBossESBModuleDelegate(project);
-		}
-		return null;
+		return moduleToDelegate.get(module);
 	}
 
 	protected IModule[] createModules(IProject project) {
@@ -70,8 +81,14 @@ public class JBossESBModuleFactory extends ProjectModuleFactoryDelegate {
 					.getProjectFacet(ESBProjectConstant.ESB_PROJECT_FACET);
 
 			if (facetProject.hasProjectFacet(esbFacet)) {
-				JBossESBModule module = new JBossESBModule(project, this, this
-						.getId());
+				IProjectFacetVersion version = facetProject.getProjectFacetVersion(esbFacet);
+				IModule module = createModule(
+						MODULE_ID_PREFIX + project.getName(), 
+						project.getName(), 
+						MODULE_TYPE, 
+						version.getVersionString(), 
+						project);
+				moduleToDelegate.put(module, new JBossESBModuleDelegate(project));
 				return new IModule[] { module };
 			}
 		} catch (CoreException e) {
