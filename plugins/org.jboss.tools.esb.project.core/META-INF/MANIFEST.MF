@@ -38,4 +38,4 @@ Export-Package: org.jboss.tools.esb.core,
  org.jboss.tools.esb.core.module,
  org.jboss.tools.esb.core.runtime,
  org.jboss.tools.esb.core.utils
-
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
