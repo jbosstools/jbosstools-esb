@@ -13,7 +13,7 @@ package org.jboss.tools.esb.project.ui.wizards.export;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jst.j2ee.internal.wizard.J2EEModuleExportPage;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
-import org.jboss.tools.common.model.ui.ModelUIImages;
+import org.jboss.tools.esb.project.ui.ESBSharedImages;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
 public class ESBComponentExportPage extends J2EEModuleExportPage {
@@ -21,7 +21,7 @@ public class ESBComponentExportPage extends J2EEModuleExportPage {
 		super(model, pageName, selection);
 		setTitle(JBossESBUIMessages.ESBExportWizard_Title);
 		setDescription(JBossESBUIMessages.ESBExportWizard_Description);
-		setImageDescriptor(ModelUIImages.getImageDescriptor(ModelUIImages.WIZARD_NEW_PROJECT));
+		setImageDescriptor(ESBSharedImages.getImageDescriptor(ESBSharedImages.WIZARD_NEW_PROJECT));
 	}
 
 	/*

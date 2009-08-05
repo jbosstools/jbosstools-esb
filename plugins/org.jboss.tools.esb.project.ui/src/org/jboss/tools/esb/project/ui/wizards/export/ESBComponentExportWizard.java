@@ -14,7 +14,7 @@ import org.eclipse.jst.j2ee.internal.wizard.J2EEArtifactExportWizard;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModelProvider;
-import org.jboss.tools.common.model.ui.ModelUIImages;
+import org.jboss.tools.esb.project.ui.ESBSharedImages;
 
 public class ESBComponentExportWizard extends J2EEArtifactExportWizard
 		implements IExportWizard {
@@ -36,6 +36,6 @@ public class ESBComponentExportWizard extends J2EEArtifactExportWizard
 	}
 
 	protected void doInit() {
-		setDefaultPageImageDescriptor(ModelUIImages.getImageDescriptor(ModelUIImages.WIZARD_NEW_PROJECT));
+		setDefaultPageImageDescriptor(ESBSharedImages.getImageDescriptor(ESBSharedImages.WIZARD_NEW_PROJECT));
 	}
 }

@@ -29,10 +29,10 @@ import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectTemplate;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.web.ui.internal.wizards.NewProjectDataModelFacetWizard;
-import org.jboss.tools.common.model.ui.ModelUIImages;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
+import org.jboss.tools.esb.project.ui.ESBSharedImages;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.wizards.pages.ESBProjectFirstPage;
 
@@ -41,13 +41,13 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 
 	public ESBProjectWizard() {
 		setWindowTitle(JBossESBUIMessages.ESBProjectWizard_Title);
-		setDefaultPageImageDescriptor(ModelUIImages.getImageDescriptor(ModelUIImages.WIZARD_NEW_PROJECT));
+		setDefaultPageImageDescriptor(ESBSharedImages.getImageDescriptor(ESBSharedImages.WIZARD_NEW_PROJECT));
 	}
 
 	public ESBProjectWizard(IDataModel model) {
 		super(model);
 		setWindowTitle(JBossESBUIMessages.ESBProjectWizard_Title);
-		setDefaultPageImageDescriptor(ModelUIImages.getImageDescriptor(ModelUIImages.WIZARD_NEW_PROJECT));
+		setDefaultPageImageDescriptor(ESBSharedImages.getImageDescriptor(ESBSharedImages.WIZARD_NEW_PROJECT));
 		
 	}
 
@@ -63,7 +63,7 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 
 	@Override
 	protected ImageDescriptor getDefaultPageImageDescriptor() {
-		return ModelUIImages.getImageDescriptor(ModelUIImages.WIZARD_NEW_PROJECT);
+		return ESBSharedImages.getImageDescriptor(ESBSharedImages.WIZARD_NEW_PROJECT);
 	}
 
 	@Override
