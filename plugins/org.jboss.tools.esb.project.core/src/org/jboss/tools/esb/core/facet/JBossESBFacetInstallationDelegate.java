@@ -11,6 +11,7 @@
 package org.jboss.tools.esb.core.facet;
 
 import java.io.ByteArrayInputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.eclipse.core.resources.IFile;
@@ -18,14 +19,11 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
@@ -37,7 +35,6 @@ import org.eclipse.wst.common.componentcore.resources.IVirtualFolder;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IDelegate;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
-import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 
 public class JBossESBFacetInstallationDelegate implements IDelegate {
 
@@ -48,11 +45,12 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 	public void execute(IProject project, IProjectFacetVersion fv,
 			Object config, IProgressMonitor monitor) throws CoreException {
 		model = (IDataModel) config;
-		final IJavaProject jproj = JavaCore.create(project);
 
 		createProjectStructure(project);
-
 		
+		
+		final IJavaProject jproj = JavaCore.create(project);
+
 		// Add WTP natures.
 		WtpUtils.addNatures(project);
 
@@ -64,26 +62,31 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		} catch (Exception e) {
 			c = ComponentCore.createComponent(project);
 		}
-
-		String outputLoc = jproj.readOutputLocation().removeFirstSegments(1).toString();
+		
+		
 		c.create(0, null);
-		c.setMetaProperty("java-output-path", outputLoc);
+		//String esbContent = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
+		c.setMetaProperty("java-output-path", "/build/classes/");
 
 		final IVirtualFolder jbiRoot = c.getRootFolder();
 
-		// Map the esbcontent to root for deploy
-		String resourcesFolder = model.getStringProperty(
-				IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
+		// Create directory structure
+		/*String srcFolder = null;
+		srcFolder = model
+				.getStringProperty(IJBossESBFacetDataModelProperties.ESB_SOURCE_FOLDER);
+		jbiRoot.createLink(new Path("/" + srcFolder), 0, null);*/
+		String resourcesFolder = model
+				.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		jbiRoot.createLink(new Path("/" + resourcesFolder), 0, null);
 		
 		
-		final IVirtualFolder jsrc = c.getRootFolder().getFolder("/"); //$NON-NLS-1$
-		final IClasspathEntry[] cp2 = jproj.getRawClasspath();
-		for (int i = 0; i < cp2.length; i++) {
-			final IClasspathEntry cpe = cp2[i];
+		final IVirtualFolder jsrc = c.getRootFolder().getFolder("/esbcontent"); //$NON-NLS-1$
+		final IClasspathEntry[] cp = jproj.getRawClasspath();
+		for (int i = 0; i < cp.length; i++) {
+			final IClasspathEntry cpe = cp[i];
 			if (cpe.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 				if( cpe.getPath().removeFirstSegments(1).segmentCount() > 0 )
-					jsrc.createLink(new Path(outputLoc), 0, null);
+					jsrc.createLink(cpe.getPath().removeFirstSegments(1), 0, null);
 			}
 		}
 		
@@ -99,6 +102,11 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		
 		ClasspathHelper.removeClasspathEntries(project, fv);
 		ClasspathHelper.addClasspathEntries(project, fv);
+		
+		//String prjName = model.getStringProperty(IFacetDataModelProperties.FACET_PROJECT_NAME);
+		//IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(prjName);
+		
+
 	}
 	
 	private IFile createJBossESBXML(IFolder folder) throws CoreException{
@@ -118,13 +126,6 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 	private void createProjectStructure(IProject project) throws CoreException{
 		String strContentFolder = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		project.setPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER, strContentFolder);
-		
-		String qualifier = ESBProjectCorePlugin.getDefault().getDescriptor().getUniqueIdentifier();
-		IScopeContext context = new ProjectScope(project);
-		IEclipsePreferences node = context.getNode(qualifier);
-		if (node != null)
-			node.putDouble(IJBossESBFacetDataModelProperties.ESB_PROJECT_VERSION, 2.0);
-
 		IFolder esbContent = project.getFolder(strContentFolder);
 		if(!esbContent.exists()) {
 			esbContent.create(true, true, null);			
