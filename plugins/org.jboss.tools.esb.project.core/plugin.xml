@@ -209,4 +209,14 @@
              containerID="org.jboss.esb.runtime.classpath">
        </filteredClasspathContainer>
     </extension>
+    
+    
+    <extension
+         point="org.eclipse.wst.common.modulecore.componentimpl">
+      <componentimpl
+            typeID="jst.jboss.esb"
+            class="org.jboss.tools.esb.core.component.ESBVirtualComponent">
+      </componentimpl>
+   </extension>
+    
 </plugin>
