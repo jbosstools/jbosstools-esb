@@ -16,8 +16,9 @@ import junit.framework.TestSuite;
 public class ESBAllTests {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test ESB model");		
-		suite.addTestSuite(ESBModelTest.class);		
+		TestSuite suite = new TestSuite("Test ESB Corel");
+		suite.addTestSuite(EsbPluginsLoadTest.class);
+		suite.addTestSuite(ESBModelTest.class);	
 		return suite;
 	}
 

@@ -31,13 +31,9 @@ public class ESBModelTest extends TestCase {
 	public ESBModelTest() {}
 	
 	public void setUp() throws Exception {
-		provider = new TestProjectProvider("org.jboss.tools.esb.core.test", null, "Test", false); 
+		provider = new TestProjectProvider("org.jboss.tools.esb.core.test", null, "Test", true); 
 		project = provider.getProject();
-		try {
-			project.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		project.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 	}
 
 /*
