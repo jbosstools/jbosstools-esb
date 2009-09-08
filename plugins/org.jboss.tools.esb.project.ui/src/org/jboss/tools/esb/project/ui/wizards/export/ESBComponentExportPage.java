@@ -52,7 +52,7 @@ public class ESBComponentExportPage extends J2EEModuleExportPage {
 	}
 
 	protected String getCompnentID() {
-		return "test9"; //$NON-NLS-1$
+		return "JST_JBOSS_ESB"; //$NON-NLS-1$
 	}
 
 }
