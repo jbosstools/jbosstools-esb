@@ -11,10 +11,10 @@
 package org.jboss.tools.esb.project.ui.wizards.export;
 
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
-import org.jboss.tools.as.wst.server.ui.xpl.J2EEModuleExportOperation;
+import org.jboss.ide.eclipse.as.wtp.core.vcf.ModuleExportOperation;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 
-public class ESBComponentExportOperation extends J2EEModuleExportOperation {
+public class ESBComponentExportOperation extends ModuleExportOperation {
 	public ESBComponentExportOperation() {
 		super();
 	}
