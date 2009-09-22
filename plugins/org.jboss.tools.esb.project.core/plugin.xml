@@ -81,6 +81,24 @@
             </and>
          </constraint>
       </project-facet-version>
+      <project-facet-version
+            facet="jst.jboss.esb"
+            version="4.6">
+         <group-member
+               id="modules">
+         </group-member>
+         <constraint>
+            <and>
+               <conflicts
+                     group="modules">
+               </conflicts>
+               <requires
+                     facet="jst.java"
+                     version="[5.0">
+               </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
       <action
             facet="jst.jboss.esb"
             id="jst.jboss.esb.install"
@@ -110,21 +128,21 @@
       <supported>
          <facet
                id="jst.jboss.esb"
-               version="4.2,4.3,4.4,4.5">
+               version="4.2,4.3,4.4,4.5,4.6">
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.as.runtime.component"
-               version="4.2">
+               version="4.2,5.0,5.1">
          </runtime-component>
       </supported>
       <supported>
          <facet
                id="jst.jboss.esb"
-               version="4.2,4.3,4.4,4.5">
+               version="4.2,4.3,4.4,4.5,4.6">
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.eap.runtime.component"
-               version="4.3">
+               version="4.3,5.0">
          </runtime-component>
       </supported>
    </extension>
@@ -163,7 +181,7 @@
              projects="true">
           <moduleType
                 types="jst.jboss.esb"
-                versions="4.2,4.3,4.4,4.5">
+                versions="4.2,4.3,4.4,4.5,4.6">
           </moduleType>
        </moduleFactory>
     </extension>
@@ -209,4 +227,14 @@
              containerID="org.jboss.esb.runtime.classpath">
        </filteredClasspathContainer>
     </extension>
+    
+    
+    <extension
+         point="org.eclipse.wst.common.modulecore.componentimpl">
+      <componentimpl
+            typeID="jst.jboss.esb"
+            class="org.jboss.tools.esb.core.component.ESBVirtualComponent">
+      </componentimpl>
+   </extension>
+    
 </plugin>

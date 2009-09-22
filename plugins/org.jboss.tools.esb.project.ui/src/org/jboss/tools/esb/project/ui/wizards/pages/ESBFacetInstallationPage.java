@@ -644,7 +644,14 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	protected void initializeConfigVersionCombo(Combo cmVersions, String currentName, String version) {
 		cmVersions.removeAll();
 		cmVersions.add("1.0.1"); //$NON-NLS-1$
-		if(version != null && version.equals("4.5")) { //$NON-NLS-1$
+		double versionNumber = 0.0;
+		try{
+		versionNumber = Double.valueOf(version);
+		}
+		catch(NumberFormatException ex){
+			versionNumber = 0.0;
+		}
+		if(versionNumber >= 4.5) { //$NON-NLS-1$
 			cmVersions.add("1.1.0"); //$NON-NLS-1$
 		}
 		int index = cmVersions.getItemCount() - 1;
