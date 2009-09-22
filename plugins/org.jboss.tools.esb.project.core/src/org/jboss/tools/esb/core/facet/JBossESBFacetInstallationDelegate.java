@@ -29,6 +29,7 @@ import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jst.common.frameworks.CommonFrameworksPlugin;
 import org.eclipse.jst.common.project.facet.WtpUtils;
 import org.eclipse.jst.common.project.facet.core.ClasspathHelper;
 import org.eclipse.wst.common.componentcore.ComponentCore;
@@ -49,12 +50,11 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 	public void execute(IProject project, IProjectFacetVersion fv,
 			Object config, IProgressMonitor monitor) throws CoreException {
 		model = (IDataModel) config;
-
-		createProjectStructure(project);
-		
-		
 		final IJavaProject jproj = JavaCore.create(project);
 
+		createProjectStructure(project);
+
+		
 		// Add WTP natures.
 		WtpUtils.addNatures(project);
 
@@ -66,31 +66,26 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		} catch (Exception e) {
 			c = ComponentCore.createComponent(project);
 		}
-		
-		
+
+		String outputLoc = jproj.readOutputLocation().removeFirstSegments(1).toString();
 		c.create(0, null);
-		//String esbContent = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
-		c.setMetaProperty("java-output-path", "/build/classes/");
+		c.setMetaProperty("java-output-path", outputLoc);
 
 		final IVirtualFolder jbiRoot = c.getRootFolder();
 
-		// Create directory structure
-		/*String srcFolder = null;
-		srcFolder = model
-				.getStringProperty(IJBossESBFacetDataModelProperties.ESB_SOURCE_FOLDER);
-		jbiRoot.createLink(new Path("/" + srcFolder), 0, null);*/
-		String resourcesFolder = model
-				.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
+		// Map the esbcontent to root for deploy
+		String resourcesFolder = model.getStringProperty(
+				IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		jbiRoot.createLink(new Path("/" + resourcesFolder), 0, null);
 		
 		
-		final IVirtualFolder jsrc = c.getRootFolder().getFolder("/esbcontent"); //$NON-NLS-1$
-		final IClasspathEntry[] cp = jproj.getRawClasspath();
-		for (int i = 0; i < cp.length; i++) {
-			final IClasspathEntry cpe = cp[i];
+		final IVirtualFolder jsrc = c.getRootFolder().getFolder("/"); //$NON-NLS-1$
+		final IClasspathEntry[] cp2 = jproj.getRawClasspath();
+		for (int i = 0; i < cp2.length; i++) {
+			final IClasspathEntry cpe = cp2[i];
 			if (cpe.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 				if( cpe.getPath().removeFirstSegments(1).segmentCount() > 0 )
-					jsrc.createLink(cpe.getPath().removeFirstSegments(1), 0, null);
+					jsrc.createLink(new Path(outputLoc), 0, null);
 			}
 		}
 		
@@ -106,11 +101,6 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		
 		ClasspathHelper.removeClasspathEntries(project, fv);
 		ClasspathHelper.addClasspathEntries(project, fv);
-		
-		//String prjName = model.getStringProperty(IFacetDataModelProperties.FACET_PROJECT_NAME);
-		//IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(prjName);
-		
-
 	}
 	
 	private IFile createJBossESBXML(IFolder folder) throws CoreException{
