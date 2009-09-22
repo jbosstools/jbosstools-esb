@@ -48,9 +48,9 @@ public class JBossESBModuleDelegate extends JBTProjectModuleDelegate implements 
 		if (node != null) {
 			double d = node.getDouble(IJBossESBFacetDataModelProperties.ESB_PROJECT_VERSION, 1.0);
 			if( d < 2.0 ) 
-				return super.members();
+				return legacyMembers();
 		}
-		return legacyMembers();
+		return super.members();
 	}
 	
 	public IModuleResource[] legacyMembers() throws CoreException {
