@@ -11,8 +11,11 @@
 package org.jboss.tools.esb.core.facet;
 
 import java.io.ByteArrayInputStream;
-import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -22,6 +25,7 @@ import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
@@ -29,16 +33,22 @@ import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jst.common.frameworks.CommonFrameworksPlugin;
 import org.eclipse.jst.common.project.facet.WtpUtils;
 import org.eclipse.jst.common.project.facet.core.ClasspathHelper;
 import org.eclipse.wst.common.componentcore.ComponentCore;
+import org.eclipse.wst.common.componentcore.datamodel.properties.ICreateReferenceComponentsDataModelProperties;
+import org.eclipse.wst.common.componentcore.internal.operation.CreateReferenceComponentsDataModelProvider;
+import org.eclipse.wst.common.componentcore.internal.util.IComponentImplFactory;
 import org.eclipse.wst.common.componentcore.resources.IVirtualComponent;
 import org.eclipse.wst.common.componentcore.resources.IVirtualFolder;
+import org.eclipse.wst.common.frameworks.datamodel.DataModelFactory;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
+import org.eclipse.wst.common.frameworks.datamodel.IDataModelProvider;
 import org.eclipse.wst.common.project.facet.core.IDelegate;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.jboss.ide.eclipse.as.wtp.core.vcf.OutputFoldersVirtualComponent;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
+import org.jboss.tools.esb.core.component.ESBVirtualComponent;
 import org.osgi.service.prefs.BackingStoreException;
 
 public class JBossESBFacetInstallationDelegate implements IDelegate {
@@ -58,38 +68,32 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		// Add WTP natures.
 		WtpUtils.addNatures(project);
 
-		// Setup the flexible project structure.
-		IVirtualComponent c = null;
-		try {
-			Method createMethod = ComponentCore.class.getMethod("createComponent", IProject.class, boolean.class);
-			c = (IVirtualComponent)createMethod.invoke(null, project, false);
-		} catch (Exception e) {
-			c = ComponentCore.createComponent(project);
-		}
+		// Setup the flexible project structure
+		
+		/* 
+		 * This is necessary because at time, the project has NO facets
+		 * So a call to createComponent(etc) returns a default implementation.
+		 * Today, this WTP default implementation does not handle  
+		 * new reference types in an acceptable fashion 
+		 * (Does not use extension point). 
+		 */
+		IComponentImplFactory factory = new ESBVirtualComponent();
+		IVirtualComponent newComponent = factory.createComponent(project);
 
 		String outputLoc = jproj.readOutputLocation().removeFirstSegments(1).toString();
-		c.create(0, null);
-		c.setMetaProperty("java-output-path", outputLoc);
-
-		final IVirtualFolder jbiRoot = c.getRootFolder();
+		newComponent.create(0, null);
+		newComponent.setMetaProperty("java-output-path", outputLoc);
+		
+		final IVirtualFolder jbiRoot = newComponent.getRootFolder();
 
 		// Map the esbcontent to root for deploy
 		String resourcesFolder = model.getStringProperty(
 				IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		jbiRoot.createLink(new Path("/" + resourcesFolder), 0, null);
-		
-		
-		final IVirtualFolder jsrc = c.getRootFolder().getFolder("/"); //$NON-NLS-1$
-		final IClasspathEntry[] cp2 = jproj.getRawClasspath();
-		for (int i = 0; i < cp2.length; i++) {
-			final IClasspathEntry cpe = cp2[i];
-			if (cpe.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
-				if( cpe.getPath().removeFirstSegments(1).segmentCount() > 0 )
-					jsrc.createLink(new Path(outputLoc), 0, null);
-			}
-		}
-		
+				
 		//addESBNature(project);
+		IVirtualComponent outputFoldersComponent = new OutputFoldersVirtualComponent(project, newComponent);
+		addReference(outputFoldersComponent, newComponent, "/", null);
 
 		
 		JBossClassPathCommand command = new JBossClassPathCommand(project,
@@ -101,6 +105,32 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		
 		ClasspathHelper.removeClasspathEntries(project, fv);
 		ClasspathHelper.addClasspathEntries(project, fv);
+	}
+	
+	private void addReference(IVirtualComponent component, IVirtualComponent rootComponent, String path, String archiveName) {
+		IDataModelProvider provider = new CreateReferenceComponentsDataModelProvider();
+		IDataModel dm = DataModelFactory.createDataModel(provider);
+		
+		dm.setProperty(ICreateReferenceComponentsDataModelProperties.SOURCE_COMPONENT, rootComponent);
+		dm.setProperty(ICreateReferenceComponentsDataModelProperties.TARGET_COMPONENT_LIST, Arrays.asList(component));
+		
+		//[Bug 238264] the uri map needs to be manually set correctly
+		Map<IVirtualComponent, String> uriMap = new HashMap<IVirtualComponent, String>();
+		uriMap.put(component, archiveName);
+		dm.setProperty(ICreateReferenceComponentsDataModelProperties.TARGET_COMPONENTS_TO_URI_MAP, uriMap);
+        dm.setProperty(ICreateReferenceComponentsDataModelProperties.TARGET_COMPONENTS_DEPLOY_PATH, path);
+
+		IStatus stat = dm.validateProperty(ICreateReferenceComponentsDataModelProperties.TARGET_COMPONENT_LIST);
+		Throwable t = stat.getException();
+		if (stat == null || stat.isOK()) {
+			try {
+				dm.getDefaultOperation().execute(new NullProgressMonitor(), null);
+				return;
+			} catch (ExecutionException e) {
+				t = e;
+			}	
+		}
+		// TODO Log exception e
 	}
 	
 	private IFile createJBossESBXML(IFolder folder) throws CoreException{
@@ -141,6 +171,8 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		esbContent.getFolder("lib").create(true, true, null);
 		esbContent.getFolder("META-INF").create(true, true, null);
 		createJBossESBXML(esbContent.getFolder("META-INF"));
+		
+		
 		
 		project.refreshLocal(IResource.DEPTH_ZERO, null);
 	}
