@@ -11,11 +11,7 @@
 package org.jboss.tools.esb.core.facet;
 
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -25,27 +21,21 @@ import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
-import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jst.common.project.facet.WtpUtils;
 import org.eclipse.jst.common.project.facet.core.ClasspathHelper;
-import org.eclipse.wst.common.componentcore.ComponentCore;
-import org.eclipse.wst.common.componentcore.datamodel.properties.ICreateReferenceComponentsDataModelProperties;
-import org.eclipse.wst.common.componentcore.internal.operation.CreateReferenceComponentsDataModelProvider;
 import org.eclipse.wst.common.componentcore.internal.util.IComponentImplFactory;
 import org.eclipse.wst.common.componentcore.resources.IVirtualComponent;
 import org.eclipse.wst.common.componentcore.resources.IVirtualFolder;
-import org.eclipse.wst.common.frameworks.datamodel.DataModelFactory;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
-import org.eclipse.wst.common.frameworks.datamodel.IDataModelProvider;
 import org.eclipse.wst.common.project.facet.core.IDelegate;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.jboss.ide.eclipse.as.wtp.core.util.VCFUtil;
 import org.jboss.ide.eclipse.as.wtp.core.vcf.OutputFoldersVirtualComponent;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.component.ESBVirtualComponent;
@@ -93,7 +83,7 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 				
 		//addESBNature(project);
 		IVirtualComponent outputFoldersComponent = new OutputFoldersVirtualComponent(project, newComponent);
-		addReference(outputFoldersComponent, newComponent, "/", null);
+		VCFUtil.addReference(outputFoldersComponent, newComponent, "/", null);
 
 		
 		JBossClassPathCommand command = new JBossClassPathCommand(project,
@@ -107,31 +97,6 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		ClasspathHelper.addClasspathEntries(project, fv);
 	}
 	
-	private void addReference(IVirtualComponent component, IVirtualComponent rootComponent, String path, String archiveName) {
-		IDataModelProvider provider = new CreateReferenceComponentsDataModelProvider();
-		IDataModel dm = DataModelFactory.createDataModel(provider);
-		
-		dm.setProperty(ICreateReferenceComponentsDataModelProperties.SOURCE_COMPONENT, rootComponent);
-		dm.setProperty(ICreateReferenceComponentsDataModelProperties.TARGET_COMPONENT_LIST, Arrays.asList(component));
-		
-		//[Bug 238264] the uri map needs to be manually set correctly
-		Map<IVirtualComponent, String> uriMap = new HashMap<IVirtualComponent, String>();
-		uriMap.put(component, archiveName);
-		dm.setProperty(ICreateReferenceComponentsDataModelProperties.TARGET_COMPONENTS_TO_URI_MAP, uriMap);
-        dm.setProperty(ICreateReferenceComponentsDataModelProperties.TARGET_COMPONENTS_DEPLOY_PATH, path);
-
-		IStatus stat = dm.validateProperty(ICreateReferenceComponentsDataModelProperties.TARGET_COMPONENT_LIST);
-		Throwable t = stat.getException();
-		if (stat == null || stat.isOK()) {
-			try {
-				dm.getDefaultOperation().execute(new NullProgressMonitor(), null);
-				return;
-			} catch (ExecutionException e) {
-				t = e;
-			}	
-		}
-		// TODO Log exception e
-	}
 	
 	private IFile createJBossESBXML(IFolder folder) throws CoreException{
 		StringBuffer emptyESB = new StringBuffer();
