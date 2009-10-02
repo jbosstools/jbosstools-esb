@@ -42,7 +42,7 @@ public class JBossESBModuleDelegate extends JBTProjectModuleDelegate implements 
 
 	public IModuleResource[] members() throws CoreException {
 		IProject p = getProject();
-		String qualifier = ESBProjectCorePlugin.getDefault().getDescriptor().getUniqueIdentifier();
+		String qualifier = ESBProjectCorePlugin.getDefault().getBundle().getSymbolicName();
 		IScopeContext context = new ProjectScope(p);
 		IEclipsePreferences node = context.getNode(qualifier);
 		if (node != null) {
