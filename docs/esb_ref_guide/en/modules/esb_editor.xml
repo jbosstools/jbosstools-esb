@@ -128,6 +128,14 @@
                 </imageobject>
             </mediaobject>
         </figure>
+    	
+    	<note>
+    		<title>Note:</title>
+    		<para>The out-of-the-box action <emphasis>
+    			<property>Smooks Transformer</property></emphasis> is now deprecated, and replaced by
+    			<emphasis>
+    				<property>Smooks Action</property>.</emphasis></para>
+    	</note>
 
         <para>As you can see on the bath figures above, the context menu will also prompt you to
             insert one of the Actions that are supplied out-of-the-box with <property>JBoss
@@ -262,6 +270,34 @@
                         </figure>
              </section> -->
         </section>
+    	
+    	<section id="openOn_for_esb">
+    		<title>OpenOn for ESB XML file</title>
+    		<para>ESB file comes with the OpenOn feature that allows to make use of multiple file references in the file just with a click and the <emphasis>
+    			<property>Ctrl</property></emphasis> key hold down.</para>
+    		
+    		<para>The OpenOn is implemented for different types of files/pages inside the <literal>&lt;action&gt;</literal> tag: .xsd, .xml, etc.</para>
+    		
+    		<figure>
+    			<title>OpenOn for smooks configuration file</title>
+    			<mediaobject>
+    				<imageobject>
+    					<imagedata fileref="images/esb_editor/openOn2.png"/>
+    				</imageobject>
+    			</mediaobject>
+    		</figure>
+    		
+    		<para>It is also available for classes:</para>
+    		
+    		<figure>
+    			<title>OpenOn for classes</title>
+    			<mediaobject>
+    				<imageobject>
+    					<imagedata fileref="images/esb_editor/openOn1.png"/>
+    				</imageobject>
+    			</mediaobject>
+    		</figure>
+    	</section>
 
         <section id="FullControlOverSourceFiles-SynchronizedSourcAndVisualEditing">
 
