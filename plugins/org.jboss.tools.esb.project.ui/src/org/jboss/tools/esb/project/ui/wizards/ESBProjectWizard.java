@@ -40,6 +40,7 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 		INewWizard {
 
 	public ESBProjectWizard() {
+		super();
 		setWindowTitle(JBossESBUIMessages.ESBProjectWizard_Title);
 		setDefaultPageImageDescriptor(ESBSharedImages.getImageDescriptor(ESBSharedImages.WIZARD_NEW_PROJECT));
 	}
