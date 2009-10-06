@@ -14,11 +14,6 @@
       <keys path="help/keys-esb-lists.properties"/>
    </extension>
 
-   	<extension
-		point="org.eclipse.wst.xml.core.catalogContributions">
-		<catalogContribution id="default">
-		</catalogContribution>
-	</extension>	
 
 	<extension point="org.jboss.tools.common.model.classes">
 		<xclass id="org.jboss.tools.esb.core.model.ESBFileImpl"
@@ -45,15 +40,15 @@
 
          <uri 
             name="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.xsd" 
-            uri="schemas/jbossesb-1.0.xsd"/>
+            uri="platform:/plugin/org.jboss.tools.esb.core/schemas/jbossesb-1.0.xsd"/>
 
          <uri 
             name="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd" 
-            uri="schemas/jbossesb-1.0.1.xsd"/>
+            uri="platform:/plugin/org.jboss.tools.esb.core/schemas/jbossesb-1.0.1.xsd"/>
 
          <uri 
             name="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd" 
-            uri="schemas/jbossesb-1.1.0.xsd"/>
+            uri="platform:/plugin/org.jboss.tools.esb.core/schemas/jbossesb-1.1.0.xsd"/>
 
       </catalogContribution>
    </extension>

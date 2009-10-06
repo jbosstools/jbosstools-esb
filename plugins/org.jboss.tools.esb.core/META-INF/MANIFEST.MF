@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
-Bundle-ClassPath: esb.jar
 Bundle-Activator: org.jboss.tools.esb.core.ESBCorePlugin
 Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
