@@ -90,6 +90,71 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionBusinessRulesProcessor101">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+   <XChildEntity name="ESBPreObjectPath"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="content based router action"
+    loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.BusinessRulesProcessor"
+    name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="rule set" xmlname="ruleSet"/>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="rule language" xmlname="ruleLanguage"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    default="Default(false)" name="rule reload" xmlname="ruleReload">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Constraint loader="ListString">
+     <value name="process"/>
+     <value name="split"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Object Path..." kind="action" name="AddObjectPath">
+     <EntityData EntityName="ESBPreObjectPath">
+      <AttributeData AttributeName="esb"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="action" name="ESBPreActionByteArrayToString101">
   <XChildrenEntities>
@@ -1082,6 +1147,50 @@
  </XModelEntity>
  <XModelEntity
   ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=path"
+  XMLSUBPATH="object-path" name="ESBPreObjectPath">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="route to" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="esb" xmlname="esb"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
+    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
+     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
+    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
+     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
+   </XActionItem>
+   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
+    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
+     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" kind="list" name="Properties">
+    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
+     displayName="Properties..." kind="action" name="Properties"/>
+   </XActionItem>
+   <XActionItem displayName="move" kind="list" name="MoveActions">
+    <XActionItem HIDE="always" HandlerClassName="%Move%"
+     ICON="action.move" displayName="Move" kind="action" name="Move"/>
+   </XActionItem>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=route"
   XMLSUBPATH="route-to" name="ESBPreRouteTo">
   <XChildrenEntities/>
@@ -1202,6 +1311,7 @@
    <XChildEntity name="ESBPreActionSOAPClient101"/>
    <XChildEntity name="ESBPreActionSystemPrintln101"/>
    <XChildEntity name="ESBPreActionNotifier101"/>
+   <XChildEntity name="ESBPreActionBusinessRulesProcessor101"/>
   </XChildrenEntities>
   <XActionItem kind="list">
    <XActionItem ICON="action.empty" displayName="New" group="1"
@@ -1378,6 +1488,15 @@
        <AttributeData AttributeName="message"/>
       </EntityData>
      </XActionItem>
+     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+      PROPERTIES="validator.add=true" WizardClassName="%Default%"
+      displayName="Business Rules Processor..." kind="action" name="AddBusinessRulesProcessor">
+      <EntityData EntityName="ESBPreActionBusinessRulesProcessor101">
+       <AttributeData AttributeName="name"/>
+       <AttributeData AttributeName="process" Mandatory="no"/>
+       <AttributeData AttributeName="rule set"/>
+      </EntityData>
+     </XActionItem>
     </XActionItem>
    </XActionItem>
   </XActionItem>
@@ -1403,21 +1522,20 @@
    <XChildEntity name="ESBPreActionSOAPClient101"/>
    <XChildEntity name="ESBPreActionSystemPrintln101"/>
    <XChildEntity name="ESBPreActionNotifier101"/>
+   <XChildEntity name="ESBPreActionBusinessRulesProcessor101"/>
   </XChildrenEntities>
   <XActionItem kind="list">
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
     <XActionItem displayName="Add Pre-Packed Action" kind="list" name="PrePackedAction">
-     <XActionItemReference entity="ESBActions101" name="AddObjectInvoke" path="CreateActions/AddObjectInvoke"/>
-     <XActionItemReference entity="ESBActions101" name="Converters" path="CreateActions/Converters"/>
-     <XActionItemReference entity="ESBActions101"
-      name="AddCommandInterpreter" path="CreateActions/AddCommandInterpreter"/>
-     <XActionItemReference entity="ESBActions101"
-      name="AddGroovyProcessor" path="CreateActions/AddGroovyProcessor"/>
-     <XActionItemReference entity="ESBActions101" name="Routers" path="CreateActions/Routers"/>
-     <XActionItemReference entity="ESBActions101" name="SOAP" path="CreateActions/SOAP"/>
-     <XActionItemReference entity="ESBActions101"
-      name="AddSystemPrintln" path="CreateActions/AddSystemPrintln"/>
+     <XActionItemReference entity="ESBActions101" name="AddObjectInvoke"/>
+     <XActionItemReference entity="ESBActions101" name="Converters"/>
+     <XActionItemReference entity="ESBActions101" name="AddCommandInterpreter"/>
+     <XActionItemReference entity="ESBActions101" name="AddGroovyProcessor"/>
+     <XActionItemReference entity="ESBActions101" name="Routers"/>
+     <XActionItemReference entity="ESBActions101" name="SOAP"/>
+     <XActionItemReference entity="ESBActions101" name="AddSystemPrintln"/>
+     <XActionItemReference entity="ESBActions101" name="AddBusinessRulesProcessor"/>
     </XActionItem>
    </XActionItem>
   </XActionItem>

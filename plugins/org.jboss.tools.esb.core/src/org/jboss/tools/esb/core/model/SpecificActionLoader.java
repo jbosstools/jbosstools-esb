@@ -23,6 +23,7 @@ import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 import org.jboss.tools.esb.core.ESBCorePlugin;
 import org.jboss.tools.esb.core.model.converters.AliasConverter;
 import org.jboss.tools.esb.core.model.converters.NotificationConverter;
+import org.jboss.tools.esb.core.model.converters.ObjectPathConverter;
 import org.jboss.tools.esb.core.model.converters.RouteToConverter;
 
 /**
@@ -75,6 +76,8 @@ public class SpecificActionLoader implements ESBConstants {
 			//wsdl, operation +other
 		{"org.jboss.soa.esb.actions.SystemPrintln", "ESBPreActionSystemPrintln"},
 			//message, printfull, outputstream
+		{"org.jboss.soa.esb.actions.BusinessRulesProcessor", "ESBPreActionBusinessRulesProcessor"},
+			//ruleSet, ruleLanguage, ruleReload, object-paths!
 	};
 
 	public static final SpecificActionLoader instance = new SpecificActionLoader();
@@ -173,6 +176,8 @@ public class SpecificActionLoader implements ESBConstants {
 				new AliasConverter().toSpecific(basic, action);
 			} else if("route".equals(converter)) {
 				new RouteToConverter().toSpecific(basic, action);
+			} else if("path".equals(converter)) {
+				new ObjectPathConverter().toSpecific(basic, action);
 			} else if("notification".equals(converter)) {
 				new NotificationConverter().toSpecific(basic, action);
 			}
@@ -230,6 +235,8 @@ public class SpecificActionLoader implements ESBConstants {
 				new AliasConverter().toBasic(result, action);
 			} else if("route".equals(converter)) {
 				new RouteToConverter().toBasic(result, action);
+			} else if("path".equals(converter)) {
+				new ObjectPathConverter().toBasic(result, action);
 			} else if("notification".equals(converter)) {
 				new NotificationConverter().toBasic(result, action);
 			}
