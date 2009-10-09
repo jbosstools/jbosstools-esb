@@ -149,4 +149,12 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddRouteTo") //$NON-NLS-1$
 	);
 
+	static IFormData ESB_OBJECT_PATH_LIST_DEFINITION = new FormData(
+		"Object Paths List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("esb", 100)}, 
+		new String[]{ENT_ESB_OBJECT_PATH},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddObjectPath") //$NON-NLS-1$
+	);
+
 }
