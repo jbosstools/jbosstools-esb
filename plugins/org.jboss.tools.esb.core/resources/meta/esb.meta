@@ -121,32 +121,10 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general" name="in xsd"
-    visibility="false" xmlname="inXsd">
-    <Constraint loader="ListString">
-     <value name="RequestResponse"/>
-     <value name="OneWay"/>
-    </Constraint>
-    <Editor name="ListString"/>
-   </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general" name="out xsd"
-    visibility="false" xmlname="outXsd">
-    <Constraint loader="ListString">
-     <value name="RequestResponse"/>
-     <value name="OneWay"/>
-    </Constraint>
-    <Editor name="ListString"/>
-   </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general" name="fault xsd"
-    visibility="false" xmlname="faultXsd">
-    <Constraint loader="ListString">
-     <value name="RequestResponse"/>
-     <value name="OneWay"/>
-    </Constraint>
-    <Editor name="ListString"/>
-   </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=advanced" name="webservice"
-    visibility="false" xmlname="webservice">
+   <XModelAttribute PROPERTIES="category=advanced" name="in xsd" xmlname="inXsd"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="out xsd" xmlname="outXsd"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="fault xsd" xmlname="faultXsd"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="webservice" xmlname="webservice">
     <Constraint loader="ListString">
      <value/>
      <value name="true"/>
@@ -154,8 +132,7 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=advanced" name="validate"
-    visibility="false" xmlname="validate">
+   <XModelAttribute PROPERTIES="category=advanced" name="validate" xmlname="validate">
     <Constraint loader="ListString">
      <value/>
      <value name="true"/>
