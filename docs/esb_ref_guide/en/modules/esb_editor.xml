@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <chapter id="esb_editor" xreflabel="esb_editor" role="updated">
     <?dbhtml filename="esbEditor.html"?>
     <chapterinfo>
@@ -244,7 +244,7 @@
 
             <para>Content Assist for attributes:</para>
             <figure>
-                <title>Content Assist for attributes:</title>
+                <title>Content Assist for attributes</title>
                 <mediaobject>
                     <imageobject>
                         <imagedata fileref="images/esb_editor/09_esb_features.png" scale="80"/>
