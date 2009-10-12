@@ -102,7 +102,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="content based router action"
+   <XModelAttribute default="business rules processor"
     loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
@@ -119,6 +119,15 @@
     name="rule language" xmlname="ruleLanguage"/>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     default="Default(false)" name="rule reload" xmlname="ruleReload">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    default="Default(false)" name="stateful" xmlname="stateful">
     <Constraint loader="ListString">
      <value name="Default(false)"/>
      <value name="true"/>
@@ -1161,6 +1170,7 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="esb" xmlname="esb"/>
+   <XModelAttribute PROPERTIES="category=general" name="entry point" xmlname="entry-point"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
