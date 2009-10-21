@@ -68,7 +68,7 @@ public class ESBModelTest extends TestCase {
 			errorList);
 		checkAttributeValue(object, 
 				"Providers/JBossMQ/quickstartGwChannel/Filter", 
-				"dest name", 
+				"destination name", 
 				"queue/quickstart_helloworld_file_notifier_Request_gw", 
 			errorList);
 		checkAttributeValue(object, 
@@ -110,7 +110,7 @@ public class ESBModelTest extends TestCase {
 		String ftpGatewayPath = "Services/myFileListener/Listeners/FtpGateway";
 		checkAttributeValue(object, 
 				ftpGatewayPath, 
-				"bus id ref", 
+				"channel id ref", 
 				"helloFTPChannel", 
 			errorList);
 		checkAttributeValue(object, 
@@ -143,7 +143,7 @@ public class ESBModelTest extends TestCase {
 		
 		String hibListenerPath = "Services/myJmsListener/Listeners/HibernateGateway";
 		String[][] hibListeneAttrValues = {
-			{"bus id ref", "helloHibernateChannel"},
+			{"channel id ref", "helloHibernateChannel"},
 			{"max threads", "1"},
 			{"is gateway", "true"}
 		};
@@ -172,7 +172,7 @@ public class ESBModelTest extends TestCase {
 		
 		String jbrListenerPath = "Services/MyWssService/Listeners/Http-Gateway";
 		String[][] jbrListenerAttrValues = {
-			{"bus id ref", "Http-1"},
+			{"channel id ref", "Http-1"},
 			{"max threads", "1"},
 			{"is gateway", "true"},
 		};
@@ -205,7 +205,7 @@ public class ESBModelTest extends TestCase {
 
 		String fsListenerPath = "Services/myFileListener/Listeners/FileGateway";
 		String[][] fsListenerAttrValues = {
-			{"bus id ref", "helloFileChannel"},
+			{"channel id ref", "helloFileChannel"},
 			{"max threads", "1"},
 			{"is gateway", "true"},
 			{"poll frequency seconds", "10"}
@@ -241,7 +241,7 @@ public class ESBModelTest extends TestCase {
 
 		String sqlListenerPath = "Services/myJmsListener/Listeners/SqlGateway";
 		String[][] sqlListenerAttrValues = {
-			{"bus id ref", "helloSQLChannel"},
+			{"channel id ref", "helloSQLChannel"},
 			{"max threads", "1"},
 			{"is gateway", "true"}
 		};
