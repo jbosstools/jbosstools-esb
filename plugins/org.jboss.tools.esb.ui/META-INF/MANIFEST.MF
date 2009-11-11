@@ -7,6 +7,7 @@ Bundle-Activator: org.jboss.tools.esb.ui.ESBUiPlugin
 Bundle-Vendor: %providerName
 Export-Package: org.jboss.tools.esb.ui,
  org.jboss.tools.esb.ui.editor.form,
+ org.jboss.tools.esb.ui.editor.attribute,
  org.jboss.tools.esb.ui.wizard.newfile
 Bundle-SymbolicName: org.jboss.tools.esb.ui; singleton:=true
 Bundle-Localization: plugin

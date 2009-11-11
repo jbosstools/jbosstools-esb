@@ -35,6 +35,8 @@
 	<extension point="org.jboss.tools.common.model.classes">
 		<xclass id="org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
 			class="org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"/>
+		<xclass id="org.jboss.tools.esb.ui.editor.attribute.ActionClassValueFilter"
+			class="org.jboss.tools.esb.ui.editor.attribute.ActionClassValueFilter"/>
 	</extension>
 
    <extension point="org.jboss.tools.common.model.ui.attributeAdapter">
