@@ -2,8 +2,6 @@ package org.jboss.tools.esb.ui.editor.form;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -21,20 +19,20 @@ import org.jboss.tools.common.meta.impl.XModelMetaDataImpl;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.ui.attribute.XAttributeSupport;
 import org.jboss.tools.common.model.ui.attribute.adapter.DefaultValueAdapter;
-import org.jboss.tools.common.model.ui.attribute.adapter.IModelPropertyEditorAdapter;
+import org.jboss.tools.common.model.ui.attribute.editor.IPropertyEditor;
 import org.jboss.tools.common.model.ui.attribute.editor.StringButtonFieldEditorEx;
 import org.jboss.tools.common.model.ui.forms.Form;
-import org.jboss.tools.common.model.ui.forms.FormActionData;
 import org.jboss.tools.common.model.ui.forms.FormAttributeData;
 import org.jboss.tools.common.model.ui.forms.IFormData;
 import org.jboss.tools.common.model.ui.forms.ModelFormLayoutData;
 import org.jboss.tools.common.model.ui.widgets.IWidgetSettings;
 import org.jboss.tools.common.model.util.EclipseJavaUtil;
 import org.jboss.tools.common.model.util.EclipseResourceUtil;
+import org.jboss.tools.esb.core.model.ESBConstants;
 
 public class ESBActionForm extends Form {
 	static IFormData formData = ModelFormLayoutData.createGeneralFormData(
-		XModelMetaDataImpl.getInstance().getEntity("ESBAction101")
+		XModelMetaDataImpl.getInstance().getEntity(ESBConstants.ENT_ESB_ACTION)
 	);
 	
 	static {
@@ -49,7 +47,7 @@ public class ESBActionForm extends Form {
 		Control c = super.createClientArea(parent, settings);
 		XAttributeSupport support = getSupport();
 		setProcessMethods(getSupport(), getModelObject());
-		support.getPropertyEditorAdapterByName("class").addValueChangeListener(new PCL());
+		support.addPropertyChangeListener(new PCL());
 		return c;
 	}
 
@@ -65,7 +63,13 @@ public class ESBActionForm extends Form {
 	class PCL implements PropertyChangeListener {
 
 		public void propertyChange(PropertyChangeEvent evt) {
-			setProcessMethods(getSupport(), getModelObject());
+			if(StringButtonFieldEditorEx.BUTTON_SELECTED.equals(evt.getPropertyName())
+				&& evt.getSource() == getSupport().getPropertyEditorAdapterByName("process")) {
+				setProcessMethods(getSupport(), getModelObject());
+			} else if(IPropertyEditor.VALUE.equals(evt.getPropertyName())
+				&& evt.getSource() == getSupport().getPropertyEditorAdapterByName("class")) {
+				setProcessMethods(getSupport(), getModelObject());
+			}
 		}
 		
 	}
