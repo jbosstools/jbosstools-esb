@@ -29,7 +29,6 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 	public static String EMPTY_DESCRIPTION = ""; //$NON-NLS-1$
 
 	private final static IFormData[] FORM_LAYOUT_DEFINITIONS = new IFormData[] {
-
 		
 	};
 
@@ -63,10 +62,13 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 		return data;		
 	}
 	
-	private IFormData generateDefaultFormData(XModelEntity entity) {
+	public IFormData generateDefaultFormData(XModelEntity entity) {
 		String entityName = entity.getName();
 		List<IFormData> list = new ArrayList<IFormData>();
 		IFormData g = ModelFormLayoutData.createGeneralFormData(entity);
+		if(entityName.equals(ENT_ESB_ACTION)) {
+			g = new FormData("org.jboss.tools.esb.ui.editor.form.ESBActionForm");
+		}
 		if(g != null) list.add(g);
 		if(entityName.startsWith(PREACTION_PREFIX)) {
 			if(entity.getChild(ENT_ESB_ROUTE_TO) != null) {
@@ -105,7 +107,7 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 		IFormData a = ModelFormLayoutData.createAdvancedFormData(entityName);
 		if(a != null) list.add(a);
 		IFormData[] ds = list.toArray(new IFormData[0]);
-		IFormData data = new FormData(entityName, new String[]{null}, ds);
+		IFormData data = new FormData(entityName, (String[])(null), ds);
 		return data;
 	}
 

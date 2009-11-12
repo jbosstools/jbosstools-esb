@@ -37,6 +37,11 @@
 			class="org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"/>
 		<xclass id="org.jboss.tools.esb.ui.editor.attribute.ActionClassValueFilter"
 			class="org.jboss.tools.esb.ui.editor.attribute.ActionClassValueFilter"/>
+		<xclass id="org.jboss.tools.esb.ui.editor.form.ESBActionForm"
+			class="org.jboss.tools.esb.ui.editor.form.ESBActionForm"/>
+		<xclass id="org.jboss.tools.esb.ui.wizard.AddGenericActionStep"
+			class="org.jboss.tools.esb.ui.wizard.AddGenericActionStep"/>
+			
 	</extension>
 
    <extension point="org.jboss.tools.common.model.ui.attributeAdapter">
