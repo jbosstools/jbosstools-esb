@@ -72,7 +72,12 @@
     name="class" xmlname="class">
     <Editor name="AccessibleJava"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process"/>
+   <XModelAttribute
+    PROPERTIES="category=general;separator=comma;greedy=false"
+    name="process" xmlname="process">
+    <Constraint loader="ListString"/>
+    <Editor name="ListAdd"/>
+   </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -147,8 +152,8 @@
   </XModelAttributes>
   <XActionItem kind="list">
    <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"
      displayName="Generic Action..." kind="action" name="AddAction">
      <EntityData EntityName="ESBAction101">
       <AttributeData AttributeName="name"/>

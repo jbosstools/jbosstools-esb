@@ -32,6 +32,8 @@
 			class="org.jboss.tools.esb.core.model.ESBRouteToImpl"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"/>
+		<xclass id="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"
+			class="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"/>
 			
 	</extension>
 
