@@ -34,6 +34,8 @@
 			class="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"/>
+		<xclass id="org.jboss.tools.esb.core.model.handlers.OpenSmooksConfigHandler"
+			class="org.jboss.tools.esb.core.model.handlers.OpenSmooksConfigHandler"/>
 			
 	</extension>
 

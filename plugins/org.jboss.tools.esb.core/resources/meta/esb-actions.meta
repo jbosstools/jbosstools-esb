@@ -735,6 +735,7 @@
     <Constraint loader="Tree">
      <value name="ESBResourceTree"/>
      <value name="extensions=xml"/>
+     <value name="linkAction=OpenConfig"/>
     </Constraint>
     <Editor name="TreeChooser"/>
    </XModelAttribute>
@@ -776,6 +777,10 @@
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenSmooksConfigHandler"
+    ICON="action.empty" PROPERTIES="actionpath=Open"
+    displayName="Open Config" kind="action" name="OpenConfig"/>
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
