@@ -26,7 +26,7 @@
       <xmlEditor 
             class="org.jboss.tools.jst.web.ui.editors.WebCompoundEditor" 
             contributorClass="org.jboss.tools.common.model.ui.texteditors.MultiPageContributor" 
-            entities="FileESB101,FileESB110" 
+            entities="FileESB101,FileESB110,FileESB120" 
             icon="images/xstudio/editors/esb.gif" 
             name="ESB">
       </xmlEditor>
