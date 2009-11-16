@@ -16,17 +16,21 @@ package org.jboss.tools.esb.core.model;
 public interface ESBConstants {
 	public String SCHEMA_101 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd"; //$NON-NLS-1$
 	public String SCHEMA_110 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd"; //$NON-NLS-1$
+	public String SCHEMA_120 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"; //$NON-NLS-1$
 	
 	public String SUFF_101 = "101"; //$NON-NLS-1$
 	public String SUFF_110 = "110"; //$NON-NLS-1$
+	public String SUFF_120 = "120"; //$NON-NLS-1$
 
 	public String[] KNOWN_SUFFIXES = {
 		SUFF_101,
 		SUFF_110,
+		SUFF_120,
 	};
 	public String ENT_ESB_FILE = "FileESB"; //$NON-NLS-1$
 	public String ENT_ESB_FILE_101 = ENT_ESB_FILE + SUFF_101;
 	public String ENT_ESB_FILE_110 = ENT_ESB_FILE + SUFF_110;
+	public String ENT_ESB_FILE_120 = ENT_ESB_FILE + SUFF_120;
 	
 	public String ENT_ESB_PROPERTY = "ESBProperty"; //$NON-NLS-1$
 	
@@ -118,12 +122,14 @@ public interface ESBConstants {
 	public String ENT_ESB_SERVICE = "ESBService"; //$NON-NLS-1$
 	public String ENT_ESB_SERVICE_101 = ENT_ESB_SERVICE + SUFF_101;
 	public String ENT_ESB_SERVICE_110 = ENT_ESB_SERVICE + SUFF_110;
+	public String ENT_ESB_SERVICE_120 = ENT_ESB_SERVICE + SUFF_120;
 
 	//prefix
 	public String ENT_ESB_ACTIONS = "ESBActions"; //$NON-NLS-1$
 	public String ENT_ESB_ACTIONS_101 = ENT_ESB_ACTIONS + SUFF_101;
 	public String ENT_ESB_ACTIONS_110 = ENT_ESB_ACTIONS + SUFF_110;
 	public String ENT_ESB_ACTION = "ESBAction101"; //$NON-NLS-1$
+	public String ENT_ESB_ACTION_120 = "ESBAction120"; //$NON-NLS-1$
 
 	public String ENT_ESB_SIMPLE_SCHEDULE = "ESBSimpleSchedule101"; //$NON-NLS-1$
 	public String ENT_ESB_CRON_SCHEDULE = "ESBCronSchedule101"; //$NON-NLS-1$

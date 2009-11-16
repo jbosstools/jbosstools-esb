@@ -28,6 +28,8 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
     	if(result != null && result.startsWith(ESBConstants.PREACTION_PREFIX)) {
     		if(entity.getChild(ESBConstants.ENT_ESB_ACTION) != null) {
     			return ESBConstants.ENT_ESB_ACTION;
+    		} else if(entity.getChild(ESBConstants.ENT_ESB_ACTION_120) != null) {
+    			return ESBConstants.ENT_ESB_ACTION_120;
     		}
     		//TODO when different versions appear, support them!
     	}
@@ -62,7 +64,11 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
     	String s = o.getModelEntity().getProperty("saveDefault"); //$NON-NLS-1$
     	if(!"false".equals(s)) return true; //$NON-NLS-1$
     	if(hasSetAttributes(o)) return true;
-    	if(o.getChildren().length > 0) return true;
+    	XModelObject[] cs = o.getChildren();
+    	if(o.getChildren().length > 2) return true;
+    	for (int i = 0; i < cs.length; i++) {
+    		if(needToSave(cs[i])) return true;
+    	}
     	return false;
     }
 
