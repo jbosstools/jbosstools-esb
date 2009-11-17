@@ -48,6 +48,7 @@ public interface ESBConstants {
 	public String ENT_ESB_SQL_PROVIDER = "ESBSQLProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_HIBERNATE_PROVIDER = "ESBHibernateProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_HTTP_PROVIDER = "ESBHTTPProvider110"; //$NON-NLS-1$
+	public String ENT_ESB_HTTP_PROVIDER_120 = "ESBHTTPProvider120"; //$NON-NLS-1$
 
 	static String PREACTION_PREFIX = "ESBPreAction"; //$NON-NLS-1$
 	
@@ -62,6 +63,7 @@ public interface ESBConstants {
 		ENT_ESB_SQL_PROVIDER,
 		ENT_ESB_HIBERNATE_PROVIDER,
 		ENT_ESB_HTTP_PROVIDER,
+		ENT_ESB_HTTP_PROVIDER_120,
 	};
 
 	
@@ -73,6 +75,7 @@ public interface ESBConstants {
 	public String ENT_ESB_HIBERNATE_BUS = "ESBHibernateBus101"; //$NON-NLS-1$
 	public String ENT_ESB_SQL_BUS = "ESBSQLBus101"; //$NON-NLS-1$
 	public String ENT_ESB_HTTP_BUS = "ESBHTTPBus110"; //$NON-NLS-1$
+	public String ENT_ESB_HTTP_BUS_120 = "ESBHTTPBus120"; //$NON-NLS-1$
 
 	public String[] BUSES_101 = {
 		ENT_ESB_BUS,
@@ -83,6 +86,7 @@ public interface ESBConstants {
 		ENT_ESB_HIBERNATE_BUS,
 		ENT_ESB_SQL_BUS,
 		ENT_ESB_HTTP_BUS,
+		ENT_ESB_HTTP_BUS_120,
 	};		
 
 	//prefix
@@ -128,6 +132,7 @@ public interface ESBConstants {
 	public String ENT_ESB_ACTIONS = "ESBActions"; //$NON-NLS-1$
 	public String ENT_ESB_ACTIONS_101 = ENT_ESB_ACTIONS + SUFF_101;
 	public String ENT_ESB_ACTIONS_110 = ENT_ESB_ACTIONS + SUFF_110;
+	public String ENT_ESB_ACTIONS_120 = ENT_ESB_ACTIONS + SUFF_120;
 	public String ENT_ESB_ACTION = "ESBAction101"; //$NON-NLS-1$
 	public String ENT_ESB_ACTION_120 = "ESBAction120"; //$NON-NLS-1$
 
@@ -143,4 +148,5 @@ public interface ESBConstants {
 	public String ATTR_BUS_ID = "id"; //$NON-NLS-1$
 	public String ATTR_BUS_ID_REF = "channel id ref"; //$NON-NLS-1$
 
+	public String XML_ATTR_PROTECTED_METHODS = "protected-methods"; //$NON-NLS-1$
 }

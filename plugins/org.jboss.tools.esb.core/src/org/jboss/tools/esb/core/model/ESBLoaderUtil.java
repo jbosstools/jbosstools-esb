@@ -10,11 +10,17 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.core.model;
 
+import java.util.Set;
+import java.util.StringTokenizer;
+
 import org.jboss.tools.common.meta.XAttribute;
 import org.jboss.tools.common.meta.XModelEntity;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
+import org.jboss.tools.common.xml.XMLUtilities;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * @author Viacheslav Kabanovich
@@ -86,4 +92,73 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
     	return false;
     }
 
+    public void saveAttribute(Element element, String xmlname, String value) {
+    	if(ESBConstants.XML_ATTR_PROTECTED_METHODS.equals(xmlname)) {
+    		StringTokenizer st = new StringTokenizer(value, ",");
+    		Element c = XMLUtilities.createElement(element, xmlname);
+    		while(st.hasMoreTokens()) {
+    			String t = st.nextToken();
+    			Element m = XMLUtilities.createElement(c, "method");
+    			m.setAttribute("name", t);
+    		}
+    	} else {
+    		super.saveAttribute(element, xmlname, value);
+    	}
+    }
+
+    public String getAttribute(Element element, String xmlname, XAttribute attr) {
+    	if(ESBConstants.XML_ATTR_PROTECTED_METHODS.equals(xmlname)) {
+    		Element c = XMLUtilities.getUniqueChild(element, xmlname);
+    		if(c == null) return "";
+    		Element[] ms = XMLUtilities.getChildren(c, "method");
+    		StringBuffer sb = new StringBuffer();
+    		for (Element m: ms) {
+    			if(sb.length() > 0) sb.append(',');
+    			sb.append("" + m.getAttribute("name"));
+    		}
+    		return sb.toString();
+    	} else {    	
+    		return super.getAttribute(element, xmlname, attr);
+    	}
+    }
+
+	protected Set<String> getAllowedChildren(XModelEntity entity) {
+		Set<String> children = super.getAllowedChildren(entity);
+
+		return children;
+	}
+
+    public boolean saveChildren(Element element, XModelObject o) {
+    	boolean b = super.saveChildren(element, o);
+    	if(o.getModelEntity().getName().equals("ESBHTTPBus120")) {
+    		checkHTTPBusDTD(element);
+    	}
+    	return b;
+    }
+
+    private void checkHTTPBusDTD(Element element) {
+    	Element pm = XMLUtilities.getUniqueChild(element, "protected-methods");
+    	if(pm == null) return;
+    	NodeList list = element.getChildNodes();
+    	Element reference = null;
+    	boolean hasProperties = false;
+    	for (int i = 0; i < list.getLength(); i++) {
+    		Node n = list.item(i);
+    		if(n instanceof Element) {
+    			Element e = (Element)n;
+    			if("property".equals(e.getNodeName())) {
+    				hasProperties = true;
+    				reference = null;
+    			} else if(hasProperties) {
+    				reference = e;
+    				hasProperties = false;
+    			} 
+    		}
+    	}
+    	if(reference != null) {
+    		element.insertBefore(pm, reference);
+    	} else if(hasProperties) {
+    		element.appendChild(pm);
+    	}
+    }
 }

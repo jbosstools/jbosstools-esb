@@ -4,11 +4,11 @@ import org.jboss.tools.common.meta.action.impl.handlers.DefaultRedirectHandler;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.filesystems.FileSystemsHelper;
 
-public class OpenSmooksConfigHandler extends DefaultRedirectHandler {
-	static String ATTR_SMOOKS_CONFIG = "smooks config";
+public class OpenESBResourceHandler extends DefaultRedirectHandler {
 
 	protected XModelObject getTrueSource(XModelObject source) {
-		String path = source.getAttributeValue(ATTR_SMOOKS_CONFIG);
+		String attr = action.getProperty("attribute");
+		String path = source.getAttributeValue(attr);
 		if(path == null || path.length() == 0) return null;
 		XModelObject o = source.getModel().getByPath(path);
 		if(o != null) return o;

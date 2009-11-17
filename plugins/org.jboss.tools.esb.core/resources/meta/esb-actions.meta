@@ -778,8 +778,9 @@
   </XModelAttributes>
   <XActionItem kind="list">
    <XActionItem
-    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenSmooksConfigHandler"
-    ICON="action.empty" PROPERTIES="actionpath=Open"
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=smooks config"
     displayName="Open Config" kind="action" name="OpenConfig"/>
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
@@ -1517,6 +1518,45 @@
   </XActionItem>
  </XEntityExtension>
  <XEntityExtension name="ESBActions110">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreActionByteArrayToString101"/>
+   <XChildEntity name="ESBPreActionLongToDateConverter101"/>
+   <XChildEntity name="ESBPreActionObjectInvoke101"/>
+   <XChildEntity name="ESBPreActionObjectToCSVString101"/>
+   <XChildEntity name="ESBPreActionObjectToXStream101"/>
+   <XChildEntity name="ESBPreActionSmooksAction101"/>
+   <XChildEntity name="ESBPreActionSmooksTransformer101"/>
+   <XChildEntity name="ESBPreActionMessagePersister101"/>
+   <XChildEntity name="ESBPreActionXStreamToObject101"/>
+   <XChildEntity name="ESBPreActionCommandInterpreter101"/>
+   <XChildEntity name="ESBPreActionGroovyProcessor101"/>
+   <XChildEntity name="ESBPreActionAggregator101"/>
+   <XChildEntity name="ESBPreActionContentBasedRouter101"/>
+   <XChildEntity name="ESBPreActionStaticRouter101"/>
+   <XChildEntity name="ESBPreActionStaticWiretap101"/>
+   <XChildEntity name="ESBPreActionSOAPProcessor101"/>
+   <XChildEntity name="ESBPreActionSOAPClient101"/>
+   <XChildEntity name="ESBPreActionSystemPrintln101"/>
+   <XChildEntity name="ESBPreActionNotifier101"/>
+   <XChildEntity name="ESBPreActionBusinessRulesProcessor101"/>
+  </XChildrenEntities>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="New" group="1"
+    kind="list" name="CreateActions">
+    <XActionItem displayName="Add Pre-Packed Action" kind="list" name="PrePackedAction">
+     <XActionItemReference entity="ESBActions101" name="AddObjectInvoke"/>
+     <XActionItemReference entity="ESBActions101" name="Converters"/>
+     <XActionItemReference entity="ESBActions101" name="AddCommandInterpreter"/>
+     <XActionItemReference entity="ESBActions101" name="AddGroovyProcessor"/>
+     <XActionItemReference entity="ESBActions101" name="Routers"/>
+     <XActionItemReference entity="ESBActions101" name="SOAP"/>
+     <XActionItemReference entity="ESBActions101" name="AddSystemPrintln"/>
+     <XActionItemReference entity="ESBActions101" name="AddBusinessRulesProcessor"/>
+    </XActionItem>
+   </XActionItem>
+  </XActionItem>
+ </XEntityExtension>
+ <XEntityExtension name="ESBActions120">
   <XChildrenEntities>
    <XChildEntity name="ESBPreActionByteArrayToString101"/>
    <XChildEntity name="ESBPreActionLongToDateConverter101"/>
