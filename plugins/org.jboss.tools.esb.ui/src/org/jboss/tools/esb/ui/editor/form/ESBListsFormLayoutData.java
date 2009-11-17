@@ -82,12 +82,20 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyAction") //$NON-NLS-1$
 	);
 
+	static IFormData ESB_ACTION_120_LIST_DEFINITION = new FormData(
+		"Actions", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
+		getActionEntities(ENT_ESB_ACTIONS_120),
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyAction") //$NON-NLS-1$
+	);
+
 	static IFormData ESB_ACTION_SUB_LIST_DEFINITION = new FormData(
 		"Actions", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		"Actions", //$NON-NLS-1$
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
-		new String[]{ENT_ESB_ACTION},
+		new String[]{ENT_ESB_ACTION,ENT_ESB_ACTION_120},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAction") //$NON-NLS-1$
 	);
 
