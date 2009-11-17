@@ -124,20 +124,22 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
 
 	protected Set<String> getAllowedChildren(XModelEntity entity) {
 		Set<String> children = super.getAllowedChildren(entity);
-
+		if(entity.getName().equals(ESBConstants.ENT_ESB_HTTP_BUS_120)) {
+			children.add(ESBConstants.XML_ATTR_PROTECTED_METHODS);
+		}
 		return children;
 	}
 
     public boolean saveChildren(Element element, XModelObject o) {
     	boolean b = super.saveChildren(element, o);
-    	if(o.getModelEntity().getName().equals("ESBHTTPBus120")) {
+    	if(o.getModelEntity().getName().equals(ESBConstants.ENT_ESB_HTTP_BUS_120)) {
     		checkHTTPBusDTD(element);
     	}
     	return b;
     }
 
     private void checkHTTPBusDTD(Element element) {
-    	Element pm = XMLUtilities.getUniqueChild(element, "protected-methods");
+    	Element pm = XMLUtilities.getUniqueChild(element, ESBConstants.XML_ATTR_PROTECTED_METHODS);
     	if(pm == null) return;
     	NodeList list = element.getChildNodes();
     	Element reference = null;

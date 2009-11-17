@@ -711,6 +711,60 @@
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionSOAPProxy120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="SOAP proxy action" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.soap.proxy.SOAPProxy"
+    name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true;save=always"
+    name="wsdl" xmlname="wsdl"/>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="endpoint url" xmlname="endpointUrl"/>
+   <XModelAttribute PROPERTIES="category=general;pre=true" name="file" xmlname="file">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=properties"/>
+     <value name="linkAction=OpenConfig"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty" PROPERTIES="actionpath=Open;attribute=file"
+    displayName="Open File" kind="action" name="OpenConfig"/>
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="action" name="ESBPreActionSmooksAction101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
@@ -1575,6 +1629,7 @@
    <XChildEntity name="ESBPreActionStaticWiretap101"/>
    <XChildEntity name="ESBPreActionSOAPProcessor101"/>
    <XChildEntity name="ESBPreActionSOAPClient101"/>
+   <XChildEntity name="ESBPreActionSOAPProxy120"/>
    <XChildEntity name="ESBPreActionSystemPrintln101"/>
    <XChildEntity name="ESBPreActionNotifier101"/>
    <XChildEntity name="ESBPreActionBusinessRulesProcessor101"/>
@@ -1588,7 +1643,35 @@
      <XActionItemReference entity="ESBActions101" name="AddCommandInterpreter"/>
      <XActionItemReference entity="ESBActions101" name="AddGroovyProcessor"/>
      <XActionItemReference entity="ESBActions101" name="Routers"/>
-     <XActionItemReference entity="ESBActions101" name="SOAP"/>
+     <XActionItem displayName="SOAP" kind="list" name="SOAP">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="SOAP Processor..." kind="action" name="AddSOAPProcessor">
+       <EntityData EntityName="ESBPreActionSOAPProcessor101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="jbossws endpoint"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="SOAP Client..." kind="action" name="AddSOAPClient">
+       <EntityData EntityName="ESBPreActionSOAPClient101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="wsdl"/>
+        <AttributeData AttributeName="operation"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="SOAP Proxy..." kind="action" name="AddSOAPProxy">
+       <EntityData EntityName="ESBPreActionSOAPProxy120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="wsdl"/>
+        <AttributeData AttributeName="endpoint url" Mandatory="no"/>
+        <AttributeData AttributeName="file" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
      <XActionItemReference entity="ESBActions101" name="AddSystemPrintln"/>
      <XActionItemReference entity="ESBActions101" name="AddBusinessRulesProcessor"/>
     </XActionItem>

@@ -78,6 +78,8 @@ public class SpecificActionLoader implements ESBConstants {
 			//message, printfull, outputstream
 		{"org.jboss.soa.esb.actions.BusinessRulesProcessor", "ESBPreActionBusinessRulesProcessor"},
 			//ruleSet, ruleLanguage, ruleReload, object-paths!
+		{"org.jboss.soa.esb.actions.soap.proxy.SOAPProxy", "ESBPreActionSOAPProxy"},
+			//wsdl, file, endpointUrl
 	};
 
 	public static final SpecificActionLoader instance = new SpecificActionLoader();
