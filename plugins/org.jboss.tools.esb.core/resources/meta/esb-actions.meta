@@ -37,7 +37,7 @@
   </MAPPING>
   <MAPPING name="FilteredTreeConstraints"/>
   <MAPPING name="FilteredTrees">
-   <PAIR name="ESBResourceTree" value="org.jboss.tools.jst.web.model.tree.WebPagesTree"/>
+   <PAIR name="ESBResourceTree" value="org.jboss.tools.esb.core.model.ESBResourceTree"/>
   </MAPPING>
   <MAPPING name="Handlers"/>
   <MAPPING name="Implementations">
