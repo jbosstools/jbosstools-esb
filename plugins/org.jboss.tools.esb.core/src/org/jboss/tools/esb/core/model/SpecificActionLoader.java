@@ -15,10 +15,12 @@ import java.util.Map;
 
 import org.jboss.tools.common.meta.XAttribute;
 import org.jboss.tools.common.meta.XChild;
+import org.jboss.tools.common.meta.XMapping;
 import org.jboss.tools.common.meta.XModelEntity;
 import org.jboss.tools.common.model.XModelException;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.impl.RegularObjectImpl;
+import org.jboss.tools.common.model.options.PreferenceModelUtilities;
 import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 import org.jboss.tools.esb.core.ESBCorePlugin;
 import org.jboss.tools.esb.core.model.converters.AliasConverter;
@@ -30,68 +32,23 @@ import org.jboss.tools.esb.core.model.converters.RouteToConverter;
  * @author Viacheslav Kabanovich
  */
 public class SpecificActionLoader implements ESBConstants {
-
 	static final String ACTION_ENTITY = "ESBAction";
 	static final String ACTIONS_FOLDER_ENTITY = "ESBActions";
 
-	/**
-	 * Version suffix should be added to entity name
-	 */
-	static final String[][] SPECIFIC_ACTIONS = {
-		{"org.jboss.soa.esb.actions.converters.ByteArrayToString", "ESBPreActionByteArrayToString"},
-			//encoding
-		{"org.jboss.soa.esb.actions.converters.LongToDateConverter", "ESBPreActionLongToDateConverter"},
-			//-
-		{"org.jboss.soa.esb.actions.converters.ObjectInvoke", "ESBPreActionObjectInvoke"},
-			//class-processor, class-method
-		{"org.jboss.soa.esb.actions.converters.ObjectToCSVString", "ESBPreActionObjectToCSVString"},
-			//bean-properties, fail-on-missing-property
-		{"org.jboss.soa.esb.actions.converters.ObjectToXStream", "ESBPreActionObjectToXStream"},
-			//class-alias, exclude-package
-		{"org.jboss.soa.esb.actions.converters.SmooksTransformer", "ESBPreActionSmooksTransformer"},
-			//resource-config; from, from-type, to, to-type
-		{"org.jboss.soa.esb.smooks.SmooksAction", "ESBPreActionSmooksAction"},
-			//smooksConfig
-		{"org.jboss.soa.esb.actions.MessagePersister", "ESBPreActionMessagePersister"},
-			//classification, message-store-class
-		{"org.jboss.soa.esb.actions.converters.XStreamToObject", "ESBPreActionXStreamToObject"},
-			//class-alias, exclude-package, incoming-type, root-node, aliases
-		{"org.jboss.soa.esb.actions.jbpm.CommandInterpreter", "ESBPreActionCommandInterpreter"},
-			//
-		{"org.jboss.soa.esb.actions.scripting.GroovyActionProcessor", "ESBPreActionGroovyProcessor"},
-			//script
-		{"org.jboss.soa.esb.actions.Aggregator", "ESBPreActionAggregator"},
-			//timeoutInMillies
-		{"org.jboss.soa.esb.actions.ContentBasedRouter", "ESBPreActionContentBasedRouter"},
-			//ruleSet, ruleLanguage, ruleReload, destinations!
-		{"org.jboss.soa.esb.actions.StaticRouter", "ESBPreActionStaticRouter"},
-			//destinations!
-		{"org.jboss.soa.esb.actions.StaticWiretap", "ESBPreActionStaticWiretap"},
-			//destinations!
-		{"org.jboss.soa.esb.actions.Notifier", "ESBPreActionNotifier"},
-			//destinations! NotificationList/target ...
-		{"org.jboss.soa.esb.actions.soap.SOAPProcessor", "ESBPreActionSOAPProcessor"},
-			//jbossws-endpoint
-		{"org.jboss.soa.esb.actions.soap.SOAPClient", "ESBPreActionSOAPClient"},
-			//wsdl, operation +other
-		{"org.jboss.soa.esb.actions.SystemPrintln", "ESBPreActionSystemPrintln"},
-			//message, printfull, outputstream
-		{"org.jboss.soa.esb.actions.BusinessRulesProcessor", "ESBPreActionBusinessRulesProcessor"},
-			//ruleSet, ruleLanguage, ruleReload, object-paths!
-		{"org.jboss.soa.esb.actions.soap.proxy.SOAPProxy", "ESBPreActionSOAPProxy"},
-			//wsdl, file, endpointUrl
-	};
+	private static Map<String,String> classToEntity = new HashMap<String, String>();
 
 	public static final SpecificActionLoader instance = new SpecificActionLoader();
 
-	Map<String,String> classToEntity = new HashMap<String, String>();
-	Map<String,String> entityToClass = new HashMap<String, String>();
-
 	SpecificActionLoader() {
-		for (int i = 0; i < SPECIFIC_ACTIONS.length; i++) {
-			String[] action = SPECIFIC_ACTIONS[i];
-			classToEntity.put(action[0], action[1]);
-			entityToClass.put(action[1], action[0]);
+		if(classToEntity.isEmpty()) {
+			XMapping m = PreferenceModelUtilities.getPreferenceModel().getMetaData().getMapping("ESBSpecificActions");
+			if(m != null) {
+				String[] classes = m.getKeys();
+				for (String c: classes) {
+					String entity = m.getValue(c);
+					classToEntity.put(c, entity);
+				}
+			}
 		}
 	}
 
@@ -124,12 +81,7 @@ public class SpecificActionLoader implements ESBConstants {
 
 		XModelObject[] as = actions.getChildren();
 		for (int i = 0; i < as.length; i++) {
-			String cls = as[i].getAttributeValue("class");
-			if(cls == null) continue;
-			String entityName = classToEntity.get(cls);
-			if(entityName == null) continue;
-			entityName = addSuffix(entityName, actions);
-			XModelObject action = convertBasicActionToSpecific(as[i], entityName);
+			XModelObject action = convertBasicActionToSpecific(actions, as[i]);
 			if(action != null) {
 				as[i] = action;
 				modified = true;
@@ -139,6 +91,15 @@ public class SpecificActionLoader implements ESBConstants {
 			((RegularObjectImpl)actions).replaceChildren(as);
 		}
 		
+	}
+
+	public XModelObject convertBasicActionToSpecific(XModelObject actions, XModelObject basic) {
+		String cls = basic.getAttributeValue("class");
+		if(cls == null) return null;
+		String entityName = classToEntity.get(cls);
+		if(entityName == null) return null;
+		entityName = addSuffix(entityName, actions);
+		return convertBasicActionToSpecific(basic, entityName);
 	}
 
 	public XModelObject convertBasicActionToSpecific(XModelObject basic, String entityName) {
