@@ -3,14 +3,25 @@ package org.jboss.tools.esb.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.tools.common.model.XModel;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.XModelObjectConstants;
 import org.jboss.tools.common.model.filesystems.FileSystemsHelper;
 import org.jboss.tools.common.model.filesystems.XFileObject;
+import org.jboss.tools.common.model.filesystems.impl.FileSystemsImpl;
 import org.jboss.tools.common.model.impl.trees.FileSystemResourceTree;
+import org.jboss.tools.common.model.util.EclipseResourceUtil;
 import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 
 public class ESBResourceTree extends FileSystemResourceTree {
+
+    public void setModel(XModel model) {
+    	super.setModel(model);
+    	if(EclipseResourceUtil.isProjectFragment(model)) {
+    		FileSystemsImpl fs = (FileSystemsImpl)FileSystemsHelper.getFileSystems(model);
+    		if(fs != null) fs.forceUpdate();
+    	}
+    }
 
 	public XModelObject[] getChildren(XModelObject object) {
 		if(object == getRoot()) {
