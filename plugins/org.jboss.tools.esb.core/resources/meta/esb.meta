@@ -694,8 +694,8 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="id=true" default="Filter" name="name" visibility="false"/>
-   <XModelAttribute PROPERTIES="category=general;save=always"
-    name="directory" xmlname="directory"/>
+   <XModelAttributeReference attributes="directory"
+    entity="ESBFSMessageFilter101" name="directory"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="username" xmlname="username"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
