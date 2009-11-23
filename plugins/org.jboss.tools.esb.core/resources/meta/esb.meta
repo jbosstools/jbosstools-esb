@@ -490,7 +490,14 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="id=true" default="Filter" name="name" visibility="false"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
-    name="directory" xmlname="directory"/>
+    name="directory" xmlname="directory">
+    <Constraint loader="FileFilter">
+     <value name="allFiles=false"/>
+     <value name="mode=DIRECTORIES_ONLY"/>
+     <value name="description=directory"/>
+    </Constraint>
+    <Editor name="FolderChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="input suffix" xmlname="input-suffix"/>
    <XModelAttribute PROPERTIES="category=advanced" name="work suffix" xmlname="work-suffix"/>
@@ -510,7 +517,14 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=advanced" name="post directory" xmlname="post-directory"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="post directory" xmlname="post-directory">
+    <Constraint loader="FileFilter">
+     <value name="allFiles=false"/>
+     <value name="mode=DIRECTORIES_ONLY"/>
+     <value name="description=post directory"/>
+    </Constraint>
+    <Editor name="FolderChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced" name="post suffix" xmlname="post-suffix"/>
    <XModelAttribute PROPERTIES="category=advanced" name="error delete" xmlname="error-delete">
     <Constraint loader="ListString">
@@ -521,7 +535,14 @@
     <Editor name="ListString"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced"
-    name="error directory" xmlname="error-directory"/>
+    name="error directory" xmlname="error-directory">
+    <Constraint loader="FileFilter">
+     <value name="allFiles=false"/>
+     <value name="mode=DIRECTORIES_ONLY"/>
+     <value name="description=error directory"/>
+    </Constraint>
+    <Editor name="FolderChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced" name="error suffix" xmlname="error-suffix"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
