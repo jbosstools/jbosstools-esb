@@ -13,16 +13,21 @@ package org.jboss.tools.esb.core.model.converters;
 /**
  * @author Viacheslav Kabanovich
  */
-public class NotificationConverter extends ListConverter {
-	static final String NOTIFICATION_ENTITY = "ESBPreNotificationList";
-	static final String DESTINATIONS = "destinations";
+public class BasicListConverter extends ListConverter {
+	String propertyName;
+	String itemEntityName;
+
+	public BasicListConverter(String propertyName, String itemEntityName) {
+		this.propertyName = propertyName;
+		this.itemEntityName = itemEntityName;
+	}
 
 	protected String getPropertyName() {
-		return DESTINATIONS;
+		return propertyName;
 	}
 
 	protected String getItemEntityName() {
-		return NOTIFICATION_ENTITY;
+		return itemEntityName;
 	}
 
 }

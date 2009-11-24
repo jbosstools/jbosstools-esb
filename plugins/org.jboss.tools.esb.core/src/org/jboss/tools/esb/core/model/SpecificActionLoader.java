@@ -23,10 +23,8 @@ import org.jboss.tools.common.model.impl.RegularObjectImpl;
 import org.jboss.tools.common.model.options.PreferenceModelUtilities;
 import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 import org.jboss.tools.esb.core.ESBCorePlugin;
-import org.jboss.tools.esb.core.model.converters.AliasConverter;
-import org.jboss.tools.esb.core.model.converters.NotificationConverter;
-import org.jboss.tools.esb.core.model.converters.ObjectPathConverter;
-import org.jboss.tools.esb.core.model.converters.RouteToConverter;
+import org.jboss.tools.esb.core.model.converters.ConverterConstants;
+import org.jboss.tools.esb.core.model.converters.IPropertyConverter;
 
 /**
  * @author Viacheslav Kabanovich
@@ -134,15 +132,9 @@ public class SpecificActionLoader implements ESBConstants {
 			if(ESBConstants.ENT_ESB_PROPERTY.equals(childEntityName)) continue;
 			XModelEntity childEntity = action.getModelEntity().getMetaModel().getEntity(childEntityName);
 			if(childEntity == null) continue;
-			String converter = childEntity.getProperty("converter");
-			if("alias".equals(converter)) {
-				new AliasConverter().toSpecific(basic, action);
-			} else if("route".equals(converter)) {
-				new RouteToConverter().toSpecific(basic, action);
-			} else if("path".equals(converter)) {
-				new ObjectPathConverter().toSpecific(basic, action);
-			} else if("notification".equals(converter)) {
-				new NotificationConverter().toSpecific(basic, action);
+			IPropertyConverter converter = getPropertyConverter(childEntity);
+			if(converter != null) {
+				converter.toSpecific(basic, action);
 			}
 		}
 		
@@ -193,15 +185,9 @@ public class SpecificActionLoader implements ESBConstants {
 			if(ESBConstants.ENT_ESB_PROPERTY.equals(childEntityName)) continue;
 			XModelEntity childEntity = entity.getMetaModel().getEntity(childEntityName);
 			if(childEntity == null) continue;
-			String converter = childEntity.getProperty("converter");
-			if("alias".equals(converter)) {
-				new AliasConverter().toBasic(result, action);
-			} else if("route".equals(converter)) {
-				new RouteToConverter().toBasic(result, action);
-			} else if("path".equals(converter)) {
-				new ObjectPathConverter().toBasic(result, action);
-			} else if("notification".equals(converter)) {
-				new NotificationConverter().toBasic(result, action);
+			IPropertyConverter converter = getPropertyConverter(childEntity);
+			if(converter != null) {
+				converter.toBasic(result, action);
 			}
 		}
 		
@@ -210,5 +196,16 @@ public class SpecificActionLoader implements ESBConstants {
 			result.addChild(cs[i].copy());
 		}
 		return result;
+	}
+
+	IPropertyConverter getPropertyConverter(XModelEntity childEntity) {
+		String converter = childEntity.getProperty("converter");
+		if("alias".equals(converter)) return ConverterConstants.ALIAS_CONVERTER;
+		if("route".equals(converter)) return ConverterConstants.ROUTE_CONVERTER;
+		if("path".equals(converter)) return ConverterConstants.OBJECT_PATHS_CONVERTER;
+		if("notification".equals(converter)) return ConverterConstants.NOTIFICATION_CONVERTER;
+		if("bpmVar".equals(converter)) return ConverterConstants.BPM_VAR_CONVERTER;
+
+		return null;
 	}
 }
