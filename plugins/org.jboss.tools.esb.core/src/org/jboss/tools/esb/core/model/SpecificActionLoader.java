@@ -205,6 +205,8 @@ public class SpecificActionLoader implements ESBConstants {
 		if("path".equals(converter)) return ConverterConstants.OBJECT_PATHS_CONVERTER;
 		if("notification".equals(converter)) return ConverterConstants.NOTIFICATION_CONVERTER;
 		if("bpmVar".equals(converter)) return ConverterConstants.BPM_VAR_CONVERTER;
+		if("httpclient".equals(converter)) return ConverterConstants.ENDPOINT_CONVERTER;
+		if("header".equals(converter)) return ConverterConstants.HEADER_CONVERTER;
 
 		return null;
 	}
