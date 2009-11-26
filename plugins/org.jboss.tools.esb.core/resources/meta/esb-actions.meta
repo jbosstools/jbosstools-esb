@@ -1131,6 +1131,11 @@
   XMLSUBPATH="action" name="ESBPreActionObjectToXStream101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
+   <XChildEntity name="ESBPreAlias"/>
+   <XChildEntity name="ESBPreNamespace"/>
+   <XChildEntity name="ESBPreFieldAlias"/>
+   <XChildEntity name="ESBPreImplicitCollection"/>
+   <XChildEntity name="ESBPreConverter"/>
   </XChildrenEntities>
   <XEntityRenderer>
    <ICONS>
@@ -1160,6 +1165,16 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="xstream mode" xmlname="xstream-mode">
+    <Constraint loader="ListString">
+     <value name="XPATH_RELATIVE_REFERENCS"/>
+     <value name="XPATH_ABSOLUTE_REFERENCS"/>
+     <value name="ID_REFERENCES"/>
+     <value name="NO_REFERENCES"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
     <Editor name="Uneditable"/>
    </XModelAttribute>
@@ -1168,7 +1183,52 @@
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
-   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Alias..." kind="action" name="AddAlias">
+     <EntityData EntityName="ESBPreAlias">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="class" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Namespace..." kind="action" name="AddNamespace">
+     <EntityData EntityName="ESBPreNamespace">
+      <AttributeData AttributeName="namespace uri"/>
+      <AttributeData AttributeName="local part" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Field Alias..." kind="action" name="AddFieldAlias">
+     <EntityData EntityName="ESBPreFieldAlias">
+      <AttributeData AttributeName="alias"/>
+      <AttributeData AttributeName="defined in"/>
+      <AttributeData AttributeName="field name"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Implicit Collection..." kind="action" name="AddImplicitCollection">
+     <EntityData EntityName="ESBPreImplicitCollection">
+      <AttributeData AttributeName="class"/>
+      <AttributeData AttributeName="field name"/>
+      <AttributeData AttributeName="field type" Mandatory="no"/>
+      <AttributeData AttributeName="item type" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Implicit Collection..." kind="action" name="AddConverter">
+     <EntityData EntityName="ESBPreConverter">
+      <AttributeData AttributeName="class"/>
+      <AttributeData AttributeName="field name"/>
+      <AttributeData AttributeName="field type" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -1351,7 +1411,24 @@
     ICON="action.empty"
     PROPERTIES="actionpath=Open;attribute=wsdl transform"
     displayName="Open Transform" kind="action" name="OpenTransform"/>
-   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add HTTP Client Property..." kind="action" name="AddClientProp">
+     <EntityData EntityName="ESBPreClientProp">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="value" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Header..." kind="action" name="AddHeader">
+     <EntityData EntityName="ESBPreHeader">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="value" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -2019,6 +2096,10 @@
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity name="ESBPreAlias"/>
+   <XChildEntity name="ESBPreAttributeAlias"/>
+   <XChildEntity name="ESBPreFieldAlias"/>
+   <XChildEntity name="ESBPreImplicitCollection"/>
+   <XChildEntity name="ESBPreConverter"/>
   </XChildrenEntities>
   <XEntityRenderer>
    <ICONS>
@@ -2067,7 +2148,43 @@
      displayName="Add Alias..." kind="action" name="AddAlias">
      <EntityData EntityName="ESBPreAlias">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="value" Mandatory="no"/>
+      <AttributeData AttributeName="class" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Attribute Alias..." kind="action" name="AddAttributeAlias">
+     <EntityData EntityName="ESBPreAttributeAlias">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="class" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Field Alias..." kind="action" name="AddFieldAlias">
+     <EntityData EntityName="ESBPreFieldAlias">
+      <AttributeData AttributeName="alias"/>
+      <AttributeData AttributeName="defined in"/>
+      <AttributeData AttributeName="field name"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Implicit Collection..." kind="action" name="AddImplicitCollection">
+     <EntityData EntityName="ESBPreImplicitCollection">
+      <AttributeData AttributeName="class"/>
+      <AttributeData AttributeName="field name"/>
+      <AttributeData AttributeName="field type" Mandatory="no"/>
+      <AttributeData AttributeName="item type" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Converter..." kind="action" name="AddConverter">
+     <EntityData EntityName="ESBPreConverter">
+      <AttributeData AttributeName="class"/>
+      <AttributeData AttributeName="field name"/>
+      <AttributeData AttributeName="field type" Mandatory="no"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -2093,13 +2210,16 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
-   <XModelAttribute PROPERTIES="category=general" name="value" xmlname="value"/>
+   <XModelAttribute PROPERTIES="category=general" name="class" xmlname="class">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="value"
+    visibility="false" xmlname="value"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
-   <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
    <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
     <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
@@ -2119,6 +2239,37 @@
     <XActionItem HIDE="always" HandlerClassName="%Move%"
      ICON="action.move" displayName="Move" kind="action" name="Move"/>
    </XActionItem>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=attributealias"
+  XMLSUBPATH="attribute-alias" name="ESBPreAttributeAlias">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="attribute-alias" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general" name="class" xmlname="class">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
@@ -2145,26 +2296,11 @@
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
-   <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
-   </XActionItem>
-   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
-   </XActionItem>
-   <XActionItem ICON="action.empty" kind="list" name="Properties">
-    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
-     displayName="Properties..." kind="action" name="Properties"/>
-   </XActionItem>
-   <XActionItem displayName="move" kind="list" name="MoveActions">
-    <XActionItem HIDE="always" HandlerClassName="%Move%"
-     ICON="action.move" displayName="Move" kind="action" name="Move"/>
-   </XActionItem>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
@@ -2185,6 +2321,70 @@
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
    <XModelAttribute PROPERTIES="category=general" name="value" xmlname="value"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=converter"
+  XMLSUBPATH="converter" name="ESBPreConverter">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="converter" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="class" xmlname="class">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="field name" xmlname="fieldName"/>
+   <XModelAttribute PROPERTIES="category=general" name="field type" xmlname="fieldType"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=fieldalias"
+  XMLSUBPATH="field-alias" name="ESBPreFieldAlias">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="field-alias" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="alias" xmlname="alias"/>
+   <XModelAttribute PROPERTIES="category=general" name="defined in" xmlname="definedIn">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="field name" xmlname="fieldName"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -2230,6 +2430,99 @@
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
    <XModelAttribute PROPERTIES="category=general" name="value" xmlname="value"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
+    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
+     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
+    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
+     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
+   </XActionItem>
+   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
+    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
+     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" kind="list" name="Properties">
+    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
+     displayName="Properties..." kind="action" name="Properties"/>
+   </XActionItem>
+   <XActionItem displayName="move" kind="list" name="MoveActions">
+    <XActionItem HIDE="always" HandlerClassName="%Move%"
+     ICON="action.move" displayName="Move" kind="action" name="Move"/>
+   </XActionItem>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=implicitcollection"
+  XMLSUBPATH="implicit-collection" name="ESBPreImplicitCollection">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="implicit collection" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="class" xmlname="class">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="field name" xmlname="fieldName"/>
+   <XModelAttribute PROPERTIES="category=general" name="field type" xmlname="fieldType"/>
+   <XModelAttribute PROPERTIES="category=general" name="item type" xmlname="itemType"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
+    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
+     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
+    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
+     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
+   </XActionItem>
+   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
+    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
+     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" kind="list" name="Properties">
+    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
+     displayName="Properties..." kind="action" name="Properties"/>
+   </XActionItem>
+   <XActionItem displayName="move" kind="list" name="MoveActions">
+    <XActionItem HIDE="always" HandlerClassName="%Move%"
+     ICON="action.move" displayName="Move" kind="action" name="Move"/>
+   </XActionItem>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=namespace"
+  XMLSUBPATH="namespace" name="ESBPreNamespace">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="namespace" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="namespace uri" xmlname="namespace-uri"/>
+   <XModelAttribute PROPERTIES="category=general" name="local part"
+    visibility="false" xmlname="local-part"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>

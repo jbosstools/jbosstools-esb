@@ -8,6 +8,7 @@ Bundle-SymbolicName: org.jboss.tools.esb.core;singleton:=true
 Bundle-Localization: plugin
 Export-Package: org.jboss.tools.esb.core,
  org.jboss.tools.esb.core.model,
+ org.jboss.tools.esb.core.model.converters,
  org.jboss.tools.esb.core.model.handlers
 Require-Bundle: org.jboss.tools.jst.web;visibility:=reexport,
  org.eclipse.ui

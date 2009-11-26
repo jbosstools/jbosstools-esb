@@ -41,4 +41,24 @@ public interface ConverterConstants {
 	String HEADERS = "headers";
 	IPropertyConverter HEADER_CONVERTER = new BasicListConverter(HEADERS, HEADER_ENTITY);
 
+	String NAMESPACE_ENTITY = "ESBPreNamespace";
+	String NAMESPACES = "namespaces";
+	IPropertyConverter NAMESPACES_CONVERTER = new BasicListConverter(NAMESPACES, NAMESPACE_ENTITY);
+
+	String FIELD_ALIAS_ENTITY = "ESBPreFieldAlias";
+	String FIELD_ALIASES = "fieldAliases";
+	IPropertyConverter FIELD_ALIAS_CONVERTER = new BasicListConverter(FIELD_ALIASES, FIELD_ALIAS_ENTITY);
+
+	String IMPLICIT_COLLECTION_ENTITY = "ESBPreImplicitCollection";
+	String IMPLICIT_COLLECTIONS = "implicit-collections";
+	IPropertyConverter IMPLICIT_COLLECTION_CONVERTER = new BasicListConverter(IMPLICIT_COLLECTIONS, IMPLICIT_COLLECTION_ENTITY);
+
+	String CONVERTER_ENTITY = "ESBPreConverter";
+	String CONVERTERS = "converters";
+	IPropertyConverter CONVERTER_CONVERTER = new BasicListConverter(CONVERTERS, CONVERTER_ENTITY);
+
+	String ATTRIBUTE_ALIAS_ENTITY = "ESBPreAttributeAlias";
+	String ATTRIBUTE_ALIASES = "attribute-aliases";
+	IPropertyConverter ATTRIBUTE_ALIAS_CONVERTER = new BasicListConverter(ATTRIBUTE_ALIASES, ATTRIBUTE_ALIAS_ENTITY);
+
 }

@@ -37,6 +37,8 @@ public class SpecificActionLoader implements ESBConstants {
 
 	public static final SpecificActionLoader instance = new SpecificActionLoader();
 
+	Map<String, IPropertyConverter> propertyConverters = new HashMap<String, IPropertyConverter>();
+
 	SpecificActionLoader() {
 		if(classToEntity.isEmpty()) {
 			XMapping m = PreferenceModelUtilities.getPreferenceModel().getMetaData().getMapping("ESBSpecificActions");
@@ -48,6 +50,18 @@ public class SpecificActionLoader implements ESBConstants {
 				}
 			}
 		}
+		propertyConverters.put("alias", ConverterConstants.ALIAS_CONVERTER);
+		propertyConverters.put("route", ConverterConstants.ROUTE_CONVERTER);
+		propertyConverters.put("path", ConverterConstants.OBJECT_PATHS_CONVERTER);
+		propertyConverters.put("notification", ConverterConstants.NOTIFICATION_CONVERTER);
+		propertyConverters.put("bpmVar", ConverterConstants.BPM_VAR_CONVERTER);
+		propertyConverters.put("httpclient", ConverterConstants.ENDPOINT_CONVERTER);
+		propertyConverters.put("header", ConverterConstants.HEADER_CONVERTER);
+		propertyConverters.put("namespace", ConverterConstants.NAMESPACES_CONVERTER);
+		propertyConverters.put("fieldalias", ConverterConstants.FIELD_ALIAS_CONVERTER);
+		propertyConverters.put("implicitcollection", ConverterConstants.IMPLICIT_COLLECTION_CONVERTER);
+		propertyConverters.put("attributealias", ConverterConstants.ATTRIBUTE_ALIAS_CONVERTER);
+		propertyConverters.put("converter", ConverterConstants.CONVERTER_CONVERTER);
 	}
 
 	public boolean isPreActionEntity(XModelObject object) {
@@ -200,14 +214,6 @@ public class SpecificActionLoader implements ESBConstants {
 
 	IPropertyConverter getPropertyConverter(XModelEntity childEntity) {
 		String converter = childEntity.getProperty("converter");
-		if("alias".equals(converter)) return ConverterConstants.ALIAS_CONVERTER;
-		if("route".equals(converter)) return ConverterConstants.ROUTE_CONVERTER;
-		if("path".equals(converter)) return ConverterConstants.OBJECT_PATHS_CONVERTER;
-		if("notification".equals(converter)) return ConverterConstants.NOTIFICATION_CONVERTER;
-		if("bpmVar".equals(converter)) return ConverterConstants.BPM_VAR_CONVERTER;
-		if("httpclient".equals(converter)) return ConverterConstants.ENDPOINT_CONVERTER;
-		if("header".equals(converter)) return ConverterConstants.HEADER_CONVERTER;
-
-		return null;
+		return (converter == null) ? null : propertyConverters.get(converter);
 	}
 }
