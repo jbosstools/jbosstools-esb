@@ -90,6 +90,12 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 			if(entity.getChild(ConverterConstants.BPM_VAR_ENTITY) != null) {
 				list.add(ESBListsFormLayoutData.BPM_VAR_LIST_DEFINITION);
 			}
+			if(entity.getChild(ConverterConstants.NAMESPACE_ENTITY) != null) {
+				list.add(ESBListsFormLayoutData.NAMESPACE_LIST_DEFINITION);
+			}
+			if(entity.getChild(ConverterConstants.ROUTER_NAMESPACE_ENTITY) != null) {
+				list.add(ESBListsFormLayoutData.ROUTER_NAMESPACE_LIST_DEFINITION);
+			}
 			//do nothing; when specific children exist use specific forms
 		} else if(entity.getChild(ENT_ESB_PROPERTY) != null) {
 			list.add(ESBListsFormLayoutData.ESB_PROPERTY_LIST_DEFINITION);

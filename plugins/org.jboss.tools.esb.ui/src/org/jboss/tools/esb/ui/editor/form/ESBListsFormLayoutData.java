@@ -198,4 +198,20 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddBPMVar") //$NON-NLS-1$
 	);
 
+	static IFormData NAMESPACE_LIST_DEFINITION = new FormData(
+		"Namespace List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("namespace uri", 100)}, 
+		new String[]{ConverterConstants.NAMESPACE_ENTITY},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddNamespace") //$NON-NLS-1$
+	);
+
+	static IFormData ROUTER_NAMESPACE_LIST_DEFINITION = new FormData(
+		"Namespace List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("prefix", 50), new FormAttributeData("uri", 50)}, 
+		new String[]{ConverterConstants.ROUTER_NAMESPACE_ENTITY},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddNamespace") //$NON-NLS-1$
+	);
+
 }
