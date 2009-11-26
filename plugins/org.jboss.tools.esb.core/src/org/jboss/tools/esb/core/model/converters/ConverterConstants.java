@@ -45,6 +45,10 @@ public interface ConverterConstants {
 	String NAMESPACES = "namespaces";
 	IPropertyConverter NAMESPACES_CONVERTER = new BasicListConverter(NAMESPACES, NAMESPACE_ENTITY);
 
+	String ROUTER_NAMESPACE_ENTITY = "ESBPreRouterNamespace";
+	String ROUTER_NAMESPACES = "namespaces";
+	IPropertyConverter ROUTER_NAMESPACES_CONVERTER = new BasicListConverter(ROUTER_NAMESPACES, ROUTER_NAMESPACE_ENTITY);
+
 	String FIELD_ALIAS_ENTITY = "ESBPreFieldAlias";
 	String FIELD_ALIASES = "fieldAliases";
 	IPropertyConverter FIELD_ALIAS_CONVERTER = new BasicListConverter(FIELD_ALIASES, FIELD_ALIAS_ENTITY);
