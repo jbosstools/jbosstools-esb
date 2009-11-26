@@ -22,6 +22,7 @@ import org.jboss.tools.common.model.ui.forms.FormLayoutDataUtil;
 import org.jboss.tools.common.model.ui.forms.IFormData;
 import org.jboss.tools.common.model.ui.forms.ModelFormLayoutData;
 import org.jboss.tools.esb.core.model.ESBConstants;
+import org.jboss.tools.esb.core.model.converters.ConverterConstants;
 
 /**
  * @author Viacheslav Kabanovich
@@ -163,6 +164,38 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		new FormAttributeData[]{new FormAttributeData("esb", 100)}, 
 		new String[]{ENT_ESB_OBJECT_PATH},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddObjectPath") //$NON-NLS-1$
+	);
+
+	static IFormData ALIAS_LIST_DEFINITION = new FormData(
+		"Alias List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("name", 100)}, 
+		new String[]{ConverterConstants.ALIAS_ENTITY},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAlias") //$NON-NLS-1$
+	);
+
+	static IFormData ATTRIBUTE_ALIAS_LIST_DEFINITION = new FormData(
+		"Attribute Alias List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("name", 100)}, 
+		new String[]{ConverterConstants.ATTRIBUTE_ALIAS_ENTITY},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAttributeAlias") //$NON-NLS-1$
+	);
+
+	static IFormData FIELD_ALIAS_LIST_DEFINITION = new FormData(
+		"Field Alias List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("alias", 100)}, 
+		new String[]{ConverterConstants.FIELD_ALIAS_ENTITY},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddFieldAlias") //$NON-NLS-1$
+	);
+
+	static IFormData BPM_VAR_LIST_DEFINITION = new FormData(
+		"BPM Var List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("esb", 50), new FormAttributeData("bpm", 50)}, 
+		new String[]{ConverterConstants.BPM_VAR_ENTITY},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddBPMVar") //$NON-NLS-1$
 	);
 
 }

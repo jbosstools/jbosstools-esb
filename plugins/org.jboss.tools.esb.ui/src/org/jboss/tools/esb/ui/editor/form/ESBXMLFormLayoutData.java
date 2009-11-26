@@ -17,6 +17,7 @@ import org.jboss.tools.common.meta.impl.XModelMetaDataImpl;
 import org.jboss.tools.common.model.util.ClassLoaderUtil;
 import org.jboss.tools.common.model.ui.forms.*;
 import org.jboss.tools.esb.core.model.ESBConstants;
+import org.jboss.tools.esb.core.model.converters.ConverterConstants;
 
 /**
  * @author Viacheslav Kabanovich
@@ -73,8 +74,21 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 		if(entityName.startsWith(PREACTION_PREFIX)) {
 			if(entity.getChild(ENT_ESB_ROUTE_TO) != null) {
 				list.add(ESBListsFormLayoutData.ESB_ROUTE_LIST_DEFINITION);
-			} else if(entity.getChild(ENT_ESB_OBJECT_PATH) != null) {
+			}
+			if(entity.getChild(ENT_ESB_OBJECT_PATH) != null) {
 				list.add(ESBListsFormLayoutData.ESB_OBJECT_PATH_LIST_DEFINITION);
+			}
+			if(entity.getChild(ConverterConstants.ALIAS_ENTITY) != null) {
+				list.add(ESBListsFormLayoutData.ALIAS_LIST_DEFINITION);
+			}
+			if(entity.getChild(ConverterConstants.ATTRIBUTE_ALIAS_ENTITY) != null) {
+				list.add(ESBListsFormLayoutData.ATTRIBUTE_ALIAS_LIST_DEFINITION);
+			}
+			if(entity.getChild(ConverterConstants.FIELD_ALIAS_ENTITY) != null) {
+				list.add(ESBListsFormLayoutData.FIELD_ALIAS_LIST_DEFINITION);
+			}
+			if(entity.getChild(ConverterConstants.BPM_VAR_ENTITY) != null) {
+				list.add(ESBListsFormLayoutData.BPM_VAR_LIST_DEFINITION);
 			}
 			//do nothing; when specific children exist use specific forms
 		} else if(entity.getChild(ENT_ESB_PROPERTY) != null) {
