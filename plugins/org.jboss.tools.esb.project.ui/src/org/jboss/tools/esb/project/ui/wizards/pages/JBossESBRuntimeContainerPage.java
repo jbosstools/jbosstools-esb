@@ -165,10 +165,10 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 				Object element) {
 			if(element instanceof IRuntime){
 				IPath location = ((IRuntime)element).getLocation();
-				
+				String runtimeType = ((IRuntime)element).getRuntimeType().getId();
 				if(location == null) return false;
 				
-				return JBossRuntimeManager.isValidESBServer(location.toOSString(), "");
+				return JBossRuntimeManager.isValidESBServer(location.toOSString(), runtimeType);
 			}
 			return true;
 		}

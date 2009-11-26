@@ -654,6 +654,9 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		if(versionNumber >= 4.5) { //$NON-NLS-1$
 			cmVersions.add("1.1.0"); //$NON-NLS-1$
 		}
+		if(versionNumber >= 4.7){
+			cmVersions.add("1.2.0"); //$NON-NLS-1$
+		}
 		int index = cmVersions.getItemCount() - 1;
 		String convigVersionName = cmVersions.getItem(index);
 		cmVersions.select(index);

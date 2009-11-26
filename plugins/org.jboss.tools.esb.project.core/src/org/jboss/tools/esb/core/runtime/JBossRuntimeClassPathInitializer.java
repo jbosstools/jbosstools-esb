@@ -23,11 +23,17 @@ import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.wst.common.project.facet.core.IFacetedProject;
+import org.eclipse.wst.common.project.facet.core.IProjectFacet;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
 import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainer;
 import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainerInitializer;
 import org.jboss.ide.eclipse.as.classpath.core.xpl.ClasspathDecorations;
+import org.jboss.tools.esb.core.ESBProjectCorePlugin;
+import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
 
 /**
@@ -74,6 +80,23 @@ public class JBossRuntimeClassPathInitializer extends
 				isServerSupplied).getClasspathEntries();
 	}
 
+//	private String getVersionNumber(IJavaProject project){
+//		try {
+//			IFacetedProject fp = ProjectFacetsManager.create(project.getProject());
+//			if(fp == null){
+//				return "";
+//			}
+//			IProjectFacet facet = ProjectFacetsManager.getProjectFacet(IJBossESBFacetDataModelProperties.JBOSS_ESB_FACET_ID);
+//			IProjectFacetVersion pfVersion = fp.getProjectFacetVersion(facet);
+//			
+//			return pfVersion.getVersionString();
+//			
+//		} catch (CoreException e) {
+//			ESBProjectCorePlugin.log(e.getLocalizedMessage(), e);
+//		}
+//		return "";
+//	}
+	
 	public class JBossRuntimeClasspathContainer extends
 			AbstractClasspathContainer {
 		private IPath path;
@@ -124,7 +147,7 @@ public class JBossRuntimeClassPathInitializer extends
 				String runtimeLocation = serverRuntime.getLocation()
 						.toOSString();
 				jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(
-						runtimeLocation);
+						runtimeLocation, serverRuntime.getRuntimeType().getId());
 
 			} else {
 
@@ -132,7 +155,7 @@ public class JBossRuntimeClassPathInitializer extends
 						.findRuntimeByName(segment);
 				if (jbws != null) {
 					jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(
-							jbws);
+							jbws, jbws.getVersion());
 					unbound = false;
 				}
 				else{

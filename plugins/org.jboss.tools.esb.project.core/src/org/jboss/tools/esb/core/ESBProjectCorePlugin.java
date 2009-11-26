@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -40,6 +41,7 @@ public class ESBProjectCorePlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		JBossRuntimeManager.loadParsers();
 	}
 
 	/*
@@ -61,8 +63,12 @@ public class ESBProjectCorePlugin extends AbstractUIPlugin {
 	}
 
 	public static void log(String msg,Throwable e) {
+		log(msg, e, Status.ERROR);
+	}
+	
+	public static void log(String msg,Throwable e, int serverity) {
 		ILog log = ESBProjectCorePlugin.getDefault().getLog();
-        IStatus status = new Status(Status.ERROR,ESBProjectCorePlugin.PLUGIN_ID,msg,e);
+        IStatus status = new Status(serverity,ESBProjectCorePlugin.PLUGIN_ID,msg,e);
         log.log(status);
-	}	
+	}
 }

@@ -20,11 +20,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.preference.IPersistentPreferenceStore;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
@@ -43,9 +46,15 @@ public class JBossRuntimeManager {
 
 	private Map<String, JBossRuntime> runtimes = new HashMap<String, JBossRuntime>();
 	
-	private final static String JBOSSESB_ESB = "jbossesb.esb";
-	private final static String JBOSSESB_SAR = "jbossesb.sar";
-	private final static String SOAP_AS_LOCATION = "jboss-as";
+
+	static final String PLUGIN_ID = "org.jboss.tools.esb.project.core"; //$NON-NLS-1$
+	static String ATT_CLASS = "class"; //$NON-NLS-1$
+	static String ATT_VERSION = "esbVersion"; //$NON-NLS-1$
+	static String ATT_ID = "id";
+	static String VERSION_SEPARATOR = ",";
+	
+	static Map<String, IESBRuntimeResolver> parserMap = new HashMap<String, IESBRuntimeResolver>();
+
 
 	/**
 	 * Private constructor
@@ -152,7 +161,7 @@ public class JBossRuntimeManager {
 		return rts.toArray(new JBossRuntime[]{});
 	}
 	
-	public List<String> getAllRuntimeJars(JBossRuntime rt){
+	public List<String> getAllRuntimeJars(JBossRuntime rt, String esbVersion){
 		List<String> jarList = new ArrayList<String>();
 		if (rt != null) {
 			if (rt.isUserConfigClasspath()) {
@@ -160,100 +169,31 @@ public class JBossRuntimeManager {
 				 
 			} else {
 
-				jarList = getAllRuntimeJars(rt.getHomeDir());
+				jarList = getAllRuntimeJars(rt.getHomeDir(), esbVersion);
 			}
 			
 		}
 		return jarList;
 	}
 	
-	public List<String> getAllRuntimeJars(String runtimeLocation) {
+	public List<String> getAllRuntimeJars(String runtimeLocation, String esbVersion) {
 		List<String> jarList = new ArrayList<String>();
-
-		IPath rtHome = new Path(runtimeLocation);
-		IPath soapDeployPath = rtHome.append(SOAP_AS_LOCATION).append("server").append("default").append(
-		"deploy");
-		IPath deployPath = rtHome.append("server").append("default").append(
-				"deploy");
-
-		IPath esbPath = deployPath.append(JBOSSESB_ESB);
-		IPath sarPath = deployPath.append(JBOSSESB_SAR);
-
-		IPath libPath = rtHome.append("lib");
-
-		//if it's not a normal jboss AS , try to treat it as standalone esb runtme
-		if (!esbPath.toFile().exists() || !sarPath.toFile().exists()) {
-			esbPath = libPath.append(JBOSSESB_ESB);
-			sarPath = libPath.append(JBOSSESB_SAR);
+		IESBRuntimeResolver resolver = null;
+		if(parserMap.get(esbVersion) != null){
+			resolver = (IESBRuntimeResolver)parserMap.get(esbVersion);
 		}
 		
-		if (!esbPath.toFile().exists() || !sarPath.toFile().exists()) {
-			esbPath = soapDeployPath.append(JBOSSESB_ESB);
-			sarPath = soapDeployPath.append(JBOSSESB_SAR);
+		if( resolver != null){
+			List<File> jars = resolver.getAllRuntimeJars(runtimeLocation);
+			for(File file : jars){
+				jarList.add(file.getAbsolutePath());
+			}
+		}
+		else{
+			ESBProjectCorePlugin.log("No ESB runtime resolver defined for ESB "+ esbVersion, null, Status.WARNING);
 		}
 		
-		List<File> esblibs = getJarsOfFolder(esbPath.toFile());
-		IPath sarLibPath = sarPath.append("lib");
-		List<File> sarJars = getJarsOfFolder(sarLibPath.toFile());
-		// /List<File> commonLibs = getJarsOfFolder(libPath.toFile());
-		// List<File> tmpLibs = mergeTwoFileList(esblibs, sarJars);
-		// libs.addAll(commonLibs);
-
-		jarList = mergeTwoList(esblibs, sarJars);
-
 		return jarList;
-	}
-	
-	private List<File> getJarsOfFolder(File folder){
-		List<File> jars = new ArrayList<File>();
-		if(folder.isDirectory()){
-			for(File file: folder.listFiles()){
-				if(file.isFile() && (file.getName().endsWith(".jar") || file.getName().endsWith(".zip"))){
-					jars.add(file);
-				}else if (folder.isDirectory()){
-					jars.addAll(getJarsOfFolder(file));
-				}
-			}
-		}
-		
-		return jars;
-	}
-	
-	// if two folders have the same jar file, one of them will be ignored.
-	private List<String> mergeTwoList(List<File> jarList1, List<File> jarList2){
-		List<String> rtList = new ArrayList<String>();
-		List<String> distinctFileNames = new ArrayList<String>();
-		
-		for(File jarFile: jarList1){
-			distinctFileNames.add(jarFile.getName());
-			rtList.add(jarFile.getAbsolutePath());
-		}
-		for(File jarFile: jarList2){
-			if(!distinctFileNames.contains(jarFile.getName())){
-				rtList.add(jarFile.getAbsolutePath());
-			}
-		}
-		
-		return rtList;
-		
-	}
-	
-	private List<File> mergeTwoFileList(List<File> jarList1, List<File> jarList2){
-		List<File> rtList = new ArrayList<File>();
-		List<String> distinctFileNames = new ArrayList<String>();
-		
-		for(File jarFile: jarList1){
-			distinctFileNames.add(jarFile.getName());
-			rtList.add(jarFile);
-		}
-		for(File jarFile: jarList2){
-			if(!distinctFileNames.contains(jarFile.getName())){
-				rtList.add(jarFile);
-			}
-		}
-		
-		return rtList;
-		
 	}
 	
 	/**
@@ -418,53 +358,56 @@ public class JBossRuntimeManager {
 	}
 	
 	public static boolean isValidESBServer(String path, String version){
-		return getResttaJar(path, "" , version) || isValidSoapContainedESBRuntime(path, version);
-	}
-	
-	private static boolean isValidSoapContainedESBRuntime(String path, String version){
-		return  getResttaJar(path, SOAP_AS_LOCATION, version);
-	}
-	
-	public static boolean getResttaJar(String path, String asFoldername, String version){
-		IPath serverLocation = new Path(path);
-		if(asFoldername != null && !"".equals(asFoldername)){
-			serverLocation = serverLocation.append(asFoldername);
-		}
-		IPath sarLocation = serverLocation.append( "server" + File.separator + "default"
-		+ File.separator + "deploy" + File.separator
-		+ "jbossesb.sar");
-		IPath rosettaJar  = sarLocation.append("lib" + File.separator +  "jbossesb-rosetta.jar");
 		
-		try{
-			double versionNumber = Double.valueOf(version);
-			if(versionNumber >= 4.5){
-				return isVersion45(sarLocation);
-			}
-		}catch(NumberFormatException e){
-		}
-		return rosettaJar.toFile().exists(); 
+		return isValidESBStandaloneRuntimeDir(path, version);
 	}
+	
+//	private static boolean isValidSoapContainedESBRuntime(String path, String version){
+//		return  isValidESBStandaloneRuntimeDir(path, version);
+//	}
+	
+	@Deprecated
+	public static boolean getResttaJar(String path, String asFoldername, String version){
+		return isValidESBStandaloneRuntimeDir(path, version);
+	}
+	
+	
+	
 	
 	public static boolean isValidESBStandaloneRuntimeDir(String path, String version) {
-		IPath location = new Path(path);
-		IPath esblocation = location.append("lib").append("jbossesb.esb");
-		IPath sarLocation = location.append("lib").append("jbossesb.sar");
-		if (!esblocation.toFile().isDirectory()) {
-			return false;
-		}
-		if (!sarLocation.toFile().isDirectory()) {
-			return false;
+		IESBRuntimeResolver resolver = null;
+		if( parserMap.get(version) != null){
+			resolver = (IESBRuntimeResolver)parserMap.get(version);
 		}
 		
-		try{
-			double versionNumber = Double.valueOf(version);
-			if(versionNumber >= 4.5){
-				return isVersion45(sarLocation);
-			}
-		}catch(NumberFormatException e){
+		if(resolver != null){
+			return resolver.isValidESBRuntime(path, version);
 		}
-
-		return true;
+		else{
+			ESBProjectCorePlugin.log("No ESB runtime resolver defined for ESB "+ version, null, Status.WARNING);
+		}
+		
+		return false;
+		
+//		IPath location = new Path(path);
+//		IPath esblocation = location.append("lib").append("jbossesb.esb");
+//		IPath sarLocation = location.append("lib").append("jbossesb.sar");
+//		if (!esblocation.toFile().isDirectory()) {
+//			return false;
+//		}
+//		if (!sarLocation.toFile().isDirectory()) {
+//			return false;
+//		}
+//		
+//		try{
+//			double versionNumber = Double.valueOf(version);
+//			if(versionNumber >= 4.5){
+//				return isVersion45(sarLocation);
+//			}
+//		}catch(NumberFormatException e){
+//		}
+//
+//		return true;
 	}
 	
 	private static boolean isVersion45(IPath sarLocation){
@@ -477,6 +420,47 @@ public class JBossRuntimeManager {
 		
 		return "";
 		
+	}
+	
+	public static void loadParsers() {
+		IExtensionPoint extensionPoint = Platform.getExtensionRegistry()
+				.getExtensionPoint(PLUGIN_ID, "esbRuntimeResolver");
+		for (IConfigurationElement element : extensionPoint
+				.getConfigurationElements()) {
+			String clazz = element.getAttribute(ATT_CLASS);
+			String esbVersion = element.getAttribute(ATT_VERSION);
+			
+			IConfigurationElement[] supportedRTs = element.getChildren("supportedRuntimeType");
+			List<String> runtimeTypeIds = new ArrayList<String>();
+			for(IConfigurationElement supportedRT : supportedRTs){
+				runtimeTypeIds.add(supportedRT.getAttribute(ATT_ID));
+			}
+			
+			if (clazz == null || (esbVersion == null && runtimeTypeIds.size() == 0)) {
+				continue;
+			}
+			
+			
+			IESBRuntimeResolver parser = null;
+			try {
+				parser = (IESBRuntimeResolver) element
+						.createExecutableExtension(ATT_CLASS);
+				
+				if (esbVersion != null && !"".equals(esbVersion.trim())) {
+					String[] versions = esbVersion.split(VERSION_SEPARATOR);
+					for (String version : versions) {
+						parserMap.put(version, parser);
+					}
+				}
+				
+				for(String typeId : runtimeTypeIds){
+					parserMap.put(typeId, parser);
+				}
+
+			} catch (CoreException e) {
+				ESBProjectCorePlugin.log(e.getLocalizedMessage(), e);
+			}
+		}
 	}
 	
 }

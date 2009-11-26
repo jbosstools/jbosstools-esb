@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="esbRuntimeResolver" name="ESB Runtime Resolver" schema="schema/esbRuntimeResolver.xsd"/>
    <extension
          point="org.eclipse.wst.common.project.facet.core.facets">
       <project-facet
@@ -99,6 +100,24 @@
             </and>
          </constraint>
       </project-facet-version>
+      <project-facet-version
+            facet="jst.jboss.esb"
+            version="4.7">
+         <group-member
+               id="modules">
+         </group-member>
+         <constraint>
+            <and>
+               <conflicts
+                     group="modules">
+               </conflicts>
+               <requires
+                     facet="jst.java"
+                     version="[5.0">
+               </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
       <action
             facet="jst.jboss.esb"
             id="jst.jboss.esb.install"
@@ -128,7 +147,7 @@
       <supported>
          <facet
                id="jst.jboss.esb"
-               version="4.2,4.3,4.4,4.5,4.6">
+               version="4.2,4.3,4.4,4.5,4.6,4.7">
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.as.runtime.component"
@@ -138,7 +157,7 @@
       <supported>
          <facet
                id="jst.jboss.esb"
-               version="4.2,4.3,4.4,4.5,4.6">
+               version="4.2,4.3,4.4,4.5,4.6,4.7">
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.eap.runtime.component"
@@ -236,5 +255,33 @@
             class="org.jboss.tools.esb.core.component.ESBVirtualComponent">
       </componentimpl>
    </extension>
+    <extension
+          point="org.jboss.tools.esb.project.core.esbRuntimeResolver">
+       <Resolver
+             class="org.jboss.tools.esb.core.runtime.ESBRuntimeResolver_42"
+             esbVersion="4.2,4.3,4.4,4.5,4.6"
+             name="ESB runtime resolver">
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.42">
+          </supportedRuntimeType>
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.eap.43">
+          </supportedRuntimeType>
+       </Resolver>
+       <Resolver
+             class="org.jboss.tools.esb.core.runtime.ESBRuntimeResolver_47"
+             esbVersion="4.7"
+             name="ESB runtime resolver">
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.eap.50">
+          </supportedRuntimeType>
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.50">
+          </supportedRuntimeType>
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.51">
+          </supportedRuntimeType>
+       </Resolver>
+    </extension>
     
 </plugin>
