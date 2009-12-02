@@ -35,7 +35,7 @@
    <PAIR name="org.jboss.soa.esb.actions.soap.SOAPProcessor" value="ESBPreActionSOAPProcessor"/>
    <PAIR name="org.jboss.soa.esb.actions.soap.proxy.SOAPProxy" value="ESBPreActionSOAPProxy"/>
    <PAIR name="org.jboss.soa.esb.actions.soap.wise.SOAPClient" value="ESBPreActionSOAPWiseClient"/>
-   <PAIR name="org.jboss.soa.esb.actions.transformation.xslt.XslAction" value="ESBPreActionXSLTAction"/>
+   <PAIR name="org.jboss.soa.esb.actions.transformation.xslt.XsltAction" value="ESBPreActionXSLTAction"/>
    <PAIR
     name="org.jboss.soa.esb.actions.validation.SchemaValidationAction" value="ESBPreActionSchemaValidator"/>
    <PAIR name="org.jboss.soa.esb.scripting.ScriptingAction" value="ESBPreActionScripting"/>
@@ -2124,7 +2124,7 @@
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
-    default="org.jboss.soa.esb.actions.transformation.xslt.XslAction"
+    default="org.jboss.soa.esb.actions.transformation.xslt.XsltAction"
     name="class" xmlname="class">
     <Editor name="Uneditable"/>
    </XModelAttribute>
