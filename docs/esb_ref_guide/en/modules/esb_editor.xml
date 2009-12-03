@@ -89,7 +89,7 @@
                 </imageobject>
             </mediaobject>
         </figure>
-
+       
         <para>The same way you can create a listener for service and other elements of ESB:</para>
         <figure>
             <title>Adding New Listener for Service</title>
@@ -102,6 +102,17 @@
         <para>The same actions can be done in the right part of <property>Tree view</property> tab
             (Form editor) using <property>Add</property>, <property>Edit</property> and
                 <property>Remove</property> buttons.</para>
+        
+        <para>Filter can be also edited this way</para>
+        
+        <figure>
+            <title>Editing Filter</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/06a_esb_filter.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
 
 
         <para>In order to add a new generic Action to your ESB XML file you should select the
