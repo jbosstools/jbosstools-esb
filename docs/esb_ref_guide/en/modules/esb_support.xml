@@ -66,8 +66,10 @@
                         </mediaobject>
                 </figure>
 
-				<para> Clicking <emphasis>
-                                <property>Next</property>
+		<para>Next step provides you an opportunity to configure your project for building a java application</para>
+		         
+		         <para> Clicking <emphasis>
+                                <property>Next</property> on this form
                         </emphasis> brings you to the ESB facet installation page where you can 
                         specify Java Source Directory and ESB Content Directory. ESB Content Directory is a folder that contains the most of
                          artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:
