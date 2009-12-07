@@ -23,8 +23,6 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
@@ -169,14 +167,14 @@ public class JBossRuntimeManager {
 				 
 			} else {
 
-				jarList = getAllRuntimeJars(rt.getHomeDir(), esbVersion);
+				jarList = getAllRuntimeJars(rt.getHomeDir(), esbVersion, rt.getConfiguration());
 			}
 			
 		}
 		return jarList;
 	}
 	
-	public List<String> getAllRuntimeJars(String runtimeLocation, String esbVersion) {
+	public List<String> getAllRuntimeJars(String runtimeLocation, String esbVersion, String configuration) {
 		List<String> jarList = new ArrayList<String>();
 		IESBRuntimeResolver resolver = null;
 		if(parserMap.get(esbVersion) != null){
@@ -184,7 +182,7 @@ public class JBossRuntimeManager {
 		}
 		
 		if( resolver != null){
-			List<File> jars = resolver.getAllRuntimeJars(runtimeLocation);
+			List<File> jars = resolver.getAllRuntimeJars(runtimeLocation, configuration);
 			for(File file : jars){
 				jarList.add(file.getAbsolutePath());
 			}
@@ -357,9 +355,9 @@ public class JBossRuntimeManager {
 		runtimes = converter.getMap(runtimeListString);
 	}
 	
-	public static boolean isValidESBServer(String path, String version){
+	public static boolean isValidESBServer(String path, String version, String configuration){
 		
-		return isValidESBStandaloneRuntimeDir(path, version);
+		return isValidESBStandaloneRuntimeDir(path, version, configuration);
 	}
 	
 //	private static boolean isValidSoapContainedESBRuntime(String path, String version){
@@ -367,21 +365,21 @@ public class JBossRuntimeManager {
 //	}
 	
 	@Deprecated
-	public static boolean getResttaJar(String path, String asFoldername, String version){
-		return isValidESBStandaloneRuntimeDir(path, version);
+	public static boolean getResttaJar(String path, String asFoldername, String version, String configuration){
+		return isValidESBStandaloneRuntimeDir(path, version, configuration);
 	}
 	
 	
 	
 	
-	public static boolean isValidESBStandaloneRuntimeDir(String path, String version) {
+	public static boolean isValidESBStandaloneRuntimeDir(String path, String version, String configuration) {
 		IESBRuntimeResolver resolver = null;
 		if( parserMap.get(version) != null){
 			resolver = (IESBRuntimeResolver)parserMap.get(version);
 		}
 		
 		if(resolver != null){
-			return resolver.isValidESBRuntime(path, version);
+			return resolver.isValidESBRuntime(path, version, configuration);
 		}
 		else{
 			ESBProjectCorePlugin.log("No ESB runtime resolver defined for ESB "+ version, null, Status.WARNING);
@@ -410,11 +408,6 @@ public class JBossRuntimeManager {
 //		return true;
 	}
 	
-	private static boolean isVersion45(IPath sarLocation){
-		IPath libPath = sarLocation.append("lib");
-		File jbossesbConfigModel110 = libPath.append("jbossesb-config-model-1.1.0.jar").toFile();
-		return jbossesbConfigModel110 != null && jbossesbConfigModel110.exists();
-	}
 
 	public String getESBVersionNumber(File rosettaJar){
 		

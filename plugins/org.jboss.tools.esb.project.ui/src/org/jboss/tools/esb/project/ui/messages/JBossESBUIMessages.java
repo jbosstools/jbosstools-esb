@@ -37,6 +37,7 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_Runtime_Delete_Confirm_Title;
 	public static String JBoss_Runtime_Delete_Used_Confirm;
 	public static String JBoss_Runtime_Delete_Not_Used_Confirm;
+	public static String JBoss_Runtime_List_Field_Editor_Configuration_Description;
 	public static String JBoss_Runtime_List_Field_Editor_Edit_Runtime;
 	public static String JBoss_Runtime_List_Field_Editor_Modify_Runtime;
 	public static String JBoss_Runtime_List_Field_Editor_New_Runtime;
@@ -51,6 +52,7 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_Composite_Editor_This_Method_Can_Be_Invoked;
 	public static String JBoss_Button_Field_Editor_Browse;
 	public static String JBoss_ESBRuntime_Classpath_Container_5;
+	public static String JBoss_Runtime_List_Field_Editor_Configuration;
 
 	public static String JBoss_ESBRuntime_Classpath_Container_Description;
 

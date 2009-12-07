@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IAccessRule;
 import org.eclipse.jdt.core.IClasspathAttribute;
@@ -23,17 +24,12 @@ import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.wst.common.project.facet.core.IFacetedProject;
-import org.eclipse.wst.common.project.facet.core.IProjectFacet;
-import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
-import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
 import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainer;
 import org.jboss.ide.eclipse.as.classpath.core.jee.AbstractClasspathContainerInitializer;
 import org.jboss.ide.eclipse.as.classpath.core.xpl.ClasspathDecorations;
-import org.jboss.tools.esb.core.ESBProjectCorePlugin;
-import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
+import org.jboss.ide.eclipse.as.core.server.IJBossServerRuntime;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
 
 /**
@@ -146,8 +142,10 @@ public class JBossRuntimeClassPathInitializer extends
 				unbound = false;
 				String runtimeLocation = serverRuntime.getLocation()
 						.toOSString();
+				IJBossServerRuntime jbossRuntime = (IJBossServerRuntime)serverRuntime.loadAdapter(IJBossServerRuntime.class, new NullProgressMonitor());
+
 				jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(
-						runtimeLocation, serverRuntime.getRuntimeType().getId());
+						runtimeLocation, serverRuntime.getRuntimeType().getId(), jbossRuntime.getJBossConfiguration());
 
 			} else {
 

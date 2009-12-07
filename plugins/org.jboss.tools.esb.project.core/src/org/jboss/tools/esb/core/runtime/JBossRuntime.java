@@ -24,6 +24,8 @@ public class JBossRuntime {
 	String homeDir = null;
 	
 	String version = null;
+	
+	String configuration = "";
 
 	boolean defaultRt = false;
 	
@@ -55,6 +57,16 @@ public class JBossRuntime {
 	public String getHomeDir() {
 		return homeDir;
 	}
+	
+	
+	/**
+	 * Get jboss server configuration
+	 * 
+	 * @return JBoss configuration as string
+	 */
+	public String getConfiguration(){
+		return configuration;
+	}
 
 	/**
 	 * Set JBossWSRuntime name
@@ -74,6 +86,18 @@ public class JBossRuntime {
 	 */
 	public void setHomeDir(String homeDir) {
 		this.homeDir = homeDir;
+	}
+	
+	
+	
+	/**
+	 * Set JBoss server configuration, it is only for jboss AS contained ESB runtime
+	 * 
+	 * @param configuration
+	 *            new JBossWSRuntime's configuration
+	 */
+	public void setConfiguration(String configuration){
+		this.configuration = configuration;
 	}
 
 	/**

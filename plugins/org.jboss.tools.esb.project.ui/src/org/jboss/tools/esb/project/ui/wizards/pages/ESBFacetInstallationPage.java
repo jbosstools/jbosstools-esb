@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.Dialog;
@@ -56,6 +57,7 @@ import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
 import org.eclipse.wst.common.project.facet.ui.AbstractFacetWizardPage;
 import org.eclipse.wst.common.project.facet.ui.IFacetWizardPage;
 import org.eclipse.wst.server.core.ServerCore;
+import org.jboss.ide.eclipse.as.core.server.IJBossServerRuntime;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
@@ -364,8 +366,10 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 
 				org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore
 						.findRuntime(runtime.getProperty("id")); //$NON-NLS-1$
+				IJBossServerRuntime jbossRuntime = (IJBossServerRuntime)serverRuntime.loadAdapter(IJBossServerRuntime.class, new NullProgressMonitor());
+
 				if (!JBossRuntimeManager.isValidESBServer(serverRuntime
-						.getLocation().toOSString(), getSelectedESBVersion().getVersionString())) {
+						.getLocation().toOSString(), getSelectedESBVersion().getVersionString(), jbossRuntime.getJBossConfiguration())) {
 					hasRuntime = true;
 					setMessage(NLS.bind(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime, getSelectedESBVersion().getVersionString()), WARNING);
 					setPageComplete(isPageComplete());
@@ -388,8 +392,10 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 					}
 					org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore
 							.findRuntime(runtime.getProperty("id"));
+					IJBossServerRuntime jbossRuntime = (IJBossServerRuntime)serverRuntime.loadAdapter(IJBossServerRuntime.class, new NullProgressMonitor());
+
 					if (!JBossRuntimeManager.isValidESBServer(serverRuntime
-							.getLocation().toOSString(), getSelectedESBVersion().getVersionString())) {
+							.getLocation().toOSString(), getSelectedESBVersion().getVersionString(), jbossRuntime.getJBossConfiguration())) {
 						setMessage(NLS.bind(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Invalid_ESB_Runtime, getSelectedESBVersion().getVersionString()), WARNING);
 						hasRuntime = true;
 						setPageComplete(isPageComplete());

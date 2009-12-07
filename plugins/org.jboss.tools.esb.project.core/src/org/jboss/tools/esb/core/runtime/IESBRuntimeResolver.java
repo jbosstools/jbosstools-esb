@@ -8,9 +8,9 @@ import org.eclipse.core.runtime.IPath;
 public interface IESBRuntimeResolver {
 
 	
-	public boolean isValidESBRuntime(String location, String version);
+	public boolean isValidESBRuntime(String location, String version, String configuration);
 	
-	public List<IPath> getJarDirectories(String runtimeLocation);
+	public List<IPath> getJarDirectories(String runtimeLocation, String configuration);
 	
-	public List<File> getAllRuntimeJars(String runtimeLocation);
+	public List<File> getAllRuntimeJars(String runtimeLocation, String configuration);
 }

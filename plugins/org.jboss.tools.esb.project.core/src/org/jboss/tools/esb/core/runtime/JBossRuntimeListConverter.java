@@ -36,6 +36,7 @@ public class JBossRuntimeListConverter {
 		private static final String DEFAULT = "default";
 		private static final String HOME_DIR = "homeDir";
 		private static final String VERSION = "version";
+		private static final String CONFIGURATION = "configuration";
 		private static final String NAME = "name";
 		private static final String USER_CONFIG_CLASSPATH = "userConfig";
 		private static final String LIBRARY = "libraries";
@@ -71,7 +72,9 @@ public class JBossRuntimeListConverter {
 						rt.setHomeDir(value);
 					} else if (VERSION.equals(name)) {
 						rt.setVersion(value);
-					} else if (DEFAULT.equals(name)) {
+					}else if (CONFIGURATION.equals(name)) {
+						rt.setConfiguration(value);
+					}else if (DEFAULT.equals(name)) {
 						rt.setDefault(Boolean.parseBoolean(value));
 					}else if(USER_CONFIG_CLASSPATH.equals(name)){
 						rt.setUserConfigClasspath(Boolean.parseBoolean(value));
@@ -134,6 +137,9 @@ public class JBossRuntimeListConverter {
 				buffer.append(FIELD_SEPARATOR).append(HOME_DIR).append(
 						FIELD_SEPARATOR);
 				buffer.append(runtimes[i].getHomeDir());
+				buffer.append(FIELD_SEPARATOR).append(CONFIGURATION).append(
+						FIELD_SEPARATOR);
+				buffer.append(runtimes[i].getConfiguration());
 				buffer.append(FIELD_SEPARATOR).append(DEFAULT).append(
 						FIELD_SEPARATOR);
 				buffer.append(runtimes[i].isDefault());

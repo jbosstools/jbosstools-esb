@@ -99,6 +99,7 @@ public class JBossESBRuntimePreferencePage extends PreferencePage implements
 			JBossRuntime o = changed.get(c);
 			o.setHomeDir(c.getHomeDir());
 			o.setVersion(c.getVersion());
+			o.setConfiguration(c.getConfiguration());
 			String oldName = o.getName();
 			String newName = c.getName();
 			if (!oldName.equals(newName)) {

@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.JavaCore;
@@ -44,6 +45,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
 import org.eclipse.wst.server.ui.ServerUICore;
+import org.jboss.ide.eclipse.as.core.server.IJBossServerRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeClassPathInitializer;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
@@ -167,8 +169,9 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 				IPath location = ((IRuntime)element).getLocation();
 				String runtimeType = ((IRuntime)element).getRuntimeType().getId();
 				if(location == null) return false;
-				
-				return JBossRuntimeManager.isValidESBServer(location.toOSString(), runtimeType);
+				IJBossServerRuntime jbossRuntime = (IJBossServerRuntime)((IRuntime)element).loadAdapter(IJBossServerRuntime.class, new NullProgressMonitor());
+
+				return JBossRuntimeManager.isValidESBServer(location.toOSString(), runtimeType, jbossRuntime.getJBossConfiguration());
 			}
 			return true;
 		}

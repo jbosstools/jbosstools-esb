@@ -14,13 +14,18 @@ public abstract class AbstractESBRuntimeResolver implements IESBRuntimeResolver 
 	protected final static String SOAP_AS_LOCATION = "jboss-as"; //$NON-NLS-1$
 	protected final static String ROSETTA_JAR = "jbossesb-rosetta.jar"; //$NON-NLS-1$
 	
-	public List<IPath> getJarDirectories(String runtimeLocation) {
+	public List<IPath> getJarDirectories(String runtimeLocation, String configuration) {
+		
+		if("".equals(configuration)){
+			configuration = "default";
+		}
+		
 		List<IPath> directories = new ArrayList<IPath>();
 		
 		IPath rtHome = new Path(runtimeLocation);
 		IPath soapDeployPath = rtHome.append(SOAP_AS_LOCATION).append("server").append("default").append(
 		"deploy");
-		IPath deployPath = rtHome.append("server").append("default").append(
+		IPath deployPath = rtHome.append("server").append(configuration).append(
 				"deploy");
 
 		IPath esbPath = deployPath.append(JBOSSESB_ESB);
@@ -39,10 +44,10 @@ public abstract class AbstractESBRuntimeResolver implements IESBRuntimeResolver 
 		return directories;
 	}
 	
-	public List<File> getAllRuntimeJars(String runtimeLocation) {
+	public List<File> getAllRuntimeJars(String runtimeLocation, String configuration) {
 		List<File> jarList = new ArrayList<File>();
 		
-		for(IPath dir : getJarDirectories(runtimeLocation)){
+		for(IPath dir : getJarDirectories(runtimeLocation, configuration)){
 			List<File> tmpJarList = new ArrayList<File>();
 			if(dir.toFile().exists()){
 				tmpJarList = getJarsOfFolder(dir.toFile());

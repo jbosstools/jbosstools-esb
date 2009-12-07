@@ -14,10 +14,10 @@ public class ESBRuntimeResolver_47 extends AbstractESBRuntimeResolver implements
 	private final static String CONFIG_MODEL_JAR_12 = "jbossesb-config-model-1.2.0.jar";
 
 	
-	public boolean isValidESBRuntime(String location, String version){
+	public boolean isValidESBRuntime(String location, String version, String configuration){
 		List<String> jarNames = new ArrayList<String>();
 		
-		for(File file : getAllRuntimeJars(location)){
+		for(File file : getAllRuntimeJars(location, configuration)){
 			jarNames.add(file.getName());
 		}
 			
@@ -27,8 +27,8 @@ public class ESBRuntimeResolver_47 extends AbstractESBRuntimeResolver implements
 	}
 	
 	
-	public List<IPath> getJarDirectories(String runtimeLocation) {
-		List<IPath> directories = super.getJarDirectories(runtimeLocation);
+	public List<IPath> getJarDirectories(String runtimeLocation, String configuration) {
+		List<IPath> directories = super.getJarDirectories(runtimeLocation, configuration);
 		IPath rtHome = new Path(runtimeLocation);
 		IPath soapDeployPath = rtHome.append(SOAP_AS_LOCATION).append("server").append("default").append(
 		"deployers").append("esb.deployer").append("lib");

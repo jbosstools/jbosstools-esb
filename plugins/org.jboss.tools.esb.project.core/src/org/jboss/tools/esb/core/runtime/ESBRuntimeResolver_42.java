@@ -13,10 +13,10 @@ public class ESBRuntimeResolver_42 extends AbstractESBRuntimeResolver implements
 	private final static String CONFIG_MODEL_JAR = "jbossesb-config-model-1.1.0.jar";
 
 	
-	public boolean isValidESBRuntime(String location, String version){
+	public boolean isValidESBRuntime(String location, String version, String configuration){
 		List<String> jarNames = new ArrayList<String>();
 		
-		for(File file : getAllRuntimeJars(location)){
+		for(File file : getAllRuntimeJars(location, configuration)){
 			jarNames.add(file.getName());
 		}
 		
