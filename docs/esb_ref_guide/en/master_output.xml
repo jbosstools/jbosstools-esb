@@ -23,13 +23,13 @@
     <bookinfo>
         <title>ESB Tools Reference Guide</title>
         
-        <corpauthor diffmk:change="added">
-            <inlinemediaobject diffmk:change="added">
-                <imageobject diffmk:change="added" role="fo">
-                    <imagedata diffmk:change="added" fileref="images/jbosstools_logo.png" format="PNG"></imagedata>
+        <corpauthor>
+            <inlinemediaobject>
+                <imageobject role="fo">
+                    <imagedata fileref="images/jbosstools_logo.png" format="PNG"></imagedata>
                 </imageobject>	
-                <imageobject diffmk:change="added" role="html">
-                    <imagedata diffmk:change="added"></imagedata>
+                <imageobject role="html">
+                    <imagedata></imagedata>
                 </imageobject>	
             </inlinemediaobject>           
         </corpauthor>
@@ -40,10 +40,10 @@
         <copyright>
             <year>2007</year>
             <year>2009</year>
-            <holder><diffmk:wrapper diffmk:change="changed">JBoss by Red Hat</diffmk:wrapper></holder>
+            <holder>JBoss by Red Hat</holder>
         </copyright>
         <releaseinfo><diffmk:wrapper diffmk:change="changed">
-            Version: 1.3.0.M2
+            Version: 1.3.0.CR1
         </diffmk:wrapper></releaseinfo>
     
 <abstract>
@@ -57,7 +57,7 @@
     <toc></toc>  
     
 	
-<chapter id="introduction" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/introduction.xml">
+<chapter id="introduction" xml:base="file:///home/ochikvina/WORK/for_compare/jbosstools-3.1.0.CR1/esb/docs/esb_ref_guide/en/modules/introduction.xml">
     <?dbhtml filename="introduction.html"?>
 
     <chapterinfo>
@@ -89,50 +89,50 @@
 
     </section>
 
-<section diffmk:change="added">
-    <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Key Features of ESB Tools</diffmk:wrapper></title>
-    <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">For a start, we propose you to look through the table of main features of ESB plugin:</diffmk:wrapper></para>
+<section>
+    <title>Key Features of ESB Tools</title>
+    <para>For a start, we propose you to look through the table of main features of ESB plugin:</para>
 
-    <table diffmk:change="added">
+    <table>
         
-        <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Key Functionality of ESB Tools</diffmk:wrapper></title>
-        <tgroup cols="3" diffmk:change="added">
+        <title>Key Functionality of ESB Tools</title>
+        <tgroup cols="3">
             
-            <colspec align="left" colnum="1" colwidth="2*" diffmk:change="added"></colspec>
-            <colspec colnum="2" colwidth="4*" diffmk:change="added"></colspec>
-            <colspec align="left" colnum="3" colwidth="2*" diffmk:change="added"></colspec>
+            <colspec align="left" colnum="1" colwidth="2*"></colspec>
+            <colspec colnum="2" colwidth="4*"></colspec>
+            <colspec align="left" colnum="3" colwidth="2*"></colspec>
             
-            <thead diffmk:change="added">
-                <row diffmk:change="added">
-                    <entry diffmk:change="added"><diffmk:wrapper diffmk:change="added">Feature</diffmk:wrapper></entry>
-                    <entry diffmk:change="added"><diffmk:wrapper diffmk:change="added">Benefit</diffmk:wrapper></entry>
-                    <entry diffmk:change="added"><diffmk:wrapper diffmk:change="added">Chapter</diffmk:wrapper></entry>
+            <thead>
+                <row>
+                    <entry>Feature</entry>
+                    <entry>Benefit</entry>
+                    <entry>Chapter</entry>
                 </row>
             </thead>
             
-            <tbody diffmk:change="added">
+            <tbody>
                 
-                <row diffmk:change="added">
-                    <entry diffmk:change="added"><para diffmk:change="added"><diffmk:wrapper diffmk:change="added">JBoss Tools Project Examples Wizard</diffmk:wrapper></para></entry>
-                    <entry diffmk:change="added"><para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Some kinds of projects with predefined structure are available for usage.</diffmk:wrapper></para></entry>
-                    <entry diffmk:change="added">
-                        <link diffmk:change="added" linkend="ESB_project_wizard"><diffmk:wrapper diffmk:change="added">Creating ESB Project using JBoss Tools Project Examples Wizard</diffmk:wrapper></link>
+                <row>
+                    <entry><para>JBoss Tools Project Examples Wizard</para></entry>
+                    <entry><para>Some kinds of projects with predefined structure are available for usage.</para></entry>
+                    <entry>
+                        <link linkend="ESB_project_wizard">Creating ESB Project using JBoss Tools Project Examples Wizard</link>
                     </entry>
                 </row>
                 
-                <row diffmk:change="added">
-                    <entry diffmk:change="added"><para diffmk:change="added"><diffmk:wrapper diffmk:change="added">JBoss Enterprise SOA Platform</diffmk:wrapper></para></entry>
-                    <entry diffmk:change="added"><para diffmk:change="added"><diffmk:wrapper diffmk:change="added">The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</diffmk:wrapper></para></entry>
-                    <entry diffmk:change="added">
-                        <link diffmk:change="added" linkend="using_SOA"><diffmk:wrapper diffmk:change="added">using and configuring SOA Platform</diffmk:wrapper></link>
+                <row>
+                    <entry><para>JBoss Enterprise SOA Platform</para></entry>
+                    <entry><para>The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</para></entry>
+                    <entry>
+                        <link linkend="using_SOA">using and configuring SOA Platform</link>
                     </entry>
                 </row>
                 
-                <row diffmk:change="added">
-                    <entry diffmk:change="added"><para diffmk:change="added"><diffmk:wrapper diffmk:change="added">ESB Editor</diffmk:wrapper></para></entry>
-                    <entry diffmk:change="added"><para diffmk:change="added"><diffmk:wrapper diffmk:change="added">JBoss ESB tooling has powerful editor features including syntax validation, support for XML Schema and other.</diffmk:wrapper></para></entry>
-                    <entry diffmk:change="added">
-                        <link diffmk:change="added" linkend="esb_editor"><diffmk:wrapper diffmk:change="added">ESB editor</diffmk:wrapper></link>
+                <row>
+                    <entry><para>ESB Editor</para></entry>
+                    <entry><para>JBoss ESB tooling has powerful editor features including syntax validation, support for XML Schema and other.</para></entry>
+                    <entry>
+                        <link linkend="esb_editor">ESB editor</link>
                     </entry>
                 </row>
                 
@@ -169,13 +169,13 @@
         </itemizedlist>
 
         <para>The latest <property moreinfo="none">JBoss Tools/JBoss Developer Studio</property> documentation
-            builds are available <ulink url="http://download.jboss.org/jbosstools/nightly-docs/"><diffmk:wrapper diffmk:change="changed"> JBoss Tools nightly documentation page</diffmk:wrapper></ulink>.</para>
+            builds are available <ulink url="http://download.jboss.org/jbosstools/nightly-docs/"> JBoss Tools nightly documentation page</ulink>.</para>
 
     </section>
 </chapter>
 
     
-<chapter id="esb_support" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/esb_support.xml">
+<chapter id="esb_support" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/jbosstools-3.1.0.CR1/esb/docs/esb_ref_guide/en/modules/esb_support.xml">
         <?dbhtml filename="esb_support.html"?>
         <chapterinfo>
                 <keywordset>
@@ -252,9 +252,9 @@
                         </emphasis>  
                          
                          </para>
-		         <para><diffmk:wrapper diffmk:change="changed"> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences. If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.                         
-                         </diffmk:wrapper></para>           
-		         <para><diffmk:wrapper diffmk:change="changed">3. Choose ESB Config Vertion. From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</diffmk:wrapper></para>	         
+		         <para> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences. If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.                         
+                         </para>           
+		         <para>3. Choose ESB Config Vertion. From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</para>	         
                          
                 <figure float="0">
                         <title>Install ESB facet step</title>
@@ -464,8 +464,8 @@
                         </emphasis> as the name and accept the selected projects folder and the default
                         version.</para>
                 
-               <note diffmk:change="added"><title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Note:</diffmk:wrapper></title>
-                       <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</diffmk:wrapper></para></note>
+               <note><title>Note:</title>
+                       <para>From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</para></note>
                 <figure float="0">
                         <title>Folder, Name and Version for ESB file</title>
                         <mediaobject>
@@ -668,7 +668,7 @@
 </chapter>
 
     
-<chapter id="esb_editor" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/trunk/esb/docs/esb_ref_guide/en/modules/esb_editor.xml" xreflabel="esb_editor">
+<chapter id="esb_editor" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/jbosstools-3.1.0.CR1/esb/docs/esb_ref_guide/en/modules/esb_editor.xml" xreflabel="esb_editor">
     <?dbhtml filename="esbEditor.html"?>
     <chapterinfo>
         <keywordset>
@@ -797,6 +797,14 @@
                 </imageobject>
             </mediaobject>
         </figure>
+    	
+    	<note>
+    		<title>Note:</title>
+    		<para>The out-of-the-box action <emphasis>
+    			<property moreinfo="none">Smooks Transformer</property></emphasis> is now deprecated, and replaced by
+    			<emphasis>
+    				<property moreinfo="none">Smooks Action</property>.</emphasis></para>
+    	</note>
 
         <para>As you can see on the bath figures above, the context menu will also prompt you to
             insert one of the Actions that are supplied out-of-the-box with <property moreinfo="none">JBoss
@@ -858,7 +866,7 @@
 
             <para>JBoss ESB Framework fully <link linkend="sourceView">supports XML files based on
             schemas as well as DTDs</link>.</para>
-            <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">The schema checks the child elements of any kind of provider element; the ESB generates errors on startup if you attempt to define an incorrect combination (e.g.: a jms-bus inside an ftp-provider).</diffmk:wrapper></para>
+            <para>The schema checks the child elements of any kind of provider element; the ESB generates errors on startup if you attempt to define an incorrect combination (e.g.: a jms-bus inside an ftp-provider).</para>
             <note><title>Note:</title>
                 <para>The schema used behind ESB editor now uses the latest version available (from SOA-P 4.3). This removes the errors/warnings some users have reported seeing when using SOA-P specific esb.xml files.</para>  </note>
             
@@ -905,7 +913,7 @@
 
             <para>Content Assist for attributes:</para>
             <figure float="0">
-                <title>Content Assist for attributes:</title>
+                <title>Content Assist for attributes</title>
                 <mediaobject>
                     <imageobject>
                         <imagedata fileref="images/esb_editor/09_esb_features.png" scale="80"></imagedata>
@@ -931,6 +939,34 @@
                         </figure>
              </section> -->
         </section>
+    	
+    	<section id="openOn_for_esb">
+    		<title>OpenOn for ESB XML file</title>
+    		<para>ESB file comes with the OpenOn feature that allows to make use of multiple file references in the file just with a click and the <emphasis>
+    			<property moreinfo="none">Ctrl</property></emphasis> key hold down.</para>
+    		
+    		<para>The OpenOn is implemented for different types of files/pages inside the <literal moreinfo="none">&lt;action&gt;</literal> tag: .xsd, .xml, etc.</para>
+    		
+    		<figure float="0">
+    			<title>OpenOn for smooks configuration file</title>
+    			<mediaobject>
+    				<imageobject>
+    					<imagedata fileref="images/esb_editor/openOn2.png"></imagedata>
+    				</imageobject>
+    			</mediaobject>
+    		</figure>
+    		
+    		<para>It is also available for classes:</para>
+    		
+    		<figure float="0">
+    			<title>OpenOn for classes</title>
+    			<mediaobject>
+    				<imageobject>
+    					<imagedata fileref="images/esb_editor/openOn1.png"></imagedata>
+    				</imageobject>
+    			</mediaobject>
+    		</figure>
+    	</section>
 
         <section id="FullControlOverSourceFiles-SynchronizedSourcAndVisualEditing">
 
