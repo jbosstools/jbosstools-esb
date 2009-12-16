@@ -15,47 +15,37 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 
-public class StatusUtils
-{
-  public static IStatus errorStatus( String errorMessage )
-  {
-    return new Status( IStatus.ERROR, "id", 0, errorMessage, null );
+public class StatusUtils {
+  public static IStatus errorStatus( String errorMessage ) {
+    return new Status( IStatus.ERROR, ESBProjectCorePlugin.PLUGIN_ID, 0, errorMessage, null );
   }
   
-  public static IStatus errorStatus( Throwable exc )
-  {
+  public static IStatus errorStatus( Throwable exc ) {
     String message = exc.getMessage();
-    
-    return new Status( IStatus.ERROR, "id", 0, message == null ? "" : message, exc );
+    return new Status( IStatus.ERROR, ESBProjectCorePlugin.PLUGIN_ID, 0, message == null ? "" : message, exc );
   }
   
-  public static IStatus errorStatus( String message, Throwable exc )
-  {
-    return new Status( IStatus.ERROR, "id", 0, message, exc );
+  public static IStatus errorStatus( String message, Throwable exc ) {
+    return new Status( IStatus.ERROR, ESBProjectCorePlugin.PLUGIN_ID, 0, message, exc );
   }
   
-  public static MultiStatus multiStatus( String message, IStatus[] children, Throwable exc )
-  {
-    return new MultiStatus( "id", 0, children, message, exc );  
+  public static MultiStatus multiStatus( String message, IStatus[] children, Throwable exc ) {
+    return new MultiStatus( ESBProjectCorePlugin.PLUGIN_ID, 0, children, message, exc );  
   }
   
-  public static MultiStatus multiStatus( String message, IStatus[] children )
-  {
-    return new MultiStatus( "id", 0, children, message, null );  
+  public static MultiStatus multiStatus( String message, IStatus[] children ) {
+    return new MultiStatus( ESBProjectCorePlugin.PLUGIN_ID, 0, children, message, null );  
   }
   
-  public static IStatus warningStatus( String warningMessage )
-  {
-    return new Status( IStatus.WARNING, "id", 0, warningMessage, null );
+  public static IStatus warningStatus( String warningMessage ) {
+    return new Status( IStatus.WARNING, ESBProjectCorePlugin.PLUGIN_ID, 0, warningMessage, null );
   }
   
-  public static IStatus warningStatus( String warningMessage, Throwable exc )
-  {
-    return new Status( IStatus.WARNING, "id", 0, warningMessage, exc );
+  public static IStatus warningStatus( String warningMessage, Throwable exc ) {
+    return new Status( IStatus.WARNING, ESBProjectCorePlugin.PLUGIN_ID, 0, warningMessage, exc );
   }
   
-  public static IStatus infoStatus( String infoMessage )
-  {
-    return new Status( IStatus.INFO, "id", 0, infoMessage, null );
+  public static IStatus infoStatus( String infoMessage ) {
+    return new Status( IStatus.INFO, ESBProjectCorePlugin.PLUGIN_ID, 0, infoMessage, null );
   }
 }
