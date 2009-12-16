@@ -65,7 +65,7 @@ import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.jboss.tools.esb.core.ESBProjectConstant;
-import org.jboss.tools.esb.core.runtime.JBossRuntime;
+import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
@@ -95,13 +95,13 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 
 	private ActionPanel actionPanel;
 
-	private Map<JBossRuntime, JBossRuntime> changed = new HashMap<JBossRuntime, JBossRuntime>();
+	private Map<JBossESBRuntime, JBossESBRuntime> changed = new HashMap<JBossESBRuntime, JBossESBRuntime>();
 
-	private JBossRuntime checkedElement = new JBossRuntime();
+	private JBossESBRuntime checkedElement = new JBossESBRuntime();
 
-	private List<JBossRuntime> added = new ArrayList<JBossRuntime>();
+	private List<JBossESBRuntime> added = new ArrayList<JBossESBRuntime>();
 
-	private List<JBossRuntime> removed = new ArrayList<JBossRuntime>();
+	private List<JBossESBRuntime> removed = new ArrayList<JBossESBRuntime>();
 
 	// ------------------------------------------------------------------------
 	// Constructors
@@ -127,11 +127,11 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 * 
 	 * @return JBossRuntime;
 	 */
-	public JBossRuntime getDefaultJBossRuntime() {
+	public JBossESBRuntime getDefaultJBossRuntime() {
 		return checkedElement;
 	}
 
-	public void setDefaultJBossRuntime(JBossRuntime rt) {
+	public void setDefaultJBossRuntime(JBossESBRuntime rt) {
 		checkedElement = rt;
 	}
 
@@ -140,7 +140,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 * 
 	 * @return List&lt;JBossRuntime&gt;
 	 */
-	public List<JBossRuntime> getAddedJBossRuntimes() {
+	public List<JBossESBRuntime> getAddedJBossRuntimes() {
 		return added;
 	}
 
@@ -149,7 +149,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 * 
 	 * @return List&lt;JBossRuntime&gt;
 	 */
-	public Map<JBossRuntime, JBossRuntime> getChangedJBossRuntimes() {
+	public Map<JBossESBRuntime, JBossESBRuntime> getChangedJBossRuntimes() {
 		return changed;
 	}
 
@@ -158,7 +158,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 * 
 	 * @return List&lt;JBossRuntime&gt;
 	 */
-	public List<JBossRuntime> getRemoved() {
+	public List<JBossESBRuntime> getRemoved() {
 		return removed;
 	}
 
@@ -223,7 +223,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 
 			public Object[] getElements(Object inputElement) {
 				if (inputElement instanceof List) {
-					return ((List<JBossRuntime>) inputElement).toArray();
+					return ((List<JBossESBRuntime>) inputElement).toArray();
 				} else {
 					throw new IllegalArgumentException(
 							JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Inputelement_Must_Be_List);
@@ -264,7 +264,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			}
 
 			public String getColumnText(Object element, int columnIndex) {
-				JBossRuntime rt = (JBossRuntime) element;
+				JBossESBRuntime rt = (JBossESBRuntime) element;
 				if (columnIndex == TC_DEFAULT_NUMBER) {
 					return ""; //$NON-NLS-1$
 				}
@@ -286,13 +286,13 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		tableView.getTable().setHeaderVisible(true);
 		tableView.addCheckStateListener(new ICheckStateListener() {
 			public void checkStateChanged(CheckStateChangedEvent event) {
-				JBossRuntime selRt = (JBossRuntime) event.getElement();
+				JBossESBRuntime selRt = (JBossESBRuntime) event.getElement();
 				if (event.getChecked()) {
-					JBossRuntime deselRt = null;
+					JBossESBRuntime deselRt = null;
 					Object[] selRts = tableView.getCheckedElements();
 
 					for (int i = 0; i < selRts.length; i++) {
-						JBossRuntime rt = (JBossRuntime) selRts[i];
+						JBossESBRuntime rt = (JBossESBRuntime) selRts[i];
 						if (rt != selRt) {
 							deselRt = rt;
 							break;
@@ -304,7 +304,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 						checkedElement = null;
 						int i = 0;
 						for (Object object : selRts) {
-							JBossRuntime rt = (JBossRuntime) object;
+							JBossESBRuntime rt = (JBossESBRuntime) object;
 							if (rt == selRt) {
 								newChecked[i] = rt;
 								checkedElement = rt;
@@ -313,7 +313,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 						}
 						tableView.setCheckedElements(newChecked);
 					} else {
-						checkedElement = (JBossRuntime) event.getElement();
+						checkedElement = (JBossESBRuntime) event.getElement();
 					}
 				} else {
 					if (checkedElement == selRt) {
@@ -324,7 +324,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			}
 		});
 
-		for (JBossRuntime rt : (List<JBossRuntime>) getValue()) {
+		for (JBossESBRuntime rt : (List<JBossESBRuntime>) getValue()) {
 			if (rt.isDefault()) {
 				tableView.setChecked(rt, true);
 				checkedElement = rt;
@@ -343,9 +343,9 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 */
 	@SuppressWarnings("unchecked")
 	private void setDefaultRuntime() {
-		List<JBossRuntime> runtimes = (List<JBossRuntime>) getValue();
+		List<JBossESBRuntime> runtimes = (List<JBossESBRuntime>) getValue();
 		boolean checked = false;
-		for (JBossRuntime jbossRuntime : runtimes) {
+		for (JBossESBRuntime jbossRuntime : runtimes) {
 
 			if (checkedElement == jbossRuntime) {
 				checked = true;
@@ -421,7 +421,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		private static final int GL_PARENT_COLUMNS = 1;
 		private static final int GL_CONTENT_COLUMNS = 3;
 
-		List<JBossRuntime> value = null;
+		List<JBossESBRuntime> value = null;
 
 		IFieldEditor name = createTextEditor(SRT_NAME,
 				JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Name2, ""); //$NON-NLS-1$ 
@@ -438,11 +438,11 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Home_Folder,
 				""); //$NON-NLS-1$ 
 
-		JBossRuntime current = null;
-		JBossRuntime source = null;
+		JBossESBRuntime current = null;
+		JBossESBRuntime source = null;
 		IFieldEditor jars = null;
 
-		public JBossWSRuntimeWizardPage(List<JBossRuntime> editedList, JBossRuntime source) {
+		public JBossWSRuntimeWizardPage(List<JBossESBRuntime> editedList, JBossESBRuntime source) {
 			super(
 					JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_New_Runtime);
 
@@ -547,7 +547,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				setPageComplete(false);
 				return;
 			}
-			for (JBossRuntime rt : value) {
+			for (JBossESBRuntime rt : value) {
 				if (current != null && current.getName().equals(rt.getName())) {
 					continue;
 				}
@@ -560,7 +560,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				}
 			}
 
-			JBossRuntime jarJbws = (JBossRuntime) jars.getValue();
+			JBossESBRuntime jarJbws = (JBossESBRuntime) jars.getValue();
 			if (current != null
 					&& current.getName().equals(name.getValueAsString())
 					&& current.getHomeDir().equals(homeDir.getValueAsString())
@@ -678,13 +678,13 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		 * 
 		 * @return JBossRuntime instance
 		 */
-		public JBossRuntime getRuntime() {
-			JBossRuntime newRt = new JBossRuntime();
+		public JBossESBRuntime getRuntime() {
+			JBossESBRuntime newRt = new JBossESBRuntime();
 			newRt.setName(name.getValueAsString());
 			newRt.setVersion(version.getValueAsString());
 			newRt.setHomeDir(homeDir.getValueAsString());
 			newRt.setConfiguration(configuration.getText());
-			JBossRuntime rt = (JBossRuntime) jars.getValue();
+			JBossESBRuntime rt = (JBossESBRuntime) jars.getValue();
 			newRt.setLibraries(rt.getLibraries());
 			newRt.setUserConfigClasspath(rt.isUserConfigClasspath());
 			return newRt;
@@ -772,11 +772,11 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	public static class JBossRuntimeNewWizard extends Wizard {
 
 		JBossWSRuntimeWizardPage page1 = null;
-		List<JBossRuntime> added = null;
-		List<JBossRuntime> value = null;
+		List<JBossESBRuntime> added = null;
+		List<JBossESBRuntime> value = null;
 
-		public JBossRuntimeNewWizard(List<JBossRuntime> exist,
-				List<JBossRuntime> added) {
+		public JBossRuntimeNewWizard(List<JBossESBRuntime> exist,
+				List<JBossESBRuntime> added) {
 			super();
 			setWindowTitle(JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_New_Runtime);
 			page1 = new JBossWSRuntimeWizardPage(exist, null);
@@ -792,14 +792,14 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		 */
 		@Override
 		public boolean performFinish() {
-			JBossRuntime rt = page1.getRuntime();
+			JBossESBRuntime rt = page1.getRuntime();
 			added.add(rt);
 			value.add(rt);
 
 			return true;
 		}
 
-		protected JBossRuntime getRuntime() {
+		protected JBossESBRuntime getRuntime() {
 			return page1.getRuntime();
 		}
 
@@ -812,10 +812,10 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 */
 	public static class JBossWSRuntimeEditWizard extends Wizard {
 		JBossWSRuntimeWizardPage page1 = null;
-		List<JBossRuntime> added = null;
-		Map<JBossRuntime, JBossRuntime> changed = null;
-		List<JBossRuntime> value = null;
-		JBossRuntime source = null;
+		List<JBossESBRuntime> added = null;
+		Map<JBossESBRuntime, JBossESBRuntime> changed = null;
+		List<JBossESBRuntime> value = null;
+		JBossESBRuntime source = null;
 
 		/**
 		 * Constructor with almost all initialization parameters
@@ -830,9 +830,9 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		 * @param changed
 		 *            List&lt;JBossRuntime&gt; - TBD
 		 */
-		public JBossWSRuntimeEditWizard(List<JBossRuntime> existing,
-				JBossRuntime source, List<JBossRuntime> added,
-				Map<JBossRuntime, JBossRuntime> changed) {
+		public JBossWSRuntimeEditWizard(List<JBossESBRuntime> existing,
+				JBossESBRuntime source, List<JBossESBRuntime> added,
+				Map<JBossESBRuntime, JBossESBRuntime> changed) {
 			super();
 			setWindowTitle(JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Edit_Runtime);
 			page1 = new JBossWSRuntimeWizardPage(existing, source);
@@ -858,7 +858,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		 */
 		@Override
 		public boolean performFinish() {
-			JBossRuntime rt = page1.getRuntime();
+			JBossESBRuntime rt = page1.getRuntime();
 
 			if (added.contains(source) || changed.containsKey(source)) {
 				source.setName(rt.getName());
@@ -1018,7 +1018,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 */
 	public abstract class BaseAction extends Action {
 
-		JBossRuntime[] runtimes = new JBossRuntime[0];
+		JBossESBRuntime[] runtimes = new JBossESBRuntime[0];
 
 		/**
 		 * Constructor creates action with provided name
@@ -1039,13 +1039,13 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		 */
 		public void setSelection(ISelection selection) {
 			if (selection instanceof IStructuredSelection) {
-				List<JBossRuntime> rts = new ArrayList<JBossRuntime>();
+				List<JBossESBRuntime> rts = new ArrayList<JBossESBRuntime>();
 				for (Object rt : ((IStructuredSelection) selection).toArray()) {
-					rts.add((JBossRuntime) rt);
+					rts.add((JBossESBRuntime) rt);
 				}
-				runtimes = rts.toArray(new JBossRuntime[] {});
+				runtimes = rts.toArray(new JBossESBRuntime[] {});
 			} else {
-				runtimes = new JBossRuntime[0];
+				runtimes = new JBossESBRuntime[0];
 			}
 			updateEnablement();
 		}
@@ -1085,7 +1085,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		@Override
 		public void run() {
 			Wizard wiz = new JBossRuntimeNewWizard(
-					(List<JBossRuntime>) getValue(), added);
+					(List<JBossESBRuntime>) getValue(), added);
 			WizardDialog dialog = new WizardDialog(Display.getCurrent()
 					.getActiveShell(), wiz);
 			dialog.open();
@@ -1128,15 +1128,15 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		@SuppressWarnings("unchecked")
 		@Override
 		public void run() {
-			JBossRuntime selected = runtimes[0];
+			JBossESBRuntime selected = runtimes[0];
 			Wizard wiz = new JBossWSRuntimeEditWizard(
-					(List<JBossRuntime>) getValue(), runtimes[0], added,
+					(List<JBossESBRuntime>) getValue(), runtimes[0], added,
 					changed);
 			WizardDialog dialog = new WizardDialog(Display.getCurrent()
 					.getActiveShell(), wiz);
 			dialog.open();
 			tableView.refresh();
-			JBossRuntime c = null;
+			JBossESBRuntime c = null;
 			if (changed.containsValue(selected)) {
 				c = findChangedRuntime(selected);
 				if (c != null) {
@@ -1149,8 +1149,8 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			setDefaultRuntime();
 		}
 
-		private JBossRuntime findChangedRuntime(JBossRuntime source) {
-			for (JBossRuntime r : changed.keySet()) {
+		private JBossESBRuntime findChangedRuntime(JBossESBRuntime source) {
+			for (JBossESBRuntime r : changed.keySet()) {
 				if (source == changed.get(r)) {
 					return r;
 				}
@@ -1185,7 +1185,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		 */
 		@Override
 		public void run() {
-			for (JBossRuntime rt : runtimes) {
+			for (JBossESBRuntime rt : runtimes) {
 				removeRuntime(rt);
 			}
 			tableView.refresh();
@@ -1193,7 +1193,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		}
 
 		@SuppressWarnings("unchecked")
-		private void removeRuntime(JBossRuntime r) {
+		private void removeRuntime(JBossESBRuntime r) {
 			boolean used = JBossRuntimeManager.isRuntimeUsed(r.getName());
 			String title = JBossESBUIMessages.JBoss_Runtime_Delete_Confirm_Title;
 			String message = (used) ? NLS.bind(

@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.jboss.tools.esb.core.runtime.JBossRuntime;
+import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
@@ -40,7 +40,7 @@ public class JBossESBRuntimePreferencePage extends PreferencePage implements
 	private static final int COLUMNS = 3;
 
 	JBossRuntimeListFieldEditor jbossRuntimes = new JBossRuntimeListFieldEditor(
-			"rtlist", JBossESBUIMessages.JBoss_Preference_Page_Runtimes, new ArrayList<JBossRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()))); //$NON-NLS-1$
+			"rtlist", JBossESBUIMessages.JBoss_Preference_Page_Runtimes, new ArrayList<JBossESBRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()))); //$NON-NLS-1$
 
 	/**
 	 * Create contents of JBoss ESB preferences page.  list editor
@@ -73,18 +73,18 @@ public class JBossESBRuntimePreferencePage extends PreferencePage implements
 	 */
 	@Override
 	protected void performApply() {
-		for (JBossRuntime rt : jbossRuntimes.getAddedJBossRuntimes()) {
+		for (JBossESBRuntime rt : jbossRuntimes.getAddedJBossRuntimes()) {
 			JBossRuntimeManager.getInstance().addRuntime(rt);
 		}
 		jbossRuntimes.getAddedJBossRuntimes().clear();
-		for (JBossRuntime rt : jbossRuntimes.getRemoved()) {
+		for (JBossESBRuntime rt : jbossRuntimes.getRemoved()) {
 			JBossRuntimeManager.getInstance().removeRuntime(rt);
 		}
 		jbossRuntimes.getRemoved().clear();
-		JBossRuntime defaultRuntime = jbossRuntimes
+		JBossESBRuntime defaultRuntime = jbossRuntimes
 				.getDefaultJBossRuntime();
 		// reset default runtime
-		for (JBossRuntime jbossWSRuntime : JBossRuntimeManager
+		for (JBossESBRuntime jbossWSRuntime : JBossRuntimeManager
 				.getInstance().getRuntimes()) {
 			jbossWSRuntime.setDefault(false);
 		}
@@ -93,10 +93,10 @@ public class JBossESBRuntimePreferencePage extends PreferencePage implements
 			defaultRuntime.setDefault(true);
 		}
 		jbossRuntimes.setDefaultJBossRuntime(null);
-		Map<JBossRuntime, JBossRuntime> changed = jbossRuntimes
+		Map<JBossESBRuntime, JBossESBRuntime> changed = jbossRuntimes
 				.getChangedJBossRuntimes();
-		for (JBossRuntime c : changed.keySet()) {
-			JBossRuntime o = changed.get(c);
+		for (JBossESBRuntime c : changed.keySet()) {
+			JBossESBRuntime o = changed.get(c);
 			o.setHomeDir(c.getHomeDir());
 			o.setVersion(c.getVersion());
 			o.setConfiguration(c.getConfiguration());

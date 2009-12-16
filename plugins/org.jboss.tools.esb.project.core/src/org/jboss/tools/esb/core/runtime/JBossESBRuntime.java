@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * @author Denny Xu
  */
-public class JBossRuntime {
+public class JBossESBRuntime {
 
 	String name = null;
 
@@ -36,7 +36,7 @@ public class JBossRuntime {
 	/**
 	 * Default constructor
 	 */
-	public JBossRuntime() {
+	public JBossESBRuntime() {
 		libraries = new ArrayList<String>();
 	}
 

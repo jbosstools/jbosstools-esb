@@ -60,7 +60,7 @@ import org.eclipse.wst.server.core.ServerCore;
 import org.jboss.ide.eclipse.as.core.server.IJBossServerRuntime;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
-import org.jboss.tools.esb.core.runtime.JBossRuntime;
+import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.jboss.tools.esb.project.ui.ESBProjectPlugin;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
@@ -283,7 +283,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		cmbRuntimes.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				String runtimeName = cmbRuntimes.getText();
-				JBossRuntime jr = (JBossRuntime) cmbRuntimes
+				JBossESBRuntime jr = (JBossESBRuntime) cmbRuntimes
 						.getData(runtimeName);
 				saveJBossESBRuntimeToModel(jr);
 				changePageStatus();
@@ -339,7 +339,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		if(runtimename == null || runtimename.equals("")){ //$NON-NLS-1$
 			hasRuntime = false;
 		}
-		JBossRuntime jbRuntime = JBossRuntimeManager.getInstance().findRuntimeByName(runtimename);
+		JBossESBRuntime jbRuntime = JBossRuntimeManager.getInstance().findRuntimeByName(runtimename);
 		
 		
 		if (jbRuntime != null) {
@@ -424,13 +424,13 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	 * create a new jboss ESB runtime and set user supplied runtime to the new one
 	 */
 	protected void newJBossRuntime() {
-		List<JBossRuntime> exists = new ArrayList<JBossRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()));
-		List<JBossRuntime> added = new ArrayList<JBossRuntime>();
+		List<JBossESBRuntime> exists = new ArrayList<JBossESBRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()));
+		List<JBossESBRuntime> added = new ArrayList<JBossESBRuntime>();
 		
 		JBossRuntimeListFieldEditor.JBossRuntimeNewWizard newRtwizard = new JBossRuntimeListFieldEditor.JBossRuntimeNewWizard(
 				exists, added) {
 			public boolean performFinish() {
-				JBossRuntime rt = getRuntime();
+				JBossESBRuntime rt = getRuntime();
 				rt.setDefault(true);
 				JBossRuntimeManager.getInstance().addRuntime(rt);
 				JBossRuntimeManager.getInstance().save();
@@ -446,8 +446,8 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 	}
 	
 	protected void initializeRuntimesCombo(Combo cmRuntime, String runtimeName, String version) {
-		JBossRuntime selectedJbRuntime = null;
-		JBossRuntime defaultJbws = null;
+		JBossESBRuntime selectedJbRuntime = null;
+		JBossESBRuntime defaultJbws = null;
 		int selectIndex = 0;
 		int defaultIndex = 0;
 		
@@ -455,10 +455,10 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		if(runtimeName == null || "".equals(runtimeName)){ //$NON-NLS-1$
 			runtimeName = model.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID);
 		}
-		JBossRuntime[] runtimes = JBossRuntimeManager.getInstance()
+		JBossESBRuntime[] runtimes = JBossRuntimeManager.getInstance()
 				.findRuntimeByVersion(version);
 		for (int i = 0; i < runtimes.length; i++) {
-			JBossRuntime jr = runtimes[i];
+			JBossESBRuntime jr = runtimes[i];
 			cmRuntime.add(jr.getName());
 			cmRuntime.setData(jr.getName(), jr);
 			
@@ -508,7 +508,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		
 	}
 	
-	protected void saveJBossESBRuntimeToModel(JBossRuntime jbws) {
+	protected void saveJBossESBRuntimeToModel(JBossESBRuntime jbws) {
 
 		if (jbws != null) {
 			model.setStringProperty(

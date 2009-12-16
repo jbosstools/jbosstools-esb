@@ -149,7 +149,7 @@ public class JBossRuntimeClassPathInitializer extends
 
 			} else {
 
-				JBossRuntime jbws = JBossRuntimeManager.getInstance()
+				JBossESBRuntime jbws = JBossRuntimeManager.getInstance()
 						.findRuntimeByName(segment);
 				if (jbws != null) {
 					jars = JBossRuntimeManager.getInstance().getAllRuntimeJars(

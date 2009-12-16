@@ -48,7 +48,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
-import org.jboss.tools.esb.core.runtime.JBossRuntime;
+import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.preference.JBossESBUIPlugin;
 
@@ -78,7 +78,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 
 	private ActionPanel actionPanel;
 	
-	private JBossRuntime tempJbesb;
+	private JBossESBRuntime tempJbesb;
 
 
 
@@ -100,9 +100,9 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 	 *            Object
 	 */
 	public JBossLibraryListFieldEditor(String name, String label,
-			JBossRuntime jbws) {
+			JBossESBRuntime jbws) {
 		super(name, label, jbws);
-		this.tempJbesb = new JBossRuntime();
+		this.tempJbesb = new JBossESBRuntime();
 		if(jbws != null){
 			this.tempJbesb.setUserConfigClasspath(jbws.isUserConfigClasspath());
 			this.tempJbesb.getLibraries().addAll(jbws.getLibraries());
@@ -203,8 +203,8 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 		listView.setContentProvider(new ITreeContentProvider() {
 
 			public Object[] getElements(Object inputElement) {
-				if (inputElement instanceof JBossRuntime) {
-					return ((JBossRuntime) inputElement).getLibraries().toArray();
+				if (inputElement instanceof JBossESBRuntime) {
+					return ((JBossESBRuntime) inputElement).getLibraries().toArray();
 				} else {
 					throw new IllegalArgumentException(
 							JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Inputelement_Must_Be_List);

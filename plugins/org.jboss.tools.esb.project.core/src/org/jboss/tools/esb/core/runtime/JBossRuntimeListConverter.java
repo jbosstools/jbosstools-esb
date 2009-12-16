@@ -51,9 +51,9 @@ public class JBossRuntimeListConverter {
 		 * TODO - write converter from old serialization format to XML?
 		 * TODO - handle errors in string format
 		 */
-		public Map<String, JBossRuntime> getMap(String input) {
+		public Map<String, JBossESBRuntime> getMap(String input) {
 
-			Map<String, JBossRuntime> result = new HashMap<String, JBossRuntime>();
+			Map<String, JBossESBRuntime> result = new HashMap<String, JBossESBRuntime>();
 			if (input == null || EMPTY_STRING.equals(input.trim())) {
 				return result;
 			}
@@ -61,7 +61,7 @@ public class JBossRuntimeListConverter {
 			while (runtimes.hasMoreTokens()) {
 				String runtime = runtimes.nextToken();
 				String[] map = runtime.split(REGEXP_ESCAPE + FIELD_SEPARATOR);
-				JBossRuntime rt = new JBossRuntime();
+				JBossESBRuntime rt = new JBossESBRuntime();
 				final int step = 2;
 				for (int i = 0; i < map.length; i += step) {
 					String name = map[i];
@@ -124,10 +124,10 @@ public class JBossRuntimeListConverter {
 		 * @return
 		 * 		String representation of String to JBossWS Runtime map
 		 */
-		public String getString(Map<String, JBossRuntime> runtimeMap) {
+		public String getString(Map<String, JBossESBRuntime> runtimeMap) {
 			StringBuffer buffer = new StringBuffer();
-			JBossRuntime[] runtimes = runtimeMap.values().toArray(
-					new JBossRuntime[runtimeMap.size()]);
+			JBossESBRuntime[] runtimes = runtimeMap.values().toArray(
+					new JBossESBRuntime[runtimeMap.size()]);
 			for (int i = 0; i < runtimes.length; i++) {
 				buffer.append(NAME).append(FIELD_SEPARATOR);
 				buffer.append(runtimes[i].getName());

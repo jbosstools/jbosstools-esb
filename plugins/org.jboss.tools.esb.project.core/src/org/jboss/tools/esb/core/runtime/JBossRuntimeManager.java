@@ -42,7 +42,7 @@ public class JBossRuntimeManager {
 
 	private static JBossRuntimeListConverter converter = new JBossRuntimeListConverter();
 
-	private Map<String, JBossRuntime> runtimes = new HashMap<String, JBossRuntime>();
+	private Map<String, JBossESBRuntime> runtimes = new HashMap<String, JBossESBRuntime>();
 	
 
 	static final String PLUGIN_ID = "org.jboss.tools.esb.project.core"; //$NON-NLS-1$
@@ -84,9 +84,9 @@ public class JBossRuntimeManager {
 	 * 
 	 * @return JBossWSRuntime[]
 	 */
-	public JBossRuntime[] getRuntimes() {
-		Collection<JBossRuntime> c = runtimes.values();
-		return c.toArray(new JBossRuntime[runtimes.size()]);
+	public JBossESBRuntime[] getRuntimes() {
+		Collection<JBossESBRuntime> c = runtimes.values();
+		return c.toArray(new JBossESBRuntime[runtimes.size()]);
 	}
 
 	/**
@@ -95,12 +95,12 @@ public class JBossRuntimeManager {
 	 * @param runtime
 	 *            JBossWSRuntime
 	 */
-	public void addRuntime(JBossRuntime runtime) {
+	public void addRuntime(JBossESBRuntime runtime) {
 		if (runtimes.size() == 0) {
 			runtime.setDefault(true);
 		}
 
-		JBossRuntime oldDefaultRuntime = getDefaultRuntime();
+		JBossESBRuntime oldDefaultRuntime = getDefaultRuntime();
 		if (oldDefaultRuntime != null && runtime.isDefault()) {
 			oldDefaultRuntime.setDefault(false);
 		}
@@ -122,7 +122,7 @@ public class JBossRuntimeManager {
 	 */
 	public void addRuntime(String name, String path, String version,
 			boolean defaultRt) {
-		JBossRuntime jbossWSRt = new JBossRuntime();
+		JBossESBRuntime jbossWSRt = new JBossESBRuntime();
 		jbossWSRt.setHomeDir(path);
 		jbossWSRt.setName(name);
 		jbossWSRt.setVersion(version);
@@ -137,8 +137,8 @@ public class JBossRuntimeManager {
 	 *            String - JBossWSRuntime name
 	 * @return JBossWSRuntime - found JBossWSRuntime instance or null
 	 */
-	public JBossRuntime findRuntimeByName(String name) {
-		for (JBossRuntime jbossWSRuntime : runtimes.values()) {
+	public JBossESBRuntime findRuntimeByName(String name) {
+		for (JBossESBRuntime jbossWSRuntime : runtimes.values()) {
 			if (jbossWSRuntime.getName().equals(name)) {
 				return jbossWSRuntime;
 			}
@@ -146,20 +146,20 @@ public class JBossRuntimeManager {
 		return null;
 	}
 
-	public JBossRuntime[]  findRuntimeByVersion(String version) {
+	public JBossESBRuntime[]  findRuntimeByVersion(String version) {
 		if(version == null || "".equals(version)){
 			return getRuntimes();
 		}
-		List<JBossRuntime> rts = new ArrayList<JBossRuntime>();
-		for (JBossRuntime jbossWSRuntime : runtimes.values()) {
+		List<JBossESBRuntime> rts = new ArrayList<JBossESBRuntime>();
+		for (JBossESBRuntime jbossWSRuntime : runtimes.values()) {
 			if (jbossWSRuntime.getVersion().equals(version)) {
 				rts.add(jbossWSRuntime);
 			}
 		}
-		return rts.toArray(new JBossRuntime[]{});
+		return rts.toArray(new JBossESBRuntime[]{});
 	}
 	
-	public List<String> getAllRuntimeJars(JBossRuntime rt, String esbVersion){
+	public List<String> getAllRuntimeJars(JBossESBRuntime rt, String esbVersion){
 		List<String> jarList = new ArrayList<String>();
 		if (rt != null) {
 			if (rt.isUserConfigClasspath()) {
@@ -200,7 +200,7 @@ public class JBossRuntimeManager {
 	 * @param rt
 	 *            JBossWSRuntime
 	 */
-	public void removeRuntime(JBossRuntime rt) {
+	public void removeRuntime(JBossESBRuntime rt) {
 		runtimes.remove(rt.getName());
 	}
 
@@ -227,8 +227,8 @@ public class JBossRuntimeManager {
 	 * 
 	 * @param runtime
 	 */
-	public void setDefaultRuntime(JBossRuntime runtime) {
-		JBossRuntime[] runtimes = getRuntimes();
+	public void setDefaultRuntime(JBossESBRuntime runtime) {
+		JBossESBRuntime[] runtimes = getRuntimes();
 		for (int i = 0; i < runtimes.length; i++) {
 			runtimes[i].setDefault(false);
 		}
@@ -240,8 +240,8 @@ public class JBossRuntimeManager {
 	 * 
 	 * @return JBossWSRuntime
 	 */
-	public JBossRuntime getDefaultRuntime() {
-		for (JBossRuntime rt : runtimes.values()) {
+	public JBossESBRuntime getDefaultRuntime() {
+		for (JBossESBRuntime rt : runtimes.values()) {
 			if (rt.isDefault()) {
 				return rt;
 			}
@@ -255,9 +255,9 @@ public class JBossRuntimeManager {
 	 * @return List&lt;String&gt;
 	 */
 	public List<String> getRuntimeNames() {
-		JBossRuntime[] rts = getRuntimes();
+		JBossESBRuntime[] rts = getRuntimes();
 		List<String> result = new ArrayList<String>();
-		for (JBossRuntime jbossWSRuntime : rts) {
+		for (JBossESBRuntime jbossWSRuntime : rts) {
 			result.add(jbossWSRuntime.getName());
 		}
 		return result;
@@ -269,9 +269,9 @@ public class JBossRuntimeManager {
 	 * @return List of all runtime names
 	 */
 	public List<String> getAllRuntimeNames() {
-		JBossRuntime[] rts = getRuntimes();
+		JBossESBRuntime[] rts = getRuntimes();
 		List<String> result = new ArrayList<String>();
-		for (JBossRuntime jbossWSRuntime : rts) {
+		for (JBossESBRuntime jbossWSRuntime : rts) {
 			result.add(jbossWSRuntime.getName());
 		}
 		return result;
@@ -286,7 +286,7 @@ public class JBossRuntimeManager {
 	 *            new runtime name
 	 */
 	public void changeRuntimeName(String oldName, String newName) {
-		JBossRuntime o = findRuntimeByName(oldName);
+		JBossESBRuntime o = findRuntimeByName(oldName);
 		if (o == null) {
 			return;
 		}

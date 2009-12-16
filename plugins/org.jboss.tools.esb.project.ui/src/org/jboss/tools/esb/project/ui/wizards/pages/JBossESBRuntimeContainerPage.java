@@ -46,7 +46,7 @@ import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
 import org.eclipse.wst.server.ui.ServerUICore;
 import org.jboss.ide.eclipse.as.core.server.IJBossServerRuntime;
-import org.jboss.tools.esb.core.runtime.JBossRuntime;
+import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeClassPathInitializer;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.jboss.tools.esb.project.ui.ESBProjectPlugin;
@@ -123,8 +123,8 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 		if(obj instanceof IRuntime){
 			path = path.append(JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED);
 			path = path.append(((IRuntime)obj).getId());
-		}else if(obj instanceof JBossRuntime){
-			path = path.append(((JBossRuntime)obj).getName());
+		}else if(obj instanceof JBossESBRuntime){
+			path = path.append(((JBossESBRuntime)obj).getName());
 		}
 		entry = JavaCore.newContainerEntry(path);
 		return true;
@@ -141,9 +141,9 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 
 	private List getAllAvailableESBRuntimes(){
 		List runtimes = new ArrayList();
-		JBossRuntime[] preRuntimes = JBossRuntimeManager.getInstance().getRuntimes();
+		JBossESBRuntime[] preRuntimes = JBossRuntimeManager.getInstance().getRuntimes();
 		IRuntime[] serverRuntimes = ServerCore.getRuntimes();
-		List<JBossRuntime> preList = Arrays.asList(preRuntimes);
+		List<JBossESBRuntime> preList = Arrays.asList(preRuntimes);
 		List<IRuntime> serverRuntimeList = Arrays.asList(serverRuntimes); 
 		runtimes.addAll(preList);
 		runtimes.addAll(serverRuntimeList);
@@ -198,14 +198,14 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 			case 0:
 				if(element instanceof IRuntime){
 					return serverLabel.getText(element);
-				}else if(element instanceof JBossRuntime){
-					return ((JBossRuntime)element).getName();
+				}else if(element instanceof JBossESBRuntime){
+					return ((JBossESBRuntime)element).getName();
 				}
 				break;
 			case 1:
 				if(element instanceof IRuntime){
 					return JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_RuntimeType_ServerContained;
-				}else if(element instanceof JBossRuntime){
+				}else if(element instanceof JBossESBRuntime){
 					return JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_RuntimeType_ESBLibrariesOnly;
 				}
 				break;
