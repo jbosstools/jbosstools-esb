@@ -20,7 +20,7 @@ import org.jboss.tools.esb.core.ESBProjectConstant;
 
 public class JBossESBFacetDataModelProvider extends J2EEModuleFacetInstallDataModelProvider implements IJBossESBFacetDataModelProperties{
 
-	private static final String JBOSSESB_PROJECT_FACET = "jst.jboss.esb";
+	private static final String JBOSSESB_PROJECT_FACET = ESBProjectConstant.ESB_PROJECT_FACET;
 
 	public Set getPropertyNames() {
 		Set names = super.getPropertyNames();
@@ -72,8 +72,4 @@ public class JBossESBFacetDataModelProvider extends J2EEModuleFacetInstallDataMo
 	public IStatus validate(String propertyName) {
 		return OK_STATUS;
 	}
-
-
-
-
 }

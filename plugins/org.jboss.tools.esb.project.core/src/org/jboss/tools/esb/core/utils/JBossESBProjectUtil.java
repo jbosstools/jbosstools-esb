@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Red Hat, Inc.
+ * Distributed under license by Red Hat, Inc. All rights reserved.
+ * This program is made available under the terms of the
+ * Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Red Hat, Inc. - initial API and implementation
+ ******************************************************************************/
 package org.jboss.tools.esb.core.utils;
 
 import org.eclipse.core.resources.IProject;
@@ -7,6 +17,9 @@ import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 
+/*
+ * In WTP 3.2 this can be replaced with utility code in modulecore
+ */
 public class JBossESBProjectUtil {
 
 	public static boolean isESBProject(IProject project) {

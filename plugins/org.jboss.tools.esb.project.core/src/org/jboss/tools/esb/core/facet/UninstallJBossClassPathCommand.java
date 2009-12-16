@@ -51,25 +51,12 @@ public class UninstallJBossClassPathCommand {
 					.getBoolean(project
 							.getPersistentProperty(IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_SERVER_SUPPLIED_RUNTIME));
 			if (isServerSupplied) {
-//				project
-//						.getPersistentProperties()
-//						.remove(
-//								IJBossWSFacetDataModelProperties.PERSISTENCE_PROPERTY_SERVER_SUPPLIED_RUNTIME);
+				// TODO test
 			} else {
-//				project
-//						.getPersistentProperties()
-//						.remove(
-//								IJBossWSFacetDataModelProperties.PERSISTENCE_PROPERTY_QNAME_RUNTIME_NAME);
-//				project
-//						.getPersistentProperties()
-//						.remove(
-//								IJBossWSFacetDataModelProperties.PERSISTENCE_PROPERTY_RNTIME_LOCATION);
 				String runtimeName = project
 						.getPersistentProperty(IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_QNAME_RUNTIME_NAME);
-
 				status = removeClassPath(project, runtimeName);
 			}
-
 		} catch (CoreException e) {
 			status = StatusUtils.errorStatus(
 					JBossFacetCoreMessages.Error_Remove_Facet_JBossESB, e);

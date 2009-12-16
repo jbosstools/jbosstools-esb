@@ -75,16 +75,12 @@ public class JBossClassPathCommand extends AbstractDataModelOperation {
 							.setPersistentProperty(
 									IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_QNAME_RUNTIME_NAME,
 									runtimeName);
-					project
-							.setPersistentProperty(
+					project.setPersistentProperty(
 									IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_RNTIME_LOCATION,
 									runtimeLocation);
 					project.setPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER, esbcontentFolder);
 					status = addClassPath(project, new String[]{runtimeName});
 				}
-				
-			
-
 		} catch (CoreException e) {
 			status = StatusUtils.errorStatus(
 					JBossFacetCoreMessages.Error_Add_Facet_JBossESB, e);

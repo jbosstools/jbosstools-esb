@@ -37,6 +37,7 @@ import org.eclipse.wst.common.project.facet.core.IDelegate;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.jboss.ide.eclipse.as.wtp.core.util.VCFUtil;
 import org.jboss.ide.eclipse.as.wtp.core.vcf.OutputFoldersVirtualComponent;
+import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.component.ESBVirtualComponent;
 import org.osgi.service.prefs.BackingStoreException;
@@ -134,11 +135,8 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		}
 		
 		esbContent.getFolder("lib").create(true, true, null);
-		esbContent.getFolder("META-INF").create(true, true, null);
-		createJBossESBXML(esbContent.getFolder("META-INF"));
-		
-		
-		
+		esbContent.getFolder(ESBProjectConstant.META_INF).create(true, true, null);
+		createJBossESBXML(esbContent.getFolder(ESBProjectConstant.META_INF));
 		project.refreshLocal(IResource.DEPTH_ZERO, null);
 	}
 	
