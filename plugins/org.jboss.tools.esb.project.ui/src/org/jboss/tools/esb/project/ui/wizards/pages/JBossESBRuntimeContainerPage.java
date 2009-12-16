@@ -170,7 +170,8 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 				String runtimeType = ((IRuntime)element).getRuntimeType().getId();
 				if(location == null) return false;
 				IJBossServerRuntime jbossRuntime = (IJBossServerRuntime)((IRuntime)element).loadAdapter(IJBossServerRuntime.class, new NullProgressMonitor());
-
+				if( jbossRuntime == null )
+					return false;
 				return JBossRuntimeManager.isValidESBServer(location.toOSString(), runtimeType, jbossRuntime.getJBossConfiguration());
 			}
 			return true;
