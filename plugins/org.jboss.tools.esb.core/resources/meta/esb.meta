@@ -1649,12 +1649,45 @@
       <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
+    <XActionItem kind="list" name="Separator"/>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="Scheduled Listener..." kind="action" name="AddScheduledListener">
-     <EntityData EntityName="ESBScheduledListener101">
+     displayName="FTP Listener..." kind="action" name="AddFTPListener">
+     <EntityData EntityName="ESBFTPListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="event processor" Mandatory="no"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="FS Listener..." kind="action" name="AddFSListener">
+     <EntityData EntityName="ESBFSListener101">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Groovy Listener..." kind="action" name="AddGroovyListener">
+     <EntityData EntityName="ESBGroovyListener101">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="script"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Hibernate Listener..." kind="action" name="AddHibernateListener">
+     <EntityData EntityName="ESBHibernateListener101">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="JBR Listener..." kind="action" name="AddJBRListener">
+     <EntityData EntityName="ESBJBRListener101">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1676,18 +1709,10 @@
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="FS Listener..." kind="action" name="AddFSListener">
-     <EntityData EntityName="ESBFSListener101">
+     displayName="Scheduled Listener..." kind="action" name="AddScheduledListener">
+     <EntityData EntityName="ESBScheduledListener101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
-     </EntityData>
-    </XActionItem>
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="FTP Listener..." kind="action" name="AddFTPListener">
-     <EntityData EntityName="ESBFTPListener101">
-      <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
+      <AttributeData AttributeName="event processor" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -1696,30 +1721,6 @@
      <EntityData EntityName="ESBSQLListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="channel id ref" Mandatory="no"/>
-     </EntityData>
-    </XActionItem>
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="Hibernate Listener..." kind="action" name="AddHibernateListener">
-     <EntityData EntityName="ESBHibernateListener101">
-      <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
-     </EntityData>
-    </XActionItem>
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="JBR Listener..." kind="action" name="AddJBRListener">
-     <EntityData EntityName="ESBJBRListener101">
-      <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
-     </EntityData>
-    </XActionItem>
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="Groovy Listener..." kind="action" name="AddGroovyListener">
-     <EntityData EntityName="ESBGroovyListener101">
-      <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="script"/>
      </EntityData>
     </XActionItem>
     <XActionItem HIDE="always"
@@ -1779,22 +1780,13 @@
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
     <XActionItemReference entity="ESBListeners101" name="AddListener" path="CreateActions/AddListener"/>
-    <XActionItemReference entity="ESBListeners101"
-     name="AddScheduledListener" path="CreateActions/AddScheduledListener"/>
-    <XActionItemReference entity="ESBListeners101" name="AddJCAGateway" path="CreateActions/AddJCAGateway"/>
-    <XActionItemReference entity="ESBListeners101" name="AddJMSListener" path="CreateActions/AddJMSListener"/>
+    <XActionItem kind="list" name="Separator"/>
     <XActionItemReference entity="ESBListeners101" name="AddFSListener" path="CreateActions/AddFSListener"/>
     <XActionItemReference entity="ESBListeners101" name="AddFTPListener" path="CreateActions/AddFTPListener"/>
-    <XActionItemReference entity="ESBListeners101" name="AddSQLListener" path="CreateActions/AddSQLListener"/>
-    <XActionItemReference entity="ESBListeners101"
-     name="AddHibernateListener" path="CreateActions/AddHibernateListener"/>
-    <XActionItemReference entity="ESBListeners101" name="AddJBRListener" path="CreateActions/AddJBRListener"/>
     <XActionItemReference entity="ESBListeners101"
      name="AddGroovyListener" path="CreateActions/AddGroovyListener"/>
-    <XActionItem HIDE="always"
-     HandlerClassName="org.jboss.tools.common.meta.action.impl.handlers.ShowMenuHandler"
-     PROPERTIES="actionList=CreateActions" displayName="Listener..."
-     kind="action" name="AddAnyListener"/>
+    <XActionItemReference entity="ESBListeners101"
+     name="AddHibernateListener" path="CreateActions/AddHibernateListener"/>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="HTTP Listener..." kind="action" name="AddHTTPListener">
@@ -1803,6 +1795,12 @@
       <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
+    <XActionItemReference entity="ESBListeners101" name="AddJBRListener" path="CreateActions/AddJBRListener"/>
+    <XActionItemReference entity="ESBListeners101" name="AddJCAGateway" path="CreateActions/AddJCAGateway"/>
+    <XActionItemReference entity="ESBListeners101" name="AddJMSListener" path="CreateActions/AddJMSListener"/>
+    <XActionItemReference entity="ESBListeners101"
+     name="AddScheduledListener" path="CreateActions/AddScheduledListener"/>
+    <XActionItemReference entity="ESBListeners101" name="AddSQLListener" path="CreateActions/AddSQLListener"/>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="UDP Listener..." kind="action" name="AddUDPListener">
@@ -1812,6 +1810,10 @@
       <AttributeData AttributeName="port"/>
      </EntityData>
     </XActionItem>
+    <XActionItem HIDE="always"
+     HandlerClassName="org.jboss.tools.common.meta.action.impl.handlers.ShowMenuHandler"
+     PROPERTIES="actionList=CreateActions" displayName="Listener..."
+     kind="action" name="AddAnyListener"/>
    </XActionItem>
    <XActionItemReference entity="ESBListeners101" name="CopyActions"/>
    <XActionItemReference entity="ESBListeners101" name="DeleteActions"/>
