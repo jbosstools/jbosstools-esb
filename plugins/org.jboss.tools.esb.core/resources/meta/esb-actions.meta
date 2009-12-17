@@ -1544,7 +1544,8 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="SOAP client action" loader="ElementType" name="element type">
+   <XModelAttribute default="SOAP wize client action"
+    loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
