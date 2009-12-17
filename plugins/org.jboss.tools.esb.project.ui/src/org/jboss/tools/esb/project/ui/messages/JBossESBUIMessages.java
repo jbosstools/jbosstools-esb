@@ -57,7 +57,7 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_ESBRuntime_Classpath_Container_Description;
 
 	public static String JBoss_ESBRuntime_Classpath_Container_Name;
-
+	public static String JBoss_ESBRuntime_Classpath_Container_Manage_Runtimes_Button;
 	public static String JBoss_ESBRuntime_Classpath_Container_RuntimeType;
 
 	public static String JBoss_ESBRuntime_Classpath_Container_RuntimeType_ESBLibrariesOnly;

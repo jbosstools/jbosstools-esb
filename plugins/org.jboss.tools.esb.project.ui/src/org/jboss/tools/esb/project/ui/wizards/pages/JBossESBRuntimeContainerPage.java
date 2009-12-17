@@ -36,12 +36,19 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog;
+import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog;
 import org.eclipse.wst.server.core.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
 import org.eclipse.wst.server.ui.ServerUICore;
@@ -58,6 +65,7 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 	private IClasspathEntry entry;
 	private TableViewer runtimeViewer;
 	private Object selectedRuntime;
+	private Button manageRuntimes;
 	
 	public JBossESBRuntimeContainerPage(){
 		super(JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_Title);
@@ -77,19 +85,16 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 
 	public void createControl(Composite parent) {
 		Composite com = new Composite(parent, SWT.NONE);
-		com.setLayout(new GridLayout());
+		com.setLayout(new FormLayout());
 		com.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Table table = new Table(com, SWT.BORDER);
 		runtimeViewer = new TableViewer(table);
-		runtimeViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 		runtimeViewer.addSelectionChangedListener(new ISelectionChangedListener(){
-
 			public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection selection = (StructuredSelection)event.getSelection();
 				selectedRuntime = selection.getFirstElement();
 				setPageComplete(isPageComplete());
-				
 			}});
 		runtimeViewer.addFilter(new ESBRuntimeFilter());
 		
@@ -111,11 +116,41 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 		
 		runtimeViewer.setContentProvider(new ArrayContentProvider());
 		runtimeViewer.setLabelProvider(new RuntimeLabelProvider());
+
+		// button
+		manageRuntimes = new Button(com, SWT.DEFAULT);
+		manageRuntimes.setText(JBossESBUIMessages.JBoss_ESBRuntime_Classpath_Container_Manage_Runtimes_Button);
+		manageRuntimes.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+			public void widgetSelected(SelectionEvent e) {
+				manageRuntimesPressed();
+			} 
+		});
 		
+		// layout
+		FormData fd = new FormData();
+		fd.left = new FormAttachment(0, 5);
+		fd.bottom = new FormAttachment(100,-5);
+		manageRuntimes.setLayoutData(fd);
+		
+		fd = new FormData();
+		fd.top = new FormAttachment(0,5);
+		fd.left = new FormAttachment(0,5);
+		fd.right = new FormAttachment(100,-5);
+		fd.bottom = new FormAttachment(manageRuntimes,-5);
+		runtimeViewer.getTable().setLayoutData(fd);
+
 		runtimeViewer.setInput(getAllAvailableESBRuntimes());
 		setControl(com);
 	}
 
+	protected void manageRuntimesPressed() {
+		FilteredPreferenceDialog dialog = WorkbenchPreferenceDialog
+		.createDialogOn(manageRuntimes.getShell(), "org.jboss.tools.esb.project.runtime.preference");
+		dialog.open();
+	}
+	
 	public boolean finish() {
 		IStructuredSelection selection = (StructuredSelection)runtimeViewer.getSelection();
 		Object obj = selection.getFirstElement();
