@@ -1861,7 +1861,14 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;save=always;pre=true"
-    name="resource config" xmlname="resource-config"/>
+    name="resource config" xmlname="resource-config">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=xml"/>
+     <value name="linkAction=OpenConfig"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced;pre=true" name="from" xmlname="from"/>
    <XModelAttribute PROPERTIES="category=advanced;pre=true"
     name="from type" xmlname="from-type"/>
@@ -1876,6 +1883,11 @@
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=resource config"
+    displayName="Open Config" kind="action" name="OpenConfig"/>
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
