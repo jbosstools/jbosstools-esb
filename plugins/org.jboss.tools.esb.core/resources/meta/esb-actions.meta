@@ -2946,6 +2946,15 @@
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Message Persister..." kind="action" name="AddMessagePersister">
+       <EntityData EntityName="ESBPreActionMessagePersister101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="classification" Mandatory="no"/>
+        <AttributeData AttributeName="message store class" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="Object To CSV String..." kind="action" name="AddObjectToCSVString">
        <EntityData EntityName="ESBPreActionObjectToCSVString101">
         <AttributeData AttributeName="name"/>
@@ -2983,15 +2992,6 @@
         <AttributeData AttributeName="from type" Mandatory="no"/>
         <AttributeData AttributeName="to" Mandatory="no"/>
         <AttributeData AttributeName="to type" Mandatory="no"/>
-       </EntityData>
-      </XActionItem>
-      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-       PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="Message Persister..." kind="action" name="AddMessagePersister">
-       <EntityData EntityName="ESBPreActionMessagePersister101">
-        <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="classification" Mandatory="no"/>
-        <AttributeData AttributeName="message store class" Mandatory="no"/>
        </EntityData>
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -3131,7 +3131,15 @@
     kind="list" name="CreateActions">
     <XActionItem displayName="Add Pre-Packed Action" kind="list" name="PrePackedAction">
      <XActionItemReference entity="ESBActions101" name="AddObjectInvoke"/>
-     <XActionItemReference entity="ESBActions101" name="Converters"/>
+     <XActionItem displayName="Converters" kind="list" name="Converters">
+      <XActionItemReference entity="ESBActions101" name="AddByteArrayToString"/>
+      <XActionItemReference entity="ESBActions101" name="AddLongToDate"/>
+      <XActionItemReference entity="ESBActions101" name="AddMessagePersister"/>
+      <XActionItemReference entity="ESBActions101" name="AddObjectToCSVString"/>
+      <XActionItemReference entity="ESBActions101" name="AddObjectToXStream"/>
+      <XActionItemReference entity="ESBActions101" name="AddSmooksAction"/>
+      <XActionItemReference entity="ESBActions101" name="AddXStreamToObject"/>
+     </XActionItem>
      <XActionItemReference entity="ESBActions101" name="AddCommandInterpreter"/>
      <XActionItemReference entity="ESBActions101" name="AddGroovyProcessor"/>
      <XActionItemReference entity="ESBActions101" name="Routers"/>
@@ -3185,10 +3193,6 @@
      <XActionItem displayName="Converters" group="1" kind="list" name="Converters">
       <XActionItemReference entity="ESBActions101" name="AddByteArrayToString"/>
       <XActionItemReference entity="ESBActions101" name="AddLongToDate"/>
-      <XActionItemReference entity="ESBActions101" name="AddObjectToCSVString"/>
-      <XActionItemReference entity="ESBActions101" name="AddObjectToXStream"/>
-      <XActionItemReference entity="ESBActions101" name="AddSmooksAction"/>
-      <XActionItemReference entity="ESBActions101" name="AddSmooksTransformer"/>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="Message Persister..." kind="action" name="AddMessagePersister">
@@ -3199,6 +3203,9 @@
         <AttributeData AttributeName="terminal" Mandatory="no"/>
        </EntityData>
       </XActionItem>
+      <XActionItemReference entity="ESBActions101" name="AddObjectToCSVString"/>
+      <XActionItemReference entity="ESBActions101" name="AddObjectToXStream"/>
+      <XActionItemReference entity="ESBActions101" name="AddSmooksAction"/>
       <XActionItemReference entity="ESBActions101" name="AddXStreamToObject"/>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
