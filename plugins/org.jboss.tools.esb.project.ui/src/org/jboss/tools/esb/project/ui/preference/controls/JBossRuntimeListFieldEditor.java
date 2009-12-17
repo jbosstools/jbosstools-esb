@@ -14,6 +14,8 @@ package org.jboss.tools.esb.project.ui.preference.controls;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -510,16 +512,6 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		 */
 		public void propertyChange(java.beans.PropertyChangeEvent evt) {
 			if ("homeDir".equals(evt.getPropertyName())) { //$NON-NLS-1$
-				if (name.getValueAsString() == null
-						|| "".equals(name.getValueAsString().trim()) //$NON-NLS-1$
-						|| this.getErrorMessage() != null) {
-					String homeDirName = homeDir.getValueAsString();
-					if (homeDirName != null && !"".equals(homeDirName.trim())) { //$NON-NLS-1$
-						File folder = new File(homeDirName);
-						homeDirName = folder.getName();
-					}
-					name.setValue(homeDirName);
-				}
 				updateConfigrations(homeDir.getValueAsString());
 			}
 			
@@ -617,7 +609,8 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			for(IProjectFacetVersion version: esbfacet.getVersions()){
 				versions.add(version.getVersionString());
 			}
-			
+			Collections.sort(versions);
+			Collections.reverse(versions);
 			return versions;
 		}
 
