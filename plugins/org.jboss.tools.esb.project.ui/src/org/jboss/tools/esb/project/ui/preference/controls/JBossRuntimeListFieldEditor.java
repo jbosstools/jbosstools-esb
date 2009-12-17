@@ -408,10 +408,10 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	}
 
 	/**
-	 * Wizard page for editing JBossWS Runtime parameters
+	 * Wizard page for editing JBoss ESB Runtime parameters
 	 * 
 	 */
-	public static class JBossWSRuntimeWizardPage extends WizardPage implements
+	public static class JBossESBRuntimeWizardPage extends WizardPage implements
 			PropertyChangeListener {
 
 		private static final String SRT_NAME = "name"; //$NON-NLS-1$
@@ -442,7 +442,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 		JBossESBRuntime source = null;
 		IFieldEditor jars = null;
 
-		public JBossWSRuntimeWizardPage(List<JBossESBRuntime> editedList, JBossESBRuntime source) {
+		public JBossESBRuntimeWizardPage(List<JBossESBRuntime> editedList, JBossESBRuntime source) {
 			super(
 					JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_New_Runtime);
 
@@ -771,7 +771,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 */
 	public static class JBossRuntimeNewWizard extends Wizard {
 
-		JBossWSRuntimeWizardPage page1 = null;
+		JBossESBRuntimeWizardPage page1 = null;
 		List<JBossESBRuntime> added = null;
 		List<JBossESBRuntime> value = null;
 
@@ -779,7 +779,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				List<JBossESBRuntime> added) {
 			super();
 			setWindowTitle(JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_New_Runtime);
-			page1 = new JBossWSRuntimeWizardPage(exist, null);
+			page1 = new JBossESBRuntimeWizardPage(exist, null);
 			addPage(page1);
 			this.value = exist;
 			this.added = added;
@@ -811,7 +811,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 	 * 
 	 */
 	public static class JBossWSRuntimeEditWizard extends Wizard {
-		JBossWSRuntimeWizardPage page1 = null;
+		JBossESBRuntimeWizardPage page1 = null;
 		List<JBossESBRuntime> added = null;
 		Map<JBossESBRuntime, JBossESBRuntime> changed = null;
 		List<JBossESBRuntime> value = null;
@@ -835,7 +835,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				Map<JBossESBRuntime, JBossESBRuntime> changed) {
 			super();
 			setWindowTitle(JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Edit_Runtime);
-			page1 = new JBossWSRuntimeWizardPage(existing, source);
+			page1 = new JBossESBRuntimeWizardPage(existing, source);
 			page1
 					.setMessage(JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Modify_Runtime);
 			page1
