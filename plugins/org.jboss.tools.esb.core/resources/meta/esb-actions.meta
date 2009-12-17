@@ -3395,6 +3395,7 @@
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="Schema Validation..." kind="action" name="AddSchemaValidation">
        <EntityData EntityName="ESBPreActionSchemaValidator120">
+        <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="schema"/>
         <AttributeData AttributeName="schema language" Mandatory="no"/>
        </EntityData>
