@@ -148,7 +148,15 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general;save=always"
-    name="command" xmlname="command"/>
+    name="command" xmlname="command">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="NewProcessInstanceCommand"/>
+     <value name="StartProcessCommand"/>
+     <value name="CancelProcessInstanceCommand"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     name="process definition name" xmlname="processdefinition"/>
    <XModelAttribute PROPERTIES="pre=true;category=general"
