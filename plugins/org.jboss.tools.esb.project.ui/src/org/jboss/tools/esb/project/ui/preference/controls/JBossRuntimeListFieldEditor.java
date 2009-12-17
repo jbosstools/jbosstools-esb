@@ -581,8 +581,24 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				setPageComplete(false);
 				return;
 			}
-
+			
 			if (!runtimeExist(homeDir.getValueAsString(),  (String)version.getValue(), configuration.getText())) {
+				final Combo vCombo = (Combo)this.version.getEditorControls()[1];
+				String[] vStrings = vCombo.getItems();
+				for( int i = 0; i < vStrings.length; i++ ) {
+					boolean works = runtimeExist(homeDir.getValueAsString(),  vStrings[i], configuration.getText());
+					if( works ) { 
+						final String newVersion = vStrings[i];
+						final int i2 = i;
+						Display.getDefault().asyncExec(new Runnable() { 
+							public void run() {
+								vCombo.select(i2);
+								version.setValue(newVersion);
+							}
+						});
+						return;
+					}
+				}
 				setErrorMessage(NLS.bind(JBossESBUIMessages.Label_JBoss_Runtime_Load_Error, version.getValue()));
 				setPageComplete(false);
 				return;
