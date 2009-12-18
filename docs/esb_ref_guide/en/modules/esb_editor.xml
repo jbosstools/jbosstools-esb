@@ -34,6 +34,18 @@
                 </imageobject>
             </mediaobject>
         </figure>
+              
+        <para>Some properties are represented as links to the associated editors.</para>
+        
+        <figure id="TreeViewLink">
+            <title>Property Link to the Associated Editor</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/01a_esb_tree_view_and_links.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+                 
 
         <para>You can easily switch from Tree to Source by selecting the Source tab at the bottom of
             the editor and work in <property>Source view</property>.</para>
