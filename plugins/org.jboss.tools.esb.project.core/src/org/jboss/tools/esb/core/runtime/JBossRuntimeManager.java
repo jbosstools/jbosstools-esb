@@ -13,12 +13,17 @@ package org.jboss.tools.esb.core.runtime;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -31,6 +36,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.eclipse.wst.common.project.facet.core.runtime.RuntimeManager;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
@@ -50,6 +56,11 @@ public class JBossRuntimeManager {
 	static String ATT_VERSION = "esbVersion"; //$NON-NLS-1$
 	static String ATT_ID = "id";
 	static String VERSION_SEPARATOR = ",";
+	static String VERSION_FILE_NAME = "VERSION";
+	static String VERSION_PROPERTIES_KEY = "Version";
+	static String VERSION_PROPERTIES_SEPERATOR = "_";
+	
+
 	
 	static Map<String, IESBRuntimeResolver> parserMap = new HashMap<String, IESBRuntimeResolver>();
 
@@ -454,6 +465,63 @@ public class JBossRuntimeManager {
 				ESBProjectCorePlugin.log(e.getLocalizedMessage(), e);
 			}
 		}
+	}
+
+	
+	public  String getVersion(String location, String configuration){
+		String version = "";
+		File rosettaJar = null;
+		Collection<IESBRuntimeResolver> resolvers = parserMap.values();
+		for(IESBRuntimeResolver resolver : resolvers){
+			rosettaJar = resolver.getRosettaJar(location, configuration);
+			if(rosettaJar != null && rosettaJar.exists()){
+				break;
+			}
+		}
+		
+		if(rosettaJar == null || !rosettaJar.exists()){
+			return "";
+		}
+		
+		try {
+			ZipFile zfile = new ZipFile(rosettaJar);
+			ZipEntry entry = zfile.getEntry(VERSION_FILE_NAME);
+			
+			if(entry == null) return "";
+			
+			InputStream input = zfile.getInputStream(entry);
+			Properties properties = new Properties();
+			properties.load(input);
+			version = properties.getProperty(VERSION_PROPERTIES_KEY);
+			
+			
+			if(version == null){
+				return "";
+			}
+			// soa-p5.0 and higher
+			else if(version.indexOf(VERSION_PROPERTIES_SEPERATOR) > 0){
+				version = version.substring(0, version.indexOf(VERSION_PROPERTIES_SEPERATOR));
+			}
+			//soa-p 4.3
+			else if(version.equals("4.3.0")) {
+				version = "4.4";
+			}
+			else if(version.length() > 3){
+				version = version.substring(0,3);
+			}
+			
+		} catch (ZipException e) {
+			ESBProjectCorePlugin.log(e.getLocalizedMessage(), e);
+		} catch (IOException e) {
+			ESBProjectCorePlugin.log(e.getLocalizedMessage(), e);
+		}
+		
+		return version;
+	}
+	
+	public static void main(String[] args){
+		File file = new File("/home/fugang/jboss-all/jboss-soa-p.5.0.0/");
+		JBossRuntimeManager.getInstance().getVersion(file.getAbsolutePath().toString(), "default");
 	}
 	
 }

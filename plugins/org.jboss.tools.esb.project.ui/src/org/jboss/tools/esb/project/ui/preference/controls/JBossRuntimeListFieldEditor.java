@@ -625,6 +625,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			for(IProjectFacetVersion version: esbfacet.getVersions()){
 				versions.add(version.getVersionString());
 			}
+			versions.add("");
 			Collections.sort(versions);
 			Collections.reverse(versions);
 			return versions;
@@ -678,8 +679,19 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 					configuration.setText(source.getConfiguration());
 				}
 			}
+			
+			// set version automatically according esb home location and configuration
+			updateDefaultVersion();
 						
 			return configList;
+			
+		}
+		
+		private void updateDefaultVersion(){
+			String homeLocation = homeDir.getValueAsString();
+			String config = configuration.getText();
+			String defaultVersion = JBossRuntimeManager.getInstance().getVersion(homeLocation, config);
+			version.setValue(defaultVersion);
 			
 		}
 		/**

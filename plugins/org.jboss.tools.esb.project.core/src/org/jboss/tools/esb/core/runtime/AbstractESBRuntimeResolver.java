@@ -54,6 +54,17 @@ public abstract class AbstractESBRuntimeResolver implements IESBRuntimeResolver 
 		return directories;
 	}
 	
+	public File getRosettaJar(String runtimeLocation , String configuration){
+		List<File> jars = getAllRuntimeJars(runtimeLocation, configuration);
+		for(File file : jars){
+			if(file.getName().equals(ROSETTA_JAR)){
+				return file;
+			}
+		}
+		
+		return null;
+	}
+	
 	public List<File> getAllRuntimeJars(String runtimeLocation, String configuration) {
 		List<File> jarList = new ArrayList<File>();
 		

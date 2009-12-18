@@ -23,4 +23,6 @@ public interface IESBRuntimeResolver {
 	public List<IPath> getJarDirectories(String runtimeLocation, String configuration);
 	
 	public List<File> getAllRuntimeJars(String runtimeLocation, String configuration);
+	
+	public File getRosettaJar(String runtimeLocation , String configuration);
 }

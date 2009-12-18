@@ -53,6 +53,8 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_Button_Field_Editor_Browse;
 	public static String JBoss_ESBRuntime_Classpath_Container_5;
 	public static String JBoss_Runtime_List_Field_Editor_Configuration;
+	
+	public static String ESBRuntimeContainerPage_Button_Text;
 
 	public static String JBoss_ESBRuntime_Classpath_Container_Description;
 
