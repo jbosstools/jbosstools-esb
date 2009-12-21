@@ -149,6 +149,9 @@ public class JBossESBRuntimeContainerPage extends WizardPage implements
 		FilteredPreferenceDialog dialog = WorkbenchPreferenceDialog
 		.createDialogOn(manageRuntimes.getShell(), "org.jboss.tools.esb.project.runtime.preference");
 		dialog.open();
+		
+		//refresh runtime tree
+		runtimeViewer.setInput(getAllAvailableESBRuntimes());
 	}
 	
 	public boolean finish() {
