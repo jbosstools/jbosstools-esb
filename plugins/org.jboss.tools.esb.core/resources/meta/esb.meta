@@ -1652,16 +1652,16 @@
     <XActionItem kind="list" name="Separator"/>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="FTP Listener..." kind="action" name="AddFTPListener">
-     <EntityData EntityName="ESBFTPListener101">
+     displayName="FS Listener..." kind="action" name="AddFSListener">
+     <EntityData EntityName="ESBFSListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="FS Listener..." kind="action" name="AddFSListener">
-     <EntityData EntityName="ESBFSListener101">
+     displayName="FTP Listener..." kind="action" name="AddFTPListener">
+     <EntityData EntityName="ESBFTPListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
@@ -1926,48 +1926,6 @@
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJBRBus101"
-     displayName="JBR Provider..." kind="action" name="AddJBRProvider">
-     <EntityData EntityName="ESBJBRProvider101">
-      <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="protocol"/>
-      <AttributeData AttributeName="host" Mandatory="no"/>
-     </EntityData>
-     <EntityData EntityName="ESBBusCreator">
-      <AttributeData AttributeName="id"/>
-      <AttributeData AttributeName="port"/>
-     </EntityData>
-    </XActionItem>
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="Schedule Provider..." kind="action" name="AddScheduleProvider">
-     <EntityData EntityName="ESBScheduleProvider101">
-      <AttributeData AttributeName="name"/>
-     </EntityData>
-    </XActionItem>
-    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJMSBus101"
-     displayName="JMS Provider..." kind="action" name="AddJMSProvider">
-     <EntityData EntityName="ESBJMSProvider101">
-      <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="connection factory"/>
-     </EntityData>
-     <EntityData EntityName="ESBBusCreator">
-      <AttributeData AttributeName="id"/>
-     </EntityData>
-    </XActionItem>
-    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJMSBus101"
-     displayName="JCA Provider..." kind="action" name="AddJCAProvider">
-     <EntityData EntityName="ESBJCAProvider101">
-      <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="connection factory"/>
-     </EntityData>
-     <EntityData EntityName="ESBBusCreator">
-      <AttributeData AttributeName="id"/>
-     </EntityData>
-    </XActionItem>
-    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
      PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBFSBus101"
      displayName="FS Provider..." kind="action" name="AddFSProvider">
      <EntityData EntityName="ESBFSProvider101">
@@ -1989,21 +1947,63 @@
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBSQLBus101"
-     displayName="SQL Provider..." kind="action" name="AddSQLProvider">
-     <EntityData EntityName="ESBSQLProvider101">
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBHibernateBus101"
+     displayName="Hibernate Provider..." kind="action" name="AddHibernateProvider">
+     <EntityData EntityName="ESBHibernateProvider101">
       <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="hibernate cfg file"/>
      </EntityData>
      <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
-     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBHibernateBus101"
-     displayName="Hibernate Provider..." kind="action" name="AddHibernateProvider">
-     <EntityData EntityName="ESBHibernateProvider101">
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJBRBus101"
+     displayName="JBR Provider..." kind="action" name="AddJBRProvider">
+     <EntityData EntityName="ESBJBRProvider101">
       <AttributeData AttributeName="name"/>
-      <AttributeData AttributeName="hibernate cfg file"/>
+      <AttributeData AttributeName="protocol"/>
+      <AttributeData AttributeName="host" Mandatory="no"/>
+     </EntityData>
+     <EntityData EntityName="ESBBusCreator">
+      <AttributeData AttributeName="id"/>
+      <AttributeData AttributeName="port"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJMSBus101"
+     displayName="JCA Provider..." kind="action" name="AddJCAProvider">
+     <EntityData EntityName="ESBJCAProvider101">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="connection factory"/>
+     </EntityData>
+     <EntityData EntityName="ESBBusCreator">
+      <AttributeData AttributeName="id"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJMSBus101"
+     displayName="JMS Provider..." kind="action" name="AddJMSProvider">
+     <EntityData EntityName="ESBJMSProvider101">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="connection factory"/>
+     </EntityData>
+     <EntityData EntityName="ESBBusCreator">
+      <AttributeData AttributeName="id"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Schedule Provider..." kind="action" name="AddScheduleProvider">
+     <EntityData EntityName="ESBScheduleProvider101">
+      <AttributeData AttributeName="name"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBSQLBus101"
+     displayName="SQL Provider..." kind="action" name="AddSQLProvider">
+     <EntityData EntityName="ESBSQLProvider101">
+      <AttributeData AttributeName="name"/>
      </EntityData>
      <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
@@ -2064,14 +2064,8 @@
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
     <XActionItemReference entity="ESBProviders101" name="AddBusProvider" path="CreateActions/AddBusProvider"/>
-    <XActionItemReference entity="ESBProviders101" name="AddJBRProvider" path="CreateActions/AddJBRProvider"/>
-    <XActionItemReference entity="ESBProviders101"
-     name="AddScheduleProvider" path="CreateActions/AddScheduleProvider"/>
-    <XActionItemReference entity="ESBProviders101" name="AddJMSProvider" path="CreateActions/AddJMSProvider"/>
-    <XActionItemReference entity="ESBProviders101" name="AddJCAProvider" path="CreateActions/AddJCAProvider"/>
     <XActionItemReference entity="ESBProviders101" name="AddFSProvider" path="CreateActions/AddFSProvider"/>
     <XActionItemReference entity="ESBProviders101" name="AddFTPProvider" path="CreateActions/AddFTPProvider"/>
-    <XActionItemReference entity="ESBProviders101" name="AddSQLProvider" path="CreateActions/AddSQLProvider"/>
     <XActionItemReference entity="ESBProviders101"
      name="AddHibernateProvider" path="CreateActions/AddHibernateProvider"/>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -2086,6 +2080,12 @@
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
+    <XActionItemReference entity="ESBProviders101" name="AddJBRProvider" path="CreateActions/AddJBRProvider"/>
+    <XActionItemReference entity="ESBProviders101" name="AddJCAProvider" path="CreateActions/AddJCAProvider"/>
+    <XActionItemReference entity="ESBProviders101" name="AddJMSProvider" path="CreateActions/AddJMSProvider"/>
+    <XActionItemReference entity="ESBProviders101"
+     name="AddScheduleProvider" path="CreateActions/AddScheduleProvider"/>
+    <XActionItemReference entity="ESBProviders101" name="AddSQLProvider" path="CreateActions/AddSQLProvider"/>
     <XActionItem HIDE="always"
      HandlerClassName="org.jboss.tools.common.meta.action.impl.handlers.ShowMenuHandler"
      PROPERTIES="actionList=CreateActions" displayName="Provider..."

@@ -605,9 +605,11 @@
       <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
     </XActionItem>
-    <XActionItem HandlerClassName="org.jboss.tools.esb.core.model.handlers.AddJBRListerer12Handler" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="JBR Listener..." kind="action" name="AddJBRListener">
+    <XActionItem
+     HandlerClassName="org.jboss.tools.esb.core.model.handlers.AddJBRListerer12Handler"
+     ICON="action.empty" PROPERTIES="validator.add=true"
+     WizardClassName="%Default%" displayName="JBR Listener..."
+     kind="action" name="AddJBRListener">
      <EntityData EntityName="ESBJBRListener101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="channel id ref" Mandatory="no"/>
@@ -747,14 +749,8 @@
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
     <XActionItemReference entity="ESBProviders101" name="AddBusProvider" path="CreateActions/AddBusProvider"/>
-    <XActionItemReference entity="ESBProviders101" name="AddJBRProvider" path="CreateActions/AddJBRProvider"/>
-    <XActionItemReference entity="ESBProviders101"
-     name="AddScheduleProvider" path="CreateActions/AddScheduleProvider"/>
-    <XActionItemReference entity="ESBProviders101" name="AddJMSProvider" path="CreateActions/AddJMSProvider"/>
-    <XActionItemReference entity="ESBProviders101" name="AddJCAProvider" path="CreateActions/AddJCAProvider"/>
     <XActionItemReference entity="ESBProviders101" name="AddFSProvider" path="CreateActions/AddFSProvider"/>
     <XActionItemReference entity="ESBProviders101" name="AddFTPProvider" path="CreateActions/AddFTPProvider"/>
-    <XActionItemReference entity="ESBProviders101" name="AddSQLProvider" path="CreateActions/AddSQLProvider"/>
     <XActionItemReference entity="ESBProviders101"
      name="AddHibernateProvider" path="CreateActions/AddHibernateProvider"/>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -767,6 +763,12 @@
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
+    <XActionItemReference entity="ESBProviders101" name="AddJBRProvider" path="CreateActions/AddJBRProvider"/>
+    <XActionItemReference entity="ESBProviders101" name="AddJCAProvider" path="CreateActions/AddJCAProvider"/>
+    <XActionItemReference entity="ESBProviders101" name="AddJMSProvider" path="CreateActions/AddJMSProvider"/>
+    <XActionItemReference entity="ESBProviders101"
+     name="AddScheduleProvider" path="CreateActions/AddScheduleProvider"/>
+    <XActionItemReference entity="ESBProviders101" name="AddSQLProvider" path="CreateActions/AddSQLProvider"/>
     <XActionItem HIDE="always"
      HandlerClassName="org.jboss.tools.common.meta.action.impl.handlers.ShowMenuHandler"
      PROPERTIES="actionList=CreateActions" displayName="Provider..."
