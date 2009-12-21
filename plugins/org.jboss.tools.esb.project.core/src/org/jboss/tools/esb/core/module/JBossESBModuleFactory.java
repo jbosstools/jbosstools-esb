@@ -19,14 +19,11 @@ import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 public class JBossESBModuleFactory extends JBTProjectModuleFactory {
 	public static final String FACTORY_ID = "org.jboss.tools.esb.project.core.moduleFactory";
 	public static final String MODULE_TYPE = IJBossESBFacetDataModelProperties.JBOSS_ESB_FACET_ID;
-	private static JBossESBModuleFactory factDelegate;
 
-	public static JBossESBModuleFactory getFactory() {
-		if (factDelegate == null)
-			factDelegate = (JBossESBModuleFactory)getFactory(FACTORY_ID);
-		return factDelegate;
+	public String getFactoryId() {
+		return FACTORY_ID;
 	}
-
+	
 	public JBossESBModuleFactory() {
 		super(MODULE_TYPE, ESBProjectConstant.ESB_PROJECT_FACET);
 	}
