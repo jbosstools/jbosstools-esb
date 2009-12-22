@@ -20,7 +20,7 @@ import org.jboss.tools.common.model.ui.wizard.newfile.NewFileWizardEx;
 public class NewESBFileWizard extends NewFileWizardEx {
 
 	public NewESBFileWizard() {
-		setDefaultPageImageDescriptor(ImageDescriptor.createFromFile(NewESBFileWizard.class, "ESB_File_wiz.png")); //$NON-NLS-1$
+		setDefaultPageImageDescriptor(ImageDescriptor.createFromFile(NewESBFileWizard.class, "EclipseCreateNewProject.png")); //$NON-NLS-1$
 	}
 	
 	protected NewFileContextEx createNewFileContext() {
