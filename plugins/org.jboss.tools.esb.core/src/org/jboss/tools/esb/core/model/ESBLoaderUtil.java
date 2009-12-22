@@ -53,15 +53,20 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
 
 	public void loadChildren(Element element, XModelObject o) {
 		super.loadChildren(element, o);
-		if(SpecificActionLoader.instance.isActionsFolder(o.getModelEntity().getName())) {
+		String entity = o.getModelEntity().getName();
+		if(SpecificActionLoader.instance.isActionsFolder(entity)) {
 			SpecificActionLoader.instance.convertChildrenToSpecific(o);
-		}
+		} else if(SpecificPropertyConverter.instance.isListenersFolder(entity)) {
+			SpecificPropertyConverter.instance.convertChildrenToSpecific(o);
+		} //TODO add other folders
 	}
 
     public boolean save(Element parent, XModelObject o) {
     	if(!needToSave(o)) return true;
     	if(SpecificActionLoader.instance.isPreActionEntity(o)) {
     		o = SpecificActionLoader.instance.convertSpecificActionToBasic(o);
+    	} else if("true".equals(o.getModelEntity().getProperty("hasConvertedProperties"))) {
+    		o = SpecificPropertyConverter.instance.convertSpecificToBasic(o);
     	}
     	return super.save(parent, o);
     }

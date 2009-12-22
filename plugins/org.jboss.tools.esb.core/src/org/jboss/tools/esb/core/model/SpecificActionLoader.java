@@ -125,23 +125,9 @@ public class SpecificActionLoader implements ESBConstants {
 		} catch (XModelException e) {
 			ESBCorePlugin.log(e);
 		}
-		XAttribute[] as = entity.getAttributes();
-		for (int i = 0; i < as.length; i++) {
-			String pre = as[i].getProperty("pre");
-			if(pre == null || pre.length() == 0) continue;
-			if("true".equals(pre)) {
-				String name = as[i].getXMLName();
-				XModelObject p = basic.getChildByPath(name);
-				if(p == null) continue;
-				String value = p.getAttributeValue("value");
-				action.setAttributeValue(as[i].getName(), value);
-				action.set(as[i].getXMLName() + ".#comment", p.getAttributeValue("comment"));
-				p.removeFromParent();
-			} else {
-				//very specific cases
-			}
-		}
-
+		
+		copyBasicPropertiesToSpecificAtttributes(basic, action);
+		
 		XChild[] ce = action.getModelEntity().getChildren();
 		for (int i = 0; i < ce.length; i++) {
 			String childEntityName = ce[i].getName();
@@ -176,24 +162,8 @@ public class SpecificActionLoader implements ESBConstants {
 		}
 		
 		XModelEntity entity = action.getModelEntity();
-		XAttribute[] as = entity.getAttributes();
-		for (int i = 0; i < as.length; i++) {
-			String pre = as[i].getProperty("pre");
-			if(pre == null || pre.length() == 0) continue;
-			if("true".equals(pre)) {
-				String value = action.getAttributeValue(as[i].getName());
-				if(value == null || value.length() == 0 || value.equals(as[i].getDefaultValue())) {
-					if(!"always".equals(as[i].getProperty("save"))) continue;
-				}
-				XModelObject p = action.getModel().createModelObject(ESBConstants.ENT_ESB_PROPERTY, null);
-				p.setAttributeValue("name", as[i].getXMLName());
-				p.setAttributeValue("value", value);
-				p.setAttributeValue("comment", action.get(as[i].getXMLName() + ".#comment"));
-				result.addChild(p);
-			} else {
-				//very specific cases
-			}
-		}
+		
+		copySpecificAtttributesToBasicProperties(action, result);
 
 		XChild[] ce = entity.getChildren();
 		for (int i = 0; i < ce.length; i++) {
@@ -217,5 +187,47 @@ public class SpecificActionLoader implements ESBConstants {
 	IPropertyConverter getPropertyConverter(XModelEntity childEntity) {
 		String converter = childEntity.getProperty("converter");
 		return (converter == null) ? null : propertyConverters.get(converter);
+	}
+
+	public static void copyBasicPropertiesToSpecificAtttributes(XModelObject basic, XModelObject specific) {
+		XModelEntity entity = specific.getModelEntity();
+		XAttribute[] as = entity.getAttributes();
+		for (int i = 0; i < as.length; i++) {
+			String pre = as[i].getProperty("pre");
+			if(pre == null || pre.length() == 0) continue;
+			if("true".equals(pre)) {
+				String name = as[i].getXMLName();
+				XModelObject p = basic.getChildByPath(name);
+				if(p == null) continue;
+				String value = p.getAttributeValue("value");
+				specific.setAttributeValue(as[i].getName(), value);
+				specific.set(as[i].getXMLName() + ".#comment", p.getAttributeValue("comment"));
+				p.removeFromParent();
+			} else {
+				//very specific cases
+			}
+		}
+	}
+
+	public static void copySpecificAtttributesToBasicProperties(XModelObject specific, XModelObject basic) {
+		XModelEntity entity = specific.getModelEntity();
+		XAttribute[] as = entity.getAttributes();
+		for (int i = 0; i < as.length; i++) {
+			String pre = as[i].getProperty("pre");
+			if(pre == null || pre.length() == 0) continue;
+			if("true".equals(pre)) {
+				String value = specific.getAttributeValue(as[i].getName());
+				if(value == null || value.length() == 0 || value.equals(as[i].getDefaultValue())) {
+					if(!"always".equals(as[i].getProperty("save"))) continue;
+				}
+				XModelObject p = specific.getModel().createModelObject(ESBConstants.ENT_ESB_PROPERTY, null);
+				p.setAttributeValue("name", as[i].getXMLName());
+				p.setAttributeValue("value", value);
+				p.setAttributeValue("comment", specific.get(as[i].getXMLName() + ".#comment"));
+				basic.addChild(p);
+			} else {
+				//very specific cases
+			}
+		}
 	}
 }

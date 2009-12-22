@@ -13,12 +13,16 @@ package org.jboss.tools.esb.core.model.converters;
 import org.jboss.tools.common.model.XModelObject;
 
 /**
+ * Used for converting one complex property of out-of-the-box action.
+ * 
+ * Used for converting set of properties of FTP listener and other objects.
+ * 
  * @author Viacheslav Kabanovich
  */
 public interface IPropertyConverter {
 	
-	public void toSpecific(XModelObject basicAction, XModelObject specificAction);
+	public void toSpecific(XModelObject basic, XModelObject specific);
 
-	public void toBasic(XModelObject basicAction, XModelObject specificAction);
+	public void toBasic(XModelObject basic, XModelObject specific);
 
 }

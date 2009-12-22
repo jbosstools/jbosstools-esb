@@ -287,6 +287,132 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=converter" name="ESBFTPCache">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="cache" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true"
+    default="Cache" name="name" visibility="false" xmlname="name">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="max nodes" xmlname="maxNodes"/>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="time to live" xmlname="timeToLiveSeconds"/>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="max age" xmlname="maxAgeSeconds"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%;hasConvertedProperties=true"
+  XMLSUBPATH="ftp-listener" name="ESBFTPListener120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+   <XChildEntity maxCount="1" name="ESBFTPMessageFilter101" required="yes"/>
+   <XChildEntity maxCount="1" name="ESBFTPCache" required="yes"/>
+   <XChildEntity maxCount="1" name="ESBFTPRemote" required="yes"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.listener" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="ftp listener" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttributeReference
+    attributes="name,channel id ref,max threads,is gateway"
+    entity="ESBListener101" name="listener"/>
+   <XModelAttributeReference
+    attributes="poll frequency seconds,schedule frequency,schedule id ref"
+    entity="ESBScheduledListener101" name="scheduled listener"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=converter" name="ESBFTPRemote">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="Remote Filesystem Strategy"
+    loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true"
+    default="Remote Filesystem Strategy" name="name" visibility="false" xmlname="name">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true" name="class" xmlname="remoteFilesystemStrategy-class">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="config file" xmlname="remoteFilesystemStrategy-configFile">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=xml"/>
+     <value name="linkAction=OpenConfig"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="cache listener" xmlname="removeFilesystemStrategy-cacheListener">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=config file"
+    displayName="Open Config File" kind="action" name="OpenConfig"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;saveDefault=false"
   XMLSUBPATH="globals" name="ESBGlobals120">
   <XChildrenEntities>
@@ -554,7 +680,7 @@
    <XChildEntity name="ESBJCAGateway120"/>
    <XChildEntity name="ESBJMSListener101"/>
    <XChildEntity name="ESBFSListener101"/>
-   <XChildEntity name="ESBFTPListener101"/>
+   <XChildEntity name="ESBFTPListener120"/>
    <XChildEntity name="ESBSQLListener120"/>
    <XChildEntity name="ESBHibernateListener101"/>
    <XChildEntity name="ESBJBRListener101"/>
@@ -592,7 +718,14 @@
     </XActionItem>
     <XActionItem kind="list" name="Separator"/>
     <XActionItemReference entity="ESBListeners101" name="AddFSListener" path="CreateActions/AddFSListener"/>
-    <XActionItemReference entity="ESBListeners101" name="AddFTPListener" path="CreateActions/AddFTPListener"/>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="FTP Listener..." kind="action" name="AddFTPListener">
+     <EntityData EntityName="ESBFTPListener120">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="channel id ref" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
     <XActionItemReference entity="ESBListeners101"
      name="AddGroovyListener" path="CreateActions/AddGroovyListener"/>
     <XActionItemReference entity="ESBListeners101"

@@ -21,6 +21,8 @@ import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 import org.jboss.tools.esb.core.model.ESBConstants;
 
 /**
+ * Class for converting out-of-the-box action property that may have list of child tags.
+ * 
  * @author Viacheslav Kabanovich
  */
 public abstract class ListConverter implements IPropertyConverter {
