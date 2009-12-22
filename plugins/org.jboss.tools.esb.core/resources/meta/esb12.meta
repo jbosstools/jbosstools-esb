@@ -947,11 +947,11 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="war security" loader="ElementType" name="element type">
+   <XModelAttribute default="WAR security" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true"
-    default="War Security" name="name" visibility="false">
+    default="WAR Security" name="name" visibility="false">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="method" xmlname="method">
