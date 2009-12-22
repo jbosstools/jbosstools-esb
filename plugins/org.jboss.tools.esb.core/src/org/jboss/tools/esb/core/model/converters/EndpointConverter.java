@@ -37,7 +37,10 @@ public class EndpointConverter extends ListConverter {
 			p.setAttributeValue(ESBConstants.ATTR_VALUE, endpointURL);
 		}
 		String file = specificAction.getAttributeValue(ATTR_FILE);
-		if(file != null && file.length() > 0) {
+		if(file != null && file.length() > 0 
+				&& specificAction.getModelEntity().getAttribute(ATTR_FILE) != null
+				&& !"true".equals(specificAction.getModelEntity().getAttribute(ATTR_FILE).getProperty("pre")) 
+			) {
 			empty = false;
 			XModelObject f = basicAction.getModel().createModelObject(getItemEntityName(), null);
 			f.setAttributeValue(ESBConstants.ATTR_NAME, ATTR_FILE);
@@ -59,7 +62,10 @@ public class EndpointConverter extends ListConverter {
 			if(as[i] instanceof AnyElementObjectImpl) {
 				XModelObject a = fromAnyElement(as[i], getItemEntityName());
 				if(a != null) {
-					if(ATTR_FILE.equals(a.getAttributeValue(ESBConstants.ATTR_NAME))) {
+					if(ATTR_FILE.equals(a.getAttributeValue(ESBConstants.ATTR_NAME))
+						&& specificAction.getModelEntity().getAttribute(ATTR_FILE) != null
+						&& !"true".equals(specificAction.getModelEntity().getAttribute(ATTR_FILE).getProperty("pre"))
+					) {
 						specificAction.setAttributeValue(ATTR_FILE, a.getAttributeValue(ESBConstants.ATTR_VALUE));
 					} else {
 						specificAction.addChild(a);

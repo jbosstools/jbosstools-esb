@@ -1473,7 +1473,7 @@
     <Editor name="TreeChooser"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="endpoint url" xmlname="endpointUrl"/>
-   <XModelAttribute PROPERTIES="category=general" name="file" xmlname="file">
+   <XModelAttribute PROPERTIES="category=general;pre=true" name="file" xmlname="file">
     <Constraint loader="Tree">
      <value name="ESBResourceTree"/>
      <value name="extensions=properties"/>
@@ -1481,10 +1481,18 @@
     </Constraint>
     <Editor name="TreeChooser"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general;pre=true" default="GET"
-    name="method" xmlname="method">
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    default="Default(true)" name="client credentials required" xmlname="clientCredentialsRequired">
     <Constraint loader="ListString">
-     <value name="GET"/>
+     <value name="Default(true)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true" name="method" xmlname="method">
+    <Constraint loader="ListString">
+     <value/>
      <value name="POST"/>
     </Constraint>
     <Editor name="ListString"/>
