@@ -58,12 +58,12 @@ public abstract class ListConverter implements IPropertyConverter {
 		basicAction.addChild(p);
 	}
 
-	public static XModelObject fromAnyElement(XModelObject any, String toEntity) {
+	public XModelObject fromAnyElement(XModelObject any, String toEntity) {
 		String tag = any.getAttributeValue("tag");
 		Map<String, String> attr = toMap(((AnyElementObjectImpl)any).getAttributes());
 
 		XModelObject a = any.getModel().createModelObject(toEntity, null);
-		if(a == null || tag == null || !tag.equals(a.getModelEntity().getXMLSubPath())) {
+		if(!isRelevantTag(tag, a)) {
 			return null;
 		}
 		
@@ -101,9 +101,13 @@ public abstract class ListConverter implements IPropertyConverter {
 		return a;
 	}
 
-	public static XModelObject toAnyElement(XModelObject specific, int index) {
+	protected boolean isRelevantTag(String tag, XModelObject object) {
+		return (object != null && tag != null && tag.equals(object.getModelEntity().getXMLSubPath()));
+	}
+
+	public XModelObject toAnyElement(XModelObject specific, int index) {
 		XModelObject t = specific.getModel().createModelObject("AnyElement", null);
-		t.setAttributeValue("tag", specific.getModelEntity().getXMLSubPath());
+		t.setAttributeValue("tag", getTagName(specific, index));
 		StringBuffer sb = new StringBuffer();
 		XModelEntity entity = specific.getModelEntity();
 		XAttribute[] attrs = entity.getAttributes();
@@ -142,7 +146,11 @@ public abstract class ListConverter implements IPropertyConverter {
 		return t;
 	}
 
-	static Map<String, String> toMap(String[][] attributes) {
+	protected String getTagName(XModelObject specific, int index) {
+		return specific.getModelEntity().getXMLSubPath();
+	}
+
+	protected Map<String, String> toMap(String[][] attributes) {
 		Map<String,String> map = new HashMap<String, String>();
 		for (int i = 0; i < attributes.length; i++) {
 			map.put(attributes[i][0], attributes[i][1]);

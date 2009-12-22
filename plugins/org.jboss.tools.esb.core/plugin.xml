@@ -31,6 +31,9 @@
 			class="org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl"/>
 		<xclass id="org.jboss.tools.esb.core.model.ESBRouteToImpl"
 			class="org.jboss.tools.esb.core.model.ESBRouteToImpl"/>
+		<xclass id="org.jboss.tools.esb.core.model.EJBParamImpl"
+			class="org.jboss.tools.esb.core.model.EJBParamImpl"/>
+
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"

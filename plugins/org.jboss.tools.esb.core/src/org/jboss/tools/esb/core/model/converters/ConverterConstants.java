@@ -65,4 +65,7 @@ public interface ConverterConstants {
 	String ATTRIBUTE_ALIASES = "attribute-aliases";
 	IPropertyConverter ATTRIBUTE_ALIAS_CONVERTER = new BasicListConverter(ATTRIBUTE_ALIASES, ATTRIBUTE_ALIAS_ENTITY);
 
+	String EJB_PARAM_ENTITY = "ESBPreEJBParam";
+	String EJB_PARAMS = "ejb-params";
+	IPropertyConverter EJB_PARAM_CONVERTER = new EJBParamConverter(EJB_PARAMS, EJB_PARAM_ENTITY);
 }

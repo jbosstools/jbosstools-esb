@@ -63,6 +63,7 @@ public class SpecificActionLoader implements ESBConstants {
 		propertyConverters.put("attributealias", ConverterConstants.ATTRIBUTE_ALIAS_CONVERTER);
 		propertyConverters.put("converter", ConverterConstants.CONVERTER_CONVERTER);
 		propertyConverters.put("routernamespace", ConverterConstants.ROUTER_NAMESPACES_CONVERTER);
+		propertyConverters.put("arg", ConverterConstants.EJB_PARAM_CONVERTER);
 	}
 
 	public boolean isPreActionEntity(XModelObject object) {

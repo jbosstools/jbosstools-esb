@@ -534,10 +534,11 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%"
   XMLSUBPATH="action" name="ESBPreActionEJBProcessor120">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
+   <XChildEntity name="ESBPreEJBParam"/>
   </XChildrenEntities>
   <XEntityRenderer>
    <ICONS>
@@ -587,7 +588,17 @@
     HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
     ICON="action.empty" PROPERTIES="actionpath=Open;attribute=script"
     displayName="Open Script" kind="action" name="OpenScript"/>
-   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add EJB Param..." kind="action" name="AddEJBParam">
+     <EntityData EntityName="ESBPreEJBParam">
+      <AttributeData AttributeName="index"/>
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="type" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -787,7 +798,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%"
   XMLSUBPATH="action" name="ESBPreActionHTTPRouter120">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
@@ -1438,7 +1449,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%"
   XMLSUBPATH="action" name="ESBPreActionSOAPProxy120">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
@@ -1762,7 +1773,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
   XMLSUBPATH="action" name="ESBPreActionSmooksAction101">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
@@ -2482,6 +2493,41 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.EJBParamImpl"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=arg"
+  XMLSUBPATH="arg" name="ESBPreEJBParam">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="EJB param" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true" name="index">
+    <Constraint loader="Int"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="name" xmlname="text"/>
+   <XModelAttribute PROPERTIES="category=general" name="type" xmlname="type">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=fieldalias"
   XMLSUBPATH="field-alias" name="ESBPreFieldAlias">
@@ -2508,24 +2554,10 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
-   </XActionItem>
-   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
-   </XActionItem>
-   <XActionItem ICON="action.empty" kind="list" name="Properties">
-    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
-     displayName="Properties..." kind="action" name="Properties"/>
-   </XActionItem>
-   <XActionItem displayName="move" kind="list" name="MoveActions">
-    <XActionItem HIDE="always" HandlerClassName="%Move%"
-     ICON="action.move" displayName="Move" kind="action" name="Move"/>
-   </XActionItem>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
@@ -2553,24 +2585,10 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
-   </XActionItem>
-   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
-   </XActionItem>
-   <XActionItem ICON="action.empty" kind="list" name="Properties">
-    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
-     displayName="Properties..." kind="action" name="Properties"/>
-   </XActionItem>
-   <XActionItem displayName="move" kind="list" name="MoveActions">
-    <XActionItem HIDE="always" HandlerClassName="%Move%"
-     ICON="action.move" displayName="Move" kind="action" name="Move"/>
-   </XActionItem>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
@@ -2601,24 +2619,10 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
-   </XActionItem>
-   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
-   </XActionItem>
-   <XActionItem ICON="action.empty" kind="list" name="Properties">
-    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
-     displayName="Properties..." kind="action" name="Properties"/>
-   </XActionItem>
-   <XActionItem displayName="move" kind="list" name="MoveActions">
-    <XActionItem HIDE="always" HandlerClassName="%Move%"
-     ICON="action.move" displayName="Move" kind="action" name="Move"/>
-   </XActionItem>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
@@ -2646,24 +2650,10 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
-   </XActionItem>
-   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
-   </XActionItem>
-   <XActionItem ICON="action.empty" kind="list" name="Properties">
-    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
-     displayName="Properties..." kind="action" name="Properties"/>
-   </XActionItem>
-   <XActionItem displayName="move" kind="list" name="MoveActions">
-    <XActionItem HIDE="always" HandlerClassName="%Move%"
-     ICON="action.move" displayName="Move" kind="action" name="Move"/>
-   </XActionItem>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
@@ -2691,7 +2681,7 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="entity=AnyElement" WizardClassName="%Default%"
+     PROPERTIES="entity=ESBPreTarget" WizardClassName="%Default%"
      displayName="Add Target..." kind="action" name="CreateTarget">
      <EntityData EntityName="ESBPreTarget">
       <AttributeData AttributeName="class"/>
@@ -2793,24 +2783,10 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
-   </XActionItem>
-   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
-   </XActionItem>
-   <XActionItem ICON="action.empty" kind="list" name="Properties">
-    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
-     displayName="Properties..." kind="action" name="Properties"/>
-   </XActionItem>
-   <XActionItem displayName="move" kind="list" name="MoveActions">
-    <XActionItem HIDE="always" HandlerClassName="%Move%"
-     ICON="action.move" displayName="Move" kind="action" name="Move"/>
-   </XActionItem>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
@@ -2837,24 +2813,10 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
-   </XActionItem>
-   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
-   </XActionItem>
-   <XActionItem ICON="action.empty" kind="list" name="Properties">
-    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
-     displayName="Properties..." kind="action" name="Properties"/>
-   </XActionItem>
-   <XActionItem displayName="move" kind="list" name="MoveActions">
-    <XActionItem HIDE="always" HandlerClassName="%Move%"
-     ICON="action.move" displayName="Move" kind="action" name="Move"/>
-   </XActionItem>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
@@ -2890,24 +2852,10 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
-    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
-     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
-    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
-     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
-   </XActionItem>
-   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
-    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
-     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
-   </XActionItem>
-   <XActionItem ICON="action.empty" kind="list" name="Properties">
-    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
-     displayName="Properties..." kind="action" name="Properties"/>
-   </XActionItem>
-   <XActionItem displayName="move" kind="list" name="MoveActions">
-    <XActionItem HIDE="always" HandlerClassName="%Move%"
-     ICON="action.move" displayName="Move" kind="action" name="Move"/>
-   </XActionItem>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
   </XActionItem>
   <XDependencies/>
  </XModelEntity>

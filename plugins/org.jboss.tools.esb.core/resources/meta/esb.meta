@@ -1823,7 +1823,7 @@
  </XModelEntity>
  <XModelEntity
   ImplementingClass="org.jboss.tools.esb.core.model.ESBPropertyImpl"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="property" name="ESBProperty">
   <XChildrenEntities>
    <XChildEntity name="AnyElement"/>
