@@ -1733,15 +1733,6 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="pre=true;category=general"
-    default="Default(true)" name="cache script" xmlname="cacheScript">
-    <Constraint loader="ListString">
-     <value name="Default(true)"/>
-     <value name="true"/>
-     <value name="false"/>
-    </Constraint>
-    <Editor name="ListString"/>
-   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
     <Editor name="Uneditable"/>
    </XModelAttribute>
