@@ -371,15 +371,6 @@ public class JBossRuntimeManager {
 		return isValidESBStandaloneRuntimeDir(path, version, configuration);
 	}
 	
-//	private static boolean isValidSoapContainedESBRuntime(String path, String version){
-//		return  isValidESBStandaloneRuntimeDir(path, version);
-//	}
-	
-	@Deprecated
-	public static boolean getResttaJar(String path, String asFoldername, String version, String configuration){
-		return isValidESBStandaloneRuntimeDir(path, version, configuration);
-	}
-	
 	
 	
 	
