@@ -14,6 +14,7 @@ import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.impl.RegularObjectImpl;
 import org.jboss.tools.esb.core.model.converters.FTPListenerConverter;
 import org.jboss.tools.esb.core.model.converters.IPropertyConverter;
+import org.jboss.tools.esb.core.model.converters.JBRListenerConverter;
 
 /**
  * When loading from xml, reads 'raw' list of esb property children of loaded object 
@@ -37,30 +38,16 @@ public class SpecificPropertyConverter implements ESBConstants {
 		return entity.startsWith(ENT_ESB_LISTENERS);
 	}
 
-	public void convertChildrenToSpecific(XModelObject actions) {
-		boolean modified = false;
+	static String JBR_ENTITIES = ".ESBJBRProvider120.ESBJBRListener120.ESBJBRBus120.";
 
-		XModelObject[] as = actions.getChildren();
-		for (int i = 0; i < as.length; i++) {
-			XModelObject action = convertBasicToSpecific(actions, as[i]);
-			if(action != null) {
-				as[i] = action;
-				modified = true;
-			}
-		}
-		if(modified) {
-			((RegularObjectImpl)actions).replaceChildren(as);
-		}
-		
-	}
-
-	public XModelObject convertBasicToSpecific(XModelObject parent, XModelObject basic) {
+	public XModelObject convertBasicToSpecific(XModelObject basic) {
 		String entity = basic.getModelEntity().getName();
 		if("ESBFTPListener120".equals(entity)) {
 			FTPListenerConverter.instance.toSpecific(basic, basic);
+		} else if(JBR_ENTITIES.indexOf("." + entity + ".") >= 0) {
+			JBRListenerConverter.instance.toSpecific(basic, basic);
 		}
-		//returns null because no new object is created
-		return null;
+		return basic;
 	}
 
 	public XModelObject convertSpecificToBasic(XModelObject specific) {
@@ -69,6 +56,9 @@ public class SpecificPropertyConverter implements ESBConstants {
 		if("ESBFTPListener120".equals(entity)) {
 			basic = basic.copy();
 			FTPListenerConverter.instance.toBasic(basic, specific);
+		} else if(JBR_ENTITIES.indexOf("." + entity + ".") >= 0) {
+			basic = basic.copy();
+			JBRListenerConverter.instance.toBasic(basic, specific);
 		}
 		return basic;
 	}

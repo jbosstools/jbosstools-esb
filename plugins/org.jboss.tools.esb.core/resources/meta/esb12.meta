@@ -365,7 +365,8 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="org.jboss.tools.esb.core.model.impl.FTPListenerSpecificPropertiesImpl"
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.impl.FTPListenerSpecificPropertiesImpl"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=converter" name="ESBFTPRemote">
   <XChildrenEntities/>
   <XEntityRenderer>
@@ -589,6 +590,177 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%;hasConvertedProperties=true"
+  XMLSUBPATH="jbr-bus" name="ESBJBRBus120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+   <XChildEntity maxCount="1" name="ESBJBRConfig" required="yes"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.bus" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="channel" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="id" xmlname="busid"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    name="port" xmlname="port">
+    <Constraint loader="%IntEL%"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=converter" name="ESBJBRConfig">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="JBR Gateway Config" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true"
+    default="Config" name="name" visibility="false" xmlname="name">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    default="Default(true)" name="synchronous" xmlname="synchronous">
+    <Constraint loader="ListString">
+     <value name="Default(true)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="service invoker timeout" xmlname="serviceInvokerTimeout"/>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="async response" xmlname="asyncResponse"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%;hasConvertedProperties=true"
+  XMLSUBPATH="jbr-listener" name="ESBJBRListener120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+   <XChildEntity maxCount="1" name="ESBJBRConfig" required="yes"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.listener" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="jbr listener" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttributeReference
+    attributes="name,channel id ref,max threads,is gateway"
+    entity="ESBListener101" name="listener"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%;hasConvertedProperties=true"
+  XMLSUBPATH="jbr-provider" name="ESBJBRProvider120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+   <XChildEntity name="ESBBus"/>
+   <XChildEntity name="ESBJBRBus120"/>
+   <XChildEntity maxCount="1" name="ESBJBRConfig" required="yes"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.provider" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="jbr provider" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="http" name="protocol" xmlname="protocol">
+    <Constraint loader="List">
+     <value name="http"/>
+     <value name="https"/>
+     <value name="socket"/>
+     <value name="sslsocket"/>
+    </Constraint>
+    <Editor name="List"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="host" xmlname="host"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="New" group="1"
+    kind="list" name="CreateActions">
+    <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="JBR Bus..." kind="action" name="AddBus">
+     <EntityData EntityName="ESBJBRBus120">
+      <AttributeData AttributeName="id"/>
+      <AttributeData AttributeName="port"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%"
   XMLSUBPATH="jca-gateway" name="ESBJCAGateway120">
   <XChildrenEntities>
@@ -639,8 +811,7 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity
-  ImplementingClass="%ESB%"
+ <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="listener" name="ESBListener120">
   <XChildrenEntities>
@@ -688,7 +859,7 @@
    <XChildEntity name="ESBFTPListener120"/>
    <XChildEntity name="ESBSQLListener120"/>
    <XChildEntity name="ESBHibernateListener101"/>
-   <XChildEntity name="ESBJBRListener101"/>
+   <XChildEntity name="ESBJBRListener120"/>
    <XChildEntity name="ESBGroovyListener101"/>
    <XChildEntity name="ESBHTTPGateway120"/>
    <XChildEntity name="ESBUDPListener110"/>
@@ -748,7 +919,7 @@
      ICON="action.empty" PROPERTIES="validator.add=true"
      WizardClassName="%Default%" displayName="JBR Listener..."
      kind="action" name="AddJBRListener">
-     <EntityData EntityName="ESBJBRListener101">
+     <EntityData EntityName="ESBJBRListener120">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="channel id ref" Mandatory="no"/>
      </EntityData>
@@ -856,7 +1027,7 @@
   XMLSUBPATH="providers" name="ESBProviders120">
   <XChildrenEntities>
    <XChildEntity name="ESBBusProvider101"/>
-   <XChildEntity name="ESBJBRProvider101"/>
+   <XChildEntity name="ESBJBRProvider120"/>
    <XChildEntity name="ESBScheduleProvider101"/>
    <XChildEntity name="ESBJMSProvider101"/>
    <XChildEntity name="ESBJCAProvider101"/>
@@ -901,7 +1072,19 @@
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
-    <XActionItemReference entity="ESBProviders101" name="AddJBRProvider" path="CreateActions/AddJBRProvider"/>
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBJBRBus120"
+     displayName="JBR Provider..." kind="action" name="AddJBRProvider">
+     <EntityData EntityName="ESBJBRProvider120">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="protocol"/>
+      <AttributeData AttributeName="host" Mandatory="no"/>
+     </EntityData>
+     <EntityData EntityName="ESBBusCreator">
+      <AttributeData AttributeName="id"/>
+      <AttributeData AttributeName="port"/>
+     </EntityData>
+    </XActionItem>
     <XActionItemReference entity="ESBProviders101" name="AddJCAProvider" path="CreateActions/AddJCAProvider"/>
     <XActionItemReference entity="ESBProviders101" name="AddJMSProvider" path="CreateActions/AddJMSProvider"/>
     <XActionItemReference entity="ESBProviders101"

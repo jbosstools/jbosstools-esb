@@ -18,11 +18,18 @@ import org.jboss.tools.common.model.impl.GroupOrderedChildren;
  */
 public class ESBOrderedChildren extends GroupOrderedChildren {
 
+    protected int getGroupCount() {
+        return 3;
+    }
+
     protected int getGroup(XModelObject o) {
     	if(o != null && ESBConstants.ENT_ESB_PROPERTY.equals(o.getModelEntity().getName())) {
     		return 0;
     	}
-        return 1;
+    	if("ESBJBRConfig".equals(o.getModelEntity().getName())) {
+    		return 1;
+    	}
+        return 2;
     }
 
 }

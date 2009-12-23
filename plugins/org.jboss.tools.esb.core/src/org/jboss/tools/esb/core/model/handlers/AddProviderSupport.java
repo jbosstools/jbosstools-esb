@@ -62,7 +62,7 @@ public class AddProviderSupport extends SpecialWizardSupport {
 	
 	protected void execute() throws XModelException {
 		Properties p0 = extractStepData(0);
-		XModelObject provider = getTarget().getModel().createModelObject(providerEntity, p0);
+		XModelObject provider = XModelObjectLoaderUtil.createValidObject(getTarget().getModel(), providerEntity, p0);
 		
 		Properties p1 = extractStepData(1);
 		XModelObject bus = XModelObjectLoaderUtil.createValidObject(getTarget().getModel(), busEntity, p1);
