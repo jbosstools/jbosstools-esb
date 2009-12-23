@@ -3156,9 +3156,25 @@
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
     <XActionItem displayName="Add Pre-Packed Action" kind="list" name="PrePackedAction">
-     <XActionItemReference entity="ESBActions101" name="AddObjectInvoke"/>
-     <XActionItem displayName="Converters" group="1" kind="list" name="Converters">
+     <XActionItem displayName="BPM" group="1" kind="list" name="BPM">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="BPM Processor..." kind="action" name="AddBPMProcessor">
+       <EntityData EntityName="ESBPreActionBpmProcessor120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="command"/>
+        <AttributeData AttributeName="process definition name" Mandatory="no"/>
+        <AttributeData AttributeName="process definition id" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItemReference entity="ESBActions101"
+       name="AddBusinessRulesProcessor" path="CreateActions/PrePackedAction/AddBusinessRulesProcessor"/>
+     </XActionItem>
+     <XActionItem displayName="Converters/Transformers" group="1"
+      kind="list" name="Converters">
       <XActionItemReference entity="ESBActions101" name="AddByteArrayToString"/>
+      <XActionItemReference entity="ESBActions101"
+       name="AddCommandInterpreter" path="CreateActions/PrePackedAction/AddCommandInterpreter"/>
       <XActionItemReference entity="ESBActions101" name="AddLongToDate"/>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
@@ -3170,6 +3186,8 @@
         <AttributeData AttributeName="terminal" Mandatory="no"/>
        </EntityData>
       </XActionItem>
+      <XActionItemReference entity="ESBActions101"
+       name="AddObjectInvoke" path="CreateActions/PrePackedAction/AddObjectInvoke"/>
       <XActionItemReference entity="ESBActions101" name="AddObjectToCSVString"/>
       <XActionItemReference entity="ESBActions101" name="AddObjectToXStream"/>
       <XActionItemReference entity="ESBActions101" name="AddSmooksAction"/>
@@ -3186,45 +3204,22 @@
        </EntityData>
       </XActionItem>
      </XActionItem>
-     <XActionItemReference entity="ESBActions101" name="AddCommandInterpreter"/>
-     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-      displayName="BPM Processor..." kind="action" name="AddBPMProcessor">
-      <EntityData EntityName="ESBPreActionBpmProcessor120">
-       <AttributeData AttributeName="name"/>
-       <AttributeData AttributeName="command"/>
-       <AttributeData AttributeName="process definition name" Mandatory="no"/>
-       <AttributeData AttributeName="process definition id" Mandatory="no"/>
-      </EntityData>
-     </XActionItem>
-     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-      displayName="EJB Processor..." kind="action" name="AddEJBProcessor">
-      <EntityData EntityName="ESBPreActionEJBProcessor120">
-       <AttributeData AttributeName="name"/>
-       <AttributeData AttributeName="ejb3" Mandatory="no"/>
-       <AttributeData AttributeName="ejb name" Mandatory="no"/>
-       <AttributeData AttributeName="jndi name" Mandatory="no"/>
-       <AttributeData AttributeName="initial context factory" Mandatory="no"/>
-       <AttributeData AttributeName="provider url" Mandatory="no"/>
-       <AttributeData AttributeName="method" Mandatory="no"/>
-      </EntityData>
-     </XActionItem>
-     <XActionItem displayName="Scripting" kind="list" name="Scripting">
+     <XActionItem displayName="Miscellaneous" group="1" kind="list" name="Miscellaneous">
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="Scripting..." kind="action" name="AddScripting">
-       <EntityData EntityName="ESBPreActionScripting120">
+       displayName="System Println..." kind="action" name="AddSystemPrintln">
+       <EntityData EntityName="ESBPreActionSystemPrintln101">
         <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="script"/>
+        <AttributeData AttributeName="message"/>
        </EntityData>
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="Groovy Action Processor..." kind="action" name="AddGroovyProcessor">
-       <EntityData EntityName="ESBPreActionGroovyProcessor101">
+       displayName="Schema Validation..." kind="action" name="AddSchemaValidation">
+       <EntityData EntityName="ESBPreActionSchemaValidator120">
         <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="script"/>
+        <AttributeData AttributeName="schema"/>
+        <AttributeData AttributeName="schema language" Mandatory="no"/>
        </EntityData>
       </XActionItem>
      </XActionItem>
@@ -3247,35 +3242,6 @@
         <AttributeData AttributeName="rule set"/>
         <AttributeData AttributeName="rule language" Mandatory="no"/>
         <AttributeData AttributeName="rule reload" Mandatory="no"/>
-       </EntityData>
-      </XActionItem>
-      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-       PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="Static Router..." kind="action" name="AddStaticRouter">
-       <EntityData EntityName="ESBPreActionStaticRouter101">
-        <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="process" Mandatory="no"/>
-       </EntityData>
-      </XActionItem>
-      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-       PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="Static Wiretap..." kind="action" name="AddStaticWiretap">
-       <EntityData EntityName="ESBPreActionStaticWiretap101">
-        <AttributeData AttributeName="name"/>
-       </EntityData>
-      </XActionItem>
-      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-       PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="Notifier..." kind="action" name="AddNotifier">
-       <EntityData EntityName="ESBPreActionNotifier101">
-        <AttributeData AttributeName="name"/>
-       </EntityData>
-      </XActionItem>
-      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-       PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="JMS Router..." kind="action" name="AddJMSRouter">
-       <EntityData EntityName="ESBPreActionJMSRouter120">
-        <AttributeData AttributeName="name"/>
        </EntityData>
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
@@ -3310,6 +3276,35 @@
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="JMS Router..." kind="action" name="AddJMSRouter">
+       <EntityData EntityName="ESBPreActionJMSRouter120">
+        <AttributeData AttributeName="name"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Notifier..." kind="action" name="AddNotifier">
+       <EntityData EntityName="ESBPreActionNotifier101">
+        <AttributeData AttributeName="name"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Static Router..." kind="action" name="AddStaticRouter">
+       <EntityData EntityName="ESBPreActionStaticRouter101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="process" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Static Wiretap..." kind="action" name="AddStaticWiretap">
+       <EntityData EntityName="ESBPreActionStaticWiretap101">
+        <AttributeData AttributeName="name"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="Sync Service Invoker..." kind="action" name="AddSyncServiceInvoker">
        <EntityData EntityName="ESBPreActionSyncServiceInvoker120">
         <AttributeData AttributeName="name"/>
@@ -3318,7 +3313,40 @@
        </EntityData>
       </XActionItem>
      </XActionItem>
-     <XActionItem displayName="SOAP" kind="list" name="SOAP">
+     <XActionItem displayName="Scripting" group="1" kind="list" name="Scripting">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Scripting..." kind="action" name="AddScripting">
+       <EntityData EntityName="ESBPreActionScripting120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="script"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Groovy Action Processor..." kind="action" name="AddGroovyProcessor">
+       <EntityData EntityName="ESBPreActionGroovyProcessor101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="script"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+     <XActionItem displayName="Services" group="1" kind="list" name="Services">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="EJB Processor..." kind="action" name="AddEJBProcessor">
+       <EntityData EntityName="ESBPreActionEJBProcessor120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="ejb3" Mandatory="no"/>
+        <AttributeData AttributeName="ejb name" Mandatory="no"/>
+        <AttributeData AttributeName="jndi name" Mandatory="no"/>
+        <AttributeData AttributeName="initial context factory" Mandatory="no"/>
+        <AttributeData AttributeName="provider url" Mandatory="no"/>
+        <AttributeData AttributeName="method" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+     <XActionItem displayName="Webservices" group="1" kind="list" name="SOAP">
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="SOAP Processor..." kind="action" name="AddSOAPProcessor">
@@ -3353,26 +3381,6 @@
         <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="wsdl"/>
         <AttributeData AttributeName="operation"/>
-       </EntityData>
-      </XActionItem>
-     </XActionItem>
-     <XActionItemReference entity="ESBActions101" name="AddBusinessRulesProcessor"/>
-     <XActionItem displayName="Miscellaneous" group="1" kind="list" name="Miscellaneous">
-      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-       PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="System Println..." kind="action" name="AddSystemPrintln">
-       <EntityData EntityName="ESBPreActionSystemPrintln101">
-        <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="message"/>
-       </EntityData>
-      </XActionItem>
-      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-       PROPERTIES="validator.add=true" WizardClassName="%Default%"
-       displayName="Schema Validation..." kind="action" name="AddSchemaValidation">
-       <EntityData EntityName="ESBPreActionSchemaValidator120">
-        <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="schema"/>
-        <AttributeData AttributeName="schema language" Mandatory="no"/>
        </EntityData>
       </XActionItem>
      </XActionItem>
