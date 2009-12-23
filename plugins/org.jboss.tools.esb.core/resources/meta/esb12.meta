@@ -7,6 +7,9 @@
   <MAPPING name="FileVersions">
    <PAIR name="ESB1.2.0" value="FileESB120"/>
   </MAPPING>
+  <MAPPING name="FilteredTreeConstraints">
+   <PAIR name="FileSystems$158" value="org.jboss.tools.esb.core.model.impl.ESBTreeConstraint"/>
+  </MAPPING>
  </MAPPINGS>
  <ICONS/>
  <GlobalActions kind="list"/>
@@ -286,7 +289,8 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="%ESB%"
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.impl.FTPListenerSpecificPropertiesImpl"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=converter" name="ESBFTPCache">
   <XChildrenEntities/>
   <XEntityRenderer>
@@ -361,7 +365,7 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="%ESB%"
+ <XModelEntity ImplementingClass="org.jboss.tools.esb.core.model.impl.FTPListenerSpecificPropertiesImpl"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=converter" name="ESBFTPRemote">
   <XChildrenEntities/>
   <XEntityRenderer>
@@ -635,7 +639,8 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="%ESB%"
+ <XModelEntity
+  ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="listener" name="ESBListener120">
   <XChildrenEntities>
@@ -1114,7 +1119,7 @@
   ImplementationLoadingClass="org.jboss.tools.esb.core.model.ESBFileLoader"
   ImplementingClass="org.jboss.tools.esb.core.model.ESBFileImpl"
   ObjectEditorClass="%XML%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%;editorTreeConstraint=org.jboss.tools.esb.core.model.impl.ESBTreeConstraint"
   XMLSUBPATH="jbossesb" name="FileESB120">
   <XChildrenEntities>
    <XChildEntity maxCount="1" name="ESBGlobals120" required="yes"/>

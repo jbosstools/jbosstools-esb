@@ -680,7 +680,7 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="%ESB%"
+ <XModelEntity ImplementingClass="org.jboss.tools.esb.core.model.impl.FTPMessageFilterImpl"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;saveDefault=false"
   XMLSUBPATH="ftp-message-filter" name="ESBFTPMessageFilter101">
   <XChildrenEntities/>

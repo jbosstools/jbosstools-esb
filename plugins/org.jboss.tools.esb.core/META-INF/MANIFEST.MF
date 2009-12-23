@@ -9,7 +9,8 @@ Bundle-Localization: plugin
 Export-Package: org.jboss.tools.esb.core,
  org.jboss.tools.esb.core.model,
  org.jboss.tools.esb.core.model.converters,
- org.jboss.tools.esb.core.model.handlers
+ org.jboss.tools.esb.core.model.handlers,
+ org.jboss.tools.esb.core.model.impl
 Require-Bundle: org.jboss.tools.jst.web;visibility:=reexport,
  org.eclipse.ui
 Bundle-Version: 2.0.0

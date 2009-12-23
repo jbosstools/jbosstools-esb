@@ -1,0 +1,36 @@
+/******************************************************************************* 
+ * Copyright (c) 2007 Red Hat, Inc. 
+ * Distributed under license by Red Hat, Inc. All rights reserved. 
+ * This program is made available under the terms of the 
+ * Eclipse Public License v1.0 which accompanies this distribution, 
+ * and is available at http://www.eclipse.org/legal/epl-v10.html 
+ * 
+ * Contributors: 
+ * Red Hat, Inc. - initial API and implementation 
+ ******************************************************************************/ 
+package org.jboss.tools.esb.core.model.impl;
+
+import org.jboss.tools.common.model.XModelObject;
+import org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl;
+
+/**
+ * @author Viacheslav Kabanovich
+ */
+public class FTPListenerSpecificPropertiesImpl extends ESBCustomizedObjectImpl {
+	private static final long serialVersionUID = 1L;
+
+	public FTPListenerSpecificPropertiesImpl() {}
+
+	public boolean isObjectEditable() {
+		if(!super.isObjectEditable()) return false;
+		XModelObject p = getParent();
+		if(p != null) {
+			XModelObject c = p.getChildByPath("Filter");
+			if(c != null && !"true".equals(c.getAttributeValue("read only"))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+}

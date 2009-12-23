@@ -33,6 +33,10 @@
 			class="org.jboss.tools.esb.core.model.ESBRouteToImpl"/>
 		<xclass id="org.jboss.tools.esb.core.model.EJBParamImpl"
 			class="org.jboss.tools.esb.core.model.EJBParamImpl"/>
+		<xclass id="org.jboss.tools.esb.core.model.impl.FTPListenerSpecificPropertiesImpl"
+			class="org.jboss.tools.esb.core.model.impl.FTPListenerSpecificPropertiesImpl"/>
+		<xclass id="org.jboss.tools.esb.core.model.impl.FTPMessageFilterImpl"
+			class="org.jboss.tools.esb.core.model.impl.FTPMessageFilterImpl"/>
 
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"/>
@@ -45,6 +49,9 @@
 			
 		<xclass id="org.jboss.tools.esb.core.model.ESBResourceTree"
 			class="org.jboss.tools.esb.core.model.ESBResourceTree"/>
+
+		<xclass id="org.jboss.tools.esb.core.model.impl.ESBTreeConstraint"
+			class="org.jboss.tools.esb.core.model.impl.ESBTreeConstraint"/>
 	</extension>
 
  <extension point="org.eclipse.wst.xml.core.catalogContributions">
