@@ -17,6 +17,7 @@ import org.jboss.tools.esb.core.model.SpecificActionLoader;
  * @author Viacheslav Kabanovich
  */
 public class FTPListenerConverter implements IPropertyConverter {
+	public static FTPListenerConverter instance = new FTPListenerConverter();
 	
 	public FTPListenerConverter() {}
 
@@ -26,6 +27,19 @@ public class FTPListenerConverter implements IPropertyConverter {
 			return;
 		}
 
+		toBasicImpl(basic, specific);
+	}
+
+	public void toSpecific(XModelObject basic, XModelObject specific) {
+		XModelObject filter = specific.getChildByPath("Filter");
+		if(filter != null && !"true".equals(filter.getAttributeValue("read only"))) {
+			return;
+		}
+	
+		toSpecificImpl(basic, specific);
+	}
+
+	public void toBasicImpl(XModelObject basic, XModelObject specific) {
 		XModelObject cache = specific.getChildByPath("Cache");
 		if(cache != null) {
 			SpecificActionLoader.copySpecificAtttributesToBasicProperties(cache, basic);
@@ -37,12 +51,7 @@ public class FTPListenerConverter implements IPropertyConverter {
 		}
 	}
 
-	public void toSpecific(XModelObject basic, XModelObject specific) {
-		XModelObject filter = specific.getChildByPath("Filter");
-		if(filter != null && !"true".equals(filter.getAttributeValue("read only"))) {
-			return;
-		}
-	
+	public void toSpecificImpl(XModelObject basic, XModelObject specific) {
 		XModelObject cache = specific.getChildByPath("Cache");
 		if(cache != null) {
 			SpecificActionLoader.copyBasicPropertiesToSpecificAtttributes(basic, cache);

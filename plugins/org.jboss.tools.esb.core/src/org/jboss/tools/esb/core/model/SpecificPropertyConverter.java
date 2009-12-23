@@ -57,8 +57,7 @@ public class SpecificPropertyConverter implements ESBConstants {
 	public XModelObject convertBasicToSpecific(XModelObject parent, XModelObject basic) {
 		String entity = basic.getModelEntity().getName();
 		if("ESBFTPListener120".equals(entity)) {
-			IPropertyConverter converter = new FTPListenerConverter();
-			converter.toSpecific(basic, basic);
+			FTPListenerConverter.instance.toSpecific(basic, basic);
 		}
 		//returns null because no new object is created
 		return null;
@@ -69,8 +68,7 @@ public class SpecificPropertyConverter implements ESBConstants {
 		XModelObject basic = specific;
 		if("ESBFTPListener120".equals(entity)) {
 			basic = basic.copy();
-			IPropertyConverter converter = new FTPListenerConverter();
-			converter.toBasic(basic, specific);
+			FTPListenerConverter.instance.toBasic(basic, specific);
 		}
 		return basic;
 	}

@@ -10,10 +10,12 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.core.model.impl;
 
+import org.jboss.tools.common.model.XModelException;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.event.XModelTreeEvent;
 import org.jboss.tools.common.model.impl.XModelImpl;
 import org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl;
+import org.jboss.tools.esb.core.model.converters.FTPListenerConverter;
 
 /**
  * @author Viacheslav Kabanovich
@@ -38,6 +40,19 @@ public class FTPMessageFilterImpl extends ESBCustomizedObjectImpl {
 			return result;
 		} else {		
 			return super.setAttributeValue(name, value);
+		}
+	}
+
+	protected void onAttributeValueEdit(String name, String oldValue, String newValue) throws XModelException {
+		if("read only".equals(name)) {
+			XModelObject p = getParent();
+			if(p != null) {
+				if("true".equals(newValue)) {
+					FTPListenerConverter.instance.toSpecificImpl(p, p);
+				} else if("true".equals(oldValue)) {
+					FTPListenerConverter.instance.toBasicImpl(p, p);
+				}
+			}
 		}
 	}
 
