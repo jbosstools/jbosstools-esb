@@ -91,6 +91,9 @@ public class JBossClassPathCommand extends AbstractDataModelOperation {
 	private String getProjectTargetRuntimeID(IProject project) throws CoreException{
 		IFacetedProject fp = ProjectFacetsManager.create(project);
 		IRuntime runtime = fp.getPrimaryRuntime();
+		if(runtime == null){
+			return "";
+		}
 		return runtime.getProperty("id");
 		
 	}

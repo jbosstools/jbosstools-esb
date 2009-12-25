@@ -13,8 +13,10 @@ package org.jboss.tools.esb.project.ui.wizards.pages;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jst.common.project.facet.JavaFacetUtils;
 import org.eclipse.jst.common.project.facet.core.internal.JavaFacetUtil;
+import org.eclipse.jst.j2ee.internal.plugin.J2EEUIPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -39,9 +41,9 @@ public class ESBProjectFirstPage extends DataModelFacetCreationWizardPage {
 		return ESBProjectConstant.ESB_PROJECT_FACET;
 	}
 	
-	protected void createPresetPanel(Composite top) {
-		new Label(top, SWT.NONE);
-	}
+//	protected void createPresetPanel(Composite top) {
+//		new Label(top, SWT.NONE);
+//	}
 
 	@Override
 	protected void validatePage() {
@@ -54,6 +56,11 @@ public class ESBProjectFirstPage extends DataModelFacetCreationWizardPage {
 		});
 		
 	}
+	
+	protected IDialogSettings getDialogSettings() {
+        return J2EEUIPlugin.getDefault().getDialogSettings();
+    }
+	
 	
 	@Override
 	protected Set<IProjectFacetVersion> getFacetConfiguration( final IProjectFacetVersion primaryFacetVersion )

@@ -358,8 +358,8 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			if (ifpwc != null) {
 				IRuntime runtime = ifpwc.getPrimaryRuntime();
 				if (runtime == null) {
-					setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Have_Not_Set_Target_Runtime);
-					hasRuntime = false;
+					setMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Have_Not_Set_Target_Runtime, WARNING);
+					hasRuntime = true;
 					setPageComplete(isPageComplete());
 					return false;
 				}
