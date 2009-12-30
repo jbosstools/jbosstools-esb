@@ -214,4 +214,40 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddNamespace") //$NON-NLS-1$
 	);
 
+	static IFormData ESB_NOTIFICATION_LIST_DEFINITION = new FormData(
+		"Notification Lists", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("type", 100)}, //$NON-NLS-1$ 
+		new String[]{ENT_ESB_NOTIFICATION, ENT_ESB_NOTIFICATION_120},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddNotificationList") //$NON-NLS-1$
+	);
+
+	static String[] getTargetEntities(String targetsEntity) {
+		XModelEntity entity = XModelMetaDataImpl.getInstance().getEntity(targetsEntity);
+		if(entity == null) {
+			return new String[]{ENT_ESB_TARGET};
+		}
+		XChild[] cs = entity.getChildren();
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < cs.length; i++) {
+			list.add(cs[i].getName());
+		}
+		return list.toArray(new String[0]);
+	}
+
+	static IFormData ESB_TARGET_LIST_DEFINITION = new FormData(
+		"Targets", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("class", 100)}, //$NON-NLS-1$ 
+		getTargetEntities(ENT_ESB_NOTIFICATION),
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.CreateTarget") //$NON-NLS-1$
+	);
+	static IFormData ESB_TARGET_120_LIST_DEFINITION = new FormData(
+		"Targets", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("class", 100)}, //$NON-NLS-1$ 
+		getTargetEntities(ENT_ESB_NOTIFICATION_120),
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyTarget") //$NON-NLS-1$
+	);
+
 }

@@ -96,6 +96,10 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 			if(entity.getChild(ConverterConstants.ROUTER_NAMESPACE_ENTITY) != null) {
 				list.add(ESBListsFormLayoutData.ROUTER_NAMESPACE_LIST_DEFINITION);
 			}
+			if(entity.getChild(ENT_ESB_NOTIFICATION) != null
+					|| entity.getChild(ENT_ESB_NOTIFICATION_120) != null) {
+				list.add(ESBListsFormLayoutData.ESB_NOTIFICATION_LIST_DEFINITION);
+			}
 			//do nothing; when specific children exist use specific forms
 		} else if(entity.getChild(ENT_ESB_PROPERTY) != null) {
 			list.add(ESBListsFormLayoutData.ESB_PROPERTY_LIST_DEFINITION);
@@ -119,6 +123,10 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 			list.add(ESBListsFormLayoutData.ESB_SERVICE_SUB_LIST_DEFINITION);
 		} else if(entityName.equals(ENT_ESB_PROPERTY)) {
 			list.add(ModelFormLayoutData.TAG_LIST);
+		} else if(entityName.equals(ENT_ESB_NOTIFICATION)) {
+			list.add(ESBListsFormLayoutData.ESB_TARGET_LIST_DEFINITION);
+		} else if(entityName.equals(ENT_ESB_NOTIFICATION_120)) {
+			list.add(ESBListsFormLayoutData.ESB_TARGET_120_LIST_DEFINITION);
 		}
 		if(entityName.equals(ENT_ESB_SCHEDULE_PROVIDER)) {
 			list.add(ESBListsFormLayoutData.ESB_SCHEDULE_LIST_DEFINITION);
