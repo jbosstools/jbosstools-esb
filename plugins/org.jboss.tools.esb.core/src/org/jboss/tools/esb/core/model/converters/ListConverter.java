@@ -91,8 +91,8 @@ public abstract class ListConverter implements IPropertyConverter {
 					a.addChild(cs[j].copy());
 				}
 			} else {
-				String toChildEntity = a.getModelEntity().getChildren()[0].getName();
 				for (int j = 0; j < cs.length; j++) {
+					String toChildEntity = getToChildEntity(cs[j], a.getModelEntity());
 					XModelObject c = fromAnyElement(cs[j], toChildEntity);
 					if(c != null) {
 						a.addChild(c);
@@ -101,6 +101,10 @@ public abstract class ListConverter implements IPropertyConverter {
 			}
 		}
 		return a;
+	}
+
+	protected String getToChildEntity(XModelObject any, XModelEntity parent) {
+		return parent.getChildren()[0].getName();
 	}
 
 	protected boolean isRelevantTag(String tag, XModelObject object) {

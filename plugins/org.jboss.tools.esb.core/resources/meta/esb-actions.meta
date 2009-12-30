@@ -1148,6 +1148,56 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionNotifier120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+   <XChildEntity name="ESBPreNotificationList120"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="notifier action" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.Notifier" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="ok method" xmlname="okMethod"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="exception method" xmlname="exceptionMethod"/>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Notification List..." kind="action" name="AddNotificationList">
+     <EntityData EntityName="ESBPreNotificationList120">
+      <AttributeData AttributeName="type"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="action" name="ESBPreActionObjectInvoke101">
   <XChildrenEntities>
@@ -2679,7 +2729,7 @@
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
-   <XActionItem kind="list" name="CreateActions">
+   <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="entity=ESBPreTarget" WizardClassName="%Default%"
      displayName="Add Target..." kind="action" name="CreateTarget">
@@ -2687,6 +2737,65 @@
       <AttributeData AttributeName="class"/>
      </EntityData>
     </XActionItem>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
+    <XActionItem BaseActionName="Copy" HandlerClassName="%Copy%"
+     ICON="action.copy" displayName="Copy" kind="action" name="Copy"/>
+    <XActionItem BaseActionName="Cut" HandlerClassName="%Cut%"
+     ICON="action.cut" displayName="Cut" kind="action" name="Cut"/>
+   </XActionItem>
+   <XActionItem ICON="action.delete" displayName="Delete" kind="list" name="DeleteActions">
+    <XActionItem BaseActionName="Delete" HandlerClassName="%Delete%"
+     ICON="action.delete" displayName="Delete" kind="action" name="Delete"/>
+   </XActionItem>
+   <XActionItem ICON="action.empty" kind="list" name="Properties">
+    <XActionItem HandlerClassName="%Properties%" ICON="action.empty"
+     displayName="Properties..." kind="action" name="Properties"/>
+   </XActionItem>
+   <XActionItem displayName="move" kind="list" name="MoveActions">
+    <XActionItem HIDE="always" HandlerClassName="%Move%"
+     ICON="action.move" displayName="Move" kind="action" name="Move"/>
+   </XActionItem>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=notification2;children=%Ordered%"
+  XMLSUBPATH="NotificationList" name="ESBPreNotificationList120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreTarget"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="notification list" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="type" xmlname="type"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="entity=ESBPreTarget;validator.add=true"
+     WizardClassName="%Default%" displayName="Generic Target..."
+     kind="action" name="CreateTarget">
+     <EntityData EntityName="ESBPreTarget">
+      <AttributeData AttributeName="class"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem kind="list" name="Target"/>
+    <XActionItem HIDE="always"
+     HandlerClassName="org.jboss.tools.common.meta.action.impl.handlers.ShowMenuHandler"
+     PROPERTIES="actionList=CreateActions" displayName="Target..."
+     kind="action" name="AddAnyTarget"/>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
    <XActionItem ICON="action.copy" displayName="Copy" kind="list" name="CopyActions">
@@ -3147,7 +3256,7 @@
    <XChildEntity name="ESBPreActionSOAPWiseClient120"/>
    <XChildEntity name="ESBPreActionSOAPProxy120"/>
    <XChildEntity name="ESBPreActionSystemPrintln101"/>
-   <XChildEntity name="ESBPreActionNotifier101"/>
+   <XChildEntity name="ESBPreActionNotifier120"/>
    <XChildEntity name="ESBPreActionBusinessRulesProcessor101"/>
    <XChildEntity name="ESBPreActionXSLTAction120"/>
    <XChildEntity name="ESBPreActionSchemaValidator120"/>
@@ -3284,7 +3393,7 @@
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="Notifier..." kind="action" name="AddNotifier">
-       <EntityData EntityName="ESBPreActionNotifier101">
+       <EntityData EntityName="ESBPreActionNotifier120">
         <AttributeData AttributeName="name"/>
        </EntityData>
       </XActionItem>

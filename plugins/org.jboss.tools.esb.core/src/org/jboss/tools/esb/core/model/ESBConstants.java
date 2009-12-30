@@ -140,7 +140,14 @@ public interface ESBConstants {
 	public String ENT_ESB_CRON_SCHEDULE = "ESBCronSchedule101"; //$NON-NLS-1$
 
 	public String ENT_ESB_ROUTE_TO = "ESBPreRouteTo"; //$NON-NLS-1$	
-	public String ENT_ESB_OBJECT_PATH = "ESBPreObjectPath"; //$NON-NLS-1$	
+	public String ENT_ESB_OBJECT_PATH = "ESBPreObjectPath"; //$NON-NLS-1$
+
+	public String ENT_ESB_NOTIFICATION = "ESBPreNotificationList"; //$NON-NLS-1$
+	public String ENT_ESB_NOTIFICATION_120 = ENT_ESB_NOTIFICATION + SUFF_120;
+	public String ENT_ESB_TARGET = "ESBPreTarget"; //$NON-NLS-1$
+	public String TARGET_NOTIFY_CONSOLE = "NotifyConsole"; //$NON-NLS-1$
+	public String TARGET_NOTIFY_FILES = "NotifyFiles"; //$NON-NLS-1$
+	public String TARGET_NOTIFY_SQL_TABLE = "NotifySQLTable"; //$NON-NLS-1$
 
 	public String ATTR_NAME = "name"; //$NON-NLS-1$
 	public String ATTR_VALUE = "value"; //$NON-NLS-1$

@@ -5,6 +5,7 @@
    <extension point="org.jboss.tools.common.model.meta">
       <meta path="meta/esb.meta"/>
       <meta path="meta/esb-actions.meta"/>
+      <meta path="meta/esb-notifiers.meta"/>
       <meta path="meta/esb12.meta"/>
    </extension>
 

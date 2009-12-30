@@ -10,6 +10,8 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.core.model.converters;
 
+import org.jboss.tools.esb.core.model.ESBConstants;
+
 /**
  * @author Viacheslav Kabanovich
  */
@@ -26,8 +28,8 @@ public interface ConverterConstants {
 	String OBJECT_PATHS = "object-paths";
 	IPropertyConverter OBJECT_PATHS_CONVERTER = new BasicListConverter(OBJECT_PATHS, OBJECT_PATH_ENTITY);
 
-	String NOTIFICATION_ENTITY = "ESBPreNotificationList";
-	IPropertyConverter NOTIFICATION_CONVERTER = new BasicListConverter(DESTINATIONS, NOTIFICATION_ENTITY);
+	IPropertyConverter NOTIFICATION_CONVERTER = new BasicListConverter(DESTINATIONS, ESBConstants.ENT_ESB_NOTIFICATION);
+	IPropertyConverter NOTIFICATION_CONVERTER_2 = new NotificationListConverter(DESTINATIONS, ESBConstants.ENT_ESB_NOTIFICATION_120);
 
 	String BPM_VAR_ENTITY = "ESBPreBPMVar";
 	String BPM_VARS = "esbToBpmVars";
