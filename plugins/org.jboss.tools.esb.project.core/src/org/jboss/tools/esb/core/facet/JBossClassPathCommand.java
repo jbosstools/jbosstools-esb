@@ -42,7 +42,6 @@ public class JBossClassPathCommand extends AbstractDataModelOperation {
 
 	IProject project;
 	private IDataModel model;
-	private String serverRuntimeId;
 
 	public JBossClassPathCommand(IProject project, IDataModel model) {
 		this.project = project;
@@ -57,30 +56,38 @@ public class JBossClassPathCommand extends AbstractDataModelOperation {
 	public IStatus executeOverride(IProgressMonitor monitor) {
 		IStatus status = Status.OK_STATUS;
 		try {
-
 				// store runtime name and runtime location to the project
 				boolean isServerSupplied = model.getBooleanProperty(IJBossESBFacetDataModelProperties.RUNTIME_IS_SERVER_SUPPLIED);
+				IPath esbContainerPath = null;
 				if(isServerSupplied){
-					serverRuntimeId = getProjectTargetRuntimeID(project);
-					String[] segments = new String[]{JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED,
-														serverRuntimeId};
-					status = addClassPath(project, segments);
+					String serverRuntimeId = getProjectTargetRuntimeID(project);
+					esbContainerPath = new Path(JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_CONTAINER_ID)
+							.append(JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED)
+							.append(serverRuntimeId);
 				}else{
 					String runtimeName = model
 							.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID);
 					String runtimeLocation = model
 							.getStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_HOME);
 					String esbcontentFolder = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
-					project
-							.setPersistentProperty(
+					project.setPersistentProperty(
 									IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_QNAME_RUNTIME_NAME,
 									runtimeName);
 					project.setPersistentProperty(
 									IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_RNTIME_LOCATION,
 									runtimeLocation);
 					project.setPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER, esbcontentFolder);
-					status = addClassPath(project, new String[]{runtimeName});
+					esbContainerPath = new Path(JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED)
+							.append(runtimeName );
 				}
+				
+				// Add the esb container
+				status = addClassPath(project, esbContainerPath);
+				
+				// Add the regular server container
+//				IPath containerPath = new Path("org.eclipse.jst.server.core.container").append("org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget"); //$NON-NLS-1$ //$NON-NLS-2$
+//				path = containerPath.append(id);
+
 		} catch (CoreException e) {
 			status = StatusUtils.errorStatus(
 					JBossFacetCoreMessages.Error_Add_Facet_JBossESB, e);
@@ -98,16 +105,18 @@ public class JBossClassPathCommand extends AbstractDataModelOperation {
 		
 	}
 	
-	public IStatus addClassPath(IProject project, String[] segments) {
+	/**
+	 * This can add *any* container path
+	 * @param project
+	 * @param path
+	 * @return
+	 */
+	public static IStatus addClassPath(IProject project, IPath path) {
 		IStatus status = Status.OK_STATUS;
 		try {
 
 			IClasspathEntry newClasspath;
 			IJavaProject javaProject = JavaCore.create(project);
-			IPath path = new Path(JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_CONTAINER_ID);
-			for(String segment: segments ){
-				path = path.append(segment);
-			}
 			newClasspath = JavaCore.newContainerEntry(path);
 
 			IClasspathEntry[] oldClasspathEntries = javaProject

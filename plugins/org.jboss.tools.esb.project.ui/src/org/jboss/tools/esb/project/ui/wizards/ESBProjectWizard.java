@@ -20,18 +20,25 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.jst.server.core.internal.JavaServerPlugin;
+import org.eclipse.jst.server.core.internal.RuntimeClasspathContainer;
+import org.eclipse.jst.server.core.internal.RuntimeClasspathProviderWrapper;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.wst.common.frameworks.datamodel.DataModelFactory;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
+import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectTemplate;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
+import org.eclipse.wst.server.core.ServerCore;
 import org.eclipse.wst.web.ui.internal.wizards.NewProjectDataModelFacetWizard;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
+import org.jboss.tools.esb.core.facet.JBossClassPathCommand;
 import org.jboss.tools.esb.project.ui.ESBSharedImages;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.wizards.pages.ESBProjectFirstPage;
@@ -86,6 +93,16 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			IDE.openEditor(page, esbFile);
 			
+			// Add the server runtime as well
+			IFacetedProject fp = ProjectFacetsManager.create(project);
+			IRuntime runtime = fp.getPrimaryRuntime();
+			String name = runtime.getName();
+			org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore.findRuntime(name);
+			RuntimeClasspathProviderWrapper rcpw = JavaServerPlugin.findRuntimeClasspathProvider(serverRuntime.getRuntimeType());
+			IPath serverContainerPath = new Path(RuntimeClasspathContainer.SERVER_CONTAINER)
+				.append(rcpw.getId()).append(serverRuntime.getId());
+			JBossClassPathCommand.addClassPath(project, serverContainerPath);
+
 		} catch (CoreException e) {
 			ESBProjectCorePlugin.getDefault().getLog().log(e.getStatus());
 		}
