@@ -41,9 +41,9 @@ public class ESBProjectFirstPage extends DataModelFacetCreationWizardPage {
 		return ESBProjectConstant.ESB_PROJECT_FACET;
 	}
 	
-//	protected void createPresetPanel(Composite top) {
-//		new Label(top, SWT.NONE);
-//	}
+	protected void createPresetPanel(Composite top) {
+		new Label(top, SWT.NONE);
+	}
 
 	@Override
 	protected void validatePage() {
