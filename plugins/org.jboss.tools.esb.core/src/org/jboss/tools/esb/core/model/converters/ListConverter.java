@@ -34,7 +34,7 @@ public abstract class ListConverter implements IPropertyConverter {
 	protected abstract String getItemEntityName();
 
 	public void toSpecific(XModelObject basicAction, XModelObject specificAction) {
-		XModelObject p = basicAction.getChildByPath(getPropertyName());
+		XModelObject p = getBasicProperty(basicAction);
 		if(p == null) return;
 		XModelObject[] as = p.getChildren();
 		for (int i = 0; i < as.length; i++) {
@@ -46,6 +46,10 @@ public abstract class ListConverter implements IPropertyConverter {
 			}
 		}
 		p.removeFromParent();
+	}
+
+	protected XModelObject getBasicProperty(XModelObject basicAction) {
+		return basicAction.getChildByPath(getPropertyName());
 	}
 
 	public void toBasic(XModelObject basicAction, XModelObject specificAction) {
@@ -63,6 +67,7 @@ public abstract class ListConverter implements IPropertyConverter {
 	public XModelObject fromAnyElement(XModelObject any, String toEntity) {
 		String tag = any.getAttributeValue("tag");
 		Map<String, String> attr = toMap(((AnyElementObjectImpl)any).getAttributes());
+		attr.put("#text", "" + any.getAttributeValue("text"));
 
 		XModelObject a = any.getModel().createModelObject(toEntity, null);
 		if(!isRelevantTag(tag, a)) {
@@ -125,10 +130,14 @@ public abstract class ListConverter implements IPropertyConverter {
 			if(value == null || value.length() == 0 || value.equals(attrs[j].getDefaultValue())) {
 				if(!"always".equals(attrs[j].getProperty("save"))) continue;
 			}
-			if(sb.length() > 0) {
-				sb.append(';');
+			if("#text".equals(xml)) {
+				t.setAttributeValue("text", value);
+			} else {
+				if(sb.length() > 0) {
+					sb.append(';');
+				}
+				sb.append(xml).append('=').append(value);
 			}
-			sb.append(xml).append('=').append(value);
 		}
 		String attributes = sb.toString();
 		t.setAttributeValue("attributes", attributes);

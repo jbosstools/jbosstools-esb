@@ -17,6 +17,44 @@
  <GlobalActions kind="list"/>
  <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="attachment" name="ESBPreNotifyAttachment">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="attachment" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="file" xmlname="#text">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="linkAction=OpenFile"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty" PROPERTIES="actionpath=Open;attribute=file"
+    displayName="Open File" kind="action" name="OpenFile"/>
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="column" name="ESBPreNotifyColumn">
   <XChildrenEntities/>
   <XEntityRenderer>
@@ -30,8 +68,7 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
-   <XModelAttribute PROPERTIES="category=general" name="value"
-    visibility="false" xmlname="value"/>
+   <XModelAttribute PROPERTIES="category=general" name="value" xmlname="value"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -87,6 +124,62 @@
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="ftp" name="ESBPreNotifyFTPList">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="ftp list" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="url" xmlname="URL"/>
+   <XModelAttribute PROPERTIES="category=general" name="file name" xmlname="filename">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="linkAction=OpenFile"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="list files" xmlname="listFiles">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general"
+    name="delete list file" xmlname="deletelistFile">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty" PROPERTIES="actionpath=Open;attribute=file name"
+    displayName="Open File" kind="action" name="OpenFile"/>
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="file" name="ESBPreNotifyFile">
   <XChildrenEntities/>
   <XEntityRenderer>
@@ -100,8 +193,7 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="uri" xmlname="URI"/>
-   <XModelAttribute PROPERTIES="category=general" name="append"
-    visibility="false" xmlname="append">
+   <XModelAttribute PROPERTIES="category=general" name="append" xmlname="append">
     <Constraint loader="ListString">
      <value/>
      <value name="true"/>
@@ -116,6 +208,135 @@
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="messageProp" name="ESBPreNotifyProp">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="message property" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general" name="value" xmlname="value"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="queue" name="ESBPreNotifyQueue">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="queue" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="jndi name" xmlname="jndiName"/>
+   <XModelAttribute PROPERTIES="category=general" name="jndi url" xmlname="jndi-URL"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="jndi context factory" xmlname="jndi-context-factory"/>
+   <XModelAttribute PROPERTIES="category=general" name="jndi pkg prefix" xmlname="jndi-pkg-prefix"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="connection factory" xmlname="connection-factory"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="destination" name="ESBPreNotifyTCP">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="destination" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="uri" xmlname="URI"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty" PROPERTIES="actionpath=Open;attribute=file name"
+    displayName="Open File" kind="action" name="OpenFile"/>
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="topic" name="ESBPreNotifyTopic">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="topic" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="jndi name" xmlname="jndiName"/>
+   <XModelAttribute PROPERTIES="category=general" name="jndi url" xmlname="jndi-URL"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="jndi context factory" xmlname="jndi-context-factory"/>
+   <XModelAttribute PROPERTIES="category=general" name="jndi pkg prefix" xmlname="jndi-pkg-prefix"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="connection factory" xmlname="connection-factory"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
    <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
@@ -146,6 +367,54 @@
   </XModelAttributes>
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="target" name="ESBPreTargetNotifyEmail">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreNotifyAttachment"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="target notify email" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    default="NotifyEmail" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="from" xmlname="from"/>
+   <XModelAttribute PROPERTIES="category=general" name="send to" xmlname="sendTo"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="copy to" xmlname="ccTo"/>
+   <XModelAttribute PROPERTIES="category=general" name="subject" xmlname="subject"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="message" xmlname="message"/>
+   <XModelAttribute PROPERTIES="category=advanced"
+    name="attachment name" xmlname="msgAttachmentName"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Attachment..." kind="action" name="CreateAttachment">
+     <EntityData EntityName="ESBPreNotifyAttachment">
+      <AttributeData AttributeName="file"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
    <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
@@ -197,6 +466,51 @@
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="target" name="ESBPreTargetNotifyFTPList">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreNotifyFTPList"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="target notify FTP list"
+    loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    default="NotifyFTPList" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     WizardClassName="%Default%" displayName="Add FTP List..."
+     kind="action" name="CreateFTPList">
+     <EntityData EntityName="ESBPreNotifyFTPList">
+      <AttributeData AttributeName="url"/>
+      <AttributeData AttributeName="file name" Mandatory="no"/>
+      <AttributeData AttributeName="list files" Mandatory="no"/>
+      <AttributeData AttributeName="delete list file" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="target" name="ESBPreTargetNotifyFiles">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyFile"/>
@@ -225,6 +539,57 @@
      <EntityData EntityName="ESBPreNotifyFile">
       <AttributeData AttributeName="uri"/>
       <AttributeData AttributeName="append" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="target" name="ESBPreTargetNotifyQueues">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreNotifyProp"/>
+   <XChildEntity name="ESBPreNotifyQueue"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="target notify queues" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    default="NotifyQueues" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     WizardClassName="%Default%" displayName="Add Message Property..."
+     kind="action" name="CreateProp">
+     <EntityData EntityName="ESBPreNotifyProp">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="value" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     WizardClassName="%Default%" displayName="Add Queue..."
+     kind="action" name="CreateQueue">
+     <EntityData EntityName="ESBPreNotifyQueue">
+      <AttributeData AttributeName="jndi name"/>
+      <AttributeData AttributeName="jndi url" Mandatory="no"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -287,12 +652,108 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="target" name="ESBPreTargetNotifyTCP">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreNotifyTCP"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="target notify TCP" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    default="NotifyTCP" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     WizardClassName="%Default%" displayName="Add TCP..." kind="action" name="CreateTCP">
+     <EntityData EntityName="ESBPreNotifyTCP">
+      <AttributeData AttributeName="uri"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="target" name="ESBPreTargetNotifyTopics">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreNotifyProp"/>
+   <XChildEntity name="ESBPreNotifyTopic"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="target notify topics" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    default="NotifyTopics" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     WizardClassName="%Default%" displayName="Add Message Property..."
+     kind="action" name="CreateProp">
+     <EntityData EntityName="ESBPreNotifyProp">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="value" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     WizardClassName="%Default%" displayName="Add Topic..."
+     kind="action" name="CreateTopic">
+     <EntityData EntityName="ESBPreNotifyTopic">
+      <AttributeData AttributeName="jndi name"/>
+      <AttributeData AttributeName="jndi url" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
  <XEntityExtension name="ESBPreNotificationList120">
   <XChildrenEntities>
    <XChildEntity maxCount="1" name="ESBPreTargetNotifyConsole"/>
+   <XChildEntity name="ESBPreTargetNotifyEmail"/>
    <XChildEntity maxCount="1" name="ESBPreTargetNotifyFiles"/>
    <XChildEntity maxCount="1" name="ESBPreTargetNotifySQLTable"/>
    <XChildEntity maxCount="1" name="ESBPreTargetNotifyFTP"/>
+   <XChildEntity maxCount="1" name="ESBPreTargetNotifyFTPList"/>
+   <XChildEntity name="ESBPreTargetNotifyQueues"/>
+   <XChildEntity name="ESBPreTargetNotifyTCP"/>
+   <XChildEntity name="ESBPreTargetNotifyTopics"/>
   </XChildrenEntities>
   <XActionItem kind="list">
    <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
@@ -303,6 +764,16 @@
       displayName="Notify Console..." kind="action" name="CreateTargetNotifyConsole">
       <EntityData EntityName="ESBPreTargetNotifyConsole">
        <AttributeData AttributeName="class"/>
+      </EntityData>
+     </XActionItem>
+     <XActionItem HandlerClassName="%DefaultReplaceUnique%"
+      ICON="action.empty"
+      PROPERTIES="child=NotifyEmail;significanceMessageClass=%Replace%"
+      displayName="Notify Email..." kind="action" name="CreateTargetNotifyEmail">
+      <EntityData EntityName="ESBPreTargetNotifyEmail">
+       <AttributeData AttributeName="from"/>
+       <AttributeData AttributeName="send to"/>
+       <AttributeData AttributeName="subject"/>
       </EntityData>
      </XActionItem>
      <XActionItem HandlerClassName="%DefaultReplaceUnique%"
@@ -323,6 +794,22 @@
      </XActionItem>
      <XActionItem HandlerClassName="%DefaultReplaceUnique%"
       ICON="action.empty"
+      PROPERTIES="child=NotifyFTPList;significanceMessageClass=%Replace%"
+      displayName="Notify FTP List..." kind="action" name="CreateTargetNotifyFTPList">
+      <EntityData EntityName="ESBPreTargetNotifyFTPList">
+       <AttributeData AttributeName="class"/>
+      </EntityData>
+     </XActionItem>
+     <XActionItem HandlerClassName="%DefaultReplaceUnique%"
+      ICON="action.empty"
+      PROPERTIES="child=NotifyQueues;significanceMessageClass=%Replace%"
+      displayName="Notify Queues..." kind="action" name="CreateTargetNotifyQueues">
+      <EntityData EntityName="ESBPreTargetNotifyQueues">
+       <AttributeData AttributeName="class"/>
+      </EntityData>
+     </XActionItem>
+     <XActionItem HandlerClassName="%DefaultReplaceUnique%"
+      ICON="action.empty"
       PROPERTIES="child=NotifySQLTable;significanceMessageClass=%Replace%"
       WizardClassName="%Default%" displayName="Notify SQL Table..."
       kind="action" name="CreateTargetNotifySQLTable">
@@ -334,6 +821,22 @@
        <AttributeData AttributeName="password" Mandatory="no"/>
        <AttributeData AttributeName="table" Mandatory="no"/>
        <AttributeData AttributeName="data column" Mandatory="no"/>
+      </EntityData>
+     </XActionItem>
+     <XActionItem HandlerClassName="%DefaultReplaceUnique%"
+      ICON="action.empty"
+      PROPERTIES="child=NotifyTCP;significanceMessageClass=%Replace%"
+      displayName="Notify TCP..." kind="action" name="CreateTargetNotifyTCP">
+      <EntityData EntityName="ESBPreTargetNotifyTCP">
+       <AttributeData AttributeName="class"/>
+      </EntityData>
+     </XActionItem>
+     <XActionItem HandlerClassName="%DefaultReplaceUnique%"
+      ICON="action.empty"
+      PROPERTIES="child=NotifyTopics;significanceMessageClass=%Replace%"
+      displayName="Notify Topics..." kind="action" name="CreateTargetNotifyTopics">
+      <EntityData EntityName="ESBPreTargetNotifyTopics">
+       <AttributeData AttributeName="class"/>
       </EntityData>
      </XActionItem>
     </XActionItem>

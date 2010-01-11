@@ -29,6 +29,20 @@ public class NotificationListConverter extends BasicListConverter implements ESB
 		super(propertyName, itemEntityName);
 	}
 
+	protected XModelObject getBasicProperty(XModelObject basicAction) {
+		XModelObject result = super.getBasicProperty(basicAction);
+		if(result != null) return result;
+		XModelObject[] ps = basicAction.getChildren();
+		for (XModelObject p: ps) {
+			XModelObject[] as = p.getChildren();
+			if(as.length > 0) {
+				String tag = as[0].getAttributeValue("tag");
+				if("NotificationList".equals(tag)) return p;
+			}
+		}
+		return null;
+	}
+
 	protected String getToChildEntity(XModelObject any, XModelEntity parent) {
 		if(ENT_ESB_NOTIFICATION_120.equals(parent.getName())) {
 			String tag = any.getAttributeValue("tag");
