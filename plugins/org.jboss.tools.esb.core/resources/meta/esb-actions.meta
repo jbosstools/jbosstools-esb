@@ -165,6 +165,15 @@
    <XModelAttribute PROPERTIES="pre=true;category=general" name="key" xmlname="key"/>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     name="transition name" xmlname="transition-name"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    default="Default(false)" name="reply to originator" xmlname="reply-to-originator">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
     <Constraint loader="ListString">
      <value name="process"/>
