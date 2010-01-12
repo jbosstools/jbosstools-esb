@@ -43,6 +43,8 @@
 			class="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"/>
+		<xclass id="org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport"
+			class="org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
 			class="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddJBRListerer12Handler"
