@@ -3344,7 +3344,7 @@
         <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="cbr alias" Mandatory="no"/>
         <AttributeData AttributeName="process" Mandatory="no"/>
-        <AttributeData AttributeName="rule set"/>
+        <AttributeData AttributeName="rule set" Mandatory="no"/>
         <AttributeData AttributeName="rule language" Mandatory="no"/>
         <AttributeData AttributeName="rule reload" Mandatory="no"/>
        </EntityData>
