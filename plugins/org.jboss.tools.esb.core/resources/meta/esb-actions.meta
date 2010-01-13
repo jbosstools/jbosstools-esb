@@ -473,7 +473,7 @@
      displayName="Add Route To..." kind="action" name="AddRouteTo">
      <EntityData EntityName="ESBPreRouteTo">
       <AttributeData AttributeName="destination name"/>
-      <AttributeData AttributeName="service category" Mandatory="no"/>
+      <AttributeData AttributeName="service category"/>
       <AttributeData AttributeName="service name" Mandatory="no"/>
      </EntityData>
     </XActionItem>
@@ -574,7 +574,7 @@
      displayName="Add Route To..." kind="action" name="AddRouteTo">
      <EntityData EntityName="ESBPreRouteTo">
       <AttributeData AttributeName="destination name"/>
-      <AttributeData AttributeName="service category" Mandatory="no"/>
+      <AttributeData AttributeName="service category"/>
       <AttributeData AttributeName="service name" Mandatory="no"/>
      </EntityData>
     </XActionItem>
@@ -2065,7 +2065,7 @@
      displayName="Add Route To..." kind="action" name="AddRouteTo">
      <EntityData EntityName="ESBPreRouteTo">
       <AttributeData AttributeName="destination name"/>
-      <AttributeData AttributeName="service category" Mandatory="no"/>
+      <AttributeData AttributeName="service category"/>
       <AttributeData AttributeName="service name"/>
      </EntityData>
     </XActionItem>
@@ -2116,7 +2116,7 @@
      displayName="Add Route To..." kind="action" name="AddRouteTo">
      <EntityData EntityName="ESBPreRouteTo">
       <AttributeData AttributeName="destination name"/>
-      <AttributeData AttributeName="service category" Mandatory="no"/>
+      <AttributeData AttributeName="service category"/>
       <AttributeData AttributeName="service name"/>
      </EntityData>
     </XActionItem>
