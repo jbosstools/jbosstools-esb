@@ -125,6 +125,45 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionAggregator120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="aggregator action" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.Aggregator" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="timeout in millis" xmlname="timeoutInMillis"/>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
   XMLSUBPATH="action" name="ESBPreActionBpmProcessor120">
   <XChildrenEntities>
@@ -2964,6 +3003,128 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBWizardDroolsRouter">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="drools router action" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.ContentBasedRouter" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="cbr alias" xmlname="cbrAlias">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="Drools"/>
+     <value name="Xpath"/>
+     <value name="Regex"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="rule set" xmlname="ruleSet">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=drl"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true;save=always"
+    name="rule language" xmlname="ruleLanguage"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    default="Default(false)" name="rule reload" xmlname="ruleReload">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Constraint loader="ListString">
+     <value name="process"/>
+     <value name="split"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list"/>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBWizardXPathRouter">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="xpath router action" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.ContentBasedRouter" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="cbr alias" xmlname="cbrAlias">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="Drools"/>
+     <value name="Xpath"/>
+     <value name="Regex"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="rule set" xmlname="ruleSet">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=properties"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    default="Default(false)" name="rule reload" xmlname="ruleReload">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Constraint loader="ListString">
+     <value name="process"/>
+     <value name="split"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list"/>
+  <XDependencies/>
+ </XModelEntity>
  <XEntityExtension name="ESBActions101">
   <XChildrenEntities>
    <XChildEntity name="ESBPreActionByteArrayToString101"/>
@@ -3238,7 +3399,7 @@
    <XChildEntity name="ESBPreActionScripting120"/>
    <XChildEntity name="ESBPreActionGroovyProcessor101"/>
    <XChildEntity name="ESBPreActionEJBProcessor120"/>
-   <XChildEntity name="ESBPreActionAggregator101"/>
+   <XChildEntity name="ESBPreActionAggregator120"/>
    <XChildEntity name="ESBPreActionContentBasedRouter120"/>
    <XChildEntity name="ESBPreActionStaticRouter101"/>
    <XChildEntity name="ESBPreActionStaticWiretap101"/>
@@ -3332,32 +3493,19 @@
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
        PROPERTIES="validator.add=true" WizardClassName="%Default%"
        displayName="Aggregator..." kind="action" name="AddAggregator">
-       <EntityData EntityName="ESBPreActionAggregator101">
+       <EntityData EntityName="ESBPreActionAggregator120">
         <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="timeout in millies" Mandatory="no"/>
+        <AttributeData AttributeName="timeout in millis" Mandatory="no"/>
        </EntityData>
       </XActionItem>
       <XActionItem HandlerClassName="%SpecialWizard%"
        ICON="action.empty"
-       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Drools"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Drools;entity=ESBPreActionContentBasedRouter120"
        displayName="Content Based Router (Drools)..." kind="action" name="AddContentBasedRouterDrools">
-       <EntityData EntityName="ESBPreActionContentBasedRouter120">
+       <EntityData EntityName="ESBWizardDroolsRouter">
         <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="process" Mandatory="no"/>
-        <AttributeData AttributeName="rule set" Mandatory="no"/>
-        <AttributeData AttributeName="rule language" Mandatory="no"/>
-        <AttributeData AttributeName="rule reload" Mandatory="no"/>
-       </EntityData>
-      </XActionItem>
-      <XActionItem HandlerClassName="%SpecialWizard%"
-       ICON="action.empty"
-       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Drools"
-       displayName="Content Based Router (Drools XPath)..."
-       kind="action" name="AddContentBasedRouterDroolsXPath">
-       <EntityData EntityName="ESBPreActionContentBasedRouter120">
-        <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="process" Mandatory="no"/>
-        <AttributeData AttributeName="rule set" Mandatory="no"/>
+        <AttributeData AttributeName="rule set"/>
         <AttributeData AttributeName="rule language" Mandatory="no"/>
         <AttributeData AttributeName="rule reload" Mandatory="no"/>
        </EntityData>
@@ -3376,25 +3524,23 @@
       </XActionItem>
       <XActionItem HandlerClassName="%SpecialWizard%"
        ICON="action.empty"
-       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Regex"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Regex;entity=ESBPreActionContentBasedRouter120"
        displayName="Content Based Router (Regex)..." kind="action" name="AddContentBasedRouterRegex">
-       <EntityData EntityName="ESBPreActionContentBasedRouter120">
+       <EntityData EntityName="ESBWizardXPathRouter">
         <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="process" Mandatory="no"/>
         <AttributeData AttributeName="rule set" Mandatory="no"/>
-        <AttributeData AttributeName="rule language" Mandatory="no"/>
         <AttributeData AttributeName="rule reload" Mandatory="no"/>
        </EntityData>
       </XActionItem>
       <XActionItem HandlerClassName="%SpecialWizard%"
        ICON="action.empty"
-       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=XPath"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=XPath;entity=ESBPreActionContentBasedRouter120"
        displayName="Content Based Router (XPath)..." kind="action" name="AddContentBasedRouterXPath">
-       <EntityData EntityName="ESBPreActionContentBasedRouter120">
+       <EntityData EntityName="ESBWizardXPathRouter">
         <AttributeData AttributeName="name"/>
         <AttributeData AttributeName="process" Mandatory="no"/>
         <AttributeData AttributeName="rule set" Mandatory="no"/>
-        <AttributeData AttributeName="rule language" Mandatory="no"/>
         <AttributeData AttributeName="rule reload" Mandatory="no"/>
        </EntityData>
       </XActionItem>
