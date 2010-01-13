@@ -485,7 +485,8 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="%ESB%"
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.impl.ContentBasedRouter"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
   XMLSUBPATH="action" name="ESBPreActionContentBasedRouter120">
   <XChildrenEntities>
@@ -529,7 +530,14 @@
     <Editor name="TreeChooser"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;pre=true;save=always"
-    name="rule language" xmlname="ruleLanguage"/>
+    name="rule language" xmlname="ruleLanguage">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=dsl"/>
+     <value name="linkAction=OpenRuleLanguage"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     default="Default(false)" name="rule reload" xmlname="ruleReload">
     <Constraint loader="ListString">
@@ -555,6 +563,11 @@
     HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
     ICON="action.empty" PROPERTIES="actionpath=Open;attribute=rule set"
     displayName="Open Rule Set" kind="action" name="OpenRuleSet"/>
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=rule language"
+    displayName="Open Rule Language" kind="action" name="OpenRuleLanguage"/>
    <XActionItem kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
@@ -3041,7 +3054,13 @@
     <Editor name="TreeChooser"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;pre=true;save=always"
-    name="rule language" xmlname="ruleLanguage"/>
+    name="rule language" xmlname="ruleLanguage">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=dsl"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     default="Default(false)" name="rule reload" xmlname="ruleReload">
     <Constraint loader="ListString">
@@ -3535,7 +3554,7 @@
       </XActionItem>
       <XActionItem HandlerClassName="%SpecialWizard%"
        ICON="action.empty"
-       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=XPath;entity=ESBPreActionContentBasedRouter120"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Xpath;entity=ESBPreActionContentBasedRouter120"
        displayName="Content Based Router (XPath)..." kind="action" name="AddContentBasedRouterXPath">
        <EntityData EntityName="ESBWizardXPathRouter">
         <AttributeData AttributeName="name"/>
