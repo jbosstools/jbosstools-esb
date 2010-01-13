@@ -18,8 +18,10 @@ import org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl;
  */
 public class ContentBasedRouter extends ESBCustomizedObjectImpl {
 	private static final long serialVersionUID = 1L;
-	static String ATTR_CBR_ALIAS = "cbr alias";
-	static String ATTR_RULE_LANGUAGE = "rule language";
+	public static String ATTR_CBR_ALIAS = "cbr alias";
+	public static String ATTR_RULE_LANGUAGE = "rule language";
+	public static String ATTR_RULE_SET = "rule set";
+	public static String ATTR_RULE_RELOAD = "rule reload";
 
 	public ContentBasedRouter() {}
 
@@ -28,6 +30,11 @@ public class ContentBasedRouter extends ESBCustomizedObjectImpl {
 		if(ATTR_RULE_LANGUAGE.equals(name)) {
 			String alias = getAttributeValue(ATTR_CBR_ALIAS);
 			if(isRegexOrXPath(alias)) {
+				return false;
+			}
+		} else if(ATTR_RULE_RELOAD.equals(name)) {
+			String ruleSet = getAttributeValue(ATTR_RULE_SET);
+			if(ruleSet == null || ruleSet.length() == 0) {
 				return false;
 			}
 		}
@@ -44,6 +51,10 @@ public class ContentBasedRouter extends ESBCustomizedObjectImpl {
 		if(ATTR_CBR_ALIAS.equals(name)) {
 			if(isRegexOrXPath(newValue)) {
 				setAttributeValue(ATTR_RULE_LANGUAGE, "");
+			}
+		} else if(ATTR_RULE_SET.equals(name)) {
+			if(newValue == null || newValue.length() == 0) {
+				setAttributeValue(ATTR_RULE_RELOAD, getModelEntity().getAttribute(ATTR_RULE_RELOAD).getDefaultValue());
 			}
 		}
 	}

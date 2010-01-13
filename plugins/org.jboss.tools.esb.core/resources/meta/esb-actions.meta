@@ -3529,12 +3529,13 @@
         <AttributeData AttributeName="rule reload" Mandatory="no"/>
        </EntityData>
       </XActionItem>
-      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+      <XActionItem HandlerClassName="%SpecialWizard%"
+       ICON="action.empty"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport"
        displayName="Content Based Router (Generic)..." kind="action" name="AddContentBasedRouter">
        <EntityData EntityName="ESBPreActionContentBasedRouter120">
         <AttributeData AttributeName="name"/>
-        <AttributeData AttributeName="cbr alias" Mandatory="no"/>
+        <AttributeData AttributeName="cbr alias"/>
         <AttributeData AttributeName="process" Mandatory="no"/>
         <AttributeData AttributeName="rule set" Mandatory="no"/>
         <AttributeData AttributeName="rule language" Mandatory="no"/>
