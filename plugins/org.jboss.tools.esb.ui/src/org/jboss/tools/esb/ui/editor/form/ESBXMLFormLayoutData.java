@@ -137,7 +137,7 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 		IFormData a = ModelFormLayoutData.createAdvancedFormData(entityName);
 		if(a != null) list.add(a);
 		IFormData[] ds = list.toArray(new IFormData[0]);
-		IFormData data = new FormData(entityName, (String[])(null), ds);
+		IFormData data = new FormData(entityName, new String[0], ds);
 		return data;
 	}
 
