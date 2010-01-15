@@ -680,7 +680,8 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="org.jboss.tools.esb.core.model.impl.FTPMessageFilterImpl"
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.impl.FTPMessageFilterImpl"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;saveDefault=false"
   XMLSUBPATH="ftp-message-filter" name="ESBFTPMessageFilter101">
   <XChildrenEntities/>
@@ -2932,7 +2933,7 @@
      <XActionItem displayName="JBoss ESB" kind="list" name="ESB">
       <XActionItem HIDE="always" HandlerClassName="%SpecialWizard%"
        ICON="action.new.seam.faces-config"
-       PROPERTIES="entity=FileESB101;extensions=.xml.;validator.addfile=true;support=org.jboss.tools.common.model.files.handlers.CreateFileSupport;extension=xml;entityVersion=ESB"
+       PROPERTIES="entity=FileESB101;extensions=.xml.;validator.addfile=true;support=org.jboss.tools.common.model.files.handlers.CreateFileSupport;extension=xml;entityVersion=ESB;defaultVersionResolver=org.jboss.tools.esb.core.model.handlers.ESBDefaultVersionResolver"
        displayName="JBoss ESB File..." kind="action" name="CreateFileESB">
        <EntityData EntityName="NewFileWizard">
         <AttributeData AttributeName="folder"/>
@@ -2963,7 +2964,7 @@
      <XActionItem displayName="JBoss ESB" kind="list" name="ESB">
       <XActionItem HIDE="always" HandlerClassName="%SpecialWizard%"
        ICON="action.new.seam.faces-config"
-       PROPERTIES="entity=FileESB101;extensions=.xml.;validator.addfile=true;support=org.jboss.tools.common.model.files.handlers.CreateFileSupport;extension=xml;entityVersion=ESB"
+       PROPERTIES="entity=FileESB101;extensions=.xml.;validator.addfile=true;support=org.jboss.tools.common.model.files.handlers.CreateFileSupport;extension=xml;entityVersion=ESB;defaultVersionResolver=org.jboss.tools.esb.core.model.handlers.ESBDefaultVersionResolver"
        displayName="JBoss ESB File..." kind="action" name="CreateFileESB">
        <EntityData EntityName="NewFileWizard">
         <AttributeData AttributeName="folder"/>

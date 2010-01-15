@@ -51,6 +51,9 @@
 			class="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddJBRListerer12Handler"
 			class="org.jboss.tools.esb.core.model.handlers.AddJBRListerer12Handler"/>
+
+		<xclass id="org.jboss.tools.esb.core.model.handlers.ESBDefaultVersionResolver"
+			class="org.jboss.tools.esb.core.model.handlers.ESBDefaultVersionResolver"/>
 			
 		<xclass id="org.jboss.tools.esb.core.model.ESBResourceTree"
 			class="org.jboss.tools.esb.core.model.ESBResourceTree"/>
