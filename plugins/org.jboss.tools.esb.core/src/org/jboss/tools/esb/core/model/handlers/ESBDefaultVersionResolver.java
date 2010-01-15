@@ -25,9 +25,6 @@ import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
  *
  */
 public class ESBDefaultVersionResolver implements DefaultVersionResolver {
-	final static String ROSETTA_JAR = "jbossesb-rosetta.jar"; //$NON-NLS-1$
-	final static String LIB_ROSETTA_JAR = "lib-" + ROSETTA_JAR; //$NON-NLS-1$
-	final static String VERSION_FILE_NAME = "VERSION";
 
 	public String resolve(String[] versionList, XModelObject context) {
 		IProject project = EclipseResourceUtil.getProject(context);
