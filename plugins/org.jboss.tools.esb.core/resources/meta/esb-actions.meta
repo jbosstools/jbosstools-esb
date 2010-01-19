@@ -2078,7 +2078,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="Add Route To..." kind="action" name="AddRouteTo">
      <EntityData EntityName="ESBPreRouteTo">
-      <AttributeData AttributeName="destination name"/>
+      <AttributeData AttributeName="destination name" Mandatory="no"/>
       <AttributeData AttributeName="service category"/>
       <AttributeData AttributeName="service name"/>
      </EntityData>
@@ -2129,7 +2129,7 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="Add Route To..." kind="action" name="AddRouteTo">
      <EntityData EntityName="ESBPreRouteTo">
-      <AttributeData AttributeName="destination name"/>
+      <AttributeData AttributeName="destination name" Mandatory="no"/>
       <AttributeData AttributeName="service category"/>
       <AttributeData AttributeName="service name"/>
      </EntityData>
