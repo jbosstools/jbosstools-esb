@@ -67,7 +67,7 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 		String entityName = entity.getName();
 		List<IFormData> list = new ArrayList<IFormData>();
 		IFormData g = ModelFormLayoutData.createGeneralFormData(entity);
-		if(entityName.equals(ENT_ESB_ACTION)) {
+		if(entityName.equals(ENT_ESB_ACTION) || entityName.equals(ENT_ESB_ACTION_120)) {
 			g = new FormData("org.jboss.tools.esb.ui.editor.form.ESBActionForm");
 		}
 		if(g != null) list.add(g);
@@ -75,23 +75,8 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 			if(entity.getChild(ENT_ESB_ROUTE_TO) != null) {
 				list.add(ESBListsFormLayoutData.ESB_ROUTE_LIST_DEFINITION);
 			}
-			if(entity.getChild(ENT_ESB_OBJECT_PATH) != null) {
-				list.add(ESBListsFormLayoutData.ESB_OBJECT_PATH_LIST_DEFINITION);
-			}
-			if(entity.getChild(ConverterConstants.ALIAS_ENTITY) != null) {
-				list.add(ESBListsFormLayoutData.ALIAS_LIST_DEFINITION);
-			}
-			if(entity.getChild(ConverterConstants.ATTRIBUTE_ALIAS_ENTITY) != null) {
-				list.add(ESBListsFormLayoutData.ATTRIBUTE_ALIAS_LIST_DEFINITION);
-			}
-			if(entity.getChild(ConverterConstants.FIELD_ALIAS_ENTITY) != null) {
-				list.add(ESBListsFormLayoutData.FIELD_ALIAS_LIST_DEFINITION);
-			}
 			if(entity.getChild(ConverterConstants.BPM_VAR_ENTITY) != null) {
 				list.add(ESBListsFormLayoutData.BPM_VAR_LIST_DEFINITION);
-			}
-			if(entity.getChild(ConverterConstants.NAMESPACE_ENTITY) != null) {
-				list.add(ESBListsFormLayoutData.NAMESPACE_LIST_DEFINITION);
 			}
 			if(entity.getChild(ConverterConstants.ROUTER_NAMESPACE_ENTITY) != null) {
 				list.add(ESBListsFormLayoutData.ROUTER_NAMESPACE_LIST_DEFINITION);
@@ -133,6 +118,12 @@ public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
 		}
 		if(entity.getChild(ENT_ESB_BUS) != null) {
 			list.add(ESBListsFormLayoutData.ESB_BUS_LIST_DEFINITION);
+		}
+		for (int i = 0; i < entity.getChildren().length; i++) {
+			String ce = entity.getChildren()[i].getName();
+			if(ESBListsFormLayoutData.singleChildLists.containsKey(ce)) {
+				list.add(ESBListsFormLayoutData.singleChildLists.get(ce));
+			}
 		}
 		IFormData a = ModelFormLayoutData.createAdvancedFormData(entityName);
 		if(a != null) list.add(a);

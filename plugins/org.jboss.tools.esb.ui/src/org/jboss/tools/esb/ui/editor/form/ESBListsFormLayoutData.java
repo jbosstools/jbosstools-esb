@@ -11,7 +11,9 @@
 package org.jboss.tools.esb.ui.editor.form;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.jboss.tools.common.meta.XChild;
 import org.jboss.tools.common.meta.XModelEntity;
@@ -28,6 +30,20 @@ import org.jboss.tools.esb.core.model.converters.ConverterConstants;
  * @author Viacheslav Kabanovich
  */
 public class ESBListsFormLayoutData implements ESBConstants {
+
+	static Map<String, IFormData> singleChildLists = new HashMap<String, IFormData>();
+	
+	static IFormData createOneAttributeSingleChildList(String header, String attrName, String childEntity, String actionPath) {
+		IFormData result = new FormData(
+			header,
+			ModelFormLayoutData.EMPTY_DESCRIPTION,
+			new FormAttributeData[]{new FormAttributeData(attrName, 100)},
+			new String[]{childEntity},
+			FormLayoutDataUtil.createDefaultFormActionData(actionPath)
+		);
+		singleChildLists.put(childEntity, result);
+		return result;
+	}
 
 	static IFormData ESB_PROPERTY_LIST_DEFINITION = new FormData(
 		"Properties", //$NON-NLS-1$
@@ -158,36 +174,20 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddRouteTo") //$NON-NLS-1$
 	);
 
-	static IFormData ESB_OBJECT_PATH_LIST_DEFINITION = new FormData(
-		"Object Paths List", //$NON-NLS-1$
-		ModelFormLayoutData.EMPTY_DESCRIPTION,
-		new FormAttributeData[]{new FormAttributeData("esb", 100)}, 
-		new String[]{ENT_ESB_OBJECT_PATH},
-		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddObjectPath") //$NON-NLS-1$
+	static IFormData ESB_OBJECT_PATH_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Object Paths List", "esb", ENT_ESB_OBJECT_PATH, "CreateActions.AddObjectPath"		
 	);
 
-	static IFormData ALIAS_LIST_DEFINITION = new FormData(
-		"Alias List", //$NON-NLS-1$
-		ModelFormLayoutData.EMPTY_DESCRIPTION,
-		new FormAttributeData[]{new FormAttributeData("name", 100)}, 
-		new String[]{ConverterConstants.ALIAS_ENTITY},
-		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAlias") //$NON-NLS-1$
+	static IFormData ALIAS_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Alias List", "name", ConverterConstants.ALIAS_ENTITY, "CreateActions.AddAlias"		
 	);
 
-	static IFormData ATTRIBUTE_ALIAS_LIST_DEFINITION = new FormData(
-		"Attribute Alias List", //$NON-NLS-1$
-		ModelFormLayoutData.EMPTY_DESCRIPTION,
-		new FormAttributeData[]{new FormAttributeData("name", 100)}, 
-		new String[]{ConverterConstants.ATTRIBUTE_ALIAS_ENTITY},
-		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAttributeAlias") //$NON-NLS-1$
+	static IFormData ATTRIBUTE_ALIAS_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Attribute Alias List", "name", ConverterConstants.ATTRIBUTE_ALIAS_ENTITY, "CreateActions.AddAttributeAlias"		
 	);
 
-	static IFormData FIELD_ALIAS_LIST_DEFINITION = new FormData(
-		"Field Alias List", //$NON-NLS-1$
-		ModelFormLayoutData.EMPTY_DESCRIPTION,
-		new FormAttributeData[]{new FormAttributeData("alias", 100)}, 
-		new String[]{ConverterConstants.FIELD_ALIAS_ENTITY},
-		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddFieldAlias") //$NON-NLS-1$
+	static IFormData FIELD_ALIAS_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Field Alias List", "alias", ConverterConstants.FIELD_ALIAS_ENTITY, "CreateActions.AddFieldAlias"		
 	);
 
 	static IFormData BPM_VAR_LIST_DEFINITION = new FormData(
@@ -198,12 +198,8 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddBPMVar") //$NON-NLS-1$
 	);
 
-	static IFormData NAMESPACE_LIST_DEFINITION = new FormData(
-		"Namespace List", //$NON-NLS-1$
-		ModelFormLayoutData.EMPTY_DESCRIPTION,
-		new FormAttributeData[]{new FormAttributeData("namespace uri", 100)}, 
-		new String[]{ConverterConstants.NAMESPACE_ENTITY},
-		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddNamespace") //$NON-NLS-1$
+	static IFormData NAMESPACE_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Namespace List", "namespace uri", ConverterConstants.NAMESPACE_ENTITY, "CreateActions.AddNamespace"		
 	);
 
 	static IFormData ROUTER_NAMESPACE_LIST_DEFINITION = new FormData(
@@ -248,6 +244,42 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		new FormAttributeData[]{new FormAttributeData("class", 100)}, //$NON-NLS-1$ 
 		getTargetEntities(ENT_ESB_NOTIFICATION_120),
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyTarget") //$NON-NLS-1$
+	);
+
+	static IFormData ESB_NOTIFY_ATTACHMENT_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Attachments", "file", "ESBPreNotifyAttachment", "CreateActions.CreateAttachment"		
+	);
+	
+	static IFormData ESB_NOTIFY_COLUMN_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Columns", "name", "ESBPreNotifyColumn", "CreateActions.CreateColumn"		
+	);
+	
+	static IFormData ESB_NOTIFY_FTP_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"FTP", "url", "ESBPreNotifyFTP", "CreateActions.CreateFTP"		
+	);
+
+	static IFormData ESB_NOTIFY_FTP_L_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"FTP", "url", "ESBPreNotifyFTPList", "CreateActions.CreateFTPList"		
+	);
+
+	static IFormData ESB_NOTIFY_FILE_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Files", "uri", "ESBPreNotifyFile", "CreateActions.CreateFile"		
+	);
+
+	static IFormData ESB_NOTIFY_PROP_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Message Properties", "name", "ESBPreNotifyProp", "CreateActions.CreateProp"		
+	);
+
+	static IFormData ESB_NOTIFY_QUEUE_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Queues", "jndi name", "ESBPreNotifyQueue", "CreateActions.CreateQueue"		
+	);
+
+	static IFormData ESB_NOTIFY_TOPIC_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Topics", "jndi name", "ESBPreNotifyTopic", "CreateActions.CreateTopic"		
+	);
+
+	static IFormData ESB_NOTIFY_TCP_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"TCP", "uri", "ESBPreNotifyTCP", "CreateActions.CreateTCP"		
 	);
 
 }
