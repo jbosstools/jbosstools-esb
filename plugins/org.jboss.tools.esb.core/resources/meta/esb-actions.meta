@@ -25,6 +25,7 @@
    <PAIR name="org.jboss.soa.esb.actions.converters.SmooksTransformer" value="ESBPreActionSmooksTransformer"/>
    <PAIR name="org.jboss.soa.esb.actions.converters.XStreamToObject" value="ESBPreActionXStreamToObject"/>
    <PAIR name="org.jboss.soa.esb.actions.jbpm.CommandInterpreter" value="ESBPreActionCommandInterpreter"/>
+   <PAIR name="org.jboss.soa.esb.actions.routing.EchoRouter" value="ESBPreActionEchoRouter"/>
    <PAIR name="org.jboss.soa.esb.actions.routing.JMSRouter" value="ESBPreActionJMSRouter"/>
    <PAIR name="org.jboss.soa.esb.actions.routing.email.EmailRouter" value="ESBPreActionEMailRouter"/>
    <PAIR name="org.jboss.soa.esb.actions.routing.email.EmailWiretap" value="ESBPreActionEMailWiretap"/>
@@ -789,6 +790,44 @@
      <value name="split"/>
     </Constraint>
     <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionEchoRouter120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="echo router action" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.routing.EchoRouter" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="process"
+    visibility="false" xmlname="process">
+    <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
@@ -3436,6 +3475,7 @@
    <XChildEntity name="ESBPreActionEJBProcessor120"/>
    <XChildEntity name="ESBPreActionAggregator120"/>
    <XChildEntity name="ESBPreActionContentBasedRouter120"/>
+   <XChildEntity name="ESBPreActionEchoRouter120"/>
    <XChildEntity name="ESBPreActionStaticRouter101"/>
    <XChildEntity name="ESBPreActionStaticWiretap101"/>
    <XChildEntity name="ESBPreActionSyncServiceInvoker120"/>
@@ -3578,6 +3618,13 @@
         <AttributeData AttributeName="process" Mandatory="no"/>
         <AttributeData AttributeName="rule set" Mandatory="no"/>
         <AttributeData AttributeName="rule reload" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Echo Router..." kind="action" name="AddEchoRouter">
+       <EntityData EntityName="ESBPreActionEchoRouter120">
+        <AttributeData AttributeName="name"/>
        </EntityData>
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
