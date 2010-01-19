@@ -569,21 +569,35 @@
     PROPERTIES="actionpath=Open;attribute=rule language"
     displayName="Open Rule Language" kind="action" name="OpenRuleLanguage"/>
    <XActionItem kind="list" name="CreateActions">
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="Add Route To..." kind="action" name="AddRouteTo">
-     <EntityData EntityName="ESBPreRouteTo">
-      <AttributeData AttributeName="destination name"/>
-      <AttributeData AttributeName="service category"/>
-      <AttributeData AttributeName="service name" Mandatory="no"/>
-     </EntityData>
-    </XActionItem>
+    <XActionItem
+     HandlerClassName="org.jboss.tools.esb.core.model.handlers.AddRouteToForCBRHandler"
+     ICON="action.empty" displayName="Add Route To..." kind="action" name="AddRouteTo"/>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="Add Namespace..." kind="action" name="AddNamespace">
      <EntityData EntityName="ESBPreRouterNamespace">
       <AttributeData AttributeName="prefix"/>
       <AttributeData AttributeName="uri"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HIDE="always" HandlerClassName="%Create%"
+     ICON="action.empty" PROPERTIES="validator.add=true"
+     WizardClassName="%Default%" displayName="Add Route To..."
+     kind="action" name="AddRouteToWithRuleSet">
+     <EntityData EntityName="ESBPreRouteTo">
+      <AttributeData AttributeName="destination name" Mandatory="no"/>
+      <AttributeData AttributeName="service category"/>
+      <AttributeData AttributeName="service name"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HIDE="always" HandlerClassName="%Create%"
+     ICON="action.empty" PROPERTIES="validator.add=true"
+     WizardClassName="%Default%" displayName="Add Route To..."
+     kind="action" name="AddRouteToWithoutRuleSet">
+     <EntityData EntityName="ESBPreRouteTo">
+      <AttributeData AttributeName="service category"/>
+      <AttributeData AttributeName="service name"/>
+      <AttributeData AttributeName="expression" Mandatory="no"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
