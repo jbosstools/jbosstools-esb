@@ -376,7 +376,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="target" name="ESBPreTargetNotifyEmail">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyAttachment"/>
@@ -416,7 +416,7 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreNotificationList" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
    <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
@@ -424,7 +424,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="target" name="ESBPreTargetNotifyFTP">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyFTP"/>
@@ -457,7 +457,7 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreNotificationList" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
    <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
@@ -465,7 +465,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="target" name="ESBPreTargetNotifyFTPList">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyFTPList"/>
@@ -502,7 +502,7 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreNotificationList" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
    <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
@@ -510,7 +510,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="target" name="ESBPreTargetNotifyFiles">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyFile"/>
@@ -543,7 +543,7 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreNotificationList" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
    <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
@@ -551,7 +551,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="target" name="ESBPreTargetNotifyQueues">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyProp"/>
@@ -594,7 +594,7 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreNotificationList" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
    <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
@@ -602,7 +602,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="target" name="ESBPreTargetNotifySQLTable">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyColumn"/>
@@ -645,7 +645,7 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreNotificationList" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
    <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
@@ -653,7 +653,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="target" name="ESBPreTargetNotifyTCP">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyTCP"/>
@@ -685,7 +685,7 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreNotificationList" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
    <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
@@ -693,7 +693,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%Ordered%"
   XMLSUBPATH="target" name="ESBPreTargetNotifyTopics">
   <XChildrenEntities>
    <XChildEntity name="ESBPreNotifyProp"/>
@@ -736,7 +736,7 @@
     </XActionItem>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
-   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreNotificationList" name="CopyActions"/>
    <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
    <XActionItemReference entity="ESBPreAlias" name="Properties"/>
    <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
