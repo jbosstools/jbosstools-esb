@@ -1447,7 +1447,7 @@
     </XActionItem>
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
-     displayName="Add Implicit Collection..." kind="action" name="AddConverter">
+     displayName="Add Converter..." kind="action" name="AddConverter">
      <EntityData EntityName="ESBPreConverter">
       <AttributeData AttributeName="class"/>
       <AttributeData AttributeName="field name"/>
