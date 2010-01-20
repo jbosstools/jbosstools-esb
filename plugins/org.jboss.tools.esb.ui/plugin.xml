@@ -172,6 +172,8 @@
    <extension point="org.jboss.tools.common.model.ui.metaTemplates">
       <include file="templates/esb_1_1.xml" translations="templates/esb_1_1.properties">
       </include>         
+      <include file="templates/esb_1_2.xml" translations="templates/esb_1_1.properties">
+      </include>         
    </extension>
 
 
