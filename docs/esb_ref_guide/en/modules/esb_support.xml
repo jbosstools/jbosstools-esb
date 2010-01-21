@@ -335,8 +335,8 @@
                         </mediaobject>
                 </figure>
 
-				<para> Select <emphasis><property>Add</property></emphasis> to open a dialog where you can specify the JBoss ESB runtime location, name and version number. 
-                         You also can customize the libraries of the runtime by checking the <emphasis><property>Customize JBoss ESB Runtime jars</property> </emphasis> checkbox. </para>
+                 <para> Select <emphasis><property>Add</property></emphasis> to open a dialog where you can specify the JBoss ESB runtime location, name and version number. It's also possible to define configuration if you point the home location to a Jboss AS or SOA-p, in case you select a standalone ESB runtime location, the configuration combo will be empty and should be ignored. 
+                         You can also customize the libraries of the runtime by checking the <emphasis><property>Customize JBoss ESB Runtime jars</property> </emphasis> checkbox. </para>
                         
                 <figure>
                         <title>Configure new JBoss ESB Runtime</title>
