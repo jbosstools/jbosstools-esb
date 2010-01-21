@@ -1973,7 +1973,7 @@
    <XModelAttribute PROPERTIES="category=advanced;pre=true"
     name="mapped context objects" xmlname="mappedContextObjects"/>
    <XModelAttribute PROPERTIES="category=advanced;pre=true"
-    name="exclude non-serializables" xmlname="excludeNonSerializables">
+    name="exclude non-serializables" visibility="false" xmlname="excludeNonSerializables">
     <Constraint loader="ListString">
      <value/>
      <value name="true"/>
