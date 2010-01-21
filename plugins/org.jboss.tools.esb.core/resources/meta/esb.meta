@@ -154,7 +154,7 @@
    <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
      PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"
-     displayName="Generic Action..." kind="action" name="AddAction">
+     displayName="Custom Action..." kind="action" name="AddAction">
      <EntityData EntityName="ESBAction101">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="class"/>
