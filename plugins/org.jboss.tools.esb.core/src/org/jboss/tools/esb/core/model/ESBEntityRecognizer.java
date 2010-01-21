@@ -33,17 +33,17 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
     	if(j < 0) return null;
     	int k = body.indexOf("\"", j + 1); //$NON-NLS-1$
     	if(k < 0) return null;
-    	String schemaLocation = body.substring(j + 1, k);
+    	String schema = body.substring(j + 1, k);
     	
-    	int i101 = schemaLocation.indexOf("1.0.1"); //$NON-NLS-1$
+    	int i101 = schema.indexOf("1.0.1"); //$NON-NLS-1$
     	if(i101 >= 0) {
     		return ENT_ESB_FILE_101;
     	}
-    	int i110 = schemaLocation.indexOf("1.1.0"); //$NON-NLS-1$
+    	int i110 = schema.indexOf("1.1.0"); //$NON-NLS-1$
     	if(i110 >= 0) {
     		return ENT_ESB_FILE_110;
     	}
-    	int i120 = schemaLocation.indexOf("1.2.0"); //$NON-NLS-1$
+    	int i120 = schema.indexOf("1.2.0"); //$NON-NLS-1$
     	if(i120 >= 0) {
     		return ENT_ESB_FILE_120;
     	}
@@ -56,9 +56,13 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
     	int j = body.indexOf(">", i); //$NON-NLS-1$
     	if(j < 0) return false;
     	String s = body.substring(i, j);
-    	return s.indexOf("\"" + SCHEMA_101 + "\"") > 0
-    		|| s.indexOf("\"" + SCHEMA_110 + "\"") > 0
-    		|| s.indexOf("\"" + SCHEMA_120 + "\"") > 0; //$NON-NLS-1$
+    	String q = "\"";
+    	return s.indexOf(q + SCHEMA_101 + q) > 0
+    		|| s.indexOf(q + SCHEMA_110 + q) > 0
+    		|| s.indexOf(q + SCHEMA_120 + q) > 0
+    		|| s.indexOf(q + NEW_SCHEMA_101 + q) > 0
+    		|| s.indexOf(q + NEW_SCHEMA_110 + q) > 0
+    		|| s.indexOf(q + NEW_SCHEMA_120 + q) > 0;
     }
     
 }

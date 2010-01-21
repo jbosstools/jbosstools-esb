@@ -17,7 +17,11 @@ public interface ESBConstants {
 	public String SCHEMA_101 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd"; //$NON-NLS-1$
 	public String SCHEMA_110 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd"; //$NON-NLS-1$
 	public String SCHEMA_120 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"; //$NON-NLS-1$
-	
+
+	public String NEW_SCHEMA_101 = "http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd"; //$NON-NLS-1$
+	public String NEW_SCHEMA_110 = "http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd"; //$NON-NLS-1$
+	public String NEW_SCHEMA_120 = "http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"; //$NON-NLS-1$
+
 	public String SUFF_101 = "101"; //$NON-NLS-1$
 	public String SUFF_110 = "110"; //$NON-NLS-1$
 	public String SUFF_120 = "120"; //$NON-NLS-1$
