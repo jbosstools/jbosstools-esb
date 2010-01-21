@@ -2,7 +2,7 @@
 <!DOCTYPE meta-template PUBLIC "-//Red Hat Inc.//DTD Meta Templates 1.0//EN"
                                "http://www.redhat.com/templates/dtds/meta-template_1_0.dtd">
 
-<meta-templates uri="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd"> 
+<meta-templates uri="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd"> 
 	
 	<meta-template axis="action@class" displayName="Action Class" xEntity="NONE">
 		<super-class name="org.jboss.soa.esb.actions.AbstractActionPipelineProcessor"/>

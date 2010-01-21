@@ -5,7 +5,7 @@
 <meta-templates uri="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"> 
 	
 	<meta-template axis="action@class" displayName="Action Class" xEntity="NONE">
-		<super-class name="org.jboss.soa.esb.actions.AbstractActionLifecycle"/>
+		<super-class name="org.jboss.soa.esb.actions.AbstractActionPipelineProcessor"/>
 	</meta-template>
 
 </meta-templates>
