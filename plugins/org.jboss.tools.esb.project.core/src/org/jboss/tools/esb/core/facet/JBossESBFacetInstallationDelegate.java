@@ -104,8 +104,12 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 		String configVersion = model.getStringProperty(IJBossESBFacetDataModelProperties.ESB_CONFIG_VERSION);
 		emptyESB.append("<?xml version = \"1.0\" encoding = \"UTF-8\"?>");
 		emptyESB.append("\n");
-		emptyESB.append("<jbossesb xmlns=\"http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-" + configVersion + ".xsd\" parameterReloadSecs=\"5\">");
+		emptyESB.append("<jbossesb xmlns=\"http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-" + configVersion + ".xsd\"");
 		emptyESB.append("\n");
+		String schemaLocation = "http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-" + configVersion + ".xsd";
+		emptyESB.append(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\""+schemaLocation + " " +schemaLocation+"\"");
+		emptyESB.append("\n");
+		emptyESB.append(" parameterReloadSecs=\"5\">");
 		emptyESB.append("</jbossesb>");
 		IFile esbfile = folder.getFile("jboss-esb.xml");
 		esbfile.create(new ByteArrayInputStream(emptyESB.toString().getBytes()), true, null);
