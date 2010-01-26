@@ -20,6 +20,18 @@
             Create a ESB XML File
          </description>
       </wizard>
+
+      <wizard 
+         category="org.jboss.tools.esb.ui" 
+         class="org.jboss.tools.esb.ui.wizard.NewActionWizard" 
+         icon="images/esb16.gif"
+         id="org.jboss.tools.esb.ui.wizard.NewActionWizard" 
+         name="ESB Action" 
+         project="false">
+         <description>
+            Create a ESB Action Java File
+         </description>
+      </wizard>
    </extension>
 
    <extension id="e" name="XML Editors" point="org.jboss.tools.common.model.ui.xmlEditor">
@@ -41,6 +53,8 @@
 			class="org.jboss.tools.esb.ui.editor.form.ESBActionForm"/>
 		<xclass id="org.jboss.tools.esb.ui.wizard.AddGenericActionStep"
 			class="org.jboss.tools.esb.ui.wizard.AddGenericActionStep"/>
+		<xclass id="org.jboss.tools.esb.ui.wizard.NewActionWizard"
+			class="org.jboss.tools.esb.ui.wizard.NewActionWizard"/>
 			
 	</extension>
 

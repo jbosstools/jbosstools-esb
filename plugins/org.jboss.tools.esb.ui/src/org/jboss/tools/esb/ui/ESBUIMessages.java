@@ -21,6 +21,8 @@ public final class ESBUIMessages extends NLS {
 	}
 
 	public static String ESB_UI_PLUGIN_NO_MESSAGES;
+	public static String newESBActionWizardTitle;
+	public static String newESBActionWizardPageTitle;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, ESBUIMessages.class);
