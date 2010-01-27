@@ -68,7 +68,7 @@
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
    <XModelAttribute
-    PROPERTIES="category=general;save=always;valueFilter=org.jboss.tools.esb.ui.editor.attribute.ActionClassValueFilter"
+    PROPERTIES="category=general;save=always;valueFilter=org.jboss.tools.esb.ui.editor.attribute.ActionClassValueFilter;newWizardClass=org.jboss.tools.esb.ui.wizard.NewActionWizard"
     name="class" xmlname="class">
     <Editor name="AccessibleJava"/>
    </XModelAttribute>
