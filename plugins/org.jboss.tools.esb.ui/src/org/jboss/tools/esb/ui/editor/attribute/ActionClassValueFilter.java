@@ -11,6 +11,7 @@
 package org.jboss.tools.esb.ui.editor.attribute;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaModelException;
 import org.jboss.tools.common.meta.XAttribute;
 import org.jboss.tools.common.model.XModelObject;
@@ -49,7 +50,8 @@ public class ActionClassValueFilter implements IValueFilter {
 	public boolean init(XModelObject context, XAttribute attribute) {
 		project = EclipseResourceUtil.getProject(context);
 		try {
-			return (EclipseJavaUtil.findType(EclipseResourceUtil.getJavaProject(project), AbstractActionLifecycle) != null);
+			IJavaProject jp = EclipseResourceUtil.getJavaProject(project);
+			return jp != null && (EclipseJavaUtil.findType(jp, AbstractActionLifecycle) != null);
 		} catch (JavaModelException e) {
 			return false;
 		}
