@@ -96,6 +96,9 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 			// Add the server runtime as well
 			IFacetedProject fp = ProjectFacetsManager.create(project);
 			IRuntime runtime = fp.getPrimaryRuntime();
+			
+			if(runtime == null) return;
+			
 			String name = runtime.getName();
 			org.eclipse.wst.server.core.IRuntime serverRuntime = ServerCore.findRuntime(name);
 			RuntimeClasspathProviderWrapper rcpw = JavaServerPlugin.findRuntimeClasspathProvider(serverRuntime.getRuntimeType());
