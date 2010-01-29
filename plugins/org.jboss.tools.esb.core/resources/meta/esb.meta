@@ -1918,7 +1918,7 @@
     kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
      PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddProviderSupport;busEntity=ESBBus"
-     displayName="Channel Provider..." kind="action" name="AddBusProvider">
+     displayName="Bus Provider..." kind="action" name="AddBusProvider">
      <EntityData EntityName="ESBBusProvider101">
       <AttributeData AttributeName="name"/>
      </EntityData>
