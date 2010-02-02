@@ -12,6 +12,7 @@ package org.jboss.tools.esb.core.model;
 
 
 import org.jboss.tools.common.model.loaders.EntityRecognizer;
+import org.jboss.tools.common.model.loaders.EntityRecognizerContext;
 
 /**
  * @author Viacheslav Kabanovich
@@ -20,7 +21,11 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
 
     public ESBEntityRecognizer() {}
 
-    public String getEntityName(String ext, String body) {
+    public String getEntityName(EntityRecognizerContext context) {
+    	return getEntityName(context.getExtension(), context.getBody());
+    }
+
+    String getEntityName(String ext, String body) {
         if(body == null) return null;
     	if(!isSchema(body)) {
     		return null;
