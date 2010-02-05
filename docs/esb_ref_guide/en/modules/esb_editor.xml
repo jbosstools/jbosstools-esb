@@ -127,9 +127,9 @@
         </figure>
 
 
-        <para>In order to add a new generic Action to your ESB XML file you should select the
+        <para>In order to add a new custom Action to your ESB XML file you should select the
             Actions node under the Services, then right-click and choose <emphasis>
-                <property>New > Generic Action</property>. </emphasis></para>
+                <property>New > Custom Action</property>. </emphasis></para>
 
         <figure>
             <title>Adding New Action in the Tree View</title>
