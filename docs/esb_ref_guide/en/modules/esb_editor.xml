@@ -45,8 +45,16 @@
                 </imageobject>
             </mediaobject>
         </figure>
-                 
-
+        <para>Now when editing ESB actions which refer to other files (Drools, Groovy, Smooks, etc.),
+            the label for the field turns into a link to launch the editor associated with that type of file.</para>        
+        <figure >
+            <title>Property Link to the Associated Editor</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/01b_esb_tree_view_and_links.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
         <para>You can easily switch from Tree to Source by selecting the Source tab at the bottom of
             the editor and work in <property>Source view</property>.</para>
 

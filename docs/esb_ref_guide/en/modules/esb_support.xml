@@ -65,8 +65,18 @@
                                 </imageobject>
                         </mediaobject>
                 </figure>
-
-		<para>Next step provides you an opportunity to configure your project for building a java application</para>
+		         <para>By clicking <emphasis>Modify</emphasis> button you can open <emphasis>Project Facets Wizard</emphasis> page,where you can select 
+		                 facets that should be enabled for this project.
+		                 On the <emphasis>Project Facets Wizard</emphasis> page you can also configure runtime for the application</para>
+		         <figure>
+		                 <title>Project Facets Wizard</title>
+		                 <mediaobject>
+		                         <imageobject>
+		                                 <imagedata fileref="images/esb_project/02a_create_esb_project.png"/>
+		                         </imageobject>
+		                 </mediaobject>
+		         </figure>
+		         <para>Next step provides you an opportunity to configure your project for building a java application</para>
 		         
 		         <para> Clicking <emphasis>
                                 <property>Next</property> on this form
@@ -81,8 +91,9 @@
                          </para>
 		         <para> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences. If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.                         
                          </para>           
-		         <para>3. Choose ESB Config Vertion. From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</para>	         
-                         
+		         <para>3. Choose ESB Config Vertion. From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.</para>	         
+		         <note><title>Note:</title>
+		                 <para>If you use ESB 4.7 you should select jbossesb-1.2.0.xsd.</para></note>        
                 <figure>
                         <title>Install ESB facet step</title>
                         <mediaobject>
@@ -292,7 +303,10 @@
                         version.</para>
                 
                <note><title>Note:</title>
-                       <para>From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</para></note>
+                       <para>From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.
+                             If you use ESB 4.7 you should select jbossesb-1.2.0.xsd.
+                       </para>
+               </note>
                 <figure>
                         <title>Folder, Name and Version for ESB file</title>
                         <mediaobject>
