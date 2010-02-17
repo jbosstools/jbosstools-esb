@@ -35,15 +35,16 @@
         </corpauthor>
         <author><firstname>Svetlana</firstname><surname>Mukhina</surname><email>smukhina@exadel.com</email></author> 
         <author><firstname>Tatyana</firstname><surname>Romanovich</surname></author>  
-        
-        <pubdate>April 2008</pubdate>
+   
         <copyright>
             <year>2007</year>
-            <year>2009</year>
+            <year><diffmk:wrapper diffmk:change="added">2008</diffmk:wrapper></year>
+            <year diffmk:change="added">2009</year>
+            <year diffmk:change="added"><diffmk:wrapper diffmk:change="added">2010</diffmk:wrapper></year>
             <holder>JBoss by Red Hat</holder>
         </copyright>
         <releaseinfo><diffmk:wrapper diffmk:change="changed">
-            Version: 1.3.0.CR1
+            Version: 1.3.0.CR2
         </diffmk:wrapper></releaseinfo>
     
 <abstract>
@@ -57,7 +58,7 @@
     <toc></toc>  
     
 	
-<chapter id="introduction" xml:base="file:///home/ochikvina/WORK/for_compare/jbosstools-3.1.0.CR1/esb/docs/esb_ref_guide/en/modules/introduction.xml">
+<chapter id="introduction" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en/modules/introduction.xml">
     <?dbhtml filename="introduction.html"?>
 
     <chapterinfo>
@@ -175,7 +176,7 @@
 </chapter>
 
     
-<chapter id="esb_support" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/jbosstools-3.1.0.CR1/esb/docs/esb_ref_guide/en/modules/esb_support.xml">
+<chapter id="esb_support" role="updated" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en/modules/esb_support.xml">
         <?dbhtml filename="esb_support.html"?>
         <chapterinfo>
                 <keywordset>
@@ -240,10 +241,22 @@
                                 </imageobject>
                         </mediaobject>
                 </figure>
-
-				<para> Clicking <emphasis>
-                                <property moreinfo="none">Next</property>
-                        </emphasis> brings you to the ESB facet installation page where you can 
+		         <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">By clicking </diffmk:wrapper><emphasis diffmk:change="added"><diffmk:wrapper diffmk:change="added">Modify</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> button you can open </diffmk:wrapper><emphasis diffmk:change="added"><diffmk:wrapper diffmk:change="added">Project Facets Wizard</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> page,where you can select 
+		                 facets that should be enabled for this project.
+		                 On the </diffmk:wrapper><emphasis diffmk:change="added"><diffmk:wrapper diffmk:change="added">Project Facets Wizard</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> page you can also configure runtime for the application</diffmk:wrapper></para>
+		         <figure diffmk:change="added" float="0">
+		                 <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Project Facets Wizard</diffmk:wrapper></title>
+		                 <mediaobject diffmk:change="added">
+		                         <imageobject diffmk:change="added">
+		                                 <imagedata diffmk:change="added" fileref="images/esb_project/02a_create_esb_project.png"></imagedata>
+		                         </imageobject>
+		                 </mediaobject>
+		         </figure>
+		         <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Next step provides you an opportunity to configure your project for building a java application</diffmk:wrapper></para>
+		         
+		         <para> Clicking <emphasis>
+                                <property moreinfo="none">Next</property><diffmk:wrapper diffmk:change="changed"> on this form
+                        </diffmk:wrapper></emphasis> brings you to the ESB facet installation page where you can 
                         specify Java Source Directory and ESB Content Directory. ESB Content Directory is a folder that contains the most of
                          artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:
                         </para>
@@ -254,8 +267,9 @@
                          </para>
 		         <para> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences. If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.                         
                          </para>           
-		         <para>3. Choose ESB Config Vertion. From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</para>	         
-                         
+		         <para><diffmk:wrapper diffmk:change="added">3. Choose ESB Config Vertion. From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.</diffmk:wrapper></para>	         
+		         <note diffmk:change="added"><title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Note:</diffmk:wrapper></title>
+		                 <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">If you use ESB 4.7 you should select jbossesb-1.2.0.xsd.</diffmk:wrapper></para></note>        
                 <figure float="0">
                         <title>Install ESB facet step</title>
                         <mediaobject>
@@ -465,7 +479,10 @@
                         version.</para>
                 
                <note><title>Note:</title>
-                       <para>From the version 4.5 JBoss ESB supports two different jboss-esb.xsd versions: jbossesb-1.0.1.xsd and jbossesb-1.1.0.xsd.</para></note>
+                       <para><diffmk:wrapper diffmk:change="changed">From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.
+                             If you use ESB 4.7 you should select jbossesb-1.2.0.xsd.
+                       </diffmk:wrapper></para>
+               </note>
                 <figure float="0">
                         <title>Folder, Name and Version for ESB file</title>
                         <mediaobject>
@@ -508,8 +525,8 @@
                         </mediaobject>
                 </figure>
 
-				<para> Select <emphasis><property moreinfo="none">Add</property></emphasis> to open a dialog where you can specify the JBoss ESB runtime location, name and version number. 
-                         You also can customize the libraries of the runtime by checking the <emphasis><property moreinfo="none">Customize JBoss ESB Runtime jars</property> </emphasis> checkbox. </para>
+                 <para> Select <emphasis><property moreinfo="none">Add</property></emphasis><diffmk:wrapper diffmk:change="changed"> to open a dialog where you can specify the JBoss ESB runtime location, name and version number. It's also possible to define configuration if you point the home location to a Jboss AS or SOA-p, in case you select a standalone ESB runtime location, the configuration combo will be empty and should be ignored. 
+                         You can also customize the libraries of the runtime by checking the </diffmk:wrapper><emphasis><property moreinfo="none">Customize JBoss ESB Runtime jars</property> </emphasis> checkbox. </para>
                         
                 <figure float="0">
                         <title>Configure new JBoss ESB Runtime</title>
@@ -668,7 +685,7 @@
 </chapter>
 
     
-<chapter id="esb_editor" role="updated" xml:base="file:///home/ochikvina/WORK/for_compare/jbosstools-3.1.0.CR1/esb/docs/esb_ref_guide/en/modules/esb_editor.xml" xreflabel="esb_editor">
+<chapter id="esb_editor" role="updated" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en/modules/esb_editor.xml" xreflabel="esb_editor">
     <?dbhtml filename="esbEditor.html"?>
     <chapterinfo>
         <keywordset>
@@ -703,7 +720,27 @@
                 </imageobject>
             </mediaobject>
         </figure>
-
+              
+        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Some properties are represented as links to the associated editors.</diffmk:wrapper></para>
+        
+        <figure diffmk:change="added" float="0" id="TreeViewLink">
+            <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Property Link to the Associated Editor</diffmk:wrapper></title>
+            <mediaobject diffmk:change="added">
+                <imageobject diffmk:change="added">
+                    <imagedata diffmk:change="added" fileref="images/esb_editor/01a_esb_tree_view_and_links.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Now when editing ESB actions which refer to other files (Drools, Groovy, Smooks, etc.),
+            the label for the field turns into a link to launch the editor associated with that type of file.</diffmk:wrapper></para>        
+        <figure diffmk:change="added" float="0">
+            <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Property Link to the Associated Editor</diffmk:wrapper></title>
+            <mediaobject diffmk:change="added">
+                <imageobject diffmk:change="added">
+                    <imagedata diffmk:change="added" fileref="images/esb_editor/01b_esb_tree_view_and_links.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
         <para>You can easily switch from Tree to Source by selecting the Source tab at the bottom of
             the editor and work in <property moreinfo="none">Source view</property>.</para>
 
@@ -758,7 +795,7 @@
                 </imageobject>
             </mediaobject>
         </figure>
-
+       
         <para>The same way you can create a listener for service and other elements of ESB:</para>
         <figure float="0">
             <title>Adding New Listener for Service</title>
@@ -771,11 +808,22 @@
         <para>The same actions can be done in the right part of <property moreinfo="none">Tree view</property> tab
             (Form editor) using <property moreinfo="none">Add</property>, <property moreinfo="none">Edit</property> and
                 <property moreinfo="none">Remove</property> buttons.</para>
+        
+        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Filter can be also edited this way</diffmk:wrapper></para>
+        
+        <figure diffmk:change="added" float="0">
+            <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Editing Filter</diffmk:wrapper></title>
+            <mediaobject diffmk:change="added">
+                <imageobject diffmk:change="added">
+                    <imagedata diffmk:change="added" fileref="images/esb_editor/06a_esb_filter.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
 
 
-        <para>In order to add a new generic Action to your ESB XML file you should select the
-            Actions node under the Services, then right-click and choose <emphasis>
-                <property moreinfo="none">New &gt; Generic Action</property>. </emphasis></para>
+        <para><diffmk:wrapper diffmk:change="changed">In order to add a new custom Action to your ESB XML file you should select the
+            Actions node under the Services, then right-click and choose </diffmk:wrapper><emphasis>
+                <property moreinfo="none"><diffmk:wrapper diffmk:change="changed">New &gt; Custom Action</diffmk:wrapper></property>. </emphasis></para>
 
         <figure float="0">
             <title>Adding New Action in the Tree View</title>
@@ -800,10 +848,10 @@
     	
     	<note>
     		<title>Note:</title>
-    		<para>The out-of-the-box action <emphasis>
-    			<property moreinfo="none">Smooks Transformer</property></emphasis> is now deprecated, and replaced by
-    			<emphasis>
-    				<property moreinfo="none">Smooks Action</property>.</emphasis></para>
+    	    <para><diffmk:wrapper diffmk:change="added">Some new components are available to support ESB 4.7,such as:
+    	        new actions (XsltAction, PersistAction, BpmProcessor, ScriptingAction),
+    	        new processors (EJBProcessor), new routers (HttpRouter, JMSRouter, EmailRouter).
+      	    </diffmk:wrapper></para>
     	</note>
 
         <para>As you can see on the bath figures above, the context menu will also prompt you to
@@ -992,7 +1040,8 @@
             <para>In summary, this reference supplies you with all necessary information on the
             functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
             
-            <para>We hope, this guide helped you to get started with the JBoss ESB Tools. Besides, for additional information you are welcome on <ulink url="http://www.jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=201">JBoss forum</ulink>.</para>
+            <para>We hope, this guide helped you to get started with the JBoss ESB Tools. Besides, for additional information you are welcome on <ulink
+                url="http://www.jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=201">JBoss forum</ulink>.</para>
             
         </section>
     </section>
