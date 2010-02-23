@@ -1735,7 +1735,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="SOAP wize client action"
+   <XModelAttribute default="SOAP Wise Client Action"
     loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
