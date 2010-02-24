@@ -3430,7 +3430,7 @@
    <XChildEntity name="ESBPreActionSOAPProcessor101"/>
    <XChildEntity name="ESBPreActionSOAPClient101"/>
    <XChildEntity name="ESBPreActionSystemPrintln101"/>
-   <XChildEntity name="ESBPreActionNotifier101"/>
+   <XChildEntity name="ESBPreActionNotifier120"/>
    <XChildEntity name="ESBPreActionBusinessRulesProcessor101"/>
   </XChildrenEntities>
   <XActionItem kind="list">
@@ -3449,7 +3449,19 @@
      </XActionItem>
      <XActionItemReference entity="ESBActions101" name="AddCommandInterpreter"/>
      <XActionItemReference entity="ESBActions101" name="AddGroovyProcessor"/>
-     <XActionItemReference entity="ESBActions101" name="Routers"/>
+     <XActionItem displayName="Routers" kind="list" name="Routers">
+      <XActionItemReference entity="ESBActions101" name="AddAggregator"/>
+      <XActionItemReference entity="ESBActions101" name="AddContentBasedRouter"/>
+      <XActionItemReference entity="ESBActions101" name="AddStaticRouter"/>
+      <XActionItemReference entity="ESBActions101" name="AddStaticWiretap"/>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Notifier..." kind="action" name="AddNotifier">
+       <EntityData EntityName="ESBPreActionNotifier120">
+        <AttributeData AttributeName="name"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
      <XActionItemReference entity="ESBActions101" name="SOAP"/>
      <XActionItemReference entity="ESBActions101" name="AddSystemPrintln"/>
      <XActionItemReference entity="ESBActions101" name="AddBusinessRulesProcessor"/>

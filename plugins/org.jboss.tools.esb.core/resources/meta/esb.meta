@@ -220,7 +220,10 @@
    </XModelAttribute>
   </XModelAttributes>
   <XActionItem kind="list">
-   <XActionItemReference entity="ESBActions101" name="CreateActions"/>
+   <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
+    <XActionItemReference entity="ESBActions101" name="AddAction"/>
+    <XActionItemReference entity="ESBActions101" name="AddAnyAction"/>
+   </XActionItem>
    <XActionItemReference entity="ESBActions101" name="CopyActions"/>
    <XActionItemReference entity="ESBActions101" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
