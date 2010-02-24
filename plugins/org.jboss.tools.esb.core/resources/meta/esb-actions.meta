@@ -3049,6 +3049,9 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="class" xmlname="class"/>
+   <XModelAttribute PROPERTIES="any=true" name="attributes">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -3060,6 +3063,14 @@
      displayName="Add Tag..." kind="action" name="CreateTag">
      <EntityData EntityName="AnyElementNew">
       <AttributeData AttributeName="tag"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="support=org.jboss.tools.common.meta.action.impl.handlers.AddAttributeToAnyElementSupport"
+     displayName="Add Attribute..." kind="action" name="CreateAttribute">
+     <EntityData EntityName="AnyElementNew">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="value" Mandatory="no"/>
      </EntityData>
     </XActionItem>
    </XActionItem>

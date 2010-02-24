@@ -80,7 +80,7 @@ public abstract class ListConverter implements IPropertyConverter {
 			String name = attrs[j].getName();
 			String xml = attrs[j].getXMLName();
 			if(xml == null || xml.length() == 0) continue;
-			String value = attr.get(xml);
+			String value = attr.remove(xml);
 			if(value == null || value.length() == 0) {
 				value = attrs[j].getDefaultValue();
 			}
@@ -88,6 +88,17 @@ public abstract class ListConverter implements IPropertyConverter {
 				a.setAttributeValue(name, value);
 			}
 		}
+		if(entity.getAttribute("attributes") != null) {
+			attr.remove("#text");
+			StringBuffer sb = new StringBuffer();
+			for (String n: attr.keySet()) {
+				String v = attr.get(n);
+				if(sb.length() > 0) sb.append(';');
+				sb.append(n).append('=').append(v);
+			}
+			a.setAttributeValue("attributes", sb.toString());
+		}
+		
 		XModelObject[] cs = any.getChildren();
 		if(cs.length > 0 && a.getModelEntity().getChildren().length > 0) {
 			//TODO consider case of several child entities, possibly including AnyElement
@@ -137,6 +148,13 @@ public abstract class ListConverter implements IPropertyConverter {
 					sb.append(';');
 				}
 				sb.append(xml).append('=').append(value);
+			}
+		}
+		if(entity.getAttribute("attributes") != null) {
+			String as = specific.getAttributeValue("attributes");
+			if(as.length() > 0) {
+				if(sb.length() > 0) sb.append(';');
+				sb.append(as);
 			}
 		}
 		String attributes = sb.toString();
