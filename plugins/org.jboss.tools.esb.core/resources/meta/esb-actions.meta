@@ -2676,7 +2676,7 @@
    <XModelAttribute PROPERTIES="category=general;id=true" name="index">
     <Constraint loader="Int"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general" name="name" xmlname="text"/>
+   <XModelAttribute PROPERTIES="category=general" name="name" xmlname="#text"/>
    <XModelAttribute PROPERTIES="category=general" name="type" xmlname="type">
     <Editor name="AccessibleJava"/>
    </XModelAttribute>
