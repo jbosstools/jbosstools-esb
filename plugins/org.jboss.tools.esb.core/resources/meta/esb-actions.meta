@@ -1778,7 +1778,14 @@
    <XModelAttribute PROPERTIES="pre=true;category=general"
     name="password" xmlname="password"/>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
-    name="smooks handler config" xmlname="smooks-handler-config"/>
+    name="smooks handler config" xmlname="smooks-handler-config">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=xml"/>
+     <value name="linkAction=OpenHandler"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
     name="custom handlers" xmlname="custom-handlers"/>
    <XModelAttribute PROPERTIES="category=advanced;pre=true"
@@ -1808,6 +1815,11 @@
     ICON="action.empty"
     PROPERTIES="actionpath=Open;attribute=smooks response mapper"
     displayName="Open Response Mapper" kind="action" name="OpenResponse"/>
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=smooks handler config"
+    displayName="Open Handler Config" kind="action" name="OpenHandler"/>
    <XActionItem kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
