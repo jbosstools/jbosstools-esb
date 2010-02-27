@@ -151,6 +151,7 @@ public class NewActionWizard extends NewClassWizard implements INewWizard {
 				}
 				
 				s = b.getContents();
+				boolean hasOverrideAnnotation = s.indexOf("@Override") > 0;
 				
 				int i = s.indexOf('{');
 				int j = s.lastIndexOf('}');
@@ -163,7 +164,7 @@ public class NewActionWizard extends NewClassWizard implements INewWizard {
 						+ tab + tab + "_config = config;"+ lineDelimiter
 						+ tab + "}" + lineDelimiter
 						+ lineDelimiter
-						+ tab + "@Override" + lineDelimiter
+						+ (hasOverrideAnnotation ? tab + "@Override" + lineDelimiter : "")
 						+ tab + "public Message process(Message message) throws ActionProcessingException {" + lineDelimiter
 						+ tab + tab + "//ADD CUSTOM ACTION CODE HERE" + lineDelimiter
 						+ tab + tab + "return message;" + lineDelimiter
