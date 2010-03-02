@@ -77,7 +77,7 @@ public class JBossClassPathCommand extends AbstractDataModelOperation {
 									IJBossESBFacetDataModelProperties.PERSISTENCE_PROPERTY_RNTIME_LOCATION,
 									runtimeLocation);
 					project.setPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER, esbcontentFolder);
-					esbContainerPath = new Path(JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_SERVER_SUPPLIED)
+					esbContainerPath = new Path(JBossRuntimeClassPathInitializer.JBOSS_ESB_RUNTIME_CLASSPATH_CONTAINER_ID)
 							.append(runtimeName );
 				}
 				
