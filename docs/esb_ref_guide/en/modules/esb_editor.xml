@@ -45,8 +45,16 @@
                 </imageobject>
             </mediaobject>
         </figure>
-                 
-
+        <para>Now when editing ESB actions which refer to other files (Drools, Groovy, Smooks, etc.),
+            the label for the field turns into a link to launch the editor associated with that type of file.</para>        
+        <figure >
+            <title>Property Link to the Associated Editor</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/01b_esb_tree_view_and_links.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
         <para>You can easily switch from Tree to Source by selecting the Source tab at the bottom of
             the editor and work in <property>Source view</property>.</para>
 
@@ -154,10 +162,10 @@
     	
     	<note>
     		<title>Note:</title>
-    		<para>The out-of-the-box action <emphasis>
-    			<property>Smooks Transformer</property></emphasis> is now deprecated, and replaced by
-    			<emphasis>
-    				<property>Smooks Action</property>.</emphasis></para>
+    	    <para>Some new components are available to support ESB 4.7,such as:
+    	        new actions (XsltAction, PersistAction, BpmProcessor, ScriptingAction),
+    	        new processors (EJBProcessor), new routers (HttpRouter, JMSRouter, EmailRouter).
+      	    </para>
     	</note>
 
         <para>As you can see on the bath figures above, the context menu will also prompt you to
