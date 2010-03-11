@@ -1019,6 +1019,8 @@
     default="org.jboss.soa.esb.actions.routing.JMSRouter" name="class" xmlname="class">
     <Editor name="Uneditable"/>
    </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general;save=always"
+    name="jndi name" xmlname="jndiName"/>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     name="jndi context factory" xmlname="jndi-context-factory">
     <Editor name="AccessibleJava"/>
@@ -1054,7 +1056,7 @@
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
     name="security principal" xmlname="security-principal"/>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
-    name="security credentials" xmlname="security-credentials"/>
+    name="security credential" xmlname="security-credential"/>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
     name="property strategy" xmlname="property-strategy"/>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
