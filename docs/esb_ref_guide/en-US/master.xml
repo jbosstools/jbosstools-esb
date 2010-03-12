@@ -2,9 +2,9 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
 "http://www.docbook.org/xml/4.3/docbookx.dtd"
 
-[<!ENTITY introduction SYSTEM "modules/introduction.xml">
-<!ENTITY esb_support SYSTEM "modules/esb_support.xml">
-<!ENTITY esb_editor SYSTEM "modules/esb_editor.xml">
+[<!ENTITY introduction SYSTEM "introduction.xml">
+<!ENTITY esb_support SYSTEM "esb_support.xml">
+<!ENTITY esb_editor SYSTEM "esb_editor.xml">
 
 <!ENTITY seamlink "../../seam/html_single/index.html">
 <!ENTITY aslink "../../as/html_single/index.html">
