@@ -340,7 +340,7 @@
                                 
                         </mediaobject>
                 </figure>
-                <para>Then click <emphasis><property>Next</property></emphasis> and you will be brought to the <emphasis><property>New ESB Action</property></emphasis> wizard. In this wizard the class name should be specified, also you can set a package or add a interface as for any Java class.</para>
+                <para>After that click <emphasis><property>Next</property></emphasis> and you will be brought to the <emphasis><property>New ESB Action</property></emphasis> wizard. In this wizard the class name should be specified, also you can set a package or add a interface as for any Java class.</para>
                 <figure>
                         <title>New ESB Action wizard</title>
                         <mediaobject>
@@ -350,7 +350,7 @@
                                 
                         </mediaobject>
                 </figure>
-                <para>In result, the <property>ESB Action Java File</property> will be created in selected package and it will have <property>org.jboss.soa.esb.actions.AbstractActionPipelineProcessor </property>as superclass. </para>
+                <para>As a result, the <property>ESB Action Java File</property> will be created in the selected package and it will have <property>org.jboss.soa.esb.actions.AbstractActionPipelineProcessor </property>as superclass. </para>
                 <para>Clicking on <emphasis><property>Finish</property></emphasis> will generate the <property>ESB Action</property> class. Also this class will become available in <property>ESB Editor</property> wizards.</para>
         </section>
         
