@@ -272,7 +272,7 @@
  		        
         </section>
 		        
-        <section>
+        <section id="creating_esb_file">
                 <title>Creating a ESB File</title>
                 <para>In this chapter we suggest a step-by-step walk-through of creating your own
                         simple file. Let&apos;s try to organize a new ESB file.</para>
@@ -327,8 +327,34 @@
                         file.</para>
 
         </section>
+        <section id="creating_esb_action">
+                <title>Creating a ESB Action</title>
+                <para>From this chapter you will find out how to create  a <emphasis><property>ESB Action Java File</property></emphasis>.</para>
+                <para>At first you need to open a <property>ESB</property> or simple <property>Java</property> project. Then you should select <emphasis><property>File > New>Other</property></emphasis> in the main menu or from the context project menu. Then click  <emphasis><property>ESB > ESB Action</property></emphasis> in the <emphasis><property>New </property></emphasis> dialog.</para>
+                <figure>
+                        <title>Select a wizard - ESB Action</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_support/03_create_esb.png"/>
+                                </imageobject>
+                                
+                        </mediaobject>
+                </figure>
+                <para>Then click <emphasis><property>Next</property></emphasis> and you will be brought to the <emphasis><property>New ESB Action</property></emphasis> wizard. In this wizard the class name should be specified, also you can set a package or add a interface as for any Java class.</para>
+                <figure>
+                        <title>New ESB Action wizard</title>
+                        <mediaobject>
+                                <imageobject>
+                                        <imagedata fileref="images/esb_support/04_create_esb.png"/>
+                                </imageobject>
+                                
+                        </mediaobject>
+                </figure>
+                <para>In result, the <property>ESB Action Java File</property> will be created in selected package and it will have <property>org.jboss.soa.esb.actions.AbstractActionPipelineProcessor </property>as superclass. </para>
+                <para>Clicking on <emphasis><property>Finish</property></emphasis> will generate the <property>ESB Action</property> class. Also this class will become available in <property>ESB Editor</property> wizards.</para>
+        </section>
         
-         <section role="updated">
+        <section role="updated">
                 <title>Configuring ESB Runtime in Preferences</title>
                 <para>In this chapter you will know how to predefine a JBoss ESB runtime on the Preferences page.</para>
 
