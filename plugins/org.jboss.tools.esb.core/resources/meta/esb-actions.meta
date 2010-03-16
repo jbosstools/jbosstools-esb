@@ -198,7 +198,7 @@
     <Editor name="ListString"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
-    name="process definition name" xmlname="processdefinition"/>
+    name="process definition name" xmlname="process-definition-name"/>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     name="process definition id" xmlname="process-definition-id"/>
    <XModelAttribute PROPERTIES="pre=true;category=general" name="actor" xmlname="actor"/>
