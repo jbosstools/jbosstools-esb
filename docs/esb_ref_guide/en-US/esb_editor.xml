@@ -140,7 +140,7 @@
                 <property>New > Custom Action</property>. </emphasis></para>
 
         <figure>
-            <title>Adding New Action in the Tree View</title>
+            <title>Adding New Custom Action in the Tree View</title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/11_esb_editor.png"/>
@@ -152,7 +152,7 @@
                 <property>Add...</property>
             </emphasis> button in the <property>Form editor</property> on the left.</para>
         <figure>
-            <title>Adding New Action in the Form Editor</title>
+            <title>Adding New Custom Action in the Form Editor</title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/12_esb_editor.png"/>
@@ -167,17 +167,44 @@
     	        new processors (EJBProcessor), new routers (HttpRouter, JMSRouter, EmailRouter).
       	    </para>
     	</note>
+        <para>Then you will see <property>Add Action</property> wizard. There is a need to specify <property>Action name</property>  and <property>Action Java class</property>.  </para>
+        <figure>
+            <title>Add Action Wizard</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/12a_esb_editor.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>To get a help with finding a proper class you can select <emphasis><property>Browse</property></emphasis> to open <property>Select class</property> dialog.</para>
+        <figure>
+            <title>Select class dialog</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/12b_esb_editor.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>Moreover it's possible to type a <property>Process name</property> or select it with <property>Edit Process </property> dialog  which is called out by clicking <emphasis><property>Browse</property></emphasis>. </para>
+        <figure>
+            <title>Edit Process dialog</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/12c_esb_editor.png"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
 
         <para>As you can see on the bath figures above, the context menu will also prompt you to
             insert one of the Actions that are supplied out-of-the-box with <property>JBoss
-            ESB</property>. After choosing one an appeared <property>New Action wizard</property>
+                ESB</property>. After choosing one an appeared <property>New Pre-Packed Action </property>wizard
             will ask you to fill out a name field and other fields specific for each Action
             property. For example, for <emphasis>
                 <property>Content Based Router</property>
             </emphasis> Action the wizard looks as follows:</para>
 
         <figure>
-            <title>New Action Wizard</title>
+            <title>Add Pre-Packed Action Wizard</title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/13_esb_editor.png"/>
