@@ -12,7 +12,7 @@
     <title>ESB Editor</title>
 
     <para> ESB editor has lots of useful features, they are described in details in this chapter. In
-        addition you&apos;ll get to know with how <property>ESB Editor</property> uses combined
+        addition you&apos;ll get to know how <property>ESB Editor</property> uses combined
         visual and source editing of esb files.</para>
 
     <section id="esb_file" role="updated">
@@ -195,7 +195,7 @@
             </mediaobject>
         </figure>
 
-        <para>As you can see on the bath figures above, the context menu will also prompt you to
+        <para>As you can see on the both figures above, the context menu will also prompt you to
             insert one of the Actions that are supplied out-of-the-box with <property>JBoss
                 ESB</property>. After choosing one an appeared <property>New Pre-Packed Action </property>wizard
             will ask you to fill out a name field and other fields specific for each Action

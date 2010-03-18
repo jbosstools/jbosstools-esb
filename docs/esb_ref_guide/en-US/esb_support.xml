@@ -150,7 +150,7 @@
               
                 <itemizedlist>
                         
-                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Example</emphasis> - demonstrates the minimal files necessary to make a basic ESB component execute as well as to prove that the ESB os properly configured.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Example</emphasis> - demonstrates the minimal files necessary to make a basic ESB component execute as well as to prove that the ESB is properly configured.</para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Action Example</emphasis> - demonstrates the use of multiple action invocations from a single configuration. You can use a single Action class and make multiple method calls or use multiple Action classes. </para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB HelloWorld File Action Example</emphasis> - demonstrates using the File gateway feature of the JBoss ESB. Files that are found in a particular directory with a particular extension are sent to a JMS queue with actions for processing.</para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB Web Service consumer1 Example</emphasis> - demonstrates how to consume a 181 Web Service in an ESB action.</para></listitem>
@@ -195,9 +195,9 @@
                 <title>Deploying a ESB Project</title>
                 <para>In this chapter you will see how to deploy a ESB project using the WTP deployment framework.</para>
 
-                <para>Before deploying the project, open the Servers view by selecting <emphasis><property>Window &gt; Show View &gt; Other &gt; 
-                Server &gt; Servers</property></emphasis>, 
-                create a JBoss Server in the Servers view and start it, and then right click the created JBoss server, 
+                <para>Before deploying the project, open the JBoss Server View by selecting <emphasis><property>Window &gt; Show View &gt; Other &gt; 
+                Server &gt; JBoss Server View</property></emphasis>, 
+                create a JBoss Server in the Server view and start it, and then right click the created JBoss server, 
                 select <emphasis><property> </property> Add and Remove Projects</emphasis>, 
                 and add the ESB projects you want to deploy from the left side to the right side in the opened dialog. </para>
 
@@ -214,7 +214,7 @@
                 You also can drag the ESB project from the Project View to the server.</para>
                 
                  <figure>
-                        <title>Servers view</title>
+                        <title>JBoss Server View</title>
                         <mediaobject>
                                 <imageobject>
                                         <imagedata fileref="images/esb_project/09_esb_runtime_new.png"/>
