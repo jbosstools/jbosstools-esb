@@ -1,11 +1,11 @@
 package org.jboss.tools.esb.project.core.test;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 import junit.framework.TestCase;
@@ -14,10 +14,17 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.internal.core.JavaProject;
 import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jdt.launching.JavaRuntime;
+import org.eclipse.wst.common.frameworks.datamodel.DataModelFactory;
+import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
@@ -43,6 +50,12 @@ import org.jboss.ide.eclipse.as.core.server.internal.DeployableServer;
 import org.jboss.ide.eclipse.as.core.util.IJBossToolingConstants;
 import org.jboss.tools.common.test.util.TestProjectProvider;
 import org.jboss.tools.esb.core.ESBProjectConstant;
+import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
+import org.jboss.tools.esb.core.facet.JBossClassPathCommand;
+import org.jboss.tools.esb.core.facet.JBossESBFacetDataModelProvider;
+import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
+import org.jboss.tools.esb.core.runtime.JBossRuntimeClassPathInitializer;
+import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 
 public class ESBProjectDeploymentTest extends TestCase {
 	public static final IVMInstall VM_INSTALL = JavaRuntime
@@ -63,6 +76,10 @@ public class ESBProjectDeploymentTest extends TestCase {
 	public static final String SERVER_SOAP50_HOME = System.getProperty(
 			"jbosstools.test.soap.home.5.0",
 			"/home/fugang/jboss-all/jboss-soa-p.5.0.0") + "//jboss-as";
+	
+	static String userCustomizedESBRuntime = "UserCustomizedESBRuntime";
+	
+	private JBossRuntimeManager jrm = JBossRuntimeManager.getInstance();
 
 	static String BUNDLE = "org.jboss.tools.esb.project.core.test";
 	IProject project;
@@ -71,17 +88,31 @@ public class ESBProjectDeploymentTest extends TestCase {
 	private IRuntime currentRuntime;
 	private IServer currentServer;
 
+	private JBossESBRuntime jer;
+
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 
 		soap50_runtime = createRuntime(IJBossToolingConstants.EAP_50,
 				SERVER_SOAP50_HOME, "default");
+		
+		jer = new JBossESBRuntime();
+		jer.setName(userCustomizedESBRuntime);
+		jer.setConfiguration("default");
+		jer.setDefault(true);
+		jer.setHomeDir(SERVER_SOAP50_HOME);
+		jer.setVersion("4.7");
+		jrm.addRuntime(jer);
+		jrm.save();
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		
+		jrm.removeRuntime(jer);
+		jrm.save();
 		soap50_runtime.delete();
 		if (project != null) {
 			project.delete(true, null);
@@ -130,6 +161,40 @@ public class ESBProjectDeploymentTest extends TestCase {
 					3, res.length);
 		}
 
+	}
+	
+	public void testUserCustomizedESBRuntime() throws Exception{
+//		project = createESBProject("esbTestProject_2"); 
+		TestProjectProvider provider = new TestProjectProvider(BUNDLE,
+				"/projects/esbTestProject_2" , "esbTestProject_2", true);
+		project = provider.getProject();
+
+		IDataModel model = DataModelFactory.createDataModel(new JBossESBFacetDataModelProvider());
+		model.setBooleanProperty(IJBossESBFacetDataModelProperties.RUNTIME_IS_SERVER_SUPPLIED, false);
+		model.setStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_ID, jer.getName());
+		model.setStringProperty(IJBossESBFacetDataModelProperties.RUNTIME_HOME, jer.getHomeDir());
+		model.setStringProperty(IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER, "esbcontent");
+		
+		JBossClassPathCommand jcc = new JBossClassPathCommand(project, model);
+		IStatus status = jcc.executeOverride(null);
+		
+		assertEquals("Failed to add User Customized ESB runtime classpath container.", IStatus.OK, status.getSeverity());
+		
+		IJavaProject jproject = JavaCore.create(project);
+		
+		JBossRuntimeClassPathInitializer initializer = new JBossRuntimeClassPathInitializer();
+		IPath path = new Path("org.jboss.esb.runtime.classpath/UserCustomizedESBRuntime");
+		initializer.initialize(path, jproject);
+		
+		IClasspathEntry[] entry = initializer.getEntries(path);//jproject.getRawClasspath();
+		List<String> jars = new ArrayList<String>();
+		
+		for(IClasspathEntry ent :entry){
+			jars.add(ent.getPath().lastSegment());
+		}
+		
+		assertEquals("unalbe to read User customized ESB runtime, jbossesb-rosetta.jar is not in classpath.", true, jars.contains("jbossesb-rosetta.jar"));
+		
 	}
 
 	public void testSOAP50Deployment() throws Exception {
