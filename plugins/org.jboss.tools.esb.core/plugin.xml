@@ -40,6 +40,8 @@
 			class="org.jboss.tools.esb.core.model.impl.FTPMessageFilterImpl"/>
 		<xclass id="org.jboss.tools.esb.core.model.impl.ContentBasedRouter"
 			class="org.jboss.tools.esb.core.model.impl.ContentBasedRouter"/>
+		<xclass id="org.jboss.tools.esb.core.model.impl.BusinessRulesProcessor"
+			class="org.jboss.tools.esb.core.model.impl.BusinessRulesProcessor"/>
 
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"/>

@@ -244,7 +244,8 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
- <XModelEntity ImplementingClass="%ESB%"
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.impl.BusinessRulesProcessor"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
   XMLSUBPATH="action" name="ESBPreActionBusinessRulesProcessor101">
   <XChildrenEntities>
@@ -272,13 +273,31 @@
     name="rule set" xmlname="ruleSet">
     <Constraint loader="Tree">
      <value name="ESBResourceTree"/>
-     <value name="extensions=drl"/>
+     <value name="extensions=drl,dslr"/>
      <value name="linkAction=OpenRuleSet"/>
     </Constraint>
     <Editor name="TreeChooser"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;pre=true"
     name="rule language" xmlname="ruleLanguage"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="rule agent properties" xmlname="ruleAgentProperties">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=properties"/>
+     <value name="linkAction=OpenRuleAgent"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="decision table" xmlname="decisionTable">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=xls"/>
+     <value name="linkAction=OpenDecisionTable"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     default="Default(false)" name="rule reload" xmlname="ruleReload">
     <Constraint loader="ListString">
@@ -313,6 +332,16 @@
     HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
     ICON="action.empty" PROPERTIES="actionpath=Open;attribute=rule set"
     displayName="Open Rule Set" kind="action" name="OpenRuleSet"/>
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=decision table"
+    displayName="Open Decision Table" kind="action" name="OpenDecisionTable"/>
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=rule agent properties"
+    displayName="Open Rule Agent Properties" kind="action" name="OpenRuleAgent"/>
    <XActionItem kind="list" name="CreateActions">
     <XActionItem HandlerClassName="%Create%" ICON="action.empty"
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
@@ -3428,7 +3457,8 @@
       <EntityData EntityName="ESBPreActionBusinessRulesProcessor101">
        <AttributeData AttributeName="name"/>
        <AttributeData AttributeName="process" Mandatory="no"/>
-       <AttributeData AttributeName="rule set"/>
+       <AttributeData AttributeName="rule set" Mandatory="no"/>
+       <AttributeData AttributeName="rule agent properties" Mandatory="no"/>
       </EntityData>
      </XActionItem>
     </XActionItem>
