@@ -34,7 +34,11 @@ import org.jboss.tools.jst.web.kb.validation.IValidator;
 import org.jboss.tools.jst.web.model.project.ext.store.XMLValueInfo;
 
 public class ESBCoreValidator extends ESBValidationErrorManager implements IValidator {
-	public static final String ID = "org.jboss.tools.esb.validator.ESBCoreValidator";
+	public static final String ID = "org.jboss.tools.esb.validator.ESBCoreValidator"; //$NON-NLS-1$
+
+	static String XML_EXT = ".xml"; //$NON-NLS-1$
+	static String ATTR_PATH = "path"; //$NON-NLS-1$
+	static String ATTR_ATTRIBUTE = "attribute"; //$NON-NLS-1$
 
 	String projectName;
 	Map<IProject, IValidationContext> contexts = new HashMap<IProject, IValidationContext>();
@@ -92,7 +96,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 
 		for (IFile file: changedFiles) {
 			String name = file.getName();
-			if(!name.endsWith(".xml")) continue;
+			if(!name.endsWith(XML_EXT)) continue;
 			XModelObject o = EclipseResourceUtil.createObjectForResource(file);
 			if(o != null && o.getModelEntity().getName().startsWith(ESBConstants.ENT_ESB_FILE)) {
 				validateESBConfigFile(o, file);
@@ -122,7 +126,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		}
 		
 		if(esbContentFolder != null) {
-			IFolder esbContent = project.getFolder(new Path(esbContentFolder + "/META-INF"));
+			IFolder esbContent = project.getFolder(new Path(esbContentFolder + "/META-INF")); //$NON-NLS-1$
 			if(esbContent != null && esbContent.exists()) {
 				IResource[] rs = null;
 				try {
@@ -134,7 +138,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 					if(r instanceof IFile) {
 						IFile file = (IFile)r;
 						String name = file.getName();
-						if(!name.endsWith(".xml")) continue;
+						if(!name.endsWith(XML_EXT)) continue;
 						XModelObject o = EclipseResourceUtil.createObjectForResource(file);
 						if(o != null && o.getModelEntity().getName().startsWith(ESBConstants.ENT_ESB_FILE)) {
 							validateESBConfigFile(o, file);
@@ -149,12 +153,12 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 
 	
 	void validateChannelIDRefs(XModelObject object, IFile file) {
-		XModelObject servicesFolder = object.getChildByPath("Services");
+		XModelObject servicesFolder = object.getChildByPath("Services"); //$NON-NLS-1$
 		if(servicesFolder == null) return;
 		Map<String, String> ids = getAllChannelRefIDs(object);
 		XModelObject[] services = servicesFolder.getChildren();
 		for (XModelObject service: services) {
-			XModelObject listenersFolder = service.getChildByPath("Listeners");
+			XModelObject listenersFolder = service.getChildByPath("Listeners"); //$NON-NLS-1$
 			XModelObject[] listeners = listenersFolder.getChildren();
 			for (XModelObject listener: listeners) {
 				String channelIDRef = listener.getAttributeValue(ESBConstants.ATTR_BUS_ID_REF);
@@ -167,8 +171,8 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 					IMarker marker = addError(ESBValidatorMessages.LISTENER_REFERENCES_NON_EXISTENT_CHANNEL, 
 							ESBPreferences.LISTENER_REFERENCES_NON_EXISTENT_CHANNEL, getSourceReference(listener, ESBConstants.ATTR_BUS_ID_REF), file);
 					if(marker != null) try {
-						marker.setAttribute("path", listener.getPath());
-						marker.setAttribute("attribute", ESBConstants.ATTR_BUS_ID_REF);
+						marker.setAttribute(ATTR_PATH, listener.getPath());
+						marker.setAttribute(ATTR_ATTRIBUTE, ESBConstants.ATTR_BUS_ID_REF);
 					} catch (CoreException e) {
 						e.printStackTrace();
 					}
@@ -178,8 +182,8 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 						IMarker marker = addError(ESBValidatorMessages.LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL, 
 								ESBPreferences.LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL, getSourceReference(listener, ESBConstants.ATTR_BUS_ID_REF), file);
 						if(marker != null) try {
-							marker.setAttribute("path", listener.getPath());
-							marker.setAttribute("attribute", ESBConstants.ATTR_BUS_ID_REF);
+							marker.setAttribute(ATTR_PATH, listener.getPath());
+							marker.setAttribute(ATTR_ATTRIBUTE, ESBConstants.ATTR_BUS_ID_REF);
 						} catch (CoreException e) {
 							e.printStackTrace();
 						}
@@ -190,20 +194,20 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	}
 	private String getBusEntityPrefix(String listenerEntity) {
 		if(listenerEntity == null) return null;
-		if(listenerEntity.startsWith("ESBListener")) {
+		if(listenerEntity.startsWith("ESBListener")) { //$NON-NLS-1$
 			return null;
 		}
-		if(listenerEntity.startsWith("ESBJCAGateway")) {
-			return "ESBJMSBus";
+		if(listenerEntity.startsWith("ESBJCAGateway")) { //$NON-NLS-1$
+			return "ESBJMSBus"; //$NON-NLS-1$
 		}
-		int i = listenerEntity.indexOf("Listener");
+		int i = listenerEntity.indexOf("Listener"); //$NON-NLS-1$
 		if(i < 0) return null;
-		return listenerEntity.substring(0, i) + "Bus";
+		return listenerEntity.substring(0, i) + "Bus"; //$NON-NLS-1$
 	}
 	//id - bus entity
 	private Map<String, String> getAllChannelRefIDs(XModelObject object) {
 		Map<String, String> result = new HashMap<String, String>();
-		XModelObject[] ps = object.getChildByPath("Providers").getChildren();
+		XModelObject[] ps = object.getChildByPath("Providers").getChildren(); //$NON-NLS-1$
 		for (int i = 0; i < ps.length; i++) {
 			XModelObject[] cs = ps[i].getChildren();
 			for (int j = 0; j < cs.length; j++) {
