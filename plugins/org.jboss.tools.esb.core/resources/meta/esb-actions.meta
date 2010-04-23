@@ -192,8 +192,9 @@
     <Constraint loader="ListString">
      <value/>
      <value name="NewProcessInstanceCommand"/>
-     <value name="StartProcessCommand"/>
+     <value name="StartProcessInstanceCommand"/>
      <value name="CancelProcessInstanceCommand"/>
+     <value name="GetProcessInstanceVariablesCommand"/>
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
