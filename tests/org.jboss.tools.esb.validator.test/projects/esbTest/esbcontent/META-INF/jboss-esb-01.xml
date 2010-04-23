@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<jbossesb parameterReloadSecs="5"
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd">
+ <providers>
+  <fs-provider name="fsProvider">
+   <fs-bus busid="fsChannel"/>
+  </fs-provider>
+ </providers>
+ <services>
+  <service category="c1" description="d1" name="s1">
+   <listeners>
+    <ftp-listener busidref="fsChannel" name="ftpListener"/>
+   </listeners>
+  </service>
+ </services>
+</jbossesb>
