@@ -2,7 +2,7 @@
 <feature
       id="org.jboss.tools.esb.test.feature"
       label="ESB Tests Plugin"
-      version="1.0.0"
+      version="1.3.0.qualifier"
       provider-name="JBoss by RedHat">
 
    <description url="http://www.example.com/description">

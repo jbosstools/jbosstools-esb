@@ -14,5 +14,5 @@ Export-Package: org.jboss.tools.esb.core,
 Require-Bundle: org.jboss.tools.jst.web;visibility:=reexport,
  org.eclipse.ui,
  org.jboss.tools.esb.project.core
-Bundle-Version: 2.0.0
+Bundle-Version: 1.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
