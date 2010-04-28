@@ -48,6 +48,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
+import org.jboss.tools.common.ui.widget.editor.BaseFieldEditor;
 import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.preference.JBossESBUIPlugin;
@@ -197,7 +198,7 @@ public class JBossLibraryListFieldEditor extends BaseFieldEditor {
 	}
 
 	protected void createListView(Composite parent) {
-		listView = new TreeViewer(parent, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		listView = new TreeViewer(parent, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.MULTI);
 		listView.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		listView.setContentProvider(new ITreeContentProvider() {
