@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.tools.common.meta.XAttribute;
+import org.jboss.tools.common.meta.XChild;
 import org.jboss.tools.common.meta.XModelEntity;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.impl.AnyElementObjectImpl;
@@ -120,7 +121,17 @@ public abstract class ListConverter implements IPropertyConverter {
 	}
 
 	protected String getToChildEntity(XModelObject any, XModelEntity parent) {
-		return parent.getChildren()[0].getName();
+		XChild[] cs = parent.getChildren();
+		if(cs.length > 1) {
+			String tag = any.getAttributeValue("tag");
+			if(tag != null) for (XChild c: cs) {
+				XModelEntity e = c.getMetaModel().getEntity(c.getName());
+				if(e != null && tag.equals(e.getXMLSubPath())) {
+					return e.getName();
+				}
+			}
+		}
+		return cs[0].getName();
 	}
 
 	protected boolean isRelevantTag(String tag, XModelObject object) {
