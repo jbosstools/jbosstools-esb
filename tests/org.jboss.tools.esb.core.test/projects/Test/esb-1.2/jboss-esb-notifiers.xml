@@ -21,6 +21,12 @@
        <target class="NotifyQueues">
         <queue jndiName="queue/MincomJMS_reply"/>
        </target>
+       <target auth="true" ccTo="person@somewhereelse.com"
+        class="NotifyEmail" from="person@somewhere.com" host="localhost"
+        msgAttachmentName="attachment" password="smtpPassword"
+        port="8801" sendTo="person@elsewhere.com" subject="theSubject" username="smtpUsername">
+        <attachment>attachThisFile.txt</attachment>
+       </target>
       </NotificationList>
      </property>
     </action>

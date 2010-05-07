@@ -273,6 +273,36 @@ public class ESBModelTest extends TestCase {
 		assertTrue(errorList.toString(), errorList.length() == 0);
 	}
 
+	public void testNotifyEmail() {
+		XModelObject object = getFileObject("esb-1.2", "jboss-esb-notifiers.xml", ESBConstants.ENT_ESB_FILE_120);
+		
+		StringBuffer errorList = new StringBuffer();
+		
+		String notifyEmailPath = "Services/s/Actions/SendResponseNotifier/ok/NotifyEmail";
+		
+		String[][] notifyEmailAttrValues = {
+			{"from", "person@somewhere.com"},
+			{"send to", "person@elsewhere.com"},
+			{"subject", "theSubject"},
+			{"host", "localhost"},
+			{"port", "8801"},
+			{"username", "smtpUsername"},
+			{"password", "smtpPassword"},
+			{"auth", "true"},
+			{"copy to", "person@somewhereelse.com"},
+			{"attachment name", "attachment"},
+		};
+		checkAttributes(object, notifyEmailPath, notifyEmailAttrValues, errorList);
+
+		String attachmentPath = notifyEmailPath + "/attachThisFile.txt";
+		String[][] attachmentAttrValues = {
+				{"file", "attachThisFile.txt"},
+		};
+		checkAttributes(object, attachmentPath, attachmentAttrValues, errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
 	XModelObject getFileObject(String parentPath, String xmlname) {
 		return getFileObject(parentPath, xmlname, ESBConstants.ENT_ESB_FILE_101);
 	}
