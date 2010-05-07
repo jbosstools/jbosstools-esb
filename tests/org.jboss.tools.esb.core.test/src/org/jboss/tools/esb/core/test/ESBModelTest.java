@@ -250,13 +250,39 @@ public class ESBModelTest extends TestCase {
 		assertTrue(errorList.toString(), errorList.length() == 0);
 	}
 
+	public void testNotifiers() {
+		XModelObject object = getFileObject("esb-1.2", "jboss-esb-notifiers.xml", ESBConstants.ENT_ESB_FILE_120);
+		
+		StringBuffer errorList = new StringBuffer();
+		
+		String sendResponseNotifierPath = "Services/s/Actions/SendResponseNotifier";
+		
+		String[][] sendResponseNotifierAttrValues = {
+			{"name", "SendResponseNotifier"},
+			{"ok method", "notifyOK"},
+			{"exception method", "notifyError"},
+		};
+		checkAttributes(object, sendResponseNotifierPath, sendResponseNotifierAttrValues, errorList);
+
+		String errQueuePath = sendResponseNotifierPath + "/err/NotifyQueues/queue#MincomJMS_reply";
+		String[][] errQueueAttrValues = {
+				{"jndi name", "queue/MincomJMS_reply"},
+		};
+		checkAttributes(object, errQueuePath, errQueueAttrValues, errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
 
 	XModelObject getFileObject(String parentPath, String xmlname) {
+		return getFileObject(parentPath, xmlname, ESBConstants.ENT_ESB_FILE_101);
+	}
+
+	XModelObject getFileObject(String parentPath, String xmlname, String entity) {
 		IFile f = project.getFile(new Path(parentPath + "/" + xmlname));
 		assertTrue("Cannot find " + xmlname, f != null);
 		XModelObject object = EclipseResourceUtil.createObjectForResource(f);
 		assertTrue("Cannot create model for " + xmlname, object != null);
-		assertTrue("Wrong entity for " + xmlname, ESBConstants.ENT_ESB_FILE_101.equals(object.getModelEntity().getName()));
+		assertTrue("Wrong entity for " + xmlname, entity.equals(object.getModelEntity().getName()));
 		return object;
 	}
 
