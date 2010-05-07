@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<jbossesb
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd">
+ <globals>
+  <war-security domain="bb" method="DIGEST"/>
+ </globals>
+ <services>
+  <service category="c" description="d" name="s">
+   <actions mep="RequestResponse">
+    <action class="org.jboss.soa.esb.actions.Notifier" name="SendResponseNotifier">
+     <property name="okMethod" value="notifyOK"/>
+     <property name="exceptionMethod" value="notifyError"/>
+     <property name="destinations">
+      <NotificationList type="err">
+       <target class="NotifyQueues">
+        <queue jndiName="queue/MincomJMS_reply"/>
+       </target>
+      </NotificationList>
+      <NotificationList type="ok">
+       <target class="NotifyQueues">
+        <queue jndiName="queue/MincomJMS_reply"/>
+       </target>
+      </NotificationList>
+     </property>
+    </action>
+   </actions>
+  </service>
+ </services>
+</jbossesb>
