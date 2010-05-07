@@ -398,6 +398,11 @@
    <XModelAttribute PROPERTIES="category=general" name="send to" xmlname="sendTo"/>
    <XModelAttribute PROPERTIES="category=advanced" name="copy to" xmlname="ccTo"/>
    <XModelAttribute PROPERTIES="category=general" name="subject" xmlname="subject"/>
+   <XModelAttribute PROPERTIES="category=general" name="host" xmlname="host"/>
+   <XModelAttribute PROPERTIES="category=general" name="port" xmlname="port"/>
+   <XModelAttribute PROPERTIES="category=general" name="username" xmlname="username"/>
+   <XModelAttribute PROPERTIES="category=general" name="password" xmlname="password"/>
+   <XModelAttribute PROPERTIES="category=general" name="auth" xmlname="auth"/>
    <XModelAttribute PROPERTIES="category=advanced" name="message" xmlname="message"/>
    <XModelAttribute PROPERTIES="category=advanced"
     name="attachment name" xmlname="msgAttachmentName"/>
