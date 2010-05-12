@@ -15,7 +15,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.jboss.tools.test.util.TestProjectProvider;
+import org.jboss.tools.common.test.util.TestProjectProvider;
 
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.util.EclipseResourceUtil;
@@ -301,6 +301,18 @@ public class ESBModelTest extends TestCase {
 		checkAttributes(object, attachmentPath, attachmentAttrValues, errorList);
 
 		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
+	public void testNonUniqueProviders() {
+		XModelObject object = getFileObject("esb-1.2", "jboss-esb-uninique.xml", ESBConstants.ENT_ESB_FILE_120);
+		XModelObject[] os = object.getChildByPath("Providers").getChildren();
+		assertEquals(2, os.length);
+		
+		for (int i = 0; i < os.length; i++) {
+			String name = os[i].getAttributeValue("name");
+			assertEquals("http", name);
+		}
+
 	}
 
 	XModelObject getFileObject(String parentPath, String xmlname) {
