@@ -151,7 +151,7 @@
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.as.runtime.component"
-               version="4.2,5.0,5.1">
+               version="4.2,5.0,5.1,6.0">
          </runtime-component>
       </supported>
       <supported>

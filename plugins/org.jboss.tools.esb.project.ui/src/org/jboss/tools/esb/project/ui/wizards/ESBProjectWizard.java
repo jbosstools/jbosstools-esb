@@ -11,6 +11,7 @@
 package org.jboss.tools.esb.project.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -31,7 +32,11 @@ import org.eclipse.wst.common.frameworks.datamodel.DataModelFactory;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectTemplate;
+import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectEvent;
+import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectListener;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
 import org.eclipse.wst.server.core.ServerCore;
 import org.eclipse.wst.web.ui.internal.wizards.NewProjectDataModelFacetWizard;
@@ -48,6 +53,13 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 
 	public ESBProjectWizard() {
 		super();
+		Set<IProjectFacetVersion> current = getFacetedProjectWorkingCopy().getProjectFacets();
+		getFacetedProjectWorkingCopy().addListener(new IFacetedProjectListener(){
+			public void handleEvent(IFacetedProjectEvent event) {
+				System.out.println("runtime changed" + event.getWorkingCopy().getPrimaryRuntime().getName());
+			}}, IFacetedProjectEvent.Type.PRIMARY_RUNTIME_CHANGED);
+		IRuntime rt = getFacetedProjectWorkingCopy().getPrimaryRuntime();
+		getFacetedProjectWorkingCopy().setProjectFacets(current);
 		setWindowTitle(JBossESBUIMessages.ESBProjectWizard_Title);
 		setDefaultPageImageDescriptor(ESBSharedImages.getImageDescriptor(ESBSharedImages.WIZARD_NEW_PROJECT));
 	}
@@ -63,6 +75,14 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 	protected IDataModel createDataModel() {
 		return DataModelFactory.createDataModel(new JBossESBFacetProjectCreationDataModelProvider());
 	}
+
+    private IFacetedProjectWorkingCopy fpjwc;
+    
+    @Override
+    public void setFacetedProjectWorkingCopy( final IFacetedProjectWorkingCopy fpjwc ) {
+		super.setFacetedProjectWorkingCopy(fpjwc);
+        this.fpjwc = fpjwc;
+    }
 
 	@Override
 	protected IWizardPage createFirstPage() {
