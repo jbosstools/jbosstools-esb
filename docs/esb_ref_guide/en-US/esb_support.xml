@@ -144,9 +144,36 @@
 
 				<para> Clicking <emphasis>
                                 <property>Next</property>
-                        </emphasis> brings you to the wizard page where you can select a ESB project example from the example list.
-                        Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
-                <para>Here is a list of ready examples available:</para>
+				</emphasis> brings you to the wizard page where you can select a ESB project example from the example list.</para>
+                
+                                <figure>
+                                        <title>Project Example Wizard</title>
+                                        <mediaobject>
+                                                <imageobject>
+                                                        <imagedata fileref="images/esb_project/05a_esb_project_example.png"/>
+                                                </imageobject>
+                                        </mediaobject>
+                                </figure>
+                <note>
+                        <title>Note:</title>
+                        <para>Under the <property>Projects</property>
+                                section you can find two categories related to ESB:</para>
+         
+                                <itemizedlist>
+                                                <listitem><para>ESB</para></listitem>
+                                                <listitem><para>ESB for SOA-P 5.0</para></listitem>
+                                </itemizedlist>
+   
+                        
+                        <para>It means that if you use a runtime pointed to a SOA-P 5.0, you should download the examples from
+                                the <emphasis>
+                                        <property>ESB for SOA-P 5.0</property>
+                                </emphasis> category in order to avoid the incompatibility errors.
+                        </para>
+                </note>
+                
+                <para>Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
+                <para>Here is a list of ready examples available in both categories (ESB and ESB for SOA-P 5.0):</para>
               
                 <itemizedlist>
                         
