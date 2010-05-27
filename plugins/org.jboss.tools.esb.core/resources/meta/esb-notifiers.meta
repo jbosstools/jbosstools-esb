@@ -774,7 +774,8 @@
      <XActionItem HandlerClassName="%DefaultReplaceUnique%"
       ICON="action.empty"
       PROPERTIES="child=NotifyEmail;significanceMessageClass=%Replace%"
-      displayName="Notify Email..." kind="action" name="CreateTargetNotifyEmail">
+      WizardClassName="%Default%" displayName="Notify Email..."
+      kind="action" name="CreateTargetNotifyEmail">
       <EntityData EntityName="ESBPreTargetNotifyEmail">
        <AttributeData AttributeName="from"/>
        <AttributeData AttributeName="send to"/>
