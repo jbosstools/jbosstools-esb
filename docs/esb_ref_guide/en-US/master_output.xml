@@ -2,9 +2,9 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
 "http://www.docbook.org/xml/4.3/docbookx.dtd"
 
-[<!ENTITY introduction SYSTEM "modules/introduction.xml">
-<!ENTITY esb_support SYSTEM "modules/esb_support.xml">
-<!ENTITY esb_editor SYSTEM "modules/esb_editor.xml">
+[<!ENTITY introduction SYSTEM "introduction.xml">
+<!ENTITY esb_support SYSTEM "esb_support.xml">
+<!ENTITY esb_editor SYSTEM "esb_editor.xml">
 
 <!ENTITY seamlink "../../seam/html_single/index.html">
 <!ENTITY aslink "../../as/html_single/index.html">
@@ -44,7 +44,7 @@
             <holder>JBoss by Red Hat</holder>
         </copyright>
         <releaseinfo><diffmk:wrapper diffmk:change="changed">
-            Version: 1.3.0.GA
+            Version: 1.3.1.GA
         </diffmk:wrapper></releaseinfo>
     
 <abstract>
@@ -58,7 +58,7 @@
     <toc></toc>  
     
 	
-<chapter id="introduction" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en/modules/introduction.xml">
+<chapter id="introduction" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en-US/introduction.xml">
     <?dbhtml filename="introduction.html"?>
 
     <chapterinfo>
@@ -176,7 +176,7 @@
 </chapter>
 
     
-<chapter id="esb_support" role="updated" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en/modules/esb_support.xml">
+<chapter id="esb_support" role="updated" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en-US/esb_support.xml">
         <?dbhtml filename="esb_support.html"?>
         <chapterinfo>
                 <keywordset>
@@ -202,7 +202,7 @@
                 <para>ESB Tools come as one module of JBoss Tools project. Since ESB Tools have a
                         dependence on other JBoss Tools modules we recommend you to install a bundle
                         of all <ulink url="http://labs.jboss.com/tools/download.html">JBoss
-                                Tools plug-ins</ulink>. You can find all  necessary installation instructions on JBoss Wiki in the <ulink url="http://labs.jboss.com/wiki/InstallingJBossTools">InstallingJBossTools</ulink> section.</para>
+                                Tools plug-ins</ulink>. You can find all  necessary installation instructions on JBoss Wiki in the <ulink url="http://www.jboss.org/tools/download/installation">InstallingJBossTools</ulink> section.</para>
         </section>
 
 		 <section>
@@ -241,14 +241,14 @@
                                 </imageobject>
                         </mediaobject>
                 </figure>
-		         <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">By clicking </diffmk:wrapper><emphasis diffmk:change="added"><diffmk:wrapper diffmk:change="added">Modify</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> button you can open </diffmk:wrapper><emphasis diffmk:change="added"><diffmk:wrapper diffmk:change="added">Project Facets Wizard</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> page,where you can select 
+		         <para>By clicking <emphasis>Modify</emphasis> button you can open <emphasis>Project Facets Wizard</emphasis> page,where you can select 
 		                 facets that should be enabled for this project.
-		                 On the </diffmk:wrapper><emphasis diffmk:change="added"><diffmk:wrapper diffmk:change="added">Project Facets Wizard</diffmk:wrapper></emphasis><diffmk:wrapper diffmk:change="added"> page you can also configure runtime for the application</diffmk:wrapper></para>
-		         <figure diffmk:change="added" float="0">
-		                 <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Project Facets Wizard</diffmk:wrapper></title>
-		                 <mediaobject diffmk:change="added">
-		                         <imageobject diffmk:change="added">
-		                                 <imagedata diffmk:change="added" fileref="images/esb_project/02a_create_esb_project.png"></imagedata>
+		                 On the <emphasis>Project Facets Wizard</emphasis> page you can also configure runtime for the application</para>
+		         <figure float="0">
+		                 <title>Project Facets Wizard</title>
+		                 <mediaobject>
+		                         <imageobject>
+		                                 <imagedata fileref="images/esb_project/02a_create_esb_project.png"></imagedata>
 		                         </imageobject>
 		                 </mediaobject>
 		         </figure>
@@ -267,9 +267,9 @@
                          </para>
 		         <para> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences. If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.                         
                          </para>           
-		         <para><diffmk:wrapper diffmk:change="added">3. Choose ESB Config Vertion. From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.</diffmk:wrapper></para>	         
-		         <note diffmk:change="added"><title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Note:</diffmk:wrapper></title>
-		                 <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">If you use ESB 4.7 you should select jbossesb-1.2.0.xsd.</diffmk:wrapper></para></note>        
+		         <para>3. Choose ESB Config Vertion. From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.</para>	         
+		         <note><title>Note:</title>
+		                 <para>If you use ESB 4.7 you should select jbossesb-1.2.0.xsd.</para></note>        
                 <figure float="0">
                         <title>Install ESB facet step</title>
                         <mediaobject>
@@ -320,13 +320,40 @@
 
 				<para> Clicking <emphasis>
                                 <property moreinfo="none">Next</property>
-                        </emphasis> brings you to the wizard page where you can select a ESB project example from the example list.
-                        Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
-                <para>Here is a list of ready examples available:</para>
+				</emphasis><diffmk:wrapper diffmk:change="added"> brings you to the wizard page where you can select a ESB project example from the example list.</diffmk:wrapper></para>
+                
+                                <figure diffmk:change="added" float="0">
+                                        <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Project Example Wizard</diffmk:wrapper></title>
+                                        <mediaobject diffmk:change="added">
+                                                <imageobject diffmk:change="added">
+                                                        <imagedata diffmk:change="added" fileref="images/esb_project/05a_esb_project_example.png"></imagedata>
+                                                </imageobject>
+                                        </mediaobject>
+                                </figure>
+                <note diffmk:change="added">
+                        <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Note:</diffmk:wrapper></title>
+                        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Under the </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Projects</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added">
+                                section you can find two categories related to ESB:</diffmk:wrapper></para>
+         
+                                <itemizedlist diffmk:change="added">
+                                                <listitem diffmk:change="added"><para diffmk:change="added"><diffmk:wrapper diffmk:change="added">ESB</diffmk:wrapper></para></listitem>
+                                                <listitem diffmk:change="added"><para diffmk:change="added"><diffmk:wrapper diffmk:change="added">ESB for SOA-P 5.0</diffmk:wrapper></para></listitem>
+                                </itemizedlist>
+   
+                        
+                        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">It means that if you use a runtime pointed to a SOA-P 5.0, you should download the examples from
+                                the </diffmk:wrapper><emphasis diffmk:change="added">
+                                        <property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">ESB for SOA-P 5.0</diffmk:wrapper></property>
+                                </emphasis><diffmk:wrapper diffmk:change="added"> category in order to avoid the incompatibility errors.
+                        </diffmk:wrapper></para>
+                </note>
+                
+                <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</diffmk:wrapper></para>
+                <para><diffmk:wrapper diffmk:change="changed">Here is a list of ready examples available in both categories (ESB and ESB for SOA-P 5.0):</diffmk:wrapper></para>
               
                 <itemizedlist>
                         
-                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Example</emphasis> - demonstrates the minimal files necessary to make a basic ESB component execute as well as to prove that the ESB os properly configured.</para></listitem>
+                        <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Example</emphasis><diffmk:wrapper diffmk:change="changed"> - demonstrates the minimal files necessary to make a basic ESB component execute as well as to prove that the ESB is properly configured.</diffmk:wrapper></para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB HelloWorld Action Example</emphasis> - demonstrates the use of multiple action invocations from a single configuration. You can use a single Action class and make multiple method calls or use multiple Action classes. </para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB HelloWorld File Action Example</emphasis> - demonstrates using the File gateway feature of the JBoss ESB. Files that are found in a particular directory with a particular extension are sent to a JMS queue with actions for processing.</para></listitem>
                         <listitem><para><emphasis role="bold">JBoss ESB Web Service consumer1 Example</emphasis> - demonstrates how to consume a 181 Web Service in an ESB action.</para></listitem>
@@ -371,9 +398,9 @@
                 <title>Deploying a ESB Project</title>
                 <para>In this chapter you will see how to deploy a ESB project using the WTP deployment framework.</para>
 
-                <para>Before deploying the project, open the Servers view by selecting <emphasis><property moreinfo="none">Window &gt; Show View &gt; Other &gt; 
-                Server &gt; Servers</property></emphasis>, 
-                create a JBoss Server in the Servers view and start it, and then right click the created JBoss server, 
+                <para><diffmk:wrapper diffmk:change="changed">Before deploying the project, open the Servers View by selecting </diffmk:wrapper><emphasis><property moreinfo="none"><diffmk:wrapper diffmk:change="changed">Window &gt; Show View &gt; Other &gt; 
+                Server &gt; Servers</diffmk:wrapper></property></emphasis>, 
+                create a JBoss Server in the Server view and start it, and then right click the created JBoss server, 
                 select <emphasis><property moreinfo="none"> </property> Add and Remove Projects</emphasis>, 
                 and add the ESB projects you want to deploy from the left side to the right side in the opened dialog. </para>
 
@@ -390,7 +417,7 @@
                 You also can drag the ESB project from the Project View to the server.</para>
                 
                  <figure float="0">
-                        <title>Servers view</title>
+                        <title><diffmk:wrapper diffmk:change="changed">Servers View</diffmk:wrapper></title>
                         <mediaobject>
                                 <imageobject>
                                         <imagedata fileref="images/esb_project/09_esb_runtime_new.png"></imagedata>
@@ -448,7 +475,7 @@
  		        
         </section>
 		        
-        <section>
+        <section id="creating_esb_file">
                 <title>Creating a ESB File</title>
                 <para>In this chapter we suggest a step-by-step walk-through of creating your own
                         simple file. Let's try to organize a new ESB file.</para>
@@ -479,9 +506,9 @@
                         version.</para>
                 
                <note><title>Note:</title>
-                       <para><diffmk:wrapper diffmk:change="changed">From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.
+                       <para>From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.
                              If you use ESB 4.7 you should select jbossesb-1.2.0.xsd.
-                       </diffmk:wrapper></para>
+                       </para>
                </note>
                 <figure float="0">
                         <title>Folder, Name and Version for ESB file</title>
@@ -503,8 +530,34 @@
                         file.</para>
 
         </section>
+        <section diffmk:change="added" id="creating_esb_action">
+                <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Creating a ESB Action</diffmk:wrapper></title>
+                <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">From this chapter you will find out how to create  a </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">ESB Action Java File</diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added">.</diffmk:wrapper></para>
+                <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">At first you need to open a </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">ESB</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> or simple </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Java</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> project. Then you should select </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">File &gt; New&gt;Other</diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added"> in the main menu or from the context project menu. Then click  </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">ESB &gt; ESB Action</diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added"> in the </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">New </diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added"> dialog.</diffmk:wrapper></para>
+                <figure diffmk:change="added" float="0">
+                        <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Select a wizard - ESB Action</diffmk:wrapper></title>
+                        <mediaobject diffmk:change="added">
+                                <imageobject diffmk:change="added">
+                                        <imagedata diffmk:change="added" fileref="images/esb_support/03_create_esb.png"></imagedata>
+                                </imageobject>
+                                
+                        </mediaobject>
+                </figure>
+                <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">After that click </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Next</diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added"> and you will be brought to the </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">New ESB Action</diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added"> wizard. In this wizard the class name should be specified, also you can set a package or add a interface as for any Java class.</diffmk:wrapper></para>
+                <figure diffmk:change="added" float="0">
+                        <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">New ESB Action wizard</diffmk:wrapper></title>
+                        <mediaobject diffmk:change="added">
+                                <imageobject diffmk:change="added">
+                                        <imagedata diffmk:change="added" fileref="images/esb_support/04_create_esb.png"></imagedata>
+                                </imageobject>
+                                
+                        </mediaobject>
+                </figure>
+                <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">As a result, the </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">ESB Action Java File</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> will be created in the selected package and it will have </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">org.jboss.soa.esb.actions.AbstractActionPipelineProcessor </diffmk:wrapper></property><diffmk:wrapper diffmk:change="added">as superclass. </diffmk:wrapper></para>
+                <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Clicking on </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Finish</diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added"> will generate the </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">ESB Action</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> class. Also this class will become available in </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">ESB Editor</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> wizards.</diffmk:wrapper></para>
+        </section>
         
-         <section role="updated">
+        <section role="updated">
                 <title>Configuring ESB Runtime in Preferences</title>
                 <para>In this chapter you will know how to predefine a JBoss ESB runtime on the Preferences page.</para>
 
@@ -672,20 +725,8 @@
         
         
 </section>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-</chapter>
-
-    
-<chapter id="esb_editor" role="updated" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en/modules/esb_editor.xml" xreflabel="esb_editor">
+ </chapter>
+<chapter id="esb_editor" role="updated" xml:base="file:///home/vchukhutsina/repos/ochik_jboss/esb/docs/esb_ref_guide/en-US/esb_editor.xml" xreflabel="esb_editor">
     <?dbhtml filename="esbEditor.html"?>
     <chapterinfo>
         <keywordset>
@@ -697,8 +738,8 @@
 
     <title>ESB Editor</title>
 
-    <para> ESB editor has lots of useful features, they are described in details in this chapter. In
-        addition you'll get to know with how <property moreinfo="none">ESB Editor</property> uses combined
+    <para><diffmk:wrapper diffmk:change="changed"> ESB editor has lots of useful features, they are described in details in this chapter. In
+        addition you'll get to know how </diffmk:wrapper><property moreinfo="none">ESB Editor</property> uses combined
         visual and source editing of esb files.</para>
 
     <section id="esb_file" role="updated">
@@ -731,13 +772,13 @@
                 </imageobject>
             </mediaobject>
         </figure>
-        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Now when editing ESB actions which refer to other files (Drools, Groovy, Smooks, etc.),
-            the label for the field turns into a link to launch the editor associated with that type of file.</diffmk:wrapper></para>        
-        <figure diffmk:change="added" float="0">
-            <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Property Link to the Associated Editor</diffmk:wrapper></title>
-            <mediaobject diffmk:change="added">
-                <imageobject diffmk:change="added">
-                    <imagedata diffmk:change="added" fileref="images/esb_editor/01b_esb_tree_view_and_links.png"></imagedata>
+        <para>Now when editing ESB actions which refer to other files (Drools, Groovy, Smooks, etc.),
+            the label for the field turns into a link to launch the editor associated with that type of file.</para>        
+        <figure float="0">
+            <title>Property Link to the Associated Editor</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/esb_editor/01b_esb_tree_view_and_links.png"></imagedata>
                 </imageobject>
             </mediaobject>
         </figure>
@@ -826,7 +867,7 @@
                 <property moreinfo="none">New &gt; Custom Action</property>. </emphasis></para>
 
         <figure float="0">
-            <title>Adding New Action in the Tree View</title>
+            <title><diffmk:wrapper diffmk:change="changed">Adding New Custom Action in the Tree View</diffmk:wrapper></title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/11_esb_editor.png"></imagedata>
@@ -838,7 +879,7 @@
                 <property moreinfo="none">Add...</property>
             </emphasis> button in the <property moreinfo="none">Form editor</property> on the left.</para>
         <figure float="0">
-            <title>Adding New Action in the Form Editor</title>
+            <title><diffmk:wrapper diffmk:change="changed">Adding New Custom Action in the Form Editor</diffmk:wrapper></title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/12_esb_editor.png"></imagedata>
@@ -848,22 +889,49 @@
     	
     	<note>
     		<title>Note:</title>
-    	    <para><diffmk:wrapper diffmk:change="added">Some new components are available to support ESB 4.7,such as:
+    	    <para>Some new components are available to support ESB 4.7,such as:
     	        new actions (XsltAction, PersistAction, BpmProcessor, ScriptingAction),
     	        new processors (EJBProcessor), new routers (HttpRouter, JMSRouter, EmailRouter).
-      	    </diffmk:wrapper></para>
+      	    </para>
     	</note>
+        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Then you will see </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Add Action</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> wizard. There is a need to specify </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Action name</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added">  and </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Action Java class</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added">.  </diffmk:wrapper></para>
+        <figure diffmk:change="added" float="0">
+            <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Add Action Wizard</diffmk:wrapper></title>
+            <mediaobject diffmk:change="added">
+                <imageobject diffmk:change="added">
+                    <imagedata diffmk:change="added" fileref="images/esb_editor/12a_esb_editor.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">To get a help with finding a proper class you can select </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Browse</diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added"> to open </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Select class</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> dialog.</diffmk:wrapper></para>
+        <figure diffmk:change="added" float="0">
+            <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Select class dialog</diffmk:wrapper></title>
+            <mediaobject diffmk:change="added">
+                <imageobject diffmk:change="added">
+                    <imagedata diffmk:change="added" fileref="images/esb_editor/12b_esb_editor.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para diffmk:change="added"><diffmk:wrapper diffmk:change="added">Moreover it's possible to type a </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Process name</diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> or select it with </diffmk:wrapper><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Edit Process </diffmk:wrapper></property><diffmk:wrapper diffmk:change="added"> dialog  which is called out by clicking </diffmk:wrapper><emphasis diffmk:change="added"><property diffmk:change="added" moreinfo="none"><diffmk:wrapper diffmk:change="added">Browse</diffmk:wrapper></property></emphasis><diffmk:wrapper diffmk:change="added">. </diffmk:wrapper></para>
+        <figure diffmk:change="added" float="0">
+            <title diffmk:change="added"><diffmk:wrapper diffmk:change="added">Edit Process dialog</diffmk:wrapper></title>
+            <mediaobject diffmk:change="added">
+                <imageobject diffmk:change="added">
+                    <imagedata diffmk:change="added" fileref="images/esb_editor/12c_esb_editor.png"></imagedata>
+                </imageobject>
+            </mediaobject>
+        </figure>
 
-        <para>As you can see on the bath figures above, the context menu will also prompt you to
-            insert one of the Actions that are supplied out-of-the-box with <property moreinfo="none">JBoss
-            ESB</property>. After choosing one an appeared <property moreinfo="none">New Action wizard</property>
+        <para><diffmk:wrapper diffmk:change="changed">As you can see on the both figures above, the context menu will also prompt you to
+            insert one of the Actions that are supplied out-of-the-box with </diffmk:wrapper><property moreinfo="none"><diffmk:wrapper diffmk:change="changed">JBoss
+                ESB</diffmk:wrapper></property>. After choosing one an appeared <property moreinfo="none"><diffmk:wrapper diffmk:change="changed">New Pre-Packed Action </diffmk:wrapper></property><diffmk:wrapper diffmk:change="changed">wizard
             will ask you to fill out a name field and other fields specific for each Action
-            property. For example, for <emphasis>
+            property. For example, for </diffmk:wrapper><emphasis>
                 <property moreinfo="none">Content Based Router</property>
             </emphasis> Action the wizard looks as follows:</para>
 
         <figure float="0">
-            <title>New Action Wizard</title>
+            <title><diffmk:wrapper diffmk:change="changed">Add Pre-Packed Action Wizard</diffmk:wrapper></title>
             <mediaobject>
                 <imageobject>
                     <imagedata fileref="images/esb_editor/13_esb_editor.png"></imagedata>
@@ -1040,13 +1108,10 @@
             <para>In summary, this reference supplies you with all necessary information on the
             functionality that JBoss ESB Editor provides for work with JBoss ESB.</para>
             
-            <para>We hope, this guide helped you to get started with the JBoss ESB Tools.
-                Besides, for additional information you are welcome on 
-                <ulink url="http://www.jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=201">JBoss forum</ulink>.</para>
+            <para>We hope, this guide helped you to get started with the JBoss ESB Tools. Besides, for additional information you are welcome on <ulink
+                url="http://www.jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=201">JBoss forum</ulink>.</para>
             
         </section>
     </section>
 </chapter>
- 
-
 </book>
