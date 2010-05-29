@@ -3,8 +3,9 @@
 "http://www.docbook.org/xml/4.3/docbookx.dtd"
 
 [<!ENTITY introduction SYSTEM "introduction.xml">
-<!ENTITY esb_support SYSTEM "esb_support.xml">
-<!ENTITY esb_editor SYSTEM "esb_editor.xml">
+<!ENTITY tasks SYSTEM "tasks.xml">
+<!ENTITY reference SYSTEM "reference.xml">
+<!ENTITY summary SYSTEM "summary.xml">
 
 <!ENTITY seamlink "../../seam/html_single/index.html">
 <!ENTITY aslink "../../as/html_single/index.html">
@@ -22,7 +23,7 @@
 <book>
     
     <bookinfo>
-        <title>ESB Tools Reference Guide</title>
+        <title>JBoss ESB Tools User Guide</title>
         
         <corpauthor>
             <inlinemediaobject>
@@ -59,7 +60,8 @@
     <toc/>  
     
 	&introduction;
-    &esb_support;
-    &esb_editor; 
+    &tasks;
+    &reference; 
+    &summary;
 
 </book>    
