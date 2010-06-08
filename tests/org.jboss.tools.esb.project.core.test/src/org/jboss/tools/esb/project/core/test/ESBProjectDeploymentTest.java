@@ -126,7 +126,7 @@ public class ESBProjectDeploymentTest extends TestCase {
 
 	public IProject createESBProject(String prjName) throws CoreException {
 		TestProjectProvider provider = new TestProjectProvider(BUNDLE,
-				"/projects/" + prjName, prjName, true);
+				null, prjName, true);
 		IProject prj = provider.getProject();
 		IFacetedProject ifp = ProjectFacetsManager.create(prj);
 
@@ -166,7 +166,7 @@ public class ESBProjectDeploymentTest extends TestCase {
 	public void testUserCustomizedESBRuntime() throws Exception{
 //		project = createESBProject("esbTestProject_2"); 
 		TestProjectProvider provider = new TestProjectProvider(BUNDLE,
-				"/projects/esbTestProject_2" , "esbTestProject_2", true);
+				null , "esbTestProject_2", true);
 		project = provider.getProject();
 
 		IDataModel model = DataModelFactory.createDataModel(new JBossESBFacetDataModelProvider());
