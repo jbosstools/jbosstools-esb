@@ -76,9 +76,9 @@
                 <row>
                     <entry><para>ESB Editor</para></entry>
                     <entry><para>JBoss ESB tooling has powerful editor features including syntax validation, support for XML Schema and other.</para></entry>
-                    <entry>
-                        <link linkend="esb_editor">ESB editor</link>
-                    </entry>
+               <!--     <entry>
+                      <link linkend="esb_editor">ESB editor</link>
+                    </entry> -->
                 </row>
                 
             </tbody>
