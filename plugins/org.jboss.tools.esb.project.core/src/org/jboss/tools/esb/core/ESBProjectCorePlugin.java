@@ -14,6 +14,8 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.wst.common.componentcore.internal.util.VirtualReferenceUtilities;
+import org.jboss.ide.eclipse.as.core.publishers.PublishUtil;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.osgi.framework.BundleContext;
 
@@ -42,6 +44,8 @@ public class ESBProjectCorePlugin extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		JBossRuntimeManager.loadParsers();
+		VirtualReferenceUtilities.INSTANCE.addDefaultExtension(ESBProjectConstant.ESB_PROJECT_FACET, ESBProjectConstant.ESB_EXTENSION);
+		PublishUtil.addModuleCoreFactory("org.jboss.tools.esb.project.core.moduleFactory");
 	}
 
 	/*
