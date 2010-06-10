@@ -429,7 +429,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Name2, ""); //$NON-NLS-1$ 
 
 		IFieldEditor version = createComboEditor(SRT_VERSION,
-				JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Version, getESBFacetVersions(), ""); //$NON-NLS-1$ 
+				JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Version2, getESBFacetVersions(), ""); //$NON-NLS-1$ 
 		
 //		IFieldEditor configuration = createComboEditor(SRT_CONFIGURATION,
 //				JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Configuration, getESBFacetVersions(), ""); //$NON-NLS-1$
