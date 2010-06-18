@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.jboss.ide.eclipse.as.core.util.IJBossRuntimeResourceConstants;
 
 public class ESBRuntimeResolver_47 extends AbstractESBRuntimeResolver implements
 		IESBRuntimeResolver {
@@ -40,11 +41,15 @@ public class ESBRuntimeResolver_47 extends AbstractESBRuntimeResolver implements
 	public List<IPath> getJarDirectories(String runtimeLocation, String configuration) {
 		List<IPath> directories = super.getJarDirectories(runtimeLocation, configuration);
 		IPath rtHome = new Path(runtimeLocation);
-		IPath soapDeployPath = rtHome.append(SOAP_AS_LOCATION).append("server").append("default").append(
-		"deployers").append("esb.deployer").append("lib");
+		IPath soapDeployPath = rtHome.append(SOAP_AS_LOCATION)
+			.append(IJBossRuntimeResourceConstants.SERVER).append(configuration)
+			.append(IJBossRuntimeResourceConstants.DEPLOYERS)
+			.append("esb.deployer").append("lib");
 		
-		IPath deployPath = rtHome.append("server").append("default").append(
-				"deployers").append("esb.deployer").append("lib");
+		IPath deployPath = rtHome
+			.append(IJBossRuntimeResourceConstants.SERVER).append(configuration)
+			.append(IJBossRuntimeResourceConstants.DEPLOYERS)
+			.append("esb.deployer").append("lib");
 		directories.add(soapDeployPath);
 		directories.add(deployPath);
 		
