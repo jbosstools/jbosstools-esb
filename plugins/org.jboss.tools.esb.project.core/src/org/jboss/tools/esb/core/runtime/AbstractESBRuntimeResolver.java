@@ -16,6 +16,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.jboss.ide.eclipse.as.core.server.IJBossServerConstants;
+import org.jboss.ide.eclipse.as.core.util.IJBossRuntimeResourceConstants;
 
 public abstract class AbstractESBRuntimeResolver implements IESBRuntimeResolver {
 
@@ -27,16 +29,17 @@ public abstract class AbstractESBRuntimeResolver implements IESBRuntimeResolver 
 	public List<IPath> getJarDirectories(String runtimeLocation, String configuration) {
 		
 		if("".equals(configuration)){
-			configuration = "default";
+			configuration = IJBossRuntimeResourceConstants.DEFAULT_CONFIGURATION;
 		}
 		
 		List<IPath> directories = new ArrayList<IPath>();
 		
 		IPath rtHome = new Path(runtimeLocation);
-		IPath soapDeployPath = rtHome.append(SOAP_AS_LOCATION).append("server").append("default").append(
-		"deploy");
-		IPath deployPath = rtHome.append("server").append(configuration).append(
-				"deploy");
+		IPath soapDeployPath = rtHome.append(SOAP_AS_LOCATION)
+			.append(IJBossRuntimeResourceConstants.SERVER).append(configuration)
+			.append(IJBossRuntimeResourceConstants.DEPLOY);
+		IPath deployPath = rtHome.append(IJBossRuntimeResourceConstants.SERVER)
+			.append(configuration).append(IJBossRuntimeResourceConstants.DEPLOY);
 
 		IPath esbPath = deployPath.append(JBOSSESB_ESB);
 		IPath sarPath = deployPath.append(JBOSSESB_SAR);
