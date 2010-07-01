@@ -1,6 +1,7 @@
 package org.jboss.tools.esb.project.core.test;
 
 import java.io.File;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,24 +59,60 @@ import org.jboss.tools.esb.core.runtime.JBossRuntimeClassPathInitializer;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 
 public class ESBProjectDeploymentTest extends TestCase {
+	private static final String SOAP_HOME_5_0_PROP_NAME = "jbosstools.test.soap.home.5.0";
+
+	private static final String SOAP_HOME_4_3_PROP_NAME = "jbosstools.test.soap.home.4.3";
+
+	public static final String BOSS_HOME_5_1_PROP_NAME = "jbosstools.test.jboss.home.5.1";
+
+	public static final String JBOSS_HOME_5_0_PROP_NAME = "jbosstools.test.jboss.home.5.0";
+
+	public static final String JBOSS_HOME_4_2_PROP_NAME = "jbosstools.test.jboss.home.4.2";
+
 	public static final IVMInstall VM_INSTALL = JavaRuntime
 			.getDefaultVMInstall();
 
-	public static final String JBOSS_AS_42_HOME = System.getProperty(
-			"jbosstools.test.jboss.home.4.2",
-			"/home/fugang/jboss-all/jboss-soa-p.5.0.0/jboss-as");
-	public static final String JBOSS_AS_50_HOME = System.getProperty(
-			"jbosstools.test.jboss.home.5.0",
-			"/home/fugang/jboss-all/jboss-soa-p.5.0.0/jboss-as");
-	public static final String JBOSS_AS_51_HOME = System.getProperty(
-			"jbosstools.test.jboss.home.5.1",
-			"/home/fugang/jboss-all/jboss-5.1.0.GA");
-	public static final String SERVER_SOAP43_HOME = System.getProperty(
-			"jbosstools.test.soap.home.4.3",
-			"/home/fugang/jboss-all/jboss-soa-p.5.0.0") + "//jboss-as";
-	public static final String SERVER_SOAP50_HOME = System.getProperty(
-			"jbosstools.test.soap.home.5.0",
-			"/home/fugang/jboss-all/jboss-soa-p.5.0.0") + "//jboss-as";
+		public static final String JBOSS_AS_42_HOME;
+		public static final String JBOSS_AS_50_HOME;
+		public static final String JBOSS_AS_51_HOME;
+		public static final String SERVER_SOAP43_HOME;
+		public static final String SERVER_SOAP50_HOME;
+	
+
+	static {
+		String message = "Use -D{0}=path/to/server to define system property value in command line or " 
+			           + "in tab Arguments of Eclipse Application Launch Configuration dialog";
+		String syspropValue = System.getProperty(JBOSS_HOME_4_2_PROP_NAME);
+		if(syspropValue!=null) {
+			JBOSS_AS_42_HOME = new File(System.getProperty(JBOSS_HOME_4_2_PROP_NAME)).getAbsolutePath();
+		} else {
+			throw new IllegalArgumentException(MessageFormat.format(message, JBOSS_HOME_4_2_PROP_NAME));
+		}
+		syspropValue = System.getProperty(JBOSS_HOME_5_0_PROP_NAME);
+		if(syspropValue!=null) {
+			JBOSS_AS_50_HOME =  new File(System.getProperty(JBOSS_HOME_5_0_PROP_NAME)).getAbsolutePath();
+		} else {
+			throw new IllegalArgumentException(MessageFormat.format(message, JBOSS_HOME_5_0_PROP_NAME));
+		}
+		syspropValue = System.getProperty(BOSS_HOME_5_1_PROP_NAME);
+		if(syspropValue!=null) {
+			JBOSS_AS_51_HOME =  new File(System.getProperty(BOSS_HOME_5_1_PROP_NAME)).getAbsolutePath();
+		} else {
+			throw new IllegalArgumentException(MessageFormat.format(message, BOSS_HOME_5_1_PROP_NAME));
+		}
+		syspropValue = System.getProperty(SOAP_HOME_4_3_PROP_NAME);
+		if(syspropValue!=null) {
+			SERVER_SOAP43_HOME =  new File(System.getProperty(SOAP_HOME_4_3_PROP_NAME) + "//jboss-as").getAbsolutePath();
+		} else {
+			throw new IllegalArgumentException(MessageFormat.format(message, SOAP_HOME_4_3_PROP_NAME));
+		}
+		syspropValue = System.getProperty(SOAP_HOME_5_0_PROP_NAME);
+		if(syspropValue!=null) {
+			SERVER_SOAP50_HOME =  new File(System.getProperty(SOAP_HOME_5_0_PROP_NAME) + "//jboss-as").getAbsolutePath();
+		} else {
+			throw new IllegalArgumentException(MessageFormat.format(message, SOAP_HOME_5_0_PROP_NAME));
+		}
+	}
 	
 	static String userCustomizedESBRuntime = "UserCustomizedESBRuntime";
 	
