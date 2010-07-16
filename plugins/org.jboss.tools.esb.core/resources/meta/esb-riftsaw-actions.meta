@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE XModelEntityGroup PUBLIC "-//Red Hat, Inc.//DTD Meta 1.0//EN"
+                                   "meta.dtd">
+<XModelEntityGroup>
+ <VERSION DEPENDS="Model:1.0" MODULE="ESB" VERSION="1.0"/>
+ <MAPPINGS>
+  <MAPPING name="ESBSpecificActions">
+   <PAIR name="org.jboss.soa.esb.actions.bpel.BPELInvoke" value="ESBPreActionBPELInvoke"/>
+  </MAPPING>
+  <MAPPING name="Handlers"/>
+ </MAPPINGS>
+ <ICONS/>
+ <GlobalActions kind="list"/>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  XMLSUBPATH="action" name="ESBPreActionBPELInvoke120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="BPEL invoke action" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.bpel.BPELInvoke" name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="service" xmlname="service"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="operation" xmlname="operation"/>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced" name="port" xmlname="port"/>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="request part name" xmlname="requestPartName"/>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="response part name" xmlname="responsePartName"/>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="default(true)" name="abort on fault" xmlname="abortOnFault">
+    <Constraint loader="ListString">
+     <value name="default(true)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XEntityExtension name="ESBActions120">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreActionBPELInvoke120"/>
+  </XChildrenEntities>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="New" group="1"
+    kind="list" name="CreateActions">
+    <XActionItem displayName="Add Pre-Packed Action" kind="list" name="PrePackedAction">
+     <XActionItem displayName="BPEL" group="1" kind="list" name="BPEL">
+      <XActionItem HIDE="disabled"
+       HandlerClassName="org.jboss.tools.esb.core.model.handlers.AddBPELInvokeHandler"
+       ICON="action.empty" PROPERTIES="validator.add=true"
+       WizardClassName="%Default%" displayName="BPEL Invoke Action..."
+       kind="action" name="AddBPELInvoke">
+       <EntityData EntityName="ESBPreActionBPELInvoke120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="service"/>
+        <AttributeData AttributeName="operation"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+    </XActionItem>
+   </XActionItem>
+  </XActionItem>
+ </XEntityExtension>
+</XModelEntityGroup>

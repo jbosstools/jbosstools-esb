@@ -7,6 +7,7 @@
       <meta path="meta/esb-actions.meta"/>
       <meta path="meta/esb-notifiers.meta"/>
       <meta path="meta/esb12.meta"/>
+      <meta path="meta/esb-riftsaw-actions.meta"/>
    </extension>
 
    <extension point="org.jboss.tools.common.model.keys">
@@ -55,6 +56,8 @@
 			class="org.jboss.tools.esb.core.model.handlers.AddJBRListerer12Handler"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddRouteToForCBRHandler"
 			class="org.jboss.tools.esb.core.model.handlers.AddRouteToForCBRHandler"/>
+		<xclass id="org.jboss.tools.esb.core.model.handlers.AddBPELInvokeHandler"
+			class="org.jboss.tools.esb.core.model.handlers.AddBPELInvokeHandler"/>
 
 		<xclass id="org.jboss.tools.esb.core.model.handlers.ESBDefaultVersionResolver"
 			class="org.jboss.tools.esb.core.model.handlers.ESBDefaultVersionResolver"/>
