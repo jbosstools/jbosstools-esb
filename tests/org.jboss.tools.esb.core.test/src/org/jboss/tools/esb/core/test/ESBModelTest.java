@@ -315,6 +315,26 @@ public class ESBModelTest extends TestCase {
 
 	}
 
+	public void testRiftsawBPELExample() {
+		XModelObject object = getFileObject("esb-1.2", "jboss-esb-bpel.xml", ESBConstants.ENT_ESB_FILE_120);
+		
+		StringBuffer errorList = new StringBuffer();
+		
+		String bpelActionPath = "Services/s/Actions/action2";
+		String[][] bpelActionAttrValues = {
+			{"name", "action2"},
+			{"class", "org.jboss.soa.esb.actions.bpel.BPELInvoke"},
+			{"service", "{http://www.jboss.org/bpel/examples/wsdl}HelloService"},
+			{"operation", "hello"},
+			{"port", "HelloPort"},
+			{"request part name", "TestPart"},
+			{"response part name", "TestPart"}
+		};
+		checkAttributes(object, bpelActionPath, bpelActionAttrValues, errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
 	XModelObject getFileObject(String parentPath, String xmlname) {
 		return getFileObject(parentPath, xmlname, ESBConstants.ENT_ESB_FILE_101);
 	}
