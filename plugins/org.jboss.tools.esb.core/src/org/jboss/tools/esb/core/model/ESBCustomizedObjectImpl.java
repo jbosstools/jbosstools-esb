@@ -11,6 +11,7 @@
 package org.jboss.tools.esb.core.model;
 
 import org.jboss.tools.common.model.impl.CustomizedObjectImpl;
+import org.jboss.tools.common.model.impl.OrderedByEntityChildren;
 import org.jboss.tools.common.model.impl.RegularChildren;
 
 /**
@@ -24,7 +25,7 @@ public class ESBCustomizedObjectImpl extends CustomizedObjectImpl {
     protected RegularChildren createChildren() {
     	String children = getModelEntity().getProperty("children"); //$NON-NLS-1$
     	if(children != null && "%ESBOrderedService%".equals(children)) { //$NON-NLS-1$
-    		return new ESBOrderedServiceChildren();
+    		return new OrderedByEntityChildren();
     	}
     	if(children != null && children.equals("%ESBOrdered%")) { //$NON-NLS-1$
     		return new ESBOrderedChildren();
