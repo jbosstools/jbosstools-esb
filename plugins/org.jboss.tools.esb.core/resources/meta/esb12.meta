@@ -1183,7 +1183,7 @@
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrderedService%"
   XMLSUBPATH="service" name="ESBService120">
   <XChildrenEntities>
-   <XChildEntity maxCount="1" name="ESBSecurity101P"/>
+   <XChildEntity maxCount="1" name="ESBSecurity101P" required="yes"/>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity maxCount="1" name="ESBListeners120" required="yes"/>
    <XChildEntity maxCount="1" name="ESBActions120" required="yes"/>

@@ -2383,7 +2383,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;saveDefault=false"
   XMLSUBPATH="security" name="ESBSecurity101P">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
@@ -2397,7 +2397,10 @@
    <XModelAttribute default="security" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general;id=true"
+   <XModelAttribute PROPERTIES="id=true" default="Security" name="name">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;save=always"
     name="module name" xmlname="moduleName"/>
    <XModelAttribute PROPERTIES="category=general" name="run as" xmlname="runAs"/>
    <XModelAttribute PROPERTIES="category=general" name="roles allowed" xmlname="rolesAllowed"/>
