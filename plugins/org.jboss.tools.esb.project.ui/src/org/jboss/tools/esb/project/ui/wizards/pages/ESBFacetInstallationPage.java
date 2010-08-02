@@ -68,8 +68,6 @@ import org.jboss.tools.esb.project.ui.preference.controls.JBossRuntimeListFieldE
 
 public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements IFacetWizardPage, IJBossESBFacetDataModelProperties {
 
-	private Label configFolderLabel;
-	private Text configFolder;
 	private Label contextRootLabel;
 	private Text contentFolder;
 	private IDataModel model;
@@ -178,32 +176,6 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			}
 		});
 		
-		configFolderLabel = new Label(prjGroup, SWT.NONE);
-		configFolderLabel.setText(JBossESBUIMessages.ESBFacetInstallationPage_Label_Source_Directory);
-		configFolderLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
-		configFolder = new Text(prjGroup, SWT.BORDER);
-		configFolder.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		configFolder.setData("label", configFolderLabel); //$NON-NLS-1$
-		configFolder.setText(JBossESBUIMessages.ESBFacetInstallationPage_Default_SRC_Folder);
-		configFolder.addModifyListener(new ModifyListener(){
-			public void modifyText(ModifyEvent e){
-				String srcFolder = configFolder.getText();
-				 if(srcFolder != null && !srcFolder.equals("")){ //$NON-NLS-1$
-					 model.setProperty(ESB_SOURCE_FOLDER, srcFolder);
-					 setConfigFolder(srcFolder);
-				 }
-				 changePageStatus();
-			}
-
-		});
-	}
-	
-	private void setConfigFolder(String folderName){
-		JavaFacetInstallConfig cfg = findJavaFacetInstallConfig();
-		if(cfg != null){
-			cfg.setSourceFolder(new Path(folderName));
-		}
 	}
 	
 	
@@ -543,11 +515,12 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			hasValidContentFolder = false;
 			setPageComplete(isPageComplete());
 		}
-		else if(!validFolderName(configFolder.getText())){
-			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_Source_Folder);
-			hasValidSrc = false;
-			setPageComplete(isPageComplete());
-		}else if(btnUserSupplied.getSelection() && !hasRuntime){
+//		else if(!validFolderName(configFolder.getText())){
+//			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_Source_Folder);
+//			hasValidSrc = false;
+//			setPageComplete(isPageComplete());
+//		}
+		else if(btnUserSupplied.getSelection() && !hasRuntime){
 			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_ESB_Runtime);
 			setPageComplete(isPageComplete());
 		}else if(btnServerSupplied.getSelection() && !checkServerSuppliedESBRuntime()){
