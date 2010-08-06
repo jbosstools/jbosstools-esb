@@ -39,7 +39,7 @@
    <PAIR name="org.jboss.soa.esb.actions.transformation.xslt.XsltAction" value="ESBPreActionXSLTAction"/>
    <PAIR
     name="org.jboss.soa.esb.actions.validation.SchemaValidationAction" value="ESBPreActionSchemaValidator"/>
-   <PAIR name="org.jboss.soa.esb.scripting.ScriptingAction" value="ESBPreActionScripting"/>
+   <PAIR name="org.jboss.soa.esb.actions.scripting.ScriptingAction" value="ESBPreActionScripting"/>
    <PAIR name="org.jboss.soa.esb.services.jbpm.actions.BpmProcessor" value="ESBPreActionBpmProcessor"/>
    <PAIR name="org.jboss.soa.esb.smooks.SmooksAction" value="ESBPreActionSmooksAction"/>
   </MAPPING>
@@ -2020,7 +2020,8 @@
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
-    default="org.jboss.soa.esb.scripting.ScriptingAction" name="class" xmlname="class">
+    default="org.jboss.soa.esb.actions.scripting.ScriptingAction"
+    name="class" xmlname="class">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general" name="script" xmlname="script">
@@ -2030,12 +2031,38 @@
     </Constraint>
     <Editor name="TreeChooser"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="pre=true;category=general"
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
     default="Default(false)" name="support message based scripting" xmlname="supportMessageBasedScripting">
     <Constraint loader="ListString">
      <value name="Default(false)"/>
      <value name="true"/>
      <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="language" xmlname="language">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="beanbasic"/>
+     <value name="beanshell"/>
+     <value name="bml"/>
+     <value name="javascript"/>
+     <value name="jacl"/>
+     <value name="java"/>
+     <value name="javaclass"/>
+     <value name="jpython"/>
+     <value name="jscript"/>
+     <value name="judoscript"/>
+     <value name="jython"/>
+     <value name="lotusscript"/>
+     <value name="netrexx"/>
+     <value name="perl"/>
+     <value name="perlscript"/>
+     <value name="pnuts"/>
+     <value name="ruby"/>
+     <value name="vbscript"/>
+     <value name="xslt"/>
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
