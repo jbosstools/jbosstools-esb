@@ -370,6 +370,55 @@ public class ESBModelTest extends TestCase {
 		assertTrue(errorList.toString(), errorList.length() == 0);
 	}
 
+	public void testBusinessRulesProcessor_4_9() {
+		XModelObject object = getFileObject("esb-1.3", "jboss-esb-brp.xml", ESBConstants.ENT_ESB_FILE_130);
+		
+		StringBuffer errorList = new StringBuffer();
+
+		// 1.
+		String orderDiscountRuleServicePath = "Services/s/Actions/OrderDiscountRuleService";
+		
+		String[][] orderDiscountRuleServiceAttrValues = {
+			{"rule set", "drl/OrderDiscount.drl"},
+			{"rule reload", "true"},
+		};
+		checkAttributes(object, orderDiscountRuleServicePath, orderDiscountRuleServiceAttrValues, errorList);
+
+		String routePath = orderDiscountRuleServicePath + "/body.Order";
+		String[][] routeAttrValues = {
+			{"esb", "body.Order"},
+		};
+		checkAttributes(object, routePath, routeAttrValues, errorList);
+
+		// 3.
+		String orderEventsRuleServiceStatefulPath = "Services/s/Actions/OrderEventsRuleServiceStateful";
+		String[][] orderEventsRuleServiceStatefulAttrValues = {
+			{"rule set", "drl/OrderEvents.drl"},
+			{"rule reload", "false"},
+			{"stateful", "true"},
+			{"rule audit type", "THREADED_FILE"},
+			{"rule audit file", "myaudit"},
+			{"rule audit interval", "1000"},
+			{"rule clock type", "REALTIME"},
+			{"rule event processing type", "STREAM"},
+			{"rule fire method", "FIRE_UNTIL_HALT"},
+		};
+		checkAttributes(object, orderEventsRuleServiceStatefulPath, orderEventsRuleServiceStatefulAttrValues, errorList);
+		
+		String channelPath = orderEventsRuleServiceStatefulPath + "/chan2";
+		String[][] channelAttrValues = {
+			{"channel name", "chan2"},
+			{"service category", "cat1"},
+			{"service name", "svc1"},
+			{"channel class", "org.jboss.soa.esb.services.rules.ServiceChannel"},
+			{"set payload location", "org.jboss.soa.esb.message.defaultEntry"},
+			{"timeout", "30000"},
+		};
+		checkAttributes(object, channelPath, channelAttrValues, errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
 	XModelObject getFileObject(String parentPath, String xmlname) {
 		return getFileObject(parentPath, xmlname, ESBConstants.ENT_ESB_FILE_101);
 	}

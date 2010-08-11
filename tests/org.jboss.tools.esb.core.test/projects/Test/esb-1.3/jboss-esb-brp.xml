@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<jbossesb
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd">
+ <services>
+  <service category="c" description="d" name="s">
+   <actions>
+    <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="OrderDiscountRuleService">
+     <property name="ruleSet" value="drl/OrderDiscount.drl"/>
+     <property name="ruleReload" value="true"/>
+     <property name="object-paths">
+      <object-path esb="body.Order"/>
+     </property>
+    </action>
+    <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="OrderDiscountMultipleRuleServiceStateful">
+     <property name="ruleSet" value="drl/OrderDiscountOnMultipleOrders.drl"/>
+     <property name="ruleReload" value="false"/>
+     <property name="stateful" value="true"/>
+     <property name="object-paths">
+      <object-path esb="body.Customer"/>
+      <object-path esb="body.Order"/>
+     </property>
+    </action>
+    <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="OrderEventsRuleServiceStateful">
+     <property name="ruleSet" value="drl/OrderEvents.drl"/>
+     <property name="ruleReload" value="false"/>
+     <property name="stateful" value="true"/>
+     <property name="ruleAuditType" value="THREADED_FILE"/>
+     <property name="ruleAuditFile" value="myaudit"/>
+     <property name="ruleAuditInterval" value="1000"/>
+     <property name="ruleClockType" value="REALTIME"/>
+     <property name="ruleEventProcessingType" value="STREAM"/>
+     <property name="ruleFireMethod" value="FIRE_UNTIL_HALT"/>
+     <property name="object-paths">
+      <object-path entry-point="OrderStatusStream" esb="body.OrderStatus"/>
+      <object-path entry-point="OrderInfoStream" esb="body.OrderInfo"/>
+     </property>
+     <property name="channels">
+      <send-to channel-name="chan1" service-category="cat1" service-name="svc1"/>
+      <send-to async="true"
+       channel-class="org.jboss.soa.esb.services.rules.ServiceChannel"
+       channel-name="chan2" service-category="cat1" service-name="svc1"
+       set-payload-location="org.jboss.soa.esb.message.defaultEntry" timeout="30000"/>
+      <send-to channel-class="com.example.MyChannel" channel-name="chan3"/>
+     </property>
+    </action>
+    <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="PolicyApprovalRuleService">
+     <property name="ruleSet" value="dsl/approval.dslr"/>
+     <property name="ruleLanguage" value="dsl/acme.dsl"/>
+     <property name="ruleReload" value="true"/>
+     <property name="object-paths">
+      <object-path esb="body.Driver"/>
+      <object-path esb="body.Policy"/>
+     </property>
+    </action>
+    <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="PolicyPricingRuleService">
+     <property name="decisionTable" value="decisionTable/PolicyPricing.xls"/>
+     <property name="ruleReload" value="true"/>
+     <property name="object-paths">
+      <object-path esb="body.Driver"/>
+      <object-path esb="body.Policy"/>
+     </property>
+    </action>
+    <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="RuleAgentPolicyService">
+     <property name="ruleAgentProperties" value="ruleAgent/brmsdeployedrules.properties"/>
+     <property name="object-paths">
+      <object-path esb="body.Driver"/>
+      <object-path esb="body.Policy"/>
+     </property>
+    </action>
+   </actions>
+  </service>
+ </services>
+</jbossesb>
