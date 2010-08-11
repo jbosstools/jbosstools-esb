@@ -17,6 +17,67 @@
  </ICONS>
  <GlobalActions kind="list"/>
  <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;saveDefault=false;children=%Ordered%"
+  XMLSUBPATH="actions" name="ESBActions130">
+  <XChildrenEntities>
+   <XChildEntity name="ESBAction120"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.actions" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="actions list" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true"
+    default="Actions" name="name" visibility="false">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttributeReference attributes="mep,in xsd,out xsd,fault xsd"
+    entity="ESBActions101" name="actionsA"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="request location" xmlname="requestLocation"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="response location" xmlname="responseLocation"/>
+   <XModelAttributeReference attributes="webservice,validate"
+    entity="ESBActions101" name="actionsB"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="addressing" xmlname="addressing">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem displayName="New" group="1" kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"
+     displayName="Custom Action..." kind="action" name="AddAction">
+     <EntityData EntityName="ESBAction120">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="class"/>
+      <AttributeData AttributeName="process" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HIDE="always"
+     HandlerClassName="org.jboss.tools.common.meta.action.impl.handlers.ShowMenuHandler"
+     PROPERTIES="actionList=CreateActions" displayName="Action..."
+     kind="action" name="AddAnyAction"/>
+   </XActionItem>
+   <XActionItemReference entity="ESBActions101" name="CopyActions"/>
+   <XActionItemReference entity="ESBActions101" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%ESBOrdered%"
   XMLSUBPATH="camel-bus" name="ESBCamelBus130">
   <XChildrenEntities>
@@ -420,7 +481,7 @@
    <XChildEntity maxCount="1" name="ESBSecurity101P" required="yes"/>
    <XChildEntity name="ESBProperty"/>
    <XChildEntity maxCount="1" name="ESBListeners130" required="yes"/>
-   <XChildEntity maxCount="1" name="ESBActions120" required="yes"/>
+   <XChildEntity maxCount="1" name="ESBActions130" required="yes"/>
   </XChildrenEntities>
   <XEntityRenderer>
    <ICONS>

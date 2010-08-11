@@ -70,4 +70,9 @@ public interface ConverterConstants {
 	String EJB_PARAM_ENTITY = "ESBPreEJBParam";
 	String EJB_PARAMS = "ejb-params";
 	IPropertyConverter EJB_PARAM_CONVERTER = new EJBParamConverter(EJB_PARAMS, EJB_PARAM_ENTITY);
+
+	String SEND_TO_ENTITY = "ESBPreSendTo";
+	String CHANNELS = "channels";
+	IPropertyConverter CHANNELS_CONVERTER = new BasicListConverter(CHANNELS, SEND_TO_ENTITY);
+
 }

@@ -155,6 +155,7 @@ public interface ESBConstants {
 	public String ENT_ESB_ACTIONS_101 = ENT_ESB_ACTIONS + SUFF_101;
 	public String ENT_ESB_ACTIONS_110 = ENT_ESB_ACTIONS + SUFF_110;
 	public String ENT_ESB_ACTIONS_120 = ENT_ESB_ACTIONS + SUFF_120;
+	public String ENT_ESB_ACTIONS_130 = ENT_ESB_ACTIONS + SUFF_130;
 	public String ENT_ESB_ACTION = "ESBAction101"; //$NON-NLS-1$
 	public String ENT_ESB_ACTION_120 = "ESBAction120"; //$NON-NLS-1$
 
@@ -163,6 +164,7 @@ public interface ESBConstants {
 
 	public String ENT_ESB_ROUTE_TO = "ESBPreRouteTo"; //$NON-NLS-1$	
 	public String ENT_ESB_OBJECT_PATH = "ESBPreObjectPath"; //$NON-NLS-1$
+	public String ENT_ESB_SEND_TO = "ESBPreSendTo"; //$NON-NLS-1$	
 
 	public String ENT_ESB_NOTIFICATION = "ESBPreNotificationList"; //$NON-NLS-1$
 	public String ENT_ESB_NOTIFICATION_120 = ENT_ESB_NOTIFICATION + SUFF_120;

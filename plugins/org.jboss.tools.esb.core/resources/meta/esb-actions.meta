@@ -32,6 +32,7 @@
    <PAIR name="org.jboss.soa.esb.actions.routing.http.HttpRouter" value="ESBPreActionHTTPRouter"/>
    <PAIR
     name="org.jboss.soa.esb.actions.scripting.GroovyActionProcessor" value="ESBPreActionGroovyProcessor"/>
+   <PAIR name="org.jboss.soa.esb.actions.scripting.ScriptingAction" value="ESBPreActionScripting"/>
    <PAIR name="org.jboss.soa.esb.actions.soap.SOAPClient" value="ESBPreActionSOAPClient"/>
    <PAIR name="org.jboss.soa.esb.actions.soap.SOAPProcessor" value="ESBPreActionSOAPProcessor"/>
    <PAIR name="org.jboss.soa.esb.actions.soap.proxy.SOAPProxy" value="ESBPreActionSOAPProxy"/>
@@ -39,7 +40,6 @@
    <PAIR name="org.jboss.soa.esb.actions.transformation.xslt.XsltAction" value="ESBPreActionXSLTAction"/>
    <PAIR
     name="org.jboss.soa.esb.actions.validation.SchemaValidationAction" value="ESBPreActionSchemaValidator"/>
-   <PAIR name="org.jboss.soa.esb.actions.scripting.ScriptingAction" value="ESBPreActionScripting"/>
    <PAIR name="org.jboss.soa.esb.services.jbpm.actions.BpmProcessor" value="ESBPreActionBpmProcessor"/>
    <PAIR name="org.jboss.soa.esb.smooks.SmooksAction" value="ESBPreActionSmooksAction"/>
   </MAPPING>
@@ -349,6 +349,180 @@
      displayName="Add Object Path..." kind="action" name="AddObjectPath">
      <EntityData EntityName="ESBPreObjectPath">
       <AttributeData AttributeName="esb"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.impl.BusinessRulesProcessor"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionBusinessRulesProcessor130">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+   <XChildEntity name="ESBPreObjectPath"/>
+   <XChildEntity name="ESBPreSendTo"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="business rules processor"
+    loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.actions.BusinessRulesProcessor"
+    name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="rule set" xmlname="ruleSet">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=drl,dslr"/>
+     <value name="linkAction=OpenRuleSet"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;pre=true"
+    name="rule language" xmlname="ruleLanguage"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="rule agent properties" xmlname="ruleAgentProperties">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=properties"/>
+     <value name="linkAction=OpenRuleAgent"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="decision table" xmlname="decisionTable">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=xls"/>
+     <value name="linkAction=OpenDecisionTable"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    default="Default(false)" name="rule reload" xmlname="ruleReload">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    default="Default(false)" name="stateful" xmlname="stateful">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="rule audit type" xmlname="ruleAuditType">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="CONSOLE"/>
+     <value name="FILE"/>
+     <value name="THREADED_FILE"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="rule audit file" xmlname="ruleAuditFile">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="linkAction=OpenAuditFile"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="rule audit interval" xmlname="ruleAuditInterval"/>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="Default(REALTIME)" name="rule clock type" xmlname="ruleClockType">
+    <Constraint loader="ListString">
+     <value name="Default(REALTIME)"/>
+     <value name="REALTIME"/>
+     <value name="PSEUDO"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="Default(CLOUD)" name="rule event processing type" xmlname="ruleEventProcessingType">
+    <Constraint loader="ListString">
+     <value name="Default(CLOUD)"/>
+     <value name="CLOUD"/>
+     <value name="STREAM"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="Default(FIRE_ALL_RULES)" name="rule fire method" xmlname="ruleFireMethod">
+    <Constraint loader="ListString">
+     <value name="Default(FIRE_ALL_RULES)"/>
+     <value name="FIRE_ALL_RULES"/>
+     <value name="FIRE_UNTIL_HALT"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
+    <Constraint loader="ListString">
+     <value name="process"/>
+     <value name="split"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty" PROPERTIES="actionpath=Open;attribute=rule set"
+    displayName="Open Rule Set" kind="action" name="OpenRuleSet"/>
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=decision table"
+    displayName="Open Decision Table" kind="action" name="OpenDecisionTable"/>
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=rule agent properties"
+    displayName="Open Rule Agent Properties" kind="action" name="OpenRuleAgent"/>
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=rule audit file"
+    displayName="Open Audit File" kind="action" name="OpenAuditFile"/>
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Object Path..." kind="action" name="AddObjectPath">
+     <EntityData EntityName="ESBPreObjectPath">
+      <AttributeData AttributeName="esb"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Channel..." kind="action" name="AddSendTo">
+     <EntityData EntityName="ESBPreSendTo">
+      <AttributeData AttributeName="channel name"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -3182,6 +3356,53 @@
   </XActionItem>
   <XDependencies/>
  </XModelEntity>
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=send"
+  XMLSUBPATH="send-to" name="ESBPreSendTo">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="send to" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="channel name" xmlname="channel-name"/>
+   <XModelAttribute PROPERTIES="category=general"
+    name="service category" xmlname="service-category"/>
+   <XModelAttribute PROPERTIES="category=general" name="service name" xmlname="service-name"/>
+   <XModelAttribute PROPERTIES="category=general" name="channel class" xmlname="channel-class">
+    <Editor name="AccessibleJava"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced" name="async" xmlname="async">
+    <Constraint loader="ListString">
+     <value/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced" name="timeout" xmlname="timeout"/>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="set payload location" xmlname="set-payload-location"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
   XMLSUBPATH="target" name="ESBPreTarget">
@@ -3684,6 +3905,328 @@
       </XActionItem>
       <XActionItemReference entity="ESBActions101"
        name="AddBusinessRulesProcessor" path="CreateActions/PrePackedAction/AddBusinessRulesProcessor"/>
+     </XActionItem>
+     <XActionItem displayName="Converters/Transformers" group="1"
+      kind="list" name="Converters">
+      <XActionItemReference entity="ESBActions101" name="AddByteArrayToString"/>
+      <XActionItemReference entity="ESBActions101"
+       name="AddCommandInterpreter" path="CreateActions/PrePackedAction/AddCommandInterpreter"/>
+      <XActionItemReference entity="ESBActions101" name="AddLongToDate"/>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Message Persister..." kind="action" name="AddMessagePersister">
+       <EntityData EntityName="ESBPreActionMessagePersister120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="message store class"/>
+        <AttributeData AttributeName="classification" Mandatory="no"/>
+        <AttributeData AttributeName="terminal" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItemReference entity="ESBActions101"
+       name="AddObjectInvoke" path="CreateActions/PrePackedAction/AddObjectInvoke"/>
+      <XActionItemReference entity="ESBActions101" name="AddObjectToCSVString"/>
+      <XActionItemReference entity="ESBActions101" name="AddObjectToXStream"/>
+      <XActionItemReference entity="ESBActions101" name="AddSmooksAction"/>
+      <XActionItemReference entity="ESBActions101" name="AddXStreamToObject"/>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="XSLT Action..." kind="action" name="AddXSLTAction">
+       <EntityData EntityName="ESBPreActionXSLTAction120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="template file"/>
+        <AttributeData AttributeName="get payload location" Mandatory="no"/>
+        <AttributeData AttributeName="set payload location" Mandatory="no"/>
+        <AttributeData AttributeName="result type" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+     <XActionItem displayName="Miscellaneous" group="1" kind="list" name="Miscellaneous">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="System Println..." kind="action" name="AddSystemPrintln">
+       <EntityData EntityName="ESBPreActionSystemPrintln101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="message"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Schema Validation..." kind="action" name="AddSchemaValidation">
+       <EntityData EntityName="ESBPreActionSchemaValidator120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="schema"/>
+        <AttributeData AttributeName="schema language" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+     <XActionItem displayName="Routers" group="1" kind="list" name="Routers">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Aggregator..." kind="action" name="AddAggregator">
+       <EntityData EntityName="ESBPreActionAggregator120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="timeout in millis" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%SpecialWizard%"
+       ICON="action.empty"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Drools;entity=ESBPreActionContentBasedRouter120"
+       displayName="Content Based Router (Drools)..." kind="action" name="AddContentBasedRouterDrools">
+       <EntityData EntityName="ESBWizardDroolsRouter">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="process" Mandatory="no"/>
+        <AttributeData AttributeName="rule set"/>
+        <AttributeData AttributeName="rule language" Mandatory="no"/>
+        <AttributeData AttributeName="rule reload" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%SpecialWizard%"
+       ICON="action.empty"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport"
+       displayName="Content Based Router (Generic)..." kind="action" name="AddContentBasedRouter">
+       <EntityData EntityName="ESBPreActionContentBasedRouter120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="cbr alias"/>
+        <AttributeData AttributeName="process" Mandatory="no"/>
+        <AttributeData AttributeName="rule set" Mandatory="no"/>
+        <AttributeData AttributeName="rule language" Mandatory="no"/>
+        <AttributeData AttributeName="rule reload" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%SpecialWizard%"
+       ICON="action.empty"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Regex;entity=ESBPreActionContentBasedRouter120"
+       displayName="Content Based Router (Regex)..." kind="action" name="AddContentBasedRouterRegex">
+       <EntityData EntityName="ESBWizardXPathRouter">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="process" Mandatory="no"/>
+        <AttributeData AttributeName="rule set" Mandatory="no"/>
+        <AttributeData AttributeName="rule reload" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%SpecialWizard%"
+       ICON="action.empty"
+       PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport;cbrAlias=Xpath;entity=ESBPreActionContentBasedRouter120"
+       displayName="Content Based Router (XPath)..." kind="action" name="AddContentBasedRouterXPath">
+       <EntityData EntityName="ESBWizardXPathRouter">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="process" Mandatory="no"/>
+        <AttributeData AttributeName="rule set" Mandatory="no"/>
+        <AttributeData AttributeName="rule reload" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Echo Router..." kind="action" name="AddEchoRouter">
+       <EntityData EntityName="ESBPreActionEchoRouter120">
+        <AttributeData AttributeName="name"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="EMail Router..." kind="action" name="AddEMailRouter">
+       <EntityData EntityName="ESBPreActionEMailRouter120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="from" Mandatory="no"/>
+        <AttributeData AttributeName="send to" Mandatory="no"/>
+        <AttributeData AttributeName="subject" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="EMail Wiretap..." kind="action" name="AddEMailWiretap">
+       <EntityData EntityName="ESBPreActionEMailWiretap120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="from" Mandatory="no"/>
+        <AttributeData AttributeName="send to" Mandatory="no"/>
+        <AttributeData AttributeName="subject" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="HTTP Router..." kind="action" name="AddHTTPRouter">
+       <EntityData EntityName="ESBPreActionHTTPRouter120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="endpoint url" Mandatory="no"/>
+        <AttributeData AttributeName="file" Mandatory="no"/>
+        <AttributeData AttributeName="method"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="JMS Router..." kind="action" name="AddJMSRouter">
+       <EntityData EntityName="ESBPreActionJMSRouter120">
+        <AttributeData AttributeName="name"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Notifier..." kind="action" name="AddNotifier">
+       <EntityData EntityName="ESBPreActionNotifier120">
+        <AttributeData AttributeName="name"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Static Router..." kind="action" name="AddStaticRouter">
+       <EntityData EntityName="ESBPreActionStaticRouter101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="process" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Static Wiretap..." kind="action" name="AddStaticWiretap">
+       <EntityData EntityName="ESBPreActionStaticWiretap101">
+        <AttributeData AttributeName="name"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Sync Service Invoker..." kind="action" name="AddSyncServiceInvoker">
+       <EntityData EntityName="ESBPreActionSyncServiceInvoker120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="service category"/>
+        <AttributeData AttributeName="service name"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+     <XActionItem displayName="Scripting" group="1" kind="list" name="Scripting">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Scripting..." kind="action" name="AddScripting">
+       <EntityData EntityName="ESBPreActionScripting120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="script"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Groovy Action Processor..." kind="action" name="AddGroovyProcessor">
+       <EntityData EntityName="ESBPreActionGroovyProcessor101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="script"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+     <XActionItem displayName="Services" group="1" kind="list" name="Services">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="EJB Processor..." kind="action" name="AddEJBProcessor">
+       <EntityData EntityName="ESBPreActionEJBProcessor120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="ejb3" Mandatory="no"/>
+        <AttributeData AttributeName="ejb name" Mandatory="no"/>
+        <AttributeData AttributeName="jndi name" Mandatory="no"/>
+        <AttributeData AttributeName="initial context factory" Mandatory="no"/>
+        <AttributeData AttributeName="provider url" Mandatory="no"/>
+        <AttributeData AttributeName="method" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+     <XActionItem displayName="Webservices" group="1" kind="list" name="SOAP">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="SOAP Processor..." kind="action" name="AddSOAPProcessor">
+       <EntityData EntityName="ESBPreActionSOAPProcessor101">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="jbossws endpoint"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="SOAP Client..." kind="action" name="AddSOAPClient">
+       <EntityData EntityName="ESBPreActionSOAPClient120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="wsdl"/>
+        <AttributeData AttributeName="soap action"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="SOAP Proxy..." kind="action" name="AddSOAPProxy">
+       <EntityData EntityName="ESBPreActionSOAPProxy120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="wsdl"/>
+        <AttributeData AttributeName="endpoint url" Mandatory="no"/>
+        <AttributeData AttributeName="file" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="SOAP Wise Client..." kind="action" name="AddSOAPWiseClient">
+       <EntityData EntityName="ESBPreActionSOAPWiseClient120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="wsdl"/>
+        <AttributeData AttributeName="operation"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+    </XActionItem>
+   </XActionItem>
+  </XActionItem>
+ </XEntityExtension>
+ <XEntityExtension name="ESBActions130">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreActionByteArrayToString101"/>
+   <XChildEntity name="ESBPreActionLongToDateConverter101"/>
+   <XChildEntity name="ESBPreActionObjectInvoke101"/>
+   <XChildEntity name="ESBPreActionObjectToCSVString101"/>
+   <XChildEntity name="ESBPreActionObjectToXStream101"/>
+   <XChildEntity name="ESBPreActionSmooksAction101"/>
+   <XChildEntity name="ESBPreActionSmooksTransformer101"/>
+   <XChildEntity name="ESBPreActionMessagePersister120"/>
+   <XChildEntity name="ESBPreActionXStreamToObject101"/>
+   <XChildEntity name="ESBPreActionCommandInterpreter101"/>
+   <XChildEntity name="ESBPreActionBpmProcessor120"/>
+   <XChildEntity name="ESBPreActionScripting120"/>
+   <XChildEntity name="ESBPreActionGroovyProcessor101"/>
+   <XChildEntity name="ESBPreActionEJBProcessor120"/>
+   <XChildEntity name="ESBPreActionAggregator120"/>
+   <XChildEntity name="ESBPreActionContentBasedRouter120"/>
+   <XChildEntity name="ESBPreActionEchoRouter120"/>
+   <XChildEntity name="ESBPreActionStaticRouter101"/>
+   <XChildEntity name="ESBPreActionStaticWiretap101"/>
+   <XChildEntity name="ESBPreActionSyncServiceInvoker120"/>
+   <XChildEntity name="ESBPreActionJMSRouter120"/>
+   <XChildEntity name="ESBPreActionEMailRouter120"/>
+   <XChildEntity name="ESBPreActionEMailWiretap120"/>
+   <XChildEntity name="ESBPreActionHTTPRouter120"/>
+   <XChildEntity name="ESBPreActionSOAPProcessor101"/>
+   <XChildEntity name="ESBPreActionSOAPClient120"/>
+   <XChildEntity name="ESBPreActionSOAPWiseClient120"/>
+   <XChildEntity name="ESBPreActionSOAPProxy120"/>
+   <XChildEntity name="ESBPreActionSystemPrintln101"/>
+   <XChildEntity name="ESBPreActionNotifier120"/>
+   <XChildEntity name="ESBPreActionBusinessRulesProcessor130"/>
+   <XChildEntity name="ESBPreActionXSLTAction120"/>
+   <XChildEntity name="ESBPreActionSchemaValidator120"/>
+  </XChildrenEntities>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="New" group="1"
+    kind="list" name="CreateActions">
+    <XActionItem displayName="Add Pre-Packed Action" kind="list" name="PrePackedAction">
+     <XActionItem displayName="BPM" group="1" kind="list" name="BPM">
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="BPM Processor..." kind="action" name="AddBPMProcessor">
+       <EntityData EntityName="ESBPreActionBpmProcessor120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="command"/>
+        <AttributeData AttributeName="process definition name" Mandatory="no"/>
+        <AttributeData AttributeName="process definition id" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="Business Rules Processor..." kind="action" name="AddBusinessRulesProcessor">
+       <EntityData EntityName="ESBPreActionBusinessRulesProcessor130">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="process" Mandatory="no"/>
+        <AttributeData AttributeName="rule set" Mandatory="no"/>
+        <AttributeData AttributeName="rule agent properties" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
      </XActionItem>
      <XActionItem displayName="Converters/Transformers" group="1"
       kind="list" name="Converters">

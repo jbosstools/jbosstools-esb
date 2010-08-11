@@ -52,6 +52,7 @@ public class SpecificActionLoader implements ESBConstants {
 		}
 		propertyConverters.put("alias", ConverterConstants.ALIAS_CONVERTER);
 		propertyConverters.put("route", ConverterConstants.ROUTE_CONVERTER);
+		propertyConverters.put("send", ConverterConstants.CHANNELS_CONVERTER);
 		propertyConverters.put("path", ConverterConstants.OBJECT_PATHS_CONVERTER);
 		propertyConverters.put("notification", ConverterConstants.NOTIFICATION_CONVERTER);
 		propertyConverters.put("notification2", ConverterConstants.NOTIFICATION_CONVERTER_2);
