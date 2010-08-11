@@ -107,6 +107,14 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyAction") //$NON-NLS-1$
 	);
 
+	static IFormData ESB_ACTION_130_LIST_DEFINITION = new FormData(
+		"Actions", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
+		getActionEntities(ENT_ESB_ACTIONS_130),
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddAnyAction") //$NON-NLS-1$
+	);
+
 	static IFormData ESB_ACTION_SUB_LIST_DEFINITION = new FormData(
 		"Actions", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
@@ -176,6 +184,10 @@ public class ESBListsFormLayoutData implements ESBConstants {
 
 	static IFormData ESB_OBJECT_PATH_LIST_DEFINITION = createOneAttributeSingleChildList(
 		"Object Paths List", "esb", ENT_ESB_OBJECT_PATH, "CreateActions.AddObjectPath"		
+	);
+
+	static IFormData ESB_SEND_TO_LIST_DEFINITION = createOneAttributeSingleChildList(
+		"Channels", "channel name", ENT_ESB_SEND_TO, "CreateActions.AddSendTo"		
 	);
 
 	static IFormData ALIAS_LIST_DEFINITION = createOneAttributeSingleChildList(
