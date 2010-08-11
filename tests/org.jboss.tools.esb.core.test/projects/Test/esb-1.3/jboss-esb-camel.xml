@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<jbossesb
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd">
+ <providers>
+  <camel-provider name="camel">
+   <camel-bus async="false" busid="11" from-uri="www.lenta.ru" timeout="123">
+    <from uri="www.yandex.ru"/>
+   </camel-bus>
+  </camel-provider>
+ </providers>
+ <services>
+  <service category="c" description="d" name="s">
+   <listeners>
+    <camel-gateway async="true" busidref="11" from-uri="http://from.org"
+     name="camel" timeout="1000">
+     <property name="p2" value="v2"/>
+     <property name="p1" value="v1"/>
+     <from uri="http://from.ru"/>
+    </camel-gateway>
+    <jms-listener busidref="1" clientId="ci"
+     durableSubscriptionName="dsn" name="jms"/>
+   </listeners>
+  </service>
+ </services>
+</jbossesb>

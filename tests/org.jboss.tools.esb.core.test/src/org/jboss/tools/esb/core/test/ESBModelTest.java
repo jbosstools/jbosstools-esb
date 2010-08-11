@@ -335,6 +335,41 @@ public class ESBModelTest extends TestCase {
 		assertTrue(errorList.toString(), errorList.length() == 0);
 	}
 
+	public void testCamelExample() {
+		XModelObject object = getFileObject("esb-1.3", "jboss-esb-camel.xml", ESBConstants.ENT_ESB_FILE_130);
+		
+		StringBuffer errorList = new StringBuffer();
+		
+		String camelProviderPath = "Providers/camel";
+		String[][] camelProviderAttrValues = {
+				{"name", "camel"},
+		};
+		checkAttributes(object, camelProviderPath, camelProviderAttrValues, errorList);
+		
+		String camelBusPath = camelProviderPath + "/11";
+		String[][] camelBusAttrValues = {
+			{"async", "false"},
+			{"timeout", "123"},
+		};
+		checkAttributes(object, camelBusPath, camelBusAttrValues, errorList);
+		
+		String fromPath = camelBusPath + "/www.yandex.ru";
+		String[][] fromAttrValues = {
+			{"uri", "www.yandex.ru"},
+		};
+		checkAttributes(object, fromPath, fromAttrValues, errorList);
+		
+		String camelGatewayPath = "Services/s/Listeners/camel";
+		String[][] camelGatewayAttrValues = {
+			{"channel id ref", "11"},
+			{"async", "true"},
+			{"timeout", "1000"},
+		};
+		checkAttributes(object, camelGatewayPath, camelGatewayAttrValues, errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
 	XModelObject getFileObject(String parentPath, String xmlname) {
 		return getFileObject(parentPath, xmlname, ESBConstants.ENT_ESB_FILE_101);
 	}
