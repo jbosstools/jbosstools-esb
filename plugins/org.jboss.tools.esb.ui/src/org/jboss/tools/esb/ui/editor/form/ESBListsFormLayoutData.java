@@ -120,7 +120,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		"Services", //$NON-NLS-1$
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
-		new String[]{ENT_ESB_SERVICE_101, ENT_ESB_SERVICE_110, ENT_ESB_SERVICE_120},
+		new String[]{ENT_ESB_SERVICE_101, ENT_ESB_SERVICE_110, ENT_ESB_SERVICE_120, ENT_ESB_SERVICE_130},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddService") //$NON-NLS-1$
 	);
 				
@@ -129,7 +129,7 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		ModelFormLayoutData.EMPTY_DESCRIPTION,
 		"Services", //$NON-NLS-1$
 		new FormAttributeData[]{new FormAttributeData(ATTR_NAME, 100)}, 
-		new String[]{ENT_ESB_SERVICE_101, ENT_ESB_SERVICE_110, ENT_ESB_SERVICE_120},
+		new String[]{ENT_ESB_SERVICE_101, ENT_ESB_SERVICE_110, ENT_ESB_SERVICE_120, ENT_ESB_SERVICE_130},
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddService") //$NON-NLS-1$
 	);
 					
