@@ -17,24 +17,29 @@ public interface ESBConstants {
 	public String SCHEMA_101 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd"; //$NON-NLS-1$
 	public String SCHEMA_110 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd"; //$NON-NLS-1$
 	public String SCHEMA_120 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"; //$NON-NLS-1$
+	public String SCHEMA_130 = "http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd"; //$NON-NLS-1$
 
 	public String NEW_SCHEMA_101 = "http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.0.1.xsd"; //$NON-NLS-1$
 	public String NEW_SCHEMA_110 = "http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.1.0.xsd"; //$NON-NLS-1$
 	public String NEW_SCHEMA_120 = "http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"; //$NON-NLS-1$
+	public String NEW_SCHEMA_130 = "http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd"; //$NON-NLS-1$
 
 	public String SUFF_101 = "101"; //$NON-NLS-1$
 	public String SUFF_110 = "110"; //$NON-NLS-1$
 	public String SUFF_120 = "120"; //$NON-NLS-1$
+	public String SUFF_130 = "130"; //$NON-NLS-1$
 
 	public String[] KNOWN_SUFFIXES = {
 		SUFF_101,
 		SUFF_110,
 		SUFF_120,
+		SUFF_130,
 	};
 	public String ENT_ESB_FILE = "FileESB"; //$NON-NLS-1$
 	public String ENT_ESB_FILE_101 = ENT_ESB_FILE + SUFF_101;
 	public String ENT_ESB_FILE_110 = ENT_ESB_FILE + SUFF_110;
 	public String ENT_ESB_FILE_120 = ENT_ESB_FILE + SUFF_120;
+	public String ENT_ESB_FILE_130 = ENT_ESB_FILE + SUFF_130;
 	
 	public String ENT_ESB_PROPERTY = "ESBProperty"; //$NON-NLS-1$
 	
@@ -54,6 +59,7 @@ public interface ESBConstants {
 	public String ENT_ESB_HIBERNATE_PROVIDER = "ESBHibernateProvider101"; //$NON-NLS-1$
 	public String ENT_ESB_HTTP_PROVIDER = "ESBHTTPProvider110"; //$NON-NLS-1$
 	public String ENT_ESB_HTTP_PROVIDER_120 = "ESBHTTPProvider120"; //$NON-NLS-1$
+	public String ENT_ESB_CAMEL_PROVIDER_130 = "ESBCamelProvider130"; //$NON-NLS-1$
 
 	static String PREACTION_PREFIX = "ESBPreAction"; //$NON-NLS-1$
 	
@@ -68,6 +74,7 @@ public interface ESBConstants {
 		ENT_ESB_SQL_PROVIDER,
 		ENT_ESB_HIBERNATE_PROVIDER,
 		ENT_ESB_HTTP_PROVIDER, ENT_ESB_HTTP_PROVIDER_120,
+		ENT_ESB_CAMEL_PROVIDER_130,
 	};
 
 	
@@ -80,6 +87,7 @@ public interface ESBConstants {
 	public String ENT_ESB_SQL_BUS = "ESBSQLBus101"; //$NON-NLS-1$
 	public String ENT_ESB_HTTP_BUS = "ESBHTTPBus110"; //$NON-NLS-1$
 	public String ENT_ESB_HTTP_BUS_120 = "ESBHTTPBus120"; //$NON-NLS-1$
+	public String ENT_ESB_CAMEL_BUS_130 = "ESBCamelBus130"; //$NON-NLS-1$
 
 	public String[] BUSES_101 = {
 		ENT_ESB_BUS,
@@ -90,6 +98,7 @@ public interface ESBConstants {
 		ENT_ESB_HIBERNATE_BUS,
 		ENT_ESB_SQL_BUS,
 		ENT_ESB_HTTP_BUS, ENT_ESB_HTTP_BUS_120,
+		ENT_ESB_CAMEL_BUS_130,
 	};		
 
 	//prefix
@@ -101,6 +110,7 @@ public interface ESBConstants {
 	public String ENT_ESB_GATEWAY = "ESBJCAGateway101"; //$NON-NLS-1$
 	public String ENT_ESB_GATEWAY_120 = "ESBJCAGateway120"; //$NON-NLS-1$
 	public String ENT_ESB_JMS_LISTENER = "ESBJMSListener101"; //$NON-NLS-1$
+	public String ENT_ESB_JMS_LISTENER_130 = "ESBJMSListener130"; //$NON-NLS-1$
 	public String ENT_ESB_FS_LISTENER = "ESBFSListener101"; //$NON-NLS-1$
 	public String ENT_ESB_FTP_LISTENER = "ESBFTPListener101"; //$NON-NLS-1$
 	public String ENT_ESB_FTP_LISTENER_120 = "ESBFTPListener120"; //$NON-NLS-1$
@@ -113,12 +123,13 @@ public interface ESBConstants {
 	public String ENT_ESB_HTTP_LISTENER = "ESBHTTPListener110"; //$NON-NLS-1$
 	public String ENT_ESB_HTTP_GATEWAY = "ESBHTTPGateway120"; //$NON-NLS-1$
 	public String ENT_ESB_UDP_LISTENER = "ESBUDPListener110"; //$NON-NLS-1$
+	public String ENT_ESB_CAMEL_GATEWAY = "ESBCamelGateway130"; //$NON-NLS-1$
 	
 	public String[] LISTENERS_101 = {
 		ENT_ESB_LISTENER, ENT_ESB_LISTENER_120,
 		ENT_ESB_SH_LISTENER,
 		ENT_ESB_GATEWAY, ENT_ESB_GATEWAY_120,
-		ENT_ESB_JMS_LISTENER,
+		ENT_ESB_JMS_LISTENER, ENT_ESB_JMS_LISTENER_130,
 		ENT_ESB_FS_LISTENER,
 		ENT_ESB_FTP_LISTENER, ENT_ESB_FTP_LISTENER_120,
 		ENT_ESB_SQL_LISTENER, ENT_ESB_SQL_LISTENER_120,
@@ -127,6 +138,7 @@ public interface ESBConstants {
 		ENT_ESB_GROOVY_LISTENER,
 		ENT_ESB_HTTP_LISTENER, ENT_ESB_HTTP_GATEWAY,
 		ENT_ESB_UDP_LISTENER,
+		ENT_ESB_CAMEL_GATEWAY,
 	};
 
 	//prefix
@@ -136,6 +148,7 @@ public interface ESBConstants {
 	public String ENT_ESB_SERVICE_101 = ENT_ESB_SERVICE + SUFF_101;
 	public String ENT_ESB_SERVICE_110 = ENT_ESB_SERVICE + SUFF_110;
 	public String ENT_ESB_SERVICE_120 = ENT_ESB_SERVICE + SUFF_120;
+	public String ENT_ESB_SERVICE_130 = ENT_ESB_SERVICE + SUFF_130;
 
 	//prefix
 	public String ENT_ESB_ACTIONS = "ESBActions"; //$NON-NLS-1$

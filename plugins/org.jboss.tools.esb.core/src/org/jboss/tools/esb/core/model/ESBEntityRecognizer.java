@@ -52,6 +52,10 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
     	if(i120 >= 0) {
     		return ENT_ESB_FILE_120;
     	}
+    	int i130 = schema.indexOf("1.3.0"); //$NON-NLS-1$
+    	if(i130 >= 0) {
+    		return ENT_ESB_FILE_130;
+    	}
         return null;
     }
     
@@ -65,9 +69,11 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
     	return s.indexOf(q + SCHEMA_101 + q) > 0
     		|| s.indexOf(q + SCHEMA_110 + q) > 0
     		|| s.indexOf(q + SCHEMA_120 + q) > 0
+    		|| s.indexOf(q + SCHEMA_130 + q) > 0
     		|| s.indexOf(q + NEW_SCHEMA_101 + q) > 0
     		|| s.indexOf(q + NEW_SCHEMA_110 + q) > 0
-    		|| s.indexOf(q + NEW_SCHEMA_120 + q) > 0;
+    		|| s.indexOf(q + NEW_SCHEMA_120 + q) > 0
+    		|| s.indexOf(q + NEW_SCHEMA_130 + q) > 0;
     }
     
 }
