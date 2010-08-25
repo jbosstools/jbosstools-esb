@@ -226,4 +226,8 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	ITextSourceReference getSourceReference(XModelObject o, String attr) {
 		return new XMLValueInfo(o, attr);
 	}
+
+	public boolean isEnabled(IProject project) {
+		return true;
+	}
 }
