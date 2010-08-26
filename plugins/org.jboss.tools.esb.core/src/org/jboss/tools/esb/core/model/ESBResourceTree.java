@@ -28,7 +28,9 @@ public class ESBResourceTree extends FileSystemResourceTree {
 			XModelObject[] os = object.getChildren();
 			List<XModelObject> list = new ArrayList<XModelObject>();
 			XModelObject r = FileSystemsHelper.getWebRoot(model);
-			list.add(r);
+			if(r != null) {
+				list.add(r);
+			}
 			for (int i = 0; i < os.length; i++) {
 				String name = os[i].getAttributeValue(XModelObjectConstants.ATTR_NAME);
 				if(name.startsWith("src")) {
