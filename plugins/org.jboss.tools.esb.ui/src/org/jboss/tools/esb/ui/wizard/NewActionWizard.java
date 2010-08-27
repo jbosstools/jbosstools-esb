@@ -1,16 +1,21 @@
+/******************************************************************************* 
+ * Copyright (c) 2010 Red Hat, Inc. 
+ * Distributed under license by Red Hat, Inc. All rights reserved. 
+ * This program is made available under the terms of the 
+ * Eclipse Public License v1.0 which accompanies this distribution, 
+ * and is available at http://www.eclipse.org/legal/epl-v10.html 
+ * 
+ * Contributors: 
+ * Red Hat, Inc. - initial API and implementation 
+ ******************************************************************************/ 
 package org.jboss.tools.esb.ui.wizard;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jdt.core.IBuffer;
-import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
-import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.internal.ui.JavaPlugin;
 import org.eclipse.jdt.internal.ui.JavaPluginImages;
 import org.eclipse.jdt.ui.JavaUI;
@@ -20,7 +25,6 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.jboss.tools.common.model.ui.wizards.NewClassWizard;
 import org.jboss.tools.common.model.ui.wizards.NewTypeWizardAdapter;
-import org.jboss.tools.common.model.util.EclipseJavaUtil;
 import org.jboss.tools.esb.ui.ESBUIMessages;
 import org.jboss.tools.esb.ui.ESBUiPlugin;
 
@@ -34,15 +38,16 @@ public class NewActionWizard extends NewClassWizard implements INewWizard {
 	}
 
 	public void addPages() {
-		super.addPages();
+//		super.addPages();
+		mainPage = new NewActionWizardPage();
+		addPage(mainPage);
+		if (adapter!=null) mainPage.init(adapter);
+
 		mainPage.setTitle(ESBUIMessages.newESBActionWizardPageTitle);
 	}
 
 	protected void finishPage(IProgressMonitor monitor) throws InterruptedException, CoreException {
 		mainPage.createType(monitor);
-		if(mainPage.getCreatedType() != null) {
-			modifyJavaSource();
-		}
 	}
 
 	@Override
@@ -111,71 +116,6 @@ public class NewActionWizard extends NewClassWizard implements INewWizard {
 			return (IPackageFragment)o;
 		}
 		return null;
-	}
-
-	void modifyJavaSource() {
-//		String newValue = getQualifiedClassName();
-		try {
-			IType type = mainPage.getCreatedType();
-			if(type == null) {
-				return;
-			}
-			String name = type.getElementName();
-			String sc = type.getSuperclassTypeSignature();
-			if(sc != null) {
-				sc = EclipseJavaUtil.resolveTypeAsString(type, sc);
-			}
-			if(type != null && "org.jboss.soa.esb.actions.AbstractActionPipelineProcessor".equals(sc)) {
-				ICompilationUnit w = type.getCompilationUnit().getWorkingCopy(new NullProgressMonitor());
-				IBuffer b = w.getBuffer();
-				String s = b.getContents();
-				String lineDelimiter = "\r\n";
-				
-				String IMPORT = "import org.jboss.soa.esb.actions.AbstractActionPipelineProcessor;";
-				int i1 = s.indexOf(IMPORT);
-				if(i1 >= 0) {
-					String content = "";
-					String[] imports = {
-							"import org.jboss.soa.esb.actions.ActionProcessingException;",
-							"import org.jboss.soa.esb.helpers.ConfigTree;",
-							"import org.jboss.soa.esb.message.Message;"
-					};
-					for (String is: imports) {
-						if(s.indexOf(is) < 0) {
-							content += lineDelimiter + is;
-						}
-					}
-					if(content.length() > 0) {
-						b.replace(i1 + IMPORT.length(), 0, content);
-					}
-				}
-				
-				s = b.getContents();
-				boolean hasOverrideAnnotation = s.indexOf("@Override") > 0;
-				
-				int i = s.indexOf('{');
-				int j = s.lastIndexOf('}');
-				if(i > 0 && j > i) {
-					String tab = "\t";
-					String content = lineDelimiter 
-						+ tab + "protected ConfigTree _config;" + lineDelimiter
-						+ lineDelimiter
-						+ tab + "public " + name + "(ConfigTree config) {" + lineDelimiter
-						+ tab + tab + "_config = config;"+ lineDelimiter
-						+ tab + "}" + lineDelimiter
-						+ lineDelimiter
-						+ (hasOverrideAnnotation ? tab + "@Override" + lineDelimiter : "")
-						+ tab + "public Message process(Message message) throws ActionProcessingException {" + lineDelimiter
-						+ tab + tab + "//ADD CUSTOM ACTION CODE HERE" + lineDelimiter
-						+ tab + tab + "return message;" + lineDelimiter
-						+ tab + "}" + lineDelimiter;
-					b.replace(i + 1, j - i - 1, content);
-					w.commitWorkingCopy(true, new NullProgressMonitor());
-				}
-			}
-		} catch (CoreException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
