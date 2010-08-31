@@ -45,6 +45,8 @@ import org.jboss.tools.esb.core.ESBCorePlugin;
  *
  */
 public class NewActionWizardPage extends NewClassWizardPageEx {
+	public static String PROCESS = "org.jboss.soa.esb.actions.annotation.Process";
+	
 	RadioFieldEditor pojo = null;
 
 	public NewActionWizardPage() {		
@@ -187,7 +189,7 @@ public class NewActionWizardPage extends NewClassWizardPageEx {
 				buf.append(comment);
 				buf.append(lineDelim);
 			}
-			imports.addImport("org.jboss.soa.esb.actions.annotation.Process"); //$NON-NLS-1$
+			imports.addImport(PROCESS); //$NON-NLS-1$
 			buf.append("@Process").append(lineDelim); //$NON-NLS-1$
 			buf.append("public Message process("); //$NON-NLS-1$
 			buf.append(imports.addImport("org.jboss.soa.esb.message.Message")); //$NON-NLS-1$

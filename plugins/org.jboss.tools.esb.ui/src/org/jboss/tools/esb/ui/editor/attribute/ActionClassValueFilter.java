@@ -11,13 +11,18 @@
 package org.jboss.tools.esb.ui.editor.attribute;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jdt.core.IAnnotation;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 import org.jboss.tools.common.meta.XAttribute;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.ui.attribute.IValueFilter;
 import org.jboss.tools.common.model.util.EclipseJavaUtil;
 import org.jboss.tools.common.model.util.EclipseResourceUtil;
+import org.jboss.tools.esb.ui.wizard.NewActionWizardPage;
 
 /**
  * 
@@ -42,7 +47,27 @@ public class ActionClassValueFilter implements IValueFilter {
 		boolean b = value.startsWith("org.jboss.soa.esb.actions.")
 			|| EclipseJavaUtil.isDerivedClass(value, AbstractActionLifecycle, project)
 			|| EclipseJavaUtil.isDerivedClass(value, AbstractActionPipelineProcessor, project);
-		
+		if(!b) {
+			IType t = EclipseResourceUtil.getValidType(project, value);
+			if(t != null) {
+				try {
+					boolean q = NewActionWizardPage.PROCESS.equals(EclipseJavaUtil.resolveType(t, "Process")) ;
+					IMethod[] ms = t.getMethods();
+					for (int i = 0; i < ms.length; i++) {
+						IAnnotation a = ms[i].getAnnotation(NewActionWizardPage.PROCESS);
+						if((a == null || !a.exists()) && q) {
+							a = ms[i].getAnnotation("Process");
+						}
+						if(a != null && a.exists()) {
+							b = true;
+							break;
+						}
+					}
+				} catch (CoreException e) {
+					
+				}
+			}			
+		}
 
 		return b;
 	}

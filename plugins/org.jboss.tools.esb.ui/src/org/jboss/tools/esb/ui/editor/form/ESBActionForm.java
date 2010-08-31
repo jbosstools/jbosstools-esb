@@ -7,6 +7,7 @@ import java.util.TreeSet;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.Flags;
+import org.eclipse.jdt.core.IAnnotation;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
@@ -29,6 +30,7 @@ import org.jboss.tools.common.model.ui.widgets.IWidgetSettings;
 import org.jboss.tools.common.model.util.EclipseJavaUtil;
 import org.jboss.tools.common.model.util.EclipseResourceUtil;
 import org.jboss.tools.esb.core.model.ESBConstants;
+import org.jboss.tools.esb.ui.wizard.NewActionWizardPage;
 
 public class ESBActionForm extends Form {
 	static IFormData formData = ModelFormLayoutData.createGeneralFormData(
@@ -100,10 +102,15 @@ public class ESBActionForm extends Form {
 			if(ms[i].isConstructor()) continue;
 			if(!Flags.isPublic(ms[i].getFlags())) continue;
 			String[] ps = ms[i].getParameterTypes();
-			if(ps == null || ps.length != 1) continue;
+			if(ps == null || ps.length == 0) continue;
 			String t = EclipseJavaUtil.resolveTypeAsString(type, ps[0]);
-			if(!t.endsWith("Message")) continue;
-			list.add(ms[i].getElementName());
+			if(t.endsWith("Message") && ps.length == 1) {
+				list.add(ms[i].getElementName());
+				continue;
+			}
+			if(hasProcessAnnotation(ms[i])) {
+				list.add(ms[i].getElementName());
+			}
 		}
 		String st = type.getSuperclassName();
 		if(st != null && st.length() > 0) {
@@ -113,5 +120,20 @@ public class ESBActionForm extends Form {
 			}
 		}
 		
+	}
+	
+	static boolean hasProcessAnnotation(IMethod m) throws JavaModelException {
+		boolean q = NewActionWizardPage.PROCESS.equals(EclipseJavaUtil.resolveType(m.getDeclaringType(), "Process"));
+		IAnnotation[] as = m.getAnnotations();
+		for (IAnnotation a: as) {
+			String n = a.getElementName();
+			if(NewActionWizardPage.PROCESS.equals(n)) {
+				return true;
+			}
+			if(q && "Process".equals(n)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
