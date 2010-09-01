@@ -1996,11 +1996,15 @@
       <AttributeData AttributeName="id"/>
      </EntityData>
     </XActionItem>
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddScheduleProviderSupport"
      displayName="Schedule Provider..." kind="action" name="AddScheduleProvider">
      <EntityData EntityName="ESBScheduleProvider101">
       <AttributeData AttributeName="name"/>
+     </EntityData>
+     <EntityData EntityName="ESBScheduleCreator" Mandatory="no">
+      <AttributeData AttributeName="schedule kind" Mandatory="no"/>
+      <AttributeData AttributeName="schedule id"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
@@ -2268,6 +2272,35 @@
    <XActionItemReference entity="ESBProperty" name="Properties"/>
    <XActionItemReference entity="ESBProperty" name="MoveActions"/>
   </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity name="ESBScheduleCreator">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.schedule" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="schedule" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttributeReference
+    attributes="schedule id,start date,end date"
+    entity="ESBSimpleSchedule101" name="schedule"/>
+   <XModelAttribute PROPERTIES="label=false;horizontal=true"
+    default="Simple" name="schedule kind">
+    <Constraint loader="List">
+     <value name="Simple"/>
+     <value name="Cron"/>
+    </Constraint>
+    <Editor name="RadioArray"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list"/>
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
