@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2007 Red Hat, Inc. 
+ * Copyright (c) 2010 Red Hat, Inc. 
  * Distributed under license by Red Hat, Inc. All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -11,6 +11,7 @@
 package org.jboss.tools.esb.core.model.handlers;
 
 import java.util.Properties;
+
 import org.jboss.tools.common.meta.action.impl.SpecialWizardSupport;
 import org.jboss.tools.common.meta.action.impl.handlers.DefaultCreateHandler;
 import org.jboss.tools.common.model.XModelException;
@@ -23,18 +24,15 @@ import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
  * @author Viacheslav Kabanovich
  *
  */
-public class AddProviderSupport extends SpecialWizardSupport {
-	String providerEntity;
+public class AddHibernateBusSupport extends SpecialWizardSupport {
 	String busEntity;
+	String filterEntity;
 	
-	public AddProviderSupport() {}
+	public AddHibernateBusSupport() {}
 
     protected void reset() {
-    	providerEntity = getEntityData()[0].getModelEntity().getName();
-    	busEntity = getEntityData()[1].getModelEntity().getName();
-    	if("ESBBusCreator".equals(busEntity)) {
-    		busEntity = action.getProperty("busEntity");
-    	}
+    	busEntity = getEntityData()[0].getModelEntity().getName();
+    	filterEntity = getEntityData()[1].getModelEntity().getName();
     }
 
     public String[] getActionNames(int stepId) {
@@ -77,24 +75,18 @@ public class AddProviderSupport extends SpecialWizardSupport {
 	
 	protected void execute() throws XModelException {
 		Properties p0 = extractStepData(0);
-		XModelObject provider = XModelObjectLoaderUtil.createValidObject(getTarget().getModel(), providerEntity, p0);
+		XModelObject bus = XModelObjectLoaderUtil.createValidObject(getTarget().getModel(), busEntity, p0);
 		
 		Properties p1 = extractStepData(1);
-		XModelObject bus = XModelObjectLoaderUtil.createValidObject(getTarget().getModel(), busEntity, p1);
-		
-		provider.addChild(bus);
-		
-		if(getStepId() == 2) {
-			Properties p2 = extractStepData(2);
-			String childEntity = getEntityData()[2].getModelEntity().getName();
-			XModelObject child = XModelObjectLoaderUtil.createValidObject(getTarget().getModel(), childEntity, p2);
-			bus.addChild(child);
+		if(filterEntity != null) {
+			XModelObject filter = XModelObjectLoaderUtil.createValidObject(getTarget().getModel(), filterEntity, p1);
+			bus.addChild(filter);
 		}
 		
-		DefaultCreateHandler.addCreatedObject(getTarget(), provider, FindObjectHelper.EVERY_WHERE);
+		DefaultCreateHandler.addCreatedObject(getTarget(), bus, FindObjectHelper.EVERY_WHERE);
 	}
-
-    public boolean canBeProcessedByStandardWizard() {
+	
+	public boolean canBeProcessedByStandardWizard() {
     	return true;
     }
 

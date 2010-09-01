@@ -1096,7 +1096,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="ftp provider" loader="ElementType" name="element type">
+   <XModelAttribute default="hibernate provider" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
@@ -1111,11 +1111,15 @@
    <XActionItem ICON="action.empty" displayName="New" group="1"
     kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
-    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
-     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+    <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"
+     PROPERTIES="validator.add=true;support=org.jboss.tools.esb.core.model.handlers.AddHibernateBusSupport"
      displayName="Hibernate Bus..." kind="action" name="AddBus">
      <EntityData EntityName="ESBHibernateBus101">
       <AttributeData AttributeName="id"/>
+     </EntityData>
+     <EntityData EntityName="ESBHibernateMessageFilter101">
+      <AttributeData AttributeName="class name"/>
+      <AttributeData AttributeName="event" Mandatory="no"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -1959,6 +1963,10 @@
      </EntityData>
      <EntityData EntityName="ESBBusCreator">
       <AttributeData AttributeName="id"/>
+     </EntityData>
+     <EntityData EntityName="ESBHibernateMessageFilter101">
+      <AttributeData AttributeName="class name"/>
+      <AttributeData AttributeName="event" Mandatory="no"/>
      </EntityData>
     </XActionItem>
     <XActionItem HandlerClassName="%SpecialWizard%" ICON="action.empty"

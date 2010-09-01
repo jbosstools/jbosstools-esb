@@ -49,6 +49,8 @@
 			class="org.jboss.tools.esb.core.model.handlers.AddProviderSupport"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddScheduleProviderSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddScheduleProviderSupport"/>
+		<xclass id="org.jboss.tools.esb.core.model.handlers.AddHibernateBusSupport"
+			class="org.jboss.tools.esb.core.model.handlers.AddHibernateBusSupport"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"
 			class="org.jboss.tools.esb.core.model.handlers.AddGenericActionSupport"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddContentBasedRouterSupport"
