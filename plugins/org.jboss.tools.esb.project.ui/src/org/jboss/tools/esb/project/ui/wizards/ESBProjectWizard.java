@@ -54,10 +54,10 @@ public class ESBProjectWizard extends NewProjectDataModelFacetWizard implements
 	public ESBProjectWizard() {
 		super();
 		Set<IProjectFacetVersion> current = getFacetedProjectWorkingCopy().getProjectFacets();
-		getFacetedProjectWorkingCopy().addListener(new IFacetedProjectListener(){
-			public void handleEvent(IFacetedProjectEvent event) {
-				System.out.println("runtime changed" + event.getWorkingCopy().getPrimaryRuntime().getName());
-			}}, IFacetedProjectEvent.Type.PRIMARY_RUNTIME_CHANGED);
+//		getFacetedProjectWorkingCopy().addListener(new IFacetedProjectListener(){
+//			public void handleEvent(IFacetedProjectEvent event) {
+//				System.out.println("runtime changed" + event.getWorkingCopy().getPrimaryRuntime().getName());
+//			}}, IFacetedProjectEvent.Type.PRIMARY_RUNTIME_CHANGED);
 		IRuntime rt = getFacetedProjectWorkingCopy().getPrimaryRuntime();
 		getFacetedProjectWorkingCopy().setProjectFacets(current);
 		setWindowTitle(JBossESBUIMessages.ESBProjectWizard_Title);

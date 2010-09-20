@@ -98,4 +98,61 @@
          </selection>
       </wizard>
     </extension>
+
+   <extension
+         point="org.eclipse.jst.ws.annotations.core.annotationCategory">
+      <category
+            id="org.jboss.tools.esb.annotations"
+            name="%annotations-category">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.jst.ws.annotations.core.annotationDefinition">
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.actions.annotation.Process"
+            name="Process">
+      </annotation>
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.configure.ConfigProperty"
+            name="ConfigProperty">
+      </annotation>
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.lifecycle.annotation.Destroy"
+            name="Destroy">
+      </annotation>
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.lifecycle.annotation.Initialize"
+            name="Initialize">
+      </annotation>
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.actions.annotation.OnException"
+            name="OnException">
+      </annotation>
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.actions.annotation.OnSuccess"
+            name="OnSuccess">
+      </annotation>
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.actions.annotation.BodyParam"
+            name="BodyParam">
+      </annotation>
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.actions.annotation.PropertyParam"
+            name="PropertyParam">
+      </annotation>
+      <annotation
+            category="org.jboss.tools.esb.annotations"
+            class="org.jboss.soa.esb.actions.annotation.AttachmentParam"
+            name="AttachmentParam">
+      </annotation>
+   </extension>
+
 </plugin>
