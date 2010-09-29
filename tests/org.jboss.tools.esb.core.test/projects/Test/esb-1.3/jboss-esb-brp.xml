@@ -8,6 +8,8 @@
     <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="OrderDiscountRuleService">
      <property name="ruleSet" value="drl/OrderDiscount.drl"/>
      <property name="ruleReload" value="true"/>
+     <property name="ruleMultithreadEvaluation" value="true"/>
+     <property name="ruleMaxThreads" value="7"/>
      <property name="object-paths">
       <object-path esb="body.Order"/>
      </property>

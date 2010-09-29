@@ -381,6 +381,8 @@ public class ESBModelTest extends TestCase {
 		String[][] orderDiscountRuleServiceAttrValues = {
 			{"rule set", "drl/OrderDiscount.drl"},
 			{"rule reload", "true"},
+			{"rule multithread evaluation", "true"},
+			{"rule max threads", "7"},
 		};
 		checkAttributes(object, orderDiscountRuleServicePath, orderDiscountRuleServiceAttrValues, errorList);
 
