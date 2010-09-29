@@ -434,7 +434,7 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
     name="rule audit type" xmlname="ruleAuditType">
-    <Constraint loader="ListString">
+    <Constraint loader="List">
      <value/>
      <value name="CONSOLE"/>
      <value name="FILE"/>
@@ -454,7 +454,7 @@
     name="rule audit interval" xmlname="ruleAuditInterval"/>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
     default="Default(REALTIME)" name="rule clock type" xmlname="ruleClockType">
-    <Constraint loader="ListString">
+    <Constraint loader="List">
      <value name="Default(REALTIME)"/>
      <value name="REALTIME"/>
      <value name="PSEUDO"/>
@@ -463,7 +463,7 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
     default="Default(CLOUD)" name="rule event processing type" xmlname="ruleEventProcessingType">
-    <Constraint loader="ListString">
+    <Constraint loader="List">
      <value name="Default(CLOUD)"/>
      <value name="CLOUD"/>
      <value name="STREAM"/>
@@ -472,13 +472,24 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
     default="Default(FIRE_ALL_RULES)" name="rule fire method" xmlname="ruleFireMethod">
-    <Constraint loader="ListString">
+    <Constraint loader="List">
      <value name="Default(FIRE_ALL_RULES)"/>
      <value name="FIRE_ALL_RULES"/>
      <value name="FIRE_UNTIL_HALT"/>
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="Default(false)" name="rule multithread evaluation" xmlname="ruleMultithreadEvaluation">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="List"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="rule max threads" xmlname="ruleMaxThreads"/>
    <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
     <Constraint loader="ListString">
      <value name="process"/>
