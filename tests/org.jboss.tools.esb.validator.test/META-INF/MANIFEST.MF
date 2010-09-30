@@ -16,6 +16,6 @@ Require-Bundle: org.jboss.tools.esb.core,
  org.eclipse.ui,
  org.eclipse.jdt.core,
  org.jboss.tools.common.model.ui,
- org.eclipse.ltk.core.refactoring;bundle-version="3.5.0"
+ org.eclipse.ltk.core.refactoring
 Export-Package: org.jboss.tools.esb.validator.test
 Bundle-ClassPath: esb-validator-test.jar

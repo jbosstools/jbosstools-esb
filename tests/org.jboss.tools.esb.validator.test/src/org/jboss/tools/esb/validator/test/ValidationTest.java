@@ -13,6 +13,7 @@ package org.jboss.tools.esb.validator.test;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.jboss.tools.esb.validator.ESBValidatorMessages;
+import org.jboss.tools.test.util.JobUtils;
 import org.jboss.tools.tests.AbstractResourceMarkerTest;
 
 /**
@@ -21,6 +22,7 @@ import org.jboss.tools.tests.AbstractResourceMarkerTest;
 public class ValidationTest extends ESBTest {
 
 	public void test0() throws Exception {
+		JobUtils.waitForIdle();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -37,6 +39,14 @@ public class ValidationTest extends ESBTest {
 		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL, 13);
 		int markerNumbers = getMarkersNumber(file);
 		assertEquals("jboss-esb-01.xml should have one error marker.", markerNumbers, 1);
+	}
+
+	public void testBusenessRulesProcessor() throws Exception {
+		IFile file = project.getFile("esbcontent/META-INF/jboss-esb-brp-broken.xml");
+		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.INVALID_RULE_SET_FOR_RULE_LANGUAGE, 52);
+		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.INVALID_RULE_AUDIT_TYPE_AND_INTERVAL, 34);
+		int markerNumbers = getMarkersNumber(file);
+		assertEquals("jboss-esb-brp-broken.xml should have 2 error markers.", markerNumbers, 2);
 	}
 
 	/**
