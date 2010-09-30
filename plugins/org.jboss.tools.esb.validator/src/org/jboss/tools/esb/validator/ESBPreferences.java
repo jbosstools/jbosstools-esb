@@ -27,8 +27,9 @@ public class ESBPreferences extends SeverityPreferences {
 
 	//Channel ID ref group
 	
-	public static final String LISTENER_REFERENCES_NON_EXISTENT_CHANNEL = INSTANCE.createSeverityOption("listenerReferencesNonExistentChannel"); //$NON-NLS-1
-	public static final String LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL = INSTANCE.createSeverityOption("listenerReferencesIncompatibleChannel"); //$NON-NLS-1
+	public static final String LISTENER_REFERENCES_NON_EXISTENT_CHANNEL = INSTANCE.createSeverityOption("listenerReferencesNonExistentChannel"); //$NON-NLS-1$
+	public static final String LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL = INSTANCE.createSeverityOption("listenerReferencesIncompatibleChannel"); //$NON-NLS-1$
+	public static final String BUSINESS_RULES_PROCESSOR_PROBLEMS = INSTANCE.createSeverityOption("businessRulesProcessorProblems"); //$NON-NLS-1$
 
 	/**
 	 * @return the only instance of CDIPreferences

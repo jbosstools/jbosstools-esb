@@ -27,6 +27,9 @@ public class ESBPreferencesMessages extends NLS {
 	public static String ESBValidatorConfigurationBlock_pb_listenerReferencesNonExistentChannel_label;
 	public static String ESBValidatorConfigurationBlock_pb_listenerReferencesIncompatibleChannel_label;
 
+	public static String ESBValidatorConfigurationBlock_section_actions;
+	public static String ESBValidatorConfigurationBlock_pb_businessRulesProcessorProblems_label;
+
 	public static String ESB_VALIDATOR_PREFERENCE_PAGE_ESB_VALIDATOR;
 
 	static {

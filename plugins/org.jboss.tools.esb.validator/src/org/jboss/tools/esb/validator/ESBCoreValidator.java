@@ -109,6 +109,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	private void validateESBConfigFile(XModelObject object, IFile file) {
 //		System.out.println("Validate ESB Config " + file);
 		validateChannelIDRefs(object, file);
+		validateActions(object, file);
 	}
 
 	public IStatus validateAll(IProject project,
@@ -181,12 +182,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 					if(busEntityPrefix != null && !entity.startsWith(busEntityPrefix)) {
 						IMarker marker = addError(ESBValidatorMessages.LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL, 
 								ESBPreferences.LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL, getSourceReference(listener, ESBConstants.ATTR_BUS_ID_REF), file);
-						if(marker != null) try {
-							marker.setAttribute(ATTR_PATH, listener.getPath());
-							marker.setAttribute(ATTR_ATTRIBUTE, ESBConstants.ATTR_BUS_ID_REF);
-						} catch (CoreException e) {
-							e.printStackTrace();
-						}
+						bindMarkerToPathAndAttribute(marker, listener, ESBConstants.ATTR_BUS_ID_REF);
 					}
 				}
 			}
@@ -230,4 +226,65 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	public boolean isEnabled(IProject project) {
 		return true;
 	}
+
+	void validateActions(XModelObject object, IFile file) {
+		XModelObject servicesFolder = object.getChildByPath("Services"); //$NON-NLS-1$
+		if(servicesFolder == null) return;
+	
+		XModelObject[] services = servicesFolder.getChildren();
+		for (XModelObject service: services) {
+			XModelObject actionsFolder = service.getChildByPath("Actions"); //$NON-NLS-1$
+			XModelObject[] actions = actionsFolder.getChildren();
+			for (XModelObject action: actions) {
+				String entity = action.getModelEntity().getName();
+				if(entity.startsWith("ESBPreActionBusinessRulesProcessor")) { //$NON-NLS-1$
+					validateBusinessRulesProcessor(action, file);
+				} else {
+					//TODO
+				}
+			}
+		
+		}
+	}
+	
+	static String ATTR_RULE_LANGUAGE = "rule language"; //$NON-NLS-1$
+	static String ATTR_RULE_SET = "rule set"; //$NON-NLS-1$
+	static String ATTR_RULE_AUDIT_INTERVAL = "rule audit interval"; //$NON-NLS-1$
+	static String ATTR_RULE_AUDIT_TYPE = "rule audit type"; //$NON-NLS-1$
+
+	void validateBusinessRulesProcessor(XModelObject object, IFile file) {
+		String lang = object.getAttributeValue(ATTR_RULE_LANGUAGE);
+		if(lang != null && lang.length() > 0) {
+			String ruleSet = object.getAttributeValue(ATTR_RULE_SET);
+			if(ruleSet == null || ruleSet.length() == 0) {
+				IMarker marker = addError(ESBValidatorMessages.INVALID_RULE_SET_FOR_RULE_LANGUAGE, 
+						ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, getSourceReference(object, ATTR_RULE_LANGUAGE), file);
+				bindMarkerToPathAndAttribute(marker, object, ATTR_RULE_LANGUAGE);
+			} else if(!ruleSet.endsWith(".dslr")) { //$NON-NLS-1$
+				IMarker marker = addError(ESBValidatorMessages.INVALID_RULE_SET_FOR_RULE_LANGUAGE, 
+						ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, getSourceReference(object, ATTR_RULE_SET), file);
+				bindMarkerToPathAndAttribute(marker, object, ATTR_RULE_SET);
+			}
+		}
+		
+		String auditInterval = object.getAttributeValue(ATTR_RULE_AUDIT_INTERVAL);
+		if(auditInterval != null && auditInterval.length() > 0) {
+			String auditAuditType = object.getAttributeValue(ATTR_RULE_AUDIT_TYPE);
+			if(!"THREADED_FILE".equals(auditAuditType)) { //$NON-NLS-1$
+				IMarker marker = addError(ESBValidatorMessages.INVALID_RULE_AUDIT_TYPE_AND_INTERVAL, 
+						ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, getSourceReference(object, ATTR_RULE_AUDIT_INTERVAL), file);
+				bindMarkerToPathAndAttribute(marker, object, ATTR_RULE_AUDIT_INTERVAL);
+			}
+		}
+	}
+
+	void bindMarkerToPathAndAttribute(IMarker marker, XModelObject object, String attr) {
+		if(marker != null) try {
+			marker.setAttribute(ATTR_PATH, object.getPath());
+			marker.setAttribute(ATTR_ATTRIBUTE, attr);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -23,6 +23,9 @@ public class ESBValidatorMessages extends NLS {
 	public static String LISTENER_REFERENCES_NON_EXISTENT_CHANNEL;
 	public static String LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL;
 
+	public static String INVALID_RULE_SET_FOR_RULE_LANGUAGE;
+	public static String INVALID_RULE_AUDIT_TYPE_AND_INTERVAL;
+
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, ESBValidatorMessages.class);
 	}

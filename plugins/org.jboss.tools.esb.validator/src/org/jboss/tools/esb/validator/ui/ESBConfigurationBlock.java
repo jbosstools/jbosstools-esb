@@ -36,8 +36,17 @@ public class ESBConfigurationBlock extends SeverityConfigurationBlock {
 		ESBValidatorPlugin.PLUGIN_ID
 	);
 
+	private static SectionDescription SECTION_ACTION_DEFINITIONS = new SectionDescription(
+			ESBPreferencesMessages.ESBValidatorConfigurationBlock_section_actions,
+			new String[][]{
+				{ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, ESBPreferencesMessages.ESBValidatorConfigurationBlock_pb_businessRulesProcessorProblems_label},
+			},
+			ESBValidatorPlugin.PLUGIN_ID
+		);
+
 	private static SectionDescription[] ALL_SECTIONS = new SectionDescription[]{
 		SECTION_CHANNEL_ID_REF,
+		SECTION_ACTION_DEFINITIONS,
 	};
 
 	private static Key[] getKeys() {
