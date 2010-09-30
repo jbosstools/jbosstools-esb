@@ -9,6 +9,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<modules>
 		<module>org.jboss.tools.esb.core.test</module>
 		<module>org.jboss.tools.esb.project.core.test</module>
+		<module>org.jboss.tools.esb.validator.test</module>
 	</modules>
 </project>
 	

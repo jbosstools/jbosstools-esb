@@ -11,6 +11,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<module>org.jboss.tools.esb.project.core</module>
 		<module>org.jboss.tools.esb.project.ui</module>
 		<module>org.jboss.tools.esb.ui</module>
+		<module>org.jboss.tools.esb.validator</module>
 	</modules>
 </project>
 	
