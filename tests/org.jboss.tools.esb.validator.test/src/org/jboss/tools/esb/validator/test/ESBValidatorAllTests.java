@@ -24,7 +24,9 @@ public class ESBValidatorAllTests {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite("ESB Validator Tests");
-		suite.addTest(new ESBValidatorTestSetup(ESBValidatorTestSuite.suite()));
+		TestSuite suite2 = new TestSuite("ESB Validator Tests");
+		suite2.addTestSuite(ValidationTest.class);
+		suite.addTest(new ESBValidatorTestSetup(suite2));
 
 		return new DisableJavaIndexingSetup(suite);
 	}
