@@ -70,4 +70,9 @@ public class ESBPreferences extends SeverityPreferences {
 	public static boolean shouldValidateCore(IProject project) {
 		return true;
 	}
+
+	public static boolean isValidationEnabled(IProject project) {
+		return INSTANCE.isEnabled(project);
+	}
+
 }

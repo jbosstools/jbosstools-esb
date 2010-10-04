@@ -68,10 +68,10 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 			//ignore
 		}
 		
-		if(esbContentFolder != null) return true;
+		if(esbContentFolder != null) return isEnabled(project);
 		
 		try {
-			return project != null && project.isAccessible() && project.hasNature(ESBProjectConstant.ESB_PROJECT_NATURE);
+			return project != null && project.isAccessible() && project.hasNature(ESBProjectConstant.ESB_PROJECT_NATURE) && isEnabled(project);
 		} catch (CoreException e) {
 			ESBValidatorPlugin.log(e);
 		}
@@ -224,7 +224,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	}
 
 	public boolean isEnabled(IProject project) {
-		return true;
+		return ESBPreferences.isValidationEnabled(project);
 	}
 
 	void validateActions(XModelObject object, IFile file) {
