@@ -45,8 +45,9 @@ public class ValidationTest extends ESBTest {
 		IFile file = project.getFile("esbcontent/META-INF/jboss-esb-brp-broken.xml");
 		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.INVALID_RULE_SET_FOR_RULE_LANGUAGE, 52);
 		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.INVALID_RULE_AUDIT_TYPE_AND_INTERVAL, 34);
+		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.INVALID_OBJECT_PATH_WRONG_LOCATION, 58);
 		int markerNumbers = getMarkersNumber(file);
-		assertEquals("jboss-esb-brp-broken.xml should have 2 error markers.", markerNumbers, 2);
+		assertEquals("jboss-esb-brp-broken.xml should have 2 error markers.", markerNumbers, 3);
 	}
 
 	/**

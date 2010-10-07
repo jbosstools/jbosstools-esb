@@ -55,6 +55,7 @@
      <property name="object-paths">
       <object-path esb="body.Driver"/>
       <object-path esb="body.Policy"/>
+      <object-path esb="bod.Policy"/>
      </property>
     </action>
     <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="PolicyPricingRuleService">
