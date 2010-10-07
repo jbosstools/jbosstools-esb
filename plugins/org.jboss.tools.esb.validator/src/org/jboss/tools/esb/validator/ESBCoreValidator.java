@@ -2,9 +2,11 @@ package org.jboss.tools.esb.validator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.TreeSet;
 
 import org.eclipse.core.resources.IFile;
@@ -24,6 +26,7 @@ import org.jboss.tools.common.text.ITextSourceReference;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.model.ESBConstants;
+import org.jboss.tools.esb.core.model.converters.ConverterConstants;
 import org.jboss.tools.jst.web.kb.internal.validation.ContextValidationHelper;
 import org.jboss.tools.jst.web.kb.internal.validation.ProjectValidationContext;
 import org.jboss.tools.jst.web.kb.internal.validation.ValidatingProjectSet;
@@ -275,6 +278,32 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 						ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, getSourceReference(object, ATTR_RULE_AUDIT_INTERVAL), file);
 				bindMarkerToPathAndAttribute(marker, object, ATTR_RULE_AUDIT_INTERVAL);
 			}
+		}
+
+		XModelObject[] ps = object.getChildren(ConverterConstants.OBJECT_PATH_ENTITY);
+		for (XModelObject path: ps) {
+			validateObjectPathForBusinessRulesProcessor(path, object, file);			
+		}
+	}
+
+	static String ATTR_ESB = "esb"; //$NON-NLS-1$
+	static Set<String> OBJECT_PATH_LOCATIONS = new HashSet<String>();
+	static {
+		OBJECT_PATH_LOCATIONS.add("body"); //$NON-NLS-1$
+		OBJECT_PATH_LOCATIONS.add("header"); //$NON-NLS-1$
+		OBJECT_PATH_LOCATIONS.add("properties"); //$NON-NLS-1$
+		OBJECT_PATH_LOCATIONS.add("attachment"); //$NON-NLS-1$
+	}
+
+	void validateObjectPathForBusinessRulesProcessor(XModelObject path, XModelObject brp, IFile file) {
+		String esb = path.getAttributeValue(ATTR_ESB);
+		StringTokenizer st = new StringTokenizer(esb, ".");
+		if(!st.hasMoreTokens()) return;
+		String location = st.nextToken();
+		if(!OBJECT_PATH_LOCATIONS.contains(location)) {
+			IMarker marker = addError(ESBValidatorMessages.INVALID_OBJECT_PATH_WRONG_LOCATION, 
+					ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, getSourceReference(path, ATTR_ESB), file);
+			bindMarkerToPathAndAttribute(marker, path, ATTR_ESB);
 		}
 	}
 

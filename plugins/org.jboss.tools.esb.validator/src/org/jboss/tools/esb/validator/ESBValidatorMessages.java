@@ -25,6 +25,8 @@ public class ESBValidatorMessages extends NLS {
 
 	public static String INVALID_RULE_SET_FOR_RULE_LANGUAGE;
 	public static String INVALID_RULE_AUDIT_TYPE_AND_INTERVAL;
+	
+	public static String INVALID_OBJECT_PATH_WRONG_LOCATION;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, ESBValidatorMessages.class);
