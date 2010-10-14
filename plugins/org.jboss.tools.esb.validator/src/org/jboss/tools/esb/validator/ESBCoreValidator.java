@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -21,7 +20,6 @@ import org.eclipse.wst.validation.internal.core.ValidationException;
 import org.eclipse.wst.validation.internal.provisional.core.IReporter;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.util.EclipseResourceUtil;
-import org.jboss.tools.common.model.util.PositionSearcher;
 import org.jboss.tools.common.text.ITextSourceReference;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
@@ -38,6 +36,7 @@ import org.jboss.tools.jst.web.model.project.ext.store.XMLValueInfo;
 
 public class ESBCoreValidator extends ESBValidationErrorManager implements IValidator {
 	public static final String ID = "org.jboss.tools.esb.validator.ESBCoreValidator"; //$NON-NLS-1$
+	public static final String PROBLEM_TYPE = "org.jboss.tools.esb.validator.esbproblem"; //$NON-NLS-1$
 
 	static String XML_EXT = ".xml"; //$NON-NLS-1$
 	static String ATTR_PATH = "path"; //$NON-NLS-1$
@@ -45,6 +44,15 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 
 	String projectName;
 	Map<IProject, IValidationContext> contexts = new HashMap<IProject, IValidationContext>();
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.jboss.tools.jst.web.kb.internal.validation.ValidationErrorManager#getMarkerType()
+	 */
+	@Override
+	public String getMarkerType() {
+		return PROBLEM_TYPE;
+	}
 
 	public String getId() {
 		return ID;
