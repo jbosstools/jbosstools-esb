@@ -31,6 +31,6 @@ public class ESBPreferenceInitializer extends AbstractPreferenceInitializer {
 		for (String name : ESBPreferences.SEVERITY_OPTION_NAMES) {
 			defaultPreferences.put(name, SeverityPreferences.ERROR);
 		}
-//		defaultPreferences.put(CDIPreferences.DECORATOR_HAS_NAME, CDIPreferences.WARNING);
+		defaultPreferences.putInt(SeverityPreferences.MAX_NUMBER_OF_MARKERS_PREFERENCE_NAME, SeverityPreferences.DEFAULT_MAX_NUMBER_OF_MARKERS_PER_FILE);
 	}
 }

@@ -16,6 +16,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.internal.ui.wizards.IStatusChangeListener;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.ui.preferences.IWorkbenchPreferenceContainer;
+import org.jboss.tools.common.preferences.SeverityPreferences;
 import org.jboss.tools.common.ui.preferences.SeverityConfigurationBlock;
 import org.jboss.tools.esb.validator.ESBPreferences;
 import org.jboss.tools.esb.validator.ESBValidatorPlugin;
@@ -56,7 +57,15 @@ public class ESBConfigurationBlock extends SeverityConfigurationBlock {
 				keys.add(ALL_SECTIONS[i].options[j].key);
 			}
 		}
+		keys.add(MAX_NUMBER_OF_PROBLEMS_KEY);
 		return keys.toArray(new Key[0]);
+	}
+
+	private static final Key MAX_NUMBER_OF_PROBLEMS_KEY = getKey(ESBValidatorPlugin.PLUGIN_ID, SeverityPreferences.MAX_NUMBER_OF_MARKERS_PREFERENCE_NAME);
+
+	@Override
+	protected Key getMaxNumberOfProblemsKey() {
+		return MAX_NUMBER_OF_PROBLEMS_KEY;
 	}
 
 	public ESBConfigurationBlock(IStatusChangeListener context,

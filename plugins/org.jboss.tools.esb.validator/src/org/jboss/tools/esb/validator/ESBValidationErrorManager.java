@@ -23,4 +23,13 @@ public class ESBValidationErrorManager extends ValidationErrorManager {
 	protected String getPreference(IProject project, String preferenceKey) {
 		return ESBPreferences.getInstance().getProjectPreference(project, preferenceKey);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.jboss.tools.jst.web.kb.internal.validation.ValidationErrorManager#getMaxNumberOfMarkersPerFile(org.eclipse.core.resources.IProject)
+	 */
+	@Override
+	public int getMaxNumberOfMarkersPerFile(IProject project) {
+		return ESBPreferences.getMaxNumberOfProblemMarkersPerFile(project);
+	}
 }

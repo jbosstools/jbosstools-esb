@@ -75,4 +75,7 @@ public class ESBPreferences extends SeverityPreferences {
 		return INSTANCE.isEnabled(project);
 	}
 
+	public static int getMaxNumberOfProblemMarkersPerFile(IProject project) {
+		return INSTANCE.getMaxNumberOfProblemMarkersPerResource(project);
+	}
 }
