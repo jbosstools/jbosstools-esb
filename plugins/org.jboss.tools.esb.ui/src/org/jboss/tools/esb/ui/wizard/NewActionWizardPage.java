@@ -17,15 +17,15 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.IBuffer;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.Signature;
 import org.eclipse.jdt.internal.corext.codemanipulation.StubUtility;
 import org.eclipse.jdt.internal.ui.IJavaHelpContextIds;
 import org.eclipse.jdt.ui.CodeGeneration;
-import org.eclipse.jdt.ui.wizards.NewTypeWizardPage.ImportsManager;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -98,7 +98,7 @@ public class NewActionWizardPage extends NewClassWizardPageEx {
 		List<String> labels = new ArrayList<String>();
 		labels.add("As AbstractActionPipelineProcessor implementation");
 		labels.add("As annotated POJO");
-		List values = new ArrayList();
+		List<String> values = new ArrayList<String>();
 		values.add("false");
 		values.add("true");
 		RadioFieldEditor radio = new RadioFieldEditor(name, "", labels, values, defaultValue);
@@ -181,8 +181,38 @@ public class NewActionWizardPage extends NewClassWizardPageEx {
 	}
 
 	void modifyJavaSourceForPOJO(IType type, ImportsManager imports) {
+		StringBuffer buf = new StringBuffer();
+
+		IMethod process = null;
 		try {
-			StringBuffer buf= new StringBuffer();
+			IMethod[] ms = type.getMethods();
+			for (int i = 0; i < ms.length; i++) {
+				if(ms[i].getElementName().equals("process")) { //$NON-NLS-1$
+					process = ms[i];
+				}
+			}
+		} catch (JavaModelException e) {
+			//
+		}
+		
+		if(process != null) {
+			try {
+				ICompilationUnit w = type.getCompilationUnit();
+				IBuffer b = w.getBuffer();
+				String lineDelimiter =  StubUtility.getLineDelimiterUsed(type.getJavaProject());
+				int offset = process.getSourceRange().getOffset();
+				String tab = "\t"; //$NON-NLS-1$
+				imports.addImport(PROCESS); //$NON-NLS-1$
+				buf.append(tab).append("@Process").append(lineDelimiter); //$NON-NLS-1$
+				b.replace(offset, 0, buf.toString());
+			} catch (JavaModelException e) {
+				ESBCorePlugin.log(e);
+			}
+			return;
+		}
+		
+		
+		try {
 			final String lineDelim= "\n"; // OK, since content is formatted afterwards //$NON-NLS-1$
 			String comment= CodeGeneration.getMethodComment(type.getCompilationUnit(), type.getTypeQualifiedName('.'), "process", new String[] {"message"}, new String[0], Signature.createTypeSignature("void", true), null, lineDelim); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			if (comment != null) {
