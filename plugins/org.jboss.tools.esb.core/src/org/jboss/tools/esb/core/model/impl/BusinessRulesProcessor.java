@@ -25,6 +25,14 @@ public class BusinessRulesProcessor extends ESBCustomizedObjectImpl {
 			int kind = getKind();
 			return kind < 0 || kind == DECISION_TABLE_BASED;			
 		}
+		String ATTR_RULE_MAX_THREADS = "rule max threads";
+		if(ATTR_RULE_MAX_THREADS.equals(name)) {
+			String a = getAttributeValue("rule multithread evaluation");
+			if("true".equals(a)) return true;
+			String b = getAttributeValue(ATTR_RULE_MAX_THREADS);
+			return b != null && b.length() > 0;
+			
+		}
 		return super.isAttributeEditable(name);
 	}
 	
