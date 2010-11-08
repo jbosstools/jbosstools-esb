@@ -489,7 +489,11 @@
     <Editor name="List"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
-    name="rule max threads" xmlname="ruleMaxThreads"/>
+    name="rule max threads" xmlname="ruleMaxThreads">
+    <Constraint loader="Int">
+     <value name="minimum=1"/>
+    </Constraint>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
     <Constraint loader="ListString">
      <value name="process"/>
