@@ -46,6 +46,7 @@ import org.jboss.tools.esb.core.ESBCorePlugin;
  */
 public class NewActionWizardPage extends NewClassWizardPageEx {
 	public static String PROCESS = "org.jboss.soa.esb.actions.annotation.Process";
+	static String PROCESSOR_CLASS = "org.jboss.soa.esb.actions.AbstractActionPipelineProcessor";
 	
 	RadioFieldEditor pojo = null;
 
@@ -126,7 +127,13 @@ public class NewActionWizardPage extends NewClassWizardPageEx {
 
 	protected void createTypeMembers(IType newType, ImportsManager imports, IProgressMonitor monitor) throws CoreException {
 		super.createTypeMembers(newType, imports, monitor);
-		if("true".equals(pojo.getValueAsString())) {
+		String sc = newType.getSuperclassTypeSignature();
+		if(sc != null) {
+			sc = EclipseJavaUtil.resolveTypeAsString(newType, sc);
+		}
+		if("true".equals(pojo.getValueAsString()) && 
+				!PROCESSOR_CLASS.equals(sc) //User just forgot to select 'As Pipeline' option, but since he browsed for superclass, he certainly means that.
+				) {
 			modifyJavaSourceForPOJO(newType, imports);
 		} else {
 			modifyJavaSourceForAbstractImplementation(newType, imports);
@@ -140,7 +147,7 @@ public class NewActionWizardPage extends NewClassWizardPageEx {
 			if(sc != null) {
 				sc = EclipseJavaUtil.resolveTypeAsString(type, sc);
 			}
-			if(type != null && "org.jboss.soa.esb.actions.AbstractActionPipelineProcessor".equals(sc)) {
+			if(type != null && PROCESSOR_CLASS.equals(sc)) {
 				ICompilationUnit w = type.getCompilationUnit();
 				IBuffer b = w.getBuffer();
 				String s = b.getContents();
