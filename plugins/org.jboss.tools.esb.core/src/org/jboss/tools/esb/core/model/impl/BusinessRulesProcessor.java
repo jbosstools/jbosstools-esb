@@ -6,6 +6,8 @@ public class BusinessRulesProcessor extends ESBCustomizedObjectImpl {
 	private static final long serialVersionUID = 1L;
 	public static String ATTR_RULE_AGENT_PROPERTIES = "rule agent properties";
 	public static String ATTR_DECISION_TABLE = "decision table";
+	public static String ATTR_RULE_MAX_THREADS = "rule max threads";
+	public static String ATTR_RULE_MULTITHREAD_EVALUATION = "rule multithread evaluation";
 
 	static int RULE_SET_BASED = 0;
 	static int RULE_AGENT_BASED = 1;
@@ -25,9 +27,8 @@ public class BusinessRulesProcessor extends ESBCustomizedObjectImpl {
 			int kind = getKind();
 			return kind < 0 || kind == DECISION_TABLE_BASED;			
 		}
-		String ATTR_RULE_MAX_THREADS = "rule max threads";
 		if(ATTR_RULE_MAX_THREADS.equals(name)) {
-			String a = getAttributeValue("rule multithread evaluation");
+			String a = getAttributeValue(ATTR_RULE_MULTITHREAD_EVALUATION);
 			if("true".equals(a)) return true;
 			String b = getAttributeValue(ATTR_RULE_MAX_THREADS);
 			return b != null && b.length() > 0;
