@@ -25,6 +25,7 @@ import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.model.ESBConstants;
 import org.jboss.tools.esb.core.model.converters.ConverterConstants;
+import org.jboss.tools.esb.core.model.impl.BusinessRulesProcessor;
 import org.jboss.tools.jst.web.kb.internal.validation.ContextValidationHelper;
 import org.jboss.tools.jst.web.kb.internal.validation.ProjectValidationContext;
 import org.jboss.tools.jst.web.kb.internal.validation.ValidatingProjectSet;
@@ -291,6 +292,14 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		XModelObject[] ps = object.getChildren(ConverterConstants.OBJECT_PATH_ENTITY);
 		for (XModelObject path: ps) {
 			validateObjectPathForBusinessRulesProcessor(path, object, file);			
+		}
+	
+		String ruleMultithreadEvaluation = object.getAttributeValue(BusinessRulesProcessor.ATTR_RULE_MULTITHREAD_EVALUATION);
+		String ruleMaxThreads = object.getAttributeValue(BusinessRulesProcessor.ATTR_RULE_MAX_THREADS);
+		if(!"true".equals(ruleMultithreadEvaluation) && ruleMaxThreads != null && ruleMaxThreads.length() > 0) { //$NON-NLS-1$
+			IMarker marker = addError(ESBValidatorMessages.INVALID_RULE_MAX_THREADS, 
+					ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, getSourceReference(object, BusinessRulesProcessor.ATTR_RULE_MAX_THREADS), file);
+			bindMarkerToPathAndAttribute(marker, object, BusinessRulesProcessor.ATTR_RULE_MAX_THREADS);
 		}
 	}
 
