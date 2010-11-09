@@ -57,6 +57,7 @@
       <object-path esb="body.Policy"/>
       <object-path esb="bod.Policy"/>
      </property>
+     <property name="ruleMaxThreads" value="5"/>
     </action>
     <action class="org.jboss.soa.esb.actions.BusinessRulesProcessor" name="PolicyPricingRuleService">
      <property name="decisionTable" value="decisionTable/PolicyPricing.xls"/>
