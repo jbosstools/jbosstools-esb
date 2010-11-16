@@ -10,4 +10,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<artifactId>org.jboss.tools.esb.validator.test</artifactId> 
 	<version>1.3.0-SNAPSHOT</version>
 	<packaging>eclipse-test-plugin</packaging>
+	
+	<properties>
+		<emma.filter>org.jboss.tools.esb.*</emma.filter>
+		<emma.instrument.bundles>org.jboss.tools.esb.core,org.jboss.tools.esb.validator,org.jboss.tools.esb.project.core</emma.instrument.bundles>
+	</properties>
 </project>
