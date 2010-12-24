@@ -99,7 +99,6 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	@Override
 	public void init(IProject project, ContextValidationHelper validationHelper, IProjectValidationContext context, org.eclipse.wst.validation.internal.provisional.core.IValidator manager, IReporter reporter) {
 		super.init(project, validationHelper, context, manager, reporter);
-//		cdiProject = CDICorePlugin.getCDIProject(project, false);
 		projectName = project.getName();
 	}
 
