@@ -1,9 +1,7 @@
 package org.jboss.tools.esb.validator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -28,10 +26,12 @@ import org.jboss.tools.esb.core.model.converters.ConverterConstants;
 import org.jboss.tools.esb.core.model.impl.BusinessRulesProcessor;
 import org.jboss.tools.jst.web.kb.internal.validation.ContextValidationHelper;
 import org.jboss.tools.jst.web.kb.internal.validation.ProjectValidationContext;
+import org.jboss.tools.jst.web.kb.internal.validation.SimpleValidatingProjectTree;
 import org.jboss.tools.jst.web.kb.internal.validation.ValidatingProjectSet;
 import org.jboss.tools.jst.web.kb.internal.validation.ValidatorManager;
+import org.jboss.tools.jst.web.kb.validation.IProjectValidationContext;
 import org.jboss.tools.jst.web.kb.validation.IValidatingProjectSet;
-import org.jboss.tools.jst.web.kb.validation.IValidationContext;
+import org.jboss.tools.jst.web.kb.validation.IValidatingProjectTree;
 import org.jboss.tools.jst.web.kb.validation.IValidator;
 import org.jboss.tools.jst.web.model.project.ext.store.XMLValueInfo;
 
@@ -44,7 +44,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	static String ATTR_ATTRIBUTE = "attribute"; //$NON-NLS-1$
 
 	String projectName;
-	Map<IProject, IValidationContext> contexts = new HashMap<IProject, IValidationContext>();
+	Map<IProject, IProjectValidationContext> contexts = new HashMap<IProject, IProjectValidationContext>();
 
 	/*
 	 * (non-Javadoc)
@@ -59,16 +59,18 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		return ID;
 	}
 
-	public IValidatingProjectSet getValidatingProjects(IProject project) {
-		IValidationContext rootContext = contexts.get(project);
+	public IValidatingProjectTree getValidatingProjects(IProject project) {
+		IProjectValidationContext rootContext = contexts.get(project);
 		if(rootContext == null) {
 			rootContext = new ProjectValidationContext();
 			contexts.put(project, rootContext);
 		}
 
-		List<IProject> projects = new ArrayList<IProject>();
+		Set<IProject> projects = new HashSet<IProject>();
 		projects.add(project);
-		return new ValidatingProjectSet(project, projects, rootContext);
+
+		IValidatingProjectSet projectSet = new ValidatingProjectSet(project, projects, rootContext);
+		return new SimpleValidatingProjectTree(projectSet);
 	}
 
 	public boolean shouldValidate(IProject project) {
@@ -92,19 +94,23 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.jboss.tools.jst.web.kb.internal.validation.ValidationErrorManager#init(org.eclipse.core.resources.IProject, org.jboss.tools.jst.web.kb.internal.validation.ContextValidationHelper, org.jboss.tools.jst.web.kb.internal.validation.ValidatorManager, org.eclipse.wst.validation.internal.provisional.core.IReporter, org.jboss.tools.jst.web.kb.validation.IValidationContext)
+	 * @see org.jboss.tools.jst.web.kb.internal.validation.ValidationErrorManager#init(org.eclipse.core.resources.IProject, org.jboss.tools.jst.web.kb.internal.validation.ContextValidationHelper, org.jboss.tools.jst.web.kb.validation.IProjectValidationContext, org.eclipse.wst.validation.internal.provisional.core.IValidator, org.eclipse.wst.validation.internal.provisional.core.IReporter)
 	 */
 	@Override
-	public void init(IProject project, ContextValidationHelper validationHelper, org.eclipse.wst.validation.internal.provisional.core.IValidator manager, IReporter reporter) {
-		super.init(project, validationHelper, manager, reporter);
+	public void init(IProject project, ContextValidationHelper validationHelper, IProjectValidationContext context, org.eclipse.wst.validation.internal.provisional.core.IValidator manager, IReporter reporter) {
+		super.init(project, validationHelper, context, manager, reporter);
 //		cdiProject = CDICorePlugin.getCDIProject(project, false);
 		projectName = project.getName();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see org.jboss.tools.jst.web.kb.validation.IValidator#validate(java.util.Set, org.eclipse.core.resources.IProject, org.jboss.tools.jst.web.kb.internal.validation.ContextValidationHelper, org.jboss.tools.jst.web.kb.validation.IProjectValidationContext, org.jboss.tools.jst.web.kb.internal.validation.ValidatorManager, org.eclipse.wst.validation.internal.provisional.core.IReporter)
+	 */
 	public IStatus validate(Set<IFile> changedFiles, IProject project,
-			ContextValidationHelper validationHelper, ValidatorManager manager,
+			ContextValidationHelper validationHelper, IProjectValidationContext context, ValidatorManager manager,
 			IReporter reporter) throws ValidationException {
-		init(project, validationHelper, manager, reporter);
+		init(project, validationHelper, context, manager, reporter);
 
 		for (IFile file: changedFiles) {
 			String name = file.getName();
@@ -124,10 +130,14 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		validateActions(object, file);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see org.jboss.tools.jst.web.kb.validation.IValidator#validateAll(org.eclipse.core.resources.IProject, org.jboss.tools.jst.web.kb.internal.validation.ContextValidationHelper, org.jboss.tools.jst.web.kb.validation.IProjectValidationContext, org.jboss.tools.jst.web.kb.internal.validation.ValidatorManager, org.eclipse.wst.validation.internal.provisional.core.IReporter)
+	 */
 	public IStatus validateAll(IProject project,
-			ContextValidationHelper validationHelper, ValidatorManager manager,
+			ContextValidationHelper validationHelper, IProjectValidationContext context, ValidatorManager manager,
 			IReporter reporter) throws ValidationException {
-		init(project, validationHelper, manager, reporter);
+		init(project, validationHelper, context, manager, reporter);
 		displaySubtask(ESBValidatorMessages.VALIDATING_PROJECT, new String[]{projectName});
 
 		String esbContentFolder = null;
