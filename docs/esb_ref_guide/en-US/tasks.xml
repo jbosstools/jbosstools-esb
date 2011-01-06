@@ -567,9 +567,13 @@
 			<para>Check here to find more details on the platform: <ulink url="http://www.jboss.com/products/platforms/soa">JBoss Enterprise SOA Platform</ulink> and <ulink url="http://www.jboss.com/products/platforms/soa/components">JBoss Enterprise SOA Platform Component Details</ulink>.</para>
 			<para>You can find out what is SOA here: <ulink url="http://www.jboss.org/jbossesb/resources/SOABasics.html">Basics of SOA</ulink> and    <ulink url="http://www.jboss.org/jbossesb/resources/SOAEOA.html">SOA and EOA</ulink>.</para>
 
-			<para>To configure the JBoss Enterprise SOA platform select <emphasis>
-                        <property>Window &gt; Preferences &gt; Server  &gt; Runtime Environments</property>
-				</emphasis>, that will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
+			<para>To configure the JBoss Enterprise SOA platform select 
+			<menuchoice>
+				<guimenuitem>Window</guimenuitem>
+				<guimenuitem>Preferences</guimenuitem>
+				<guimenuitem>Server</guimenuitem>
+				<guimenuitem>Runtime Environments</guimenuitem>
+			</menuchoice>, which will open the Server Runtime Environments Preferences page where you can add, remove and edit a Server Runtime Environment.</para>
 
 			<figure>
 				<title>Configure new Server Runtime Environment</title>
@@ -581,7 +585,7 @@
 			</figure>
 
 			<para>Select <emphasis><property>Add</property>
-				</emphasis>, choose <emphasis><property>JBoss 4.2 Runtime</property>
+				</emphasis>, choose <emphasis><property>JBoss 5.0 Runtime</property>
 				</emphasis> as a type of runtime environment, check the <emphasis><property>Create a new local server</property>
 				</emphasis> checkbox and click <emphasis><property>Next</property>
 				</emphasis>:</para>
