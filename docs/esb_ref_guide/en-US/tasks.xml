@@ -620,8 +620,11 @@
 					</imageobject>
 				</mediaobject>
 			</figure>
-			<para>Then you will need to add JBoss ESB libraries to your projects to configure the SOA server runtime exactly for your projects. Right-click on your project, select <emphasis><property>Build Path &gt; Add Libraries</property>
-				</emphasis>:</para>
+			<para>Then you will need to add JBoss ESB libraries to your projects to configure the SOA server runtime exactly for your projects. Right-click on your project, select
+			<menuchoice>
+				<guimenuitem>Build Path</guimenuitem>
+				<guimenuitem>Add Libraries</guimenuitem>
+			</menuchoice>:</para>
 
 			<figure>
 				<title>Add Libraries</title>

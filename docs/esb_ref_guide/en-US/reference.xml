@@ -146,8 +146,12 @@
             
             
             <para>In order to add a new custom Action to your ESB XML file you should select the
-                Actions node under the Services, then right-click and choose <emphasis>
-                    <property>New > Custom Action</property>. </emphasis></para>
+                Actions node under the Services, then right-click and choose
+                <menuchoice>
+									<guimenuitem>New</guimenuitem>
+									<guimenuitem>Custom Action</guimenuitem>
+								</menuchoice>.
+						</para>
             
             <figure>
                 <title>Adding New Custom Action in the Tree View</title>
