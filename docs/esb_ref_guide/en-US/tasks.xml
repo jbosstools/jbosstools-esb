@@ -133,12 +133,17 @@
                 JBoss 4.2 Runtime</property>
 				</emphasis>, it will be used by your ESB project example. </para>
 
-			<para>Select <emphasis>
-                                <property>File &gt;New &gt; Others </property>
-				</emphasis> , in the main menu bar or context menu for selected project and
-                        then <emphasis>
-                                <property>JBoss Tools &gt; Project Examples</property>
-				</emphasis> in the New dialog:</para>
+			<para>Select
+			<menuchoice>
+				<guimenuitem>File</guimenuitem>
+				<guimenuitem>New</guimenuitem>
+				<guimenuitem>Other...</guimenuitem>
+			</menuchoice>  
+			in the main menu bar or context menu for selected project and then 
+      <menuchoice>
+				<guimenuitem>JBoss Tools</guimenuitem>
+				<guimenuitem>Project Examples</guimenuitem>
+			</menuchoice> in the New dialog:</para>
 
 			<figure>
 				<title>Select a wizard - Project Examples</title>
@@ -168,7 +173,7 @@
 
 				<itemizedlist>
 					<listitem>
-						<para>ESB</para>
+						<para>ESB for SOA-P 4.3</para>
 					</listitem>
 					<listitem>
 						<para>ESB for SOA-P 5.0</para>
@@ -184,7 +189,7 @@
 			</note>
 
 			<para>Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
-			<para>Here is a list of ready examples available in both categories (ESB and ESB for SOA-P 5.0):</para>
+			<para>Here is a list of ready examples available in both categories (ESB for SOA-P 4.3 and ESB for SOA-P 5.0):</para>
 
 			<itemizedlist>
 
@@ -229,8 +234,7 @@
                
 
 				
-			<para>We will take as our example <emphasis><property>JBoss ESB HelloWorld Example</property>
-				</emphasis> ESB and Client project:</para>
+			<para>We will take as our example <guilabel>JBoss ESB HelloWorld Example</guilabel> ESB project:</para>
 				        
 				
 			<figure>
@@ -243,9 +247,7 @@
 			</figure>
 				        
 				
-			<para>Choose them using the Ctrl button and then click 
-				<emphasis><property>Finish</property>
-				</emphasis>. As a result you will get two projects created:</para>
+			<para>Select the <guilabel>JBoss ESB HelloWorld Example</guilabel> ESB project and then click the <guibutton>Finish</guibutton> button. As a result you will get two projects created:</para>
 			<figure>
 				<title>JBoss ESB Project Examples: helloworld and helloworld_testclient</title>
 				<mediaobject>
@@ -262,9 +264,14 @@
 			<title>Deploying a ESB Project</title>
 			<para>In this chapter you will see how to deploy a ESB project using the WTP deployment framework.</para>
 
-			<para>Before deploying the project, open the Servers View by selecting <emphasis><property>Window &gt; Show View &gt; Other &gt; 
-                Server &gt; Servers</property>
-				</emphasis>, 
+			<para>Before deploying the project, open the Servers View by selecting
+			<menuchoice>
+				<guimenuitem>Window</guimenuitem>
+				<guimenuitem>Show View</guimenuitem>
+				<guimenuitem>Other</guimenuitem>
+				<guimenuitem>Server</guimenuitem>
+				<guimenuitem>Servers</guimenuitem>
+			</menuchoice>, 
                 create a JBoss Server in the Server view and start it, and then right click the created JBoss server, 
                 select <emphasis><property> </property> Add and Remove Projects</emphasis>, 
                 and add the ESB projects you want to deploy from the left side to the right side in the opened dialog. </para>
@@ -319,10 +326,12 @@
 				</mediaobject>
 			</figure>
  	
-			<para>Choose <emphasis><property>ESB</property>
-				</emphasis> &gt; <emphasis><property>ESB File</property>
-				</emphasis> and click <emphasis><property>Next</property>
-				</emphasis>:</para>
+			<para>Choose
+			<menuchoice>
+				<guimenuitem>ESB</guimenuitem>
+				<guimenuitem>ESB File</guimenuitem>
+			</menuchoice>
+			 and click <guibutton>Next</guibutton>:</para>
  		
 			<figure>
 				<title>Choosing ESB File</title>
@@ -333,8 +342,7 @@
 				</mediaobject>
 			</figure>
  	
-			<para>And finally export the ESB project to the file system: choose the destination, choose the target runtime if need a specific one and make the appropriate settings for the archive. Then click <emphasis><property>Finish</property>
-				</emphasis>.</para>
+			<para>And finally export the ESB project to the file system: choose the destination, choose the target runtime if need a specific one and make the appropriate settings for the archive. Then click <guibutton>Finish</guibutton>.</para>
  		
 			<figure>
 				<title>ESB Export</title>
@@ -358,12 +366,18 @@
 
 			<para>We will show you how to use the Creation wizard for creating a new ESB file.</para>
 
-			<para>At first you should open any project. Select <emphasis>
-                                <property>File &gt;New &gt; Other...</property>
-				</emphasis> in the main menu bar or context menu for selected project and
-                        then <emphasis>
-                                <property>ESB &gt; ESB File</property>
-				</emphasis> in the New dialog:</para>
+			<para>At first you should open any project. Select 
+			<menuchoice>
+				<guimenuitem>File</guimenuitem>
+				<guimenuitem>New</guimenuitem>
+				<guimenuitem>Other...</guimenuitem>
+			</menuchoice>  
+			in the main menu bar or context menu for selected project and then 
+			<menuchoice>
+				<guimenuitem>ESB</guimenuitem>
+				<guimenuitem>ESB File</guimenuitem>
+			</menuchoice>
+			in the New dialog:</para>
 
 			<figure>
 				<title>Select a wizard - ESB File</title>
@@ -411,9 +425,18 @@
 			<title>Creating a ESB Action</title>
 			<para>From this chapter you will find out how to create  a <emphasis><property>ESB Action Java File</property>
 				</emphasis>.</para>
-			<para>At first you need to open a <property>ESB</property> or simple <property>Java</property> project. Then you should select <emphasis><property>File > New>Other</property>
-				</emphasis> in the main menu or from the context project menu. Then click  <emphasis><property>ESB > ESB Action</property>
-				</emphasis> in the <emphasis><property>New </property>
+			<para>At first you need to open a <property>ESB</property> or simple <property>Java</property> project. Then you should select 
+			<menuchoice>
+					<guimenuitem>File</guimenuitem>
+					<guimenuitem>New</guimenuitem>
+					<guimenuitem>Other</guimenuitem>
+				</menuchoice>
+				in the main menu or from the context project menu. Then click
+				<menuchoice>
+					<guimenuitem>ESB</guimenuitem>
+					<guimenuitem>ESB Action</guimenuitem>
+				</menuchoice>
+				in the <emphasis><property>New </property>
 				</emphasis> dialog.</para>
 			<figure>
 				<title>Select a wizard - ESB Action</title>
@@ -443,15 +466,20 @@
 
 		<section role="updated">
 			<title>Configuring ESB Runtime in Preferences</title>
-			<para>In this chapter you will know how to predefine a JBoss ESB runtime on the Preferences page.</para>
+			<para>In this chapter you will learn how to predefine a JBoss ESB runtime on the Preferences page.</para>
 
 			<para>You may already know, there are two ways to set JBoss ESB runtime when creating a ESB project,
                 one is to use the project target JBoss runtime, and another is to select a JBoss ESB runtime predefined in JBoss Tools preferences.
                 Let's configure it.</para>
 
-			<para>Select <emphasis>
-                                <property>Window &gt;Preferences &gt; JBoss Tools  &gt; JBoss ESB Runtime</property>
-				</emphasis>, to open the JBoss ESB Runtime Preferences page where you can add, remove and Edit a JBoss ESB runtime.</para>
+			<para>Select 
+			<menuchoice>
+				<guimenuitem>Window</guimenuitem>
+				<guimenuitem>Preferences</guimenuitem>
+				<guimenuitem>JBoss Tools</guimenuitem>
+				<guimenuitem>JBoss ESB Runtimes</guimenuitem>
+			</menuchoice>
+			to open the JBoss ESB Runtime Preferences page where you can add, remove and Edit a JBoss ESB runtime.</para>
 
 			<figure>
 				<title>JBoss ESB Runtimes</title>
@@ -476,8 +504,7 @@
 				</mediaobject>
 			</figure>
 				
-			<para>The new JBoss ESB Runtime will be configured. Click <emphasis> <property>OK</property>
-				</emphasis> to finish and save the preferences.
+			<para>The new JBoss ESB Runtime will be configured. Click <guibutton>Finish</guibutton> to finish and save the preferences.
 		 		 You can use the configuration when creating a JBoss ESB project. </para>
 			<para>When a ESB runtime is configured for your ESB project you are able to change it to any other using the classpath container page for ESB runtime. To do that, turn to the Package Explorer view and right-click the "JBoss ESB Runtime" library. Select <emphasis><property>Properties</property>
 				</emphasis> and a table listing all available JBoss ESB runtimes will appear:</para>
@@ -532,7 +559,7 @@
 		<section id="using_SOA">
 			<title>Using and Configuring SOA Platform</title>
 
-			<para>In this chapter you will know what is JBoss Enterprise SOA Platform  and how you can configure it to use for your ESB projects. </para>
+			<para>In this chapter you will learn what the JBoss Enterprise SOA Platform is and how you can configure it to use for your ESB projects. </para>
 
 			<para>JBoss Enterprise SOA Platform delivers a flexible, standards-based platform to integrate applications, SOA services, business events and automate business processes. The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</para>
 			<para>Having configured JBoss Enterprise SOA Platform for your ESB project you don't need to install and configure ESB server and runtime as they are already included.</para>
