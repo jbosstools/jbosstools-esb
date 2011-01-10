@@ -61,7 +61,7 @@
                     <entry><para>JBoss Tools Project Examples Wizard</para></entry>
                     <entry><para>Some kinds of projects with predefined structure are available for usage.</para></entry>
                     <entry>
-                        <link linkend="ESB_project_wizard">Using ESB Project Examples</link>
+                        <xref linkend="ESB_project_wizard"/>
                     </entry>
                 </row>
                 
@@ -69,7 +69,7 @@
                     <entry><para>JBoss Enterprise SOA Platform</para></entry>
                     <entry><para>The SOA Platform integrates specific versions of JBoss ESB, jBPM, Drools and the JBoss Enterprise Application Platform that are certified to work together in a single supported enterprise distribution.</para></entry>
                     <entry>
-                        <link linkend="using_SOA">Using and configuring SOA Platform</link>
+                        <xref linkend="using_SOA"/>
                     </entry>
                 </row>
                 
@@ -77,7 +77,7 @@
                     <entry><para>ESB Editor</para></entry>
                     <entry><para>JBoss ESB tooling has powerful editor features including syntax validation, support for XML Schema and other.</para></entry>
                <!--     <entry>
-                      <link linkend="esb_editor">ESB editor</link>
+                      <xref linkend="esb_editor">
                     </entry> -->
                 </row>
                 

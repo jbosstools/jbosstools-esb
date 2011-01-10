@@ -124,7 +124,7 @@
 
 		</section>
 
-		<section id="ESB_project_wizard" xreflabel="here">
+		<section id="ESB_project_wizard">
 			<title>Using ESB Project Examples</title>
 			<para>JBoss Tools provides a Project Example wizard that is an easy way for users to create some kinds of projects to be used as examples with some predefined structure. Let's start 
                 creating a ESB project using this wizard.</para>
