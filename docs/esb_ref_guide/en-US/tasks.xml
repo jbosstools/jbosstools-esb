@@ -366,7 +366,7 @@
 
 			<para>We will show you how to use the Creation wizard for creating a new ESB file.</para>
 
-			<para>At first you should open any project. Select 
+			<para>At first you should open a project that has the ESB facet enabled. Select 
 			<menuchoice>
 				<guimenuitem>File</guimenuitem>
 				<guimenuitem>New</guimenuitem>
