@@ -264,10 +264,8 @@
 				<guimenuitem>Other</guimenuitem>
 				<guimenuitem>Server</guimenuitem>
 				<guimenuitem>Servers</guimenuitem>
-			</menuchoice>, 
-                create a JBoss Server in the Server view and start it, and then right click the created JBoss server, 
-                select <emphasis><property> </property> Add and Remove Projects</emphasis>, 
-                and add the ESB projects you want to deploy from the left side to the right side in the opened dialog. </para>
+			</menuchoice>, create a JBoss Server in the Server view and start it, and then right click the created JBoss server, select <guilabel> Add and Remove Projects</guilabel>, and add the ESB projects you want to deploy from the left side to the right side in the opened dialog.
+			</para>
 
 			<figure>
 				<title>Add and Remove Projects</title>
@@ -278,9 +276,9 @@
 				</mediaobject>
 			</figure>
 
-			<para>Click <emphasis><property>Finish</property>
-				</emphasis> to add the project to the server. 
-                You also can drag the ESB project from the Project View to the server.</para>
+			<para>
+				Click the <guibutton>Finish</guibutton> button to add the project to the server. You also can drag the ESB project from the Project View to the server.
+			</para>
 
 			<figure>
 				<title>Servers View</title>
@@ -291,12 +289,12 @@
 				</mediaobject>
 			</figure>
  		
-			<para>Thus, you have just added the ESB project to the JBoss server module list. Right click the JBoss Server and select <emphasis><property>Publish</property>
-				</emphasis> to publish the project on the server.
- 		        You can check the deploying result in the Console view.</para>
-			<para>The <emphasis><property>Run</property>
-				</emphasis> and <emphasis><property>Debug</property>
-				</emphasis> options work on ESB projects causing a (re)deploy for a user designated server.</para>
+			<para>
+				Thus, you have just added the ESB project to the JBoss server module list. Right click the JBoss Server and select <guimenuitem>Publish</guimenuitem> to publish the project on the server. You can check the deploying result in the Console view.
+			</para>
+			<para>
+				The <guimenuitem>Run</guimenuitem> and <guimenuitem>Debug</guimenuitem> options work on ESB projects causing a (re)deploy for a user designated server.
+			</para>
 			<para>You can also use the "Finger touch" for a quick restart of the project without restarting the server:</para>
 			<figure>
 				<title>Finger Touch button</title>
@@ -306,9 +304,10 @@
 					</imageobject>
 				</mediaobject>
 			</figure>
-			<para>The "Finger" touches descriptors dependent on project (i.e. web.xml for WAR, application.xml for EAR) and now it is also available for jboss-esb.xml in ESB projects.</para>
-			<para>You can also deploy your ESB project as an .esb archive. Right-click on the project, choose <emphasis><property>Export</property>
-				</emphasis>:</para>
+			<para>
+				The "Finger" touches descriptors dependent on project (i.e. <filename>web.xml</filename> for WAR, <filename>application.xml</filename> for EAR) and now it is also available for <filename>jboss-esb.xml</filename> in ESB projects.
+			</para>
+			<para>You can also deploy your ESB project as an .esb archive. Right-click on the project, choose <guimenuitem>Export</guimenuitem>:</para>
 
 			<figure>
 				<title>Export of ESB project</title>
