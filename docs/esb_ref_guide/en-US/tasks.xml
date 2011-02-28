@@ -58,7 +58,7 @@
 					</imageobject>
 				</mediaobject>
 			</figure>
-			<para>By clicking <emphasis>Modify</emphasis> button you can open <emphasis>Project Facets Wizard</emphasis> page,where you can select 
+			<para>By clicking the <guibutton>Modify</guibutton> button you can open <emphasis>Project Facets Wizard</emphasis> page, where you can select 
 		                 facets that should be enabled for this project.
 		                 On the <emphasis>Project Facets Wizard</emphasis> page you can also configure runtime for the application</para>
 			<figure>
@@ -83,18 +83,16 @@
 		
 			<para>Next step provides you an opportunity to configure your project for building a java application</para>
 		
-			<para> Clicking <guibutton>Next</guibutton> on this form brings you to the ESB facet installation page where you can 
-                        specify the ESB Content Directory. ESB Content Directory is a folder that contains the most of
-                         artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:
-                        </para>
-			<para>1. Use <emphasis>
-                                <property>Server Supplied ESB Runtime</property>
-				</emphasis>
-
+			<para>
+				Clicking the <guibutton>Next</guibutton> button on this form brings you to the ESB facet installation page where you can specify the ESB Content Directory. ESB Content Directory is a folder that contains the most of artifacts that an ESB archive needs. You also can configure ESB libraries to the project by selecting a ESB runtime using one of the options:
 			</para>
-			<para> 2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences. If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.                         
-                         </para>
-			<para>3. Choose ESB Config Version. From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.</para>
+			<para>1. Use <guilabel>Server Supplied ESB Runtime</guilabel></para>
+			<para>
+				2. Select a ESB runtime from the JBoss ESB runtime list predefined in the preferences. If you choose the first option, make sure that the project has the Target JBoss Runtime set and this runtime has a ESB runtime installed.
+			</para>
+			<para>
+				3. Choose ESB Config Version. From the version 3.1.0 JBoss ESB Tools supports three different jboss-esb.xsd versions: jbossesb-1.0.1.xsd, jbossesb-1.1.0.xsd and jbossesb-1.2.0.xsd.
+			</para>
 			<note>
 				<title>Note:</title>
 				<para>If you use ESB 4.7 you should select jbossesb-1.2.0.xsd.</para>
@@ -107,11 +105,7 @@
 					</imageobject>
 				</mediaobject>
 			</figure>
-			<para>Click <emphasis>
-                                <property>Finish</property>
-				</emphasis> and a ESB project with the default <emphasis><property>jboss-esb.xml</property>
-				</emphasis> 
-                              will be created. </para>
+			<para>Click the <guibutton>Finish</guibutton> button and a ESB project with the default <filename>jboss-esb.xml</filename> file will be created. </para>
 
 			<figure>
 				<title>The generated ESB project structure</title>
@@ -126,12 +120,13 @@
 
 		<section id="ESB_project_wizard">
 			<title>Using ESB Project Examples</title>
-			<para>JBoss Tools provides a Project Example wizard that is an easy way for users to create some kinds of projects to be used as examples with some predefined structure. Let's start 
-                creating a ESB project using this wizard.</para>
+			<para>
+				JBoss Tools provides a Project Example wizard that is an easy way for users to create some kinds of projects to be used as examples with some predefined structure. Let's start creating a ESB project using this wizard.
+			</para>
 
-			<para>Before creating a ESB project example create JBoss Runtime with name <emphasis><property>
-                JBoss 4.2 Runtime</property>
-				</emphasis>, it will be used by your ESB project example. </para>
+			<para>
+				Before creating a ESB project example create JBoss Runtime with name <emphasis><property>JBoss 4.2 Runtime</property></emphasis>, it will be used by your ESB project example.
+			</para>
 
 			<para>Select
 			<menuchoice>
@@ -154,9 +149,9 @@
 				</mediaobject>
 			</figure>
 				
-			<para> Clicking <emphasis>
-                                <property>Next</property>
-				</emphasis> brings you to the wizard page where you can select a ESB project example from the example list.</para>
+			<para>
+				Clicking the <guibutton>Next</guibutton> button brings you to the wizard page where you can select a ESB project example from the example list.
+			</para>
 
 			<figure>
 				<title>Project Example Wizard</title>
@@ -168,8 +163,7 @@
 			</figure>
 			<note>
 				<title>Note:</title>
-				<para>Under the <property>Projects</property>
-                                section you can find two categories related to ESB:</para>
+				<para>Under the <property>Projects</property> section you can find two categories related to ESB:</para>
 
 				<itemizedlist>
 					<listitem>
@@ -180,12 +174,9 @@
 					</listitem>
 				</itemizedlist>
                         
-
-				<para>It means that if you use a runtime pointed to a SOA-P 5.0, you should download the examples from
-                                the <emphasis>
-                                        <property>ESB for SOA-P 5.0</property>
-					</emphasis> category in order to avoid the incompatibility errors.
-                        </para>
+				<para>
+					It means that if you use a runtime pointed to a SOA-P 5.0, you should download the examples from the <emphasis><property>ESB for SOA-P 5.0</property></emphasis> category in order to avoid the incompatibility errors.
+				</para>
 			</note>
 
 			<para>Every ESB example has two projects, one is a ESB project and another is a Java project used to test the ESB project.</para>
@@ -247,7 +238,9 @@
 			</figure>
 				        
 				
-			<para>Select the <guilabel>JBoss ESB HelloWorld Example</guilabel> ESB project and then click the <guibutton>Finish</guibutton> button. As a result you will get two projects created:</para>
+			<para>
+				Select the <guilabel>JBoss ESB HelloWorld Example</guilabel> ESB project and then click the <guibutton>Finish</guibutton> button. As a result you will get two projects created:
+			</para>
 			<figure>
 				<title>JBoss ESB Project Examples: helloworld and helloworld_testclient</title>
 				<mediaobject>
