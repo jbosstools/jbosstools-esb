@@ -1537,7 +1537,13 @@
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
-    name="connection factory" xmlname="connection-factory"/>
+    name="connection factory" xmlname="connection-factory">
+    <Constraint loader="ListString">
+     <value name="ConnectionFactory"/>
+     <value name="XAConnectionFactory"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced"
     name="jndi context factory" xmlname="jndi-context-factory"/>
    <XModelAttribute PROPERTIES="category=advanced"
