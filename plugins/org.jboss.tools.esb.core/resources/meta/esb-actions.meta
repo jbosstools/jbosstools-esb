@@ -16,6 +16,7 @@
    <PAIR name="org.jboss.soa.esb.actions.Notifier" value="ESBPreActionNotifier"/>
    <PAIR name="org.jboss.soa.esb.actions.StaticRouter" value="ESBPreActionStaticRouter"/>
    <PAIR name="org.jboss.soa.esb.actions.StaticWiretap" value="ESBPreActionStaticWiretap"/>
+   <PAIR name="org.jboss.soa.esb.actions.SyncServiceInvoker" value="ESBPreActionSyncServiceInvoker"/>
    <PAIR name="org.jboss.soa.esb.actions.SystemPrintln" value="ESBPreActionSystemPrintln"/>
    <PAIR name="org.jboss.soa.esb.actions.converters.ByteArrayToString" value="ESBPreActionByteArrayToString"/>
    <PAIR name="org.jboss.soa.esb.actions.converters.LongToDateConverter" value="ESBPreActionLongToDateConverter"/>
@@ -767,6 +768,15 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="rule agent properties" xmlname="ruleAgentProperties">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=properties"/>
+     <value name="linkAction=OpenRuleAgent"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
     <Constraint loader="ListString">
      <value name="process"/>
@@ -788,6 +798,11 @@
     ICON="action.empty"
     PROPERTIES="actionpath=Open;attribute=rule language"
     displayName="Open Rule Language" kind="action" name="OpenRuleLanguage"/>
+   <XActionItem
+    HandlerClassName="org.jboss.tools.esb.core.model.handlers.OpenESBResourceHandler"
+    ICON="action.empty"
+    PROPERTIES="actionpath=Open;attribute=rule agent properties"
+    displayName="Open Rule Agent Properties" kind="action" name="OpenRuleAgent"/>
    <XActionItem kind="list" name="CreateActions">
     <XActionItem
      HandlerClassName="org.jboss.tools.esb.core.model.handlers.AddRouteToForCBRHandler"
@@ -2521,7 +2536,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity ImplementingClass="%ESB%"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;formDependencies=org.jboss.tools.esb.ui.editor.attribute.adapter.RoutingFormDependency"
   XMLSUBPATH="action" name="ESBPreActionSyncServiceInvoker120">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
@@ -2543,9 +2558,15 @@
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced;pre=true;save=always"
-    name="service category" xmlname="service-category"/>
+    name="service category" xmlname="service-category">
+    <Constraint loader="ListString"/>
+    <Editor name="ESBServiceCategoryList"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced;pre=true;save=always"
-    name="service name" xmlname="service-name"/>
+    name="service name" xmlname="service-name">
+    <Constraint loader="ListString"/>
+    <Editor name="ESBServiceNameList"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;pre=true"
     default="default(true)" name="fail on exception" xmlname="failOnException">
     <Constraint loader="ListString">
@@ -3308,7 +3329,7 @@
  </XModelEntity>
  <XModelEntity
   ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=route"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=route;formDependencies=org.jboss.tools.esb.ui.editor.attribute.adapter.RoutingFormDependency"
   XMLSUBPATH="route-to" name="ESBPreRouteTo">
   <XChildrenEntities/>
   <XEntityRenderer>
@@ -3323,9 +3344,15 @@
    <XModelAttribute PROPERTIES="category=general"
     name="destination name" xmlname="destination-name"/>
    <XModelAttribute PROPERTIES="category=general"
-    name="service category" xmlname="service-category"/>
+    name="service category" xmlname="service-category">
+    <Constraint loader="ListString"/>
+    <Editor name="ESBServiceCategoryList"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
-    name="service name" xmlname="service-name"/>
+    name="service name" xmlname="service-name">
+    <Constraint loader="ListString"/>
+    <Editor name="ESBServiceNameList"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="expression" xmlname="expression"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
@@ -3373,7 +3400,7 @@
  </XModelEntity>
  <XModelEntity
   ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
-  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=send"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=send;formDependencies=org.jboss.tools.esb.ui.editor.attribute.adapter.RoutingFormDependency"
   XMLSUBPATH="send-to" name="ESBPreSendTo">
   <XChildrenEntities/>
   <XEntityRenderer>
@@ -3388,8 +3415,14 @@
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="channel name" xmlname="channel-name"/>
    <XModelAttribute PROPERTIES="category=general"
-    name="service category" xmlname="service-category"/>
-   <XModelAttribute PROPERTIES="category=general" name="service name" xmlname="service-name"/>
+    name="service category" xmlname="service-category">
+    <Constraint loader="ListString"/>
+    <Editor name="ESBServiceCategoryList"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general" name="service name" xmlname="service-name">
+    <Constraint loader="ListString"/>
+    <Editor name="ESBServiceNameList"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="channel class" xmlname="channel-class">
     <Editor name="AccessibleJava"/>
    </XModelAttribute>
