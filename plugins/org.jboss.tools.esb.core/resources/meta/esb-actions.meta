@@ -3293,7 +3293,7 @@
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
-   <XModelAttribute default="route to" loader="ElementType" name="element type">
+   <XModelAttribute default="object path" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
