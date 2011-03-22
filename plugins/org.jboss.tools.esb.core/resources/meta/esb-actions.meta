@@ -60,29 +60,9 @@
   </MAPPING>
  </MAPPINGS>
  <ICONS>
-  <GROUP name="action">
-   <GROUP name="new">
-    <GROUP name="esb">
-     <ICON name="file" path="plugin:org.jboss.tools.esb.core:images/esb/new_esb_file.gif"/>
-    </GROUP>
-   </GROUP>
-  </GROUP>
   <GROUP name="main">
    <GROUP name="esb">
-    <ICON name="action" path="plugin:org.jboss.tools.esb.core:images/esb/action.gif"/>
-    <ICON name="actions" path="plugin:org.jboss.tools.esb.core:images/esb/action_list.gif"/>
-    <ICON name="bus" path="plugin:org.jboss.tools.esb.core:images/esb/bus.gif"/>
-    <ICON name="config" path="plugin:org.jboss.tools.esb.core:images/esb/config.gif"/>
-    <ICON name="file" path="plugin:org.jboss.tools.esb.core:images/esb/esb_file.gif"/>
-    <ICON name="filter" path="plugin:org.jboss.tools.esb.core:images/esb/filter.gif"/>
-    <ICON name="listener" path="plugin:org.jboss.tools.esb.core:images/esb/listener.gif"/>
-    <ICON name="listeners" path="images/file/closed_folder.gif"/>
-    <ICON name="property" path="plugin:org.jboss.tools.esb.core:images/esb/property.gif"/>
-    <ICON name="provider" path="plugin:org.jboss.tools.esb.core:images/esb/provider.gif"/>
-    <ICON name="providers" path="images/file/closed_folder.gif"/>
-    <ICON name="schedule" path="plugin:org.jboss.tools.esb.core:images/esb/schedule.gif"/>
-    <ICON name="service" path="plugin:org.jboss.tools.esb.core:images/esb/service.gif"/>
-    <ICON name="services" path="images/file/closed_folder.gif"/>
+    <ICON name="objectpath" path="plugin:org.jboss.tools.esb.core:images/esb/objectpath.gif"/>
    </GROUP>
   </GROUP>
  </ICONS>
@@ -714,6 +694,7 @@
    <XChildEntity name="ESBProperty"/>
    <XChildEntity name="ESBPreRouteTo"/>
    <XChildEntity name="ESBPreRouterNamespace"/>
+   <XChildEntity name="ESBPreObjectPath"/>
   </XChildrenEntities>
   <XEntityRenderer>
    <ICONS>
@@ -833,6 +814,13 @@
       <AttributeData AttributeName="service category"/>
       <AttributeData AttributeName="service name"/>
       <AttributeData AttributeName="expression" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add Object Path..." kind="action" name="AddObjectPath">
+     <EntityData EntityName="ESBPreObjectPath">
+      <AttributeData AttributeName="esb"/>
      </EntityData>
     </XActionItem>
    </XActionItem>
@@ -1421,7 +1409,8 @@
     default="org.jboss.soa.esb.actions.MessagePersister" name="class" xmlname="class">
     <Editor name="Uneditable"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general;save=always;pre=true;valueFilter=org.jboss.tools.esb.ui.editor.attribute.MessageStoreClassValueFilter"
+   <XModelAttribute
+    PROPERTIES="category=general;save=always;pre=true;valueFilter=org.jboss.tools.esb.ui.editor.attribute.MessageStoreClassValueFilter"
     name="message store class" xmlname="message-store-class">
     <Editor name="AccessibleJava"/>
    </XModelAttribute>
@@ -3290,7 +3279,7 @@
   <XChildrenEntities/>
   <XEntityRenderer>
    <ICONS>
-    <ICON info="main.esb.property" type="main"/>
+    <ICON info="main.esb.objectpath" type="main"/>
    </ICONS>
   </XEntityRenderer>
   <XModelAttributes>
