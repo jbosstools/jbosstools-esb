@@ -8,4 +8,8 @@
 		<super-class name="org.jboss.soa.esb.actions.AbstractActionPipelineProcessor"/>
 	</meta-template>
 
+	<meta-template axis="action@message-store-class" displayName="Message Store Class" xEntity="NONE">
+		<interface name="org.jboss.soa.esb.services.persistence.MessageStore"/>
+	</meta-template>
+
 </meta-templates>
