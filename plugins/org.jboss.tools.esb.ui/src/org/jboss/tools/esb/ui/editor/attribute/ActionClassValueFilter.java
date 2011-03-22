@@ -36,12 +36,7 @@ public class ActionClassValueFilter implements IValueFilter {
 	static String AbstractActionPipelineProcessor = "org.jboss.soa.esb.actions.AbstractActionPipelineProcessor";
 
 	public boolean accept(String value) {
-		if(value.startsWith("java.") 
-			|| value.startsWith("javax.") 
-			|| value.startsWith("com.sun.") 
-			|| value.startsWith("sun.")
-			|| value.startsWith("org.apache.")
-		) {
+		if(ValueFilterHelper.isNotESBPackage(value)) {
 			return false;
 		}
 		boolean b = value.startsWith("org.jboss.soa.esb.actions.")
@@ -74,12 +69,7 @@ public class ActionClassValueFilter implements IValueFilter {
 
 	public boolean init(XModelObject context, XAttribute attribute) {
 		project = EclipseResourceUtil.getProject(context);
-		try {
-			IJavaProject jp = EclipseResourceUtil.getJavaProject(project);
-			return jp != null && (EclipseJavaUtil.findType(jp, AbstractActionLifecycle) != null);
-		} catch (JavaModelException e) {
-			return false;
-		}
+		return ValueFilterHelper.isInClassPath(project, AbstractActionLifecycle);
 	}
 
 }
