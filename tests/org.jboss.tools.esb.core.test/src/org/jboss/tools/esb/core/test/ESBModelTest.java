@@ -17,6 +17,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.jboss.tools.test.util.TestProjectProvider;
 
+import org.jboss.tools.common.meta.XAttribute;
+import org.jboss.tools.common.meta.XModelMetaData;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.util.EclipseResourceUtil;
 import org.jboss.tools.esb.core.model.ESBConstants;
@@ -459,6 +461,39 @@ public class ESBModelTest extends TestCase {
 		}
 		
 		return true;
+	}
+
+	static String VALUE_FILTER_PROPERTY = "valueFilter";
+
+	static String ATTR_MESSAGE_STORE_CLASS = "message store class";
+	static String MESSAGE_STORE_CLASS_VALUE_FILTER_ID = "org.jboss.tools.esb.ui.editor.attribute.MessageStoreClassValueFilter";
+	
+	static String ATTR_CLASS = "class";
+	static String ACTION_CLASS_VALUE_FILTER_ID = "org.jboss.tools.esb.ui.editor.attribute.ActionClassValueFilter";
+
+	public void testValueFilters() throws Exception {
+		XModelObject object = getFileObject("esb-1.0.1", "jboss-esb-jms.xml");
+		XModelMetaData meta = object.getModel().getMetaData();
+
+		XAttribute a = meta.getEntity("ESBPreActionMessagePersister101").getAttribute(ATTR_MESSAGE_STORE_CLASS);
+		assertNotNull(a);
+		String valueFilter = a.getProperty(VALUE_FILTER_PROPERTY);
+		assertEquals(MESSAGE_STORE_CLASS_VALUE_FILTER_ID, valueFilter);
+		
+		a = meta.getEntity("ESBPreActionMessagePersister101").getAttribute(ATTR_MESSAGE_STORE_CLASS);
+		assertNotNull(a);
+		valueFilter = a.getProperty(VALUE_FILTER_PROPERTY);
+		assertEquals(MESSAGE_STORE_CLASS_VALUE_FILTER_ID, valueFilter);
+
+		a = meta.getEntity("ESBAction101").getAttribute(ATTR_CLASS);
+		assertNotNull(a);
+		valueFilter = a.getProperty(VALUE_FILTER_PROPERTY);
+		assertEquals(ACTION_CLASS_VALUE_FILTER_ID, valueFilter);
+
+		a = meta.getEntity("ESBAction120").getAttribute(ATTR_CLASS);
+		assertNotNull(a);
+		valueFilter = a.getProperty(VALUE_FILTER_PROPERTY);
+		assertEquals(ACTION_CLASS_VALUE_FILTER_ID, valueFilter);
 	}
 	
 	protected void tearDown() throws Exception {
