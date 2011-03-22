@@ -1379,7 +1379,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     name="classification" xmlname="classification"/>
-   <XModelAttribute PROPERTIES="pre=true;category=general"
+   <XModelAttribute
+    PROPERTIES="pre=true;category=general;valueFilter=org.jboss.tools.esb.ui.editor.attribute.MessageStoreClassValueFilter"
     name="message store class" xmlname="message-store-class">
     <Editor name="AccessibleJava"/>
    </XModelAttribute>
@@ -1420,7 +1421,7 @@
     default="org.jboss.soa.esb.actions.MessagePersister" name="class" xmlname="class">
     <Editor name="Uneditable"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general;save=always;pre=true"
+   <XModelAttribute PROPERTIES="category=general;save=always;pre=true;valueFilter=org.jboss.tools.esb.ui.editor.attribute.MessageStoreClassValueFilter"
     name="message store class" xmlname="message-store-class">
     <Editor name="AccessibleJava"/>
    </XModelAttribute>
