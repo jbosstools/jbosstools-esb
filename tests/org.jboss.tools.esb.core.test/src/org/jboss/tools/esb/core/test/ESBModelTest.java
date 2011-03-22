@@ -423,6 +423,37 @@ public class ESBModelTest extends TestCase {
 		assertTrue(errorList.toString(), errorList.length() == 0);
 	}
 
+	public void testContentBasedRouter() {
+		XModelObject object = getFileObject("esb-1.3", "jboss-esb-cbr.xml", ESBConstants.ENT_ESB_FILE_130);
+		
+		StringBuffer errorList = new StringBuffer();
+
+		// 1. Drools
+		String cbrRouterPath = "Services/s/Actions/cbr-router";
+		
+		String[][] orderDiscountRuleServiceAttrValues = {
+			{"cbr alias", "Drools"},
+			{"rule set", "/META-INF/drools/airport-code.drl"},
+		};
+		checkAttributes(object, cbrRouterPath, orderDiscountRuleServiceAttrValues, errorList);
+
+		String objectPath = cbrRouterPath + "/body.'org.jboss.soa.esb.message.defaultEntry'";
+		String[][] objectAttrValues = {
+			{"esb", "body.'org.jboss.soa.esb.message.defaultEntry'"},
+		};
+		checkAttributes(object, objectPath, objectAttrValues, errorList);
+
+		String routePath = cbrRouterPath + "/error-service";
+		String[][] routeAttrValues = {
+			{"service name", "error-service"},
+			{"service category", "com.example.soa"},
+			{"destination name", "ERROR"},
+		};
+		checkAttributes(object, routePath, routeAttrValues, errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
 	XModelObject getFileObject(String parentPath, String xmlname) {
 		return getFileObject(parentPath, xmlname, ESBConstants.ENT_ESB_FILE_101);
 	}

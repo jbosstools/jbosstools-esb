@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<jbossesb
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd">
+ <services>
+  <service category="c" description="d" name="s">
+   <actions>
+    <action class="org.jboss.soa.esb.actions.ContentBasedRouter" name="cbr-router">
+     <property name="cbrAlias" value="Drools"/>
+     <property name="ruleSet" value="/META-INF/drools/airport-code.drl"/>
+     <property name="ruleLanguage"/>
+     <property name="destinations">
+      <route-to destination-name="ERROR"
+       service-category="com.example.soa" service-name="error-service"/>
+      <route-to destination-name="SUCCESS"
+       service-category="com.example.soa" service-name="successful-record"/>
+     </property>
+     <property name="object-paths">
+      <object-path esb="body.'org.jboss.soa.esb.message.defaultEntry'" />
+     </property>
+    </action>
+   </actions>
+  </service>
+ </services>
+</jbossesb>
