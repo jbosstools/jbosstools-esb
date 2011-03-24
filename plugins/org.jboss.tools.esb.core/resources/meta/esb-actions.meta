@@ -11,7 +11,9 @@
    <PAIR name="org.jboss.soa.esb.actions.Aggregator" value="ESBPreActionAggregator"/>
    <PAIR name="org.jboss.soa.esb.actions.BusinessRulesProcessor" value="ESBPreActionBusinessRulesProcessor"/>
    <PAIR name="org.jboss.soa.esb.actions.ContentBasedRouter" value="ESBPreActionContentBasedRouter"/>
+   <PAIR name="org.jboss.soa.esb.actions.ContentBasedWiretap" value="ESBPreActionContentBasedRouter"/>
    <PAIR name="org.jboss.soa.esb.actions.EJBProcessor" value="ESBPreActionEJBProcessor"/>
+   <PAIR name="org.jboss.soa.esb.actions.MessageFilter" value="ESBPreActionContentBasedRouter"/>
    <PAIR name="org.jboss.soa.esb.actions.MessagePersister" value="ESBPreActionMessagePersister"/>
    <PAIR name="org.jboss.soa.esb.actions.Notifier" value="ESBPreActionNotifier"/>
    <PAIR name="org.jboss.soa.esb.actions.StaticRouter" value="ESBPreActionStaticRouter"/>
@@ -710,7 +712,12 @@
     name="name" xmlname="name"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     default="org.jboss.soa.esb.actions.ContentBasedRouter" name="class" xmlname="class">
-    <Editor name="Uneditable"/>
+    <Constraint loader="List">
+     <value name="org.jboss.soa.esb.actions.ContentBasedRouter"/>
+     <value name="org.jboss.soa.esb.actions.ContentBasedWiretap"/>
+     <value name="org.jboss.soa.esb.actions.MessageFilter"/>
+    </Constraint>
+    <Editor name="List"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
     name="cbr alias" xmlname="cbrAlias">
@@ -741,6 +748,24 @@
     <Editor name="TreeChooser"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="rule agent properties" xmlname="ruleAgentProperties">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=properties"/>
+     <value name="linkAction=OpenRuleAgent"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
+    name="decision table" xmlname="decisionTable">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=xls"/>
+     <value name="linkAction=OpenDecisionTable"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general"
     default="Default(false)" name="rule reload" xmlname="ruleReload">
     <Constraint loader="ListString">
      <value name="Default(false)"/>
@@ -750,13 +775,75 @@
     <Editor name="ListString"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="pre=true;category=general"
-    name="rule agent properties" xmlname="ruleAgentProperties">
+    default="Default(false)" name="stateful" xmlname="stateful">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="rule audit type" xmlname="ruleAuditType">
+    <Constraint loader="List">
+     <value/>
+     <value name="CONSOLE"/>
+     <value name="FILE"/>
+     <value name="THREADED_FILE"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="rule audit file" xmlname="ruleAuditFile">
     <Constraint loader="Tree">
      <value name="ESBResourceTree"/>
-     <value name="extensions=properties"/>
-     <value name="linkAction=OpenRuleAgent"/>
+     <value name="linkAction=OpenAuditFile"/>
     </Constraint>
     <Editor name="TreeChooser"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="rule audit interval" xmlname="ruleAuditInterval"/>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="Default(REALTIME)" name="rule clock type" xmlname="ruleClockType">
+    <Constraint loader="List">
+     <value name="Default(REALTIME)"/>
+     <value name="REALTIME"/>
+     <value name="PSEUDO"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="Default(CLOUD)" name="rule event processing type" xmlname="ruleEventProcessingType">
+    <Constraint loader="List">
+     <value name="Default(CLOUD)"/>
+     <value name="CLOUD"/>
+     <value name="STREAM"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="Default(FIRE_ALL_RULES)" name="rule fire method" xmlname="ruleFireMethod">
+    <Constraint loader="List">
+     <value name="Default(FIRE_ALL_RULES)"/>
+     <value name="FIRE_ALL_RULES"/>
+     <value name="FIRE_UNTIL_HALT"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    default="Default(false)" name="rule multithread evaluation" xmlname="ruleMultithreadEvaluation">
+    <Constraint loader="ListString">
+     <value name="Default(false)"/>
+     <value name="true"/>
+     <value name="false"/>
+    </Constraint>
+    <Editor name="List"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="rule max threads" xmlname="ruleMaxThreads">
+    <Constraint loader="Int">
+     <value name="minimum=1"/>
+    </Constraint>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="process" xmlname="process">
     <Constraint loader="ListString">
