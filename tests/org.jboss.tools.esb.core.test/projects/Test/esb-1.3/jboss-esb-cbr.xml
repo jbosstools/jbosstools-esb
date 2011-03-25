@@ -19,6 +19,34 @@
       <object-path esb="body.'org.jboss.soa.esb.message.defaultEntry'" />
      </property>
     </action>
+    <action class="org.jboss.soa.esb.actions.MessageFilter" name="message-filter">
+     <property name="cbrAlias" value="Drools"/>
+     <property name="ruleSet" value="/META-INF/drools/airport-code.drl"/>
+     <property name="ruleLanguage"/>
+     <property name="destinations">
+      <route-to destination-name="ERROR"
+       service-category="com.example.soa" service-name="error-service"/>
+      <route-to destination-name="SUCCESS"
+       service-category="com.example.soa" service-name="successful-record"/>
+     </property>
+     <property name="object-paths">
+      <object-path esb="body.'org.jboss.soa.esb.message.defaultEntry'" />
+     </property>
+    </action>
+    <action class="org.jboss.soa.esb.actions.ContentBasedWiretap" name="cb-wiretap">
+     <property name="cbrAlias" value="Drools"/>
+     <property name="ruleSet" value="/META-INF/drools/airport-code.drl"/>
+     <property name="ruleLanguage"/>
+     <property name="destinations">
+      <route-to destination-name="ERROR"
+       service-category="com.example.soa" service-name="error-service"/>
+      <route-to destination-name="SUCCESS"
+       service-category="com.example.soa" service-name="successful-record"/>
+     </property>
+     <property name="object-paths">
+      <object-path esb="body.'org.jboss.soa.esb.message.defaultEntry'" />
+     </property>
+    </action>
    </actions>
   </service>
  </services>
