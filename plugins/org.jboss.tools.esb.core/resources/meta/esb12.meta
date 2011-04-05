@@ -826,11 +826,9 @@
    <XModelAttribute default="listener" loader="ElementType" name="element type">
     <Editor name="Uneditable"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general;id=true" name="name" xmlname="name"/>
-   <XModelAttribute PROPERTIES="category=general" name="channel id ref" xmlname="busidref">
-    <Constraint loader="ListString"/>
-    <Editor name="ESBBusList"/>
-   </XModelAttribute>
+   <XModelAttributeReference
+    attributes="name,channel id ref,max threads,is gateway"
+    entity="ESBListener101" name="listener"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
