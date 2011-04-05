@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<jbossesb
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd">
+ <providers>
+  <fs-provider name="flat-file">
+   <fs-bus busid="flat-file-channel">
+    <fs-message-filter directory="C:\soa\input" input-suffix="in"
+     post-delete="true" work-suffix="work"/>
+   </fs-bus>
+  </fs-provider>
+  <jms-provider connection-factory="ConnectionFactory" name="arrival-queue-provider">
+   <jms-bus busid="arrival-queue-channel">
+    <jms-message-filter dest-name="queue/ArrivalQueue" dest-type="QUEUE"/>
+   </jms-bus>
+  </jms-provider>
+  <bus-provider name="custom-provider">
+   <bus busid="custom-provider-channel"/>
+  </bus-provider>
+ </providers>
+ <services>
+  <service category="com.example.soa" description="Example SOA Service"
+   invmScope="GLOBAL" name="soa-test">
+   <listeners>
+    <fs-listener busidref="flat-file-channel" is-gateway="true"
+     name="fs-example" poll-frequency-seconds="5"/>
+   </listeners>
+   <actions mep="OneWay">
+    <action class="com.example.soa.soa.action.ExceptionActionHandler" name="exceptionHandler">
+     <property name="exceptionMethod" value="exceptionHandler"/>
+    </action>
+    <action class="org.jboss.soa.esb.actions.SystemPrintln" name="sysout">
+     <property name="message" value="MESSAGE"/>
+     <property name="printfull" value="true"/>
+    </action>
+    <action class="org.jboss.soa.esb.smooks.SmooksAction" name="transform">
+     <property name="smooksConfig" value="/META-INF/smooks/example1.xml"/>
+     <property name="resultType" value="JAVA"/>
+     <property name="javaResultBeanId" value="arrivalBean"/>
+    </action>
+   </actions>
+  </service>
+  <service category="com.example.soa" description="ArrivalQueue"
+   invmScope="GLOBAL" name="arrival-service">
+   <listeners>
+    <jms-listener busidref="arrival-queue-channel" is-gateway="true" name="arrival-queue-listener"/>
+   </listeners>
+   <actions mep="OneWay">
+    <action class="com.example.soa.soa.action.ExceptionActionHandler" name="exceptionHandler">
+     <property name="exceptionMethod" value="exceptionHandler"/>
+    </action>
+    <action class="com.example.soa.soa.action.ExtendedLogActionHandler" name="logBody">
+     <property name="logLevel" value="INFO"/>
+    </action>
+    <action class="org.jboss.soa.esb.actions.ContentBasedRouter" name="cbr-router">
+     <property name="cbrAlias" value="Drools"/>
+     <property name="ruleSet" value="/META-INF/drools/airport-code.drl"/>
+     <property name="ruleLanguage"/>
+     <property name="destinations">
+      <route-to destination-name="ERROR"
+       service-category="com.example.soa" service-name="error-service"/>
+      <route-to destination-name="SUCCESS"
+       service-category="com.example.soa" service-name="successful-record"/>
+     </property>
+     <property name="object-paths">
+      <object-path esb="body.'org.jboss.soa.esb.message.defaultEntry'"/>
+     </property>
+    </action>
+   </actions>
+  </service>
+  <service category="com.example.soa" description="Error Service"
+   invmScope="GLOBAL" name="error-service">
+   <actions mep="OneWay">
+    <action class="com.example.soa.soa.action.ExtendedLogActionHandler" name="logBody">
+     <property name="logLevel" value="INFO"/>
+     <property name="logMessage" value="ERROR"/>
+    </action>
+    <action class="com.example.soa.soa.action.ExtractArrival" name="extractPrevAirport"/>
+    <action class="org.jboss.soa.esb.services.jbpm.actions.BpmProcessor" name="bpm-action">
+     <property name="command" value="StartProcessInstanceCommand"/>
+     <property name="process-definition-name" value="soa-process"/>
+     <property name="transition-name" value="start"/>
+     <property name="esbToBpmVars">
+      <mapping bpm="previousAirport" esb="previousAirport"/>
+     </property>
+    </action>
+   </actions>
+  </service>
+  <service category="com.example.soa" description="Error Service"
+   invmScope="GLOBAL" name="successful-record">
+   <actions mep="OneWay">
+    <action class="com.example.soa.soa.action.ExtendedLogActionHandler" name="logBody">
+     <property name="logLevel" value="INFO"/>
+     <property name="logMessage" value="SUCCESS"/>
+    </action>
+   </actions>
+  </service>
+  <service category="com.example.soa"
+   description="Custom Listener Example" invmScope="GLOBAL" name="custom-listener-example">
+   <listeners>
+    <listener busidref="custom-provider-channel" name="custom-listener" is-gateway="true">
+     <property name="gatewayClass" value="com.example.soa.listener.MyFileListener"/>
+    </listener>
+   </listeners>
+   <actions mep="OneWay">
+    <action class="com.example.soa.soa.action.ExtendedLogActionHandler" name="logBody">
+     <property name="logLevel" value="INFO"/>
+     <property name="logMessage" value="SUCCESS"/>
+    </action>
+   </actions>
+  </service>
+ </services>
+</jbossesb>
