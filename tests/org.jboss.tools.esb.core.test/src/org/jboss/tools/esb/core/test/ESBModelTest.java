@@ -58,7 +58,27 @@ public class ESBModelTest extends TestCase {
 		assertTrue("Cannot find objects at " + errorCount + " paths\n" + sb.toString(), errorCount == 0);
 	}
 */
-	
+
+	public void testListener() {
+		XModelObject object = getFileObject("esb-1.2", "jboss-esb-listener.xml", ESBConstants.ENT_ESB_FILE_120);
+		
+		StringBuffer errorList = new StringBuffer();
+
+		checkAttributeValue(object, 
+				"Services/custom-listener-example/Listeners/custom-listener", 
+				"is gateway", 
+				"true", 
+			errorList);
+
+		checkAttributeValue(object, 
+				"Services/arrival-service/Listeners/arrival-queue-listener", 
+				"is gateway", 
+				"true", 
+			errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
 	public void testJMSExample() {
 		XModelObject object = getFileObject("esb-1.0.1", "jboss-esb-jms.xml");
 		
