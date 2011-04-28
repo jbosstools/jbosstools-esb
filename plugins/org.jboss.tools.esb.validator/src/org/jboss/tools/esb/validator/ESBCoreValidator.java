@@ -3,6 +3,7 @@ package org.jboss.tools.esb.validator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -17,7 +18,9 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.wst.validation.internal.core.ValidationException;
 import org.eclipse.wst.validation.internal.provisional.core.IReporter;
 import org.jboss.tools.common.model.XModelObject;
+import org.jboss.tools.common.model.project.ext.IValueInfo;
 import org.jboss.tools.common.model.util.EclipseResourceUtil;
+import org.jboss.tools.common.model.util.PositionHolder;
 import org.jboss.tools.common.text.ITextSourceReference;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
@@ -33,7 +36,7 @@ import org.jboss.tools.jst.web.kb.validation.IProjectValidationContext;
 import org.jboss.tools.jst.web.kb.validation.IValidatingProjectSet;
 import org.jboss.tools.jst.web.kb.validation.IValidatingProjectTree;
 import org.jboss.tools.jst.web.kb.validation.IValidator;
-import org.jboss.tools.jst.web.model.project.ext.store.XMLValueInfo;
+import org.w3c.dom.Element;
 
 public class ESBCoreValidator extends ESBValidationErrorManager implements IValidator {
 	public static final String ID = "org.jboss.tools.esb.validator.ESBCoreValidator"; //$NON-NLS-1$
@@ -323,7 +326,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 
 	void validateObjectPathForBusinessRulesProcessor(XModelObject path, XModelObject brp, IFile file) {
 		String esb = path.getAttributeValue(ATTR_ESB);
-		StringTokenizer st = new StringTokenizer(esb, ".");
+		StringTokenizer st = new StringTokenizer(esb, "."); //$NON-NLS-1$
 		if(!st.hasMoreTokens()) return;
 		String location = st.nextToken();
 		if(!OBJECT_PATH_LOCATIONS.contains(location)) {
@@ -342,4 +345,50 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		}
 	}
 
+}
+
+class XMLValueInfo implements IValueInfo {
+	XModelObject object;
+	String attribute;
+	
+	PositionHolder h = null;
+	
+	public XMLValueInfo() {
+	}
+	
+	public XMLValueInfo(XModelObject object, String attribute) {
+		this.object = object;
+		this.attribute = attribute;
+	}
+
+	public int getLength() {
+		getPositionHolder();
+		int length = h.getEnd() - h.getStart();
+		return length < 0 ? 0 : length;
+	}
+
+	public int getStartPosition() {
+		getPositionHolder();
+		return h.getStart();
+	}
+
+	public String getValue() {
+		return object.getAttributeValue(attribute);
+	}
+	
+	PositionHolder getPositionHolder() {
+		if(h == null) {
+			h = PositionHolder.getPosition(object, attribute);
+		}
+		h.update();
+		return h;
+	}
+	
+	public Element toXML(Element parent, Properties context) {
+		return null;
+	}
+
+	public void loadXML(Element element, Properties context) {
+	}
+	
 }
