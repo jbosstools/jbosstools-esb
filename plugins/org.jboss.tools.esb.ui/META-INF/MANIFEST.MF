@@ -6,6 +6,7 @@ Bundle-ClassPath: esb-ui.jar
 Bundle-Activator: org.jboss.tools.esb.ui.ESBUiPlugin
 Bundle-Vendor: %providerName
 Export-Package: org.jboss.tools.esb.ui,
+ org.jboss.tools.esb.ui.editor,
  org.jboss.tools.esb.ui.editor.form,
  org.jboss.tools.esb.ui.editor.attribute,
  org.jboss.tools.esb.ui.wizard,
@@ -34,8 +35,6 @@ Require-Bundle: org.eclipse.jface.text,
  org.jboss.tools.common.model,
  org.jboss.tools.common.model.ui,
  org.jboss.tools.common.text.xml,
- org.jboss.tools.jst.web,
- org.jboss.tools.jst.web.ui,
  org.jboss.tools.esb.core
 Bundle-Version: 1.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

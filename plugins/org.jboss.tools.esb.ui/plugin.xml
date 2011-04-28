@@ -36,7 +36,7 @@
 
    <extension id="e" name="XML Editors" point="org.jboss.tools.common.model.ui.xmlEditor">
       <xmlEditor 
-            class="org.jboss.tools.jst.web.ui.editors.WebCompoundEditor" 
+            class="org.jboss.tools.esb.ui.editor.ESBCompoundEditor" 
             contributorClass="org.jboss.tools.common.model.ui.texteditors.MultiPageContributor" 
             entities="FileESB101,FileESB110,FileESB120,FileESB130" 
             icon="images/xstudio/editors/esb.gif" 
