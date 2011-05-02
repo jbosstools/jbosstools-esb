@@ -1,5 +1,6 @@
 package org.jboss.tools.esb.validator;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -389,6 +390,10 @@ class XMLValueInfo implements IValueInfo {
 	}
 
 	public void loadXML(Element element, Properties context) {
+	}
+	
+	public IFile getResource() {
+		return object == null ? null : (IFile)object.getAdapter(File.class);
 	}
 	
 }
