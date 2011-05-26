@@ -9,6 +9,7 @@ import org.jboss.tools.common.model.XModelObjectConstants;
 import org.jboss.tools.common.model.filesystems.FileSystemsHelper;
 import org.jboss.tools.common.model.filesystems.XFileObject;
 import org.jboss.tools.common.model.filesystems.impl.FileSystemsImpl;
+import org.jboss.tools.common.model.filesystems.impl.Libs;
 import org.jboss.tools.common.model.impl.trees.FileSystemResourceTree;
 import org.jboss.tools.common.model.util.EclipseResourceUtil;
 import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
@@ -39,7 +40,7 @@ public class ESBResourceTree extends FileSystemResourceTree {
 			}
 			for (int i = 0; i < os.length; i++) {
 				String name = os[i].getAttributeValue(XModelObjectConstants.ATTR_NAME);
-				if(name.startsWith("lib-")) {
+				if(name.startsWith(Libs.LIB_PREFIX)) {
 					list.add(os[i]);
 				}
 			}
