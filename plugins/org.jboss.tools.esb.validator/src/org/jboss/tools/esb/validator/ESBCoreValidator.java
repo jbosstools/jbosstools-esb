@@ -63,6 +63,10 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		return ID;
 	}
 
+	public String getBuilderId() {
+		return null;
+	}
+
 	public IValidatingProjectTree getValidatingProjects(IProject project) {
 		IProjectValidationContext rootContext = contexts.get(project);
 		if(rootContext == null) {
