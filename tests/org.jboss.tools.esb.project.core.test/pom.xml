@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion> 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
-	  <groupId>org.jboss.tools</groupId>
-	  <artifactId>org.jboss.tools.parent.pom</artifactId>
-	  <version>0.0.2-SNAPSHOT</version>
+		<groupId>org.jboss.tools.esb</groupId>
+		<artifactId>tests</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools.esb.tests</groupId>
-	<artifactId>org.jboss.tools.esb.project.core.test</artifactId> 
+	<artifactId>org.jboss.tools.esb.project.core.test</artifactId>
 	<version>1.4.0-SNAPSHOT</version>
 	<packaging>eclipse-test-plugin</packaging>
-	
+
 	<properties>
-		<systemProperties>-Djbosstools.test.jboss.home.4.2=${requirement.build.root}/jboss-soa-p.5.0.0/jboss-as -Djbosstools.test.jboss.home.5.0=${requirement.build.root}/jboss-soa-p.5.0.0/jboss-as -Djbosstools.test.jboss.home.5.1=${requirement.build.root}/jboss-5.1.0.GA -Djbosstools.test.soap.home.4.3=${requirement.build.root}/jboss-soa-p.4.3.0 -Djbosstools.test.soap.home.5.0=${requirement.build.root}/jboss-soa-p.5.0.0</systemProperties>
+		<systemProperties>-Djbosstools.test.jboss.home.4.2=${requirement.build.root}/jboss-soa-p.5.0.0/jboss-as
+			-Djbosstools.test.jboss.home.5.0=${requirement.build.root}/jboss-soa-p.5.0.0/jboss-as
+			-Djbosstools.test.jboss.home.5.1=${requirement.build.root}/jboss-5.1.0.GA
+			-Djbosstools.test.soap.home.4.3=${requirement.build.root}/jboss-soa-p.4.3.0
+			-Djbosstools.test.soap.home.5.0=${requirement.build.root}/jboss-soa-p.5.0.0</systemProperties>
 		<emma.filter>org.jboss.tools.esb.core*</emma.filter>
 		<emma.instrument.bundles>org.jboss.tools.esb.project.core</emma.instrument.bundles>
 	</properties>
-	
+
 	<build>
 		<plugins>
 			<plugin>
