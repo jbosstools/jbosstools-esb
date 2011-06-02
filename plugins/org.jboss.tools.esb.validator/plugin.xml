@@ -17,6 +17,7 @@
          point="org.jboss.tools.jst.web.kb.validator">
          <validator
                class="org.jboss.tools.esb.validator.ESBCoreValidator"
+               name="%ESBCoreValidator"
                id="org.jboss.tools.esb.validator.ESBCoreValidator">
          </validator>
    </extension>
