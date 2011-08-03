@@ -8,5 +8,8 @@
 	<feature url="features/org.jboss.tools.esb.feature_0.0.0.jar" id="org.jboss.tools.esb.feature" version="0.0.0">
 		<category name="JBoss Tools esb Nightly Build Update Site"/>
 	</feature>
+	<feature url="features/org.jboss.tools.esb.test.feature_0.0.0.jar" id="org.jboss.tools.esb.test.feature" version="0.0.0">
+		<category name="JBoss Tools esb Nightly Build Update Site"/>
+	</feature>
 
 </site>

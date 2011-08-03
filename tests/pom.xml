@@ -16,6 +16,7 @@
 		<module>org.jboss.tools.esb.core.test</module>
 		<module>org.jboss.tools.esb.project.core.test</module>
 		<module>org.jboss.tools.esb.validator.test</module>
+		<module>org.jboss.tools.esb.ui.bot.test</module>
 	</modules>
 </project>
 	
