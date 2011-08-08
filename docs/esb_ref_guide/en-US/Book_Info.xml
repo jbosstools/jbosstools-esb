@@ -5,9 +5,9 @@
 	<title>ESB Tools Reference Guide</title>
 	<subtitle>Provides information relating to the ESB Tools set.</subtitle>
 	<productname>JBoss Developer Studio</productname>
-	<productnumber>4.0</productnumber>
-	<edition>4.0.0</edition>
-	<pubsnumber>5</pubsnumber>
+	<productnumber>4.1</productnumber>
+	<edition>4.1.0</edition>
+	<pubsnumber>2</pubsnumber>
 	<abstract>
 		<para>The ESB Tools Reference Guide explains how to use the ESB Tools to create ESB files quickly and with precision.</para>
 	</abstract>

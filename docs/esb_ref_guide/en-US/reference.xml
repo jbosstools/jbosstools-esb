@@ -96,7 +96,7 @@
             </figure>
             
             <para>Adding, editing or deleting of some artifacts operations are available right in the
-                <property>Tree view</property> . Right-click any node and select one of the
+                <property>Tree view</property>. Right-click any node and select one of the
                 available actions in the context menu. For example, you can easily add a new Provider:</para>
             <para/>
             <figure>
@@ -176,7 +176,7 @@
             
             <note>
                 <title>Note:</title>
-                <para>Some new components are available to support ESB 4.7,such as:
+                <para>Some new components are available to support ESB 4.7, such as:
                     new actions (XsltAction, PersistAction, BpmProcessor, ScriptingAction),
                     new processors (EJBProcessor), new routers (HttpRouter, JMSRouter, EmailRouter).
                 </para>
