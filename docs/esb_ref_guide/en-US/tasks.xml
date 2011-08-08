@@ -194,6 +194,10 @@
 				</listitem>
 				<listitem>
 					<para>
+						<emphasis role="bold">JBoss ESB HelloWorld Email Example</emphasis> - demonstrates the use of multiple action invocations from a single configuration.  You can use a single Action class and make multiple method calls or use multiple Action classes. </para>
+				</listitem>
+				<listitem>
+					<para>
 						<emphasis role="bold">JBoss ESB HelloWorld File Action Example</emphasis> - demonstrates using the File gateway feature of the JBoss ESB. Files that are found in a particular directory with a particular extension are sent to a JMS queue with actions for processing.</para>
 				</listitem>
 				<listitem>
