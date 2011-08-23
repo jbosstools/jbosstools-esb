@@ -11,7 +11,7 @@
 package org.jboss.tools.esb.validator;
 
 import org.eclipse.core.resources.IProject;
-import org.jboss.tools.jst.web.kb.internal.validation.ValidationErrorManager;
+import org.jboss.tools.common.validation.ValidationErrorManager;
 
 abstract public class ESBValidationErrorManager extends ValidationErrorManager {
 

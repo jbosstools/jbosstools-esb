@@ -9,11 +9,11 @@ Bundle-Localization: plugin
 Export-Package: org.jboss.tools.esb.validator,
  org.jboss.tools.esb.validator.ui
 Require-Bundle: org.jboss.tools.common.ui,
- org.jboss.tools.jst.web.kb,
  org.jboss.tools.esb.core,
  org.eclipse.ui,
  org.jboss.tools.esb.project.core,
  org.eclipse.wst.validation,
- org.eclipse.jdt.ui
+ org.eclipse.jdt.ui,
+ org.jboss.tools.common.validation
 Bundle-Version: 1.5.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
