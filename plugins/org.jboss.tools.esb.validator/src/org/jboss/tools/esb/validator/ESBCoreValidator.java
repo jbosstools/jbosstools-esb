@@ -16,6 +16,9 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.wst.common.project.facet.core.IFacetedProject;
+import org.eclipse.wst.common.project.facet.core.IProjectFacet;
+import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.validation.internal.core.ValidationException;
 import org.eclipse.wst.validation.internal.provisional.core.IReporter;
 import org.jboss.tools.common.model.XModelObject;
@@ -82,6 +85,10 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	}
 
 	public boolean shouldValidate(IProject project) {
+		if(!project.isAccessible()) {
+			return false;
+		}
+
 		String esbContentFolder = null;
 		
 		try {
@@ -92,8 +99,14 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		
 		if(esbContentFolder != null) return isEnabled(project);
 		
+		
 		try {
-			return project != null && project.isAccessible() && project.hasNature(ESBProjectConstant.ESB_PROJECT_NATURE) && isEnabled(project);
+			IFacetedProject fp = ProjectFacetsManager.create(project);
+			IProjectFacet f = ProjectFacetsManager.getProjectFacet(ESBProjectConstant.ESB_PROJECT_FACET);
+			if(fp != null && f != null && fp.getInstalledVersion(f) != null) {
+				return true;
+			}
+			return project.hasNature(ESBProjectConstant.ESB_PROJECT_NATURE) && isEnabled(project);
 		} catch (CoreException e) {
 			ESBValidatorPlugin.log(e);
 		}
@@ -155,24 +168,26 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 			//ignore
 		}
 		
-		if(esbContentFolder != null) {
-			IFolder esbContent = project.getFolder(new Path(esbContentFolder + "/META-INF")); //$NON-NLS-1$
-			if(esbContent != null && esbContent.exists()) {
-				IResource[] rs = null;
-				try {
-					rs = esbContent.members();
-				} catch (CoreException e) {
-					ESBValidatorPlugin.log(e);
-				}
-				for (IResource r: rs) {
-					if(r instanceof IFile) {
-						IFile file = (IFile)r;
-						String name = file.getName();
-						if(!name.endsWith(XML_EXT)) continue;
-						XModelObject o = EclipseResourceUtil.createObjectForResource(file);
-						if(o != null && o.getModelEntity().getName().startsWith(ESBConstants.ENT_ESB_FILE)) {
-							validateESBConfigFile(o, file);
-						}
+		if(esbContentFolder == null) {
+			esbContentFolder = ESBProjectConstant.DEFAULT_ESB_CONFIG_RESOURCE_FOLDER;
+		}
+		
+		IFolder esbContent = project.getFolder(new Path(esbContentFolder + "/META-INF")); //$NON-NLS-1$
+		if(esbContent != null && esbContent.exists()) {
+			IResource[] rs = null;
+			try {
+				rs = esbContent.members();
+			} catch (CoreException e) {
+				ESBValidatorPlugin.log(e);
+			}
+			for (IResource r: rs) {
+				if(r instanceof IFile) {
+					IFile file = (IFile)r;
+					String name = file.getName();
+					if(!name.endsWith(XML_EXT)) continue;
+					XModelObject o = EclipseResourceUtil.createObjectForResource(file);
+					if(o != null && o.getModelEntity().getName().startsWith(ESBConstants.ENT_ESB_FILE)) {
+						validateESBConfigFile(o, file);
 					}
 				}
 			}
