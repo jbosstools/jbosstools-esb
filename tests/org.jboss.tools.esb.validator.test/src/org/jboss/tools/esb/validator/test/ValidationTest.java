@@ -11,9 +11,9 @@
 package org.jboss.tools.esb.validator.test;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.jboss.tools.esb.validator.ESBValidatorMessages;
-import org.jboss.tools.test.util.JobUtils;
 import org.jboss.tools.tests.AbstractResourceMarkerTest;
 
 /**
@@ -21,20 +21,13 @@ import org.jboss.tools.tests.AbstractResourceMarkerTest;
  */
 public class ValidationTest extends ESBTest {
 
-	public void test0() throws Exception {
-		JobUtils.waitForIdle();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			
-		}
-	}
 	/**
 	 *  FTP Listener cannot reference FS Channel.
 	 * 
 	 * @throws Exception
 	 */
 	public void testIncompatibleChannelReference() throws Exception {
+		IProject project = ESBTest.findTestProject();
 		IFile file = project.getFile("esbcontent/META-INF/jboss-esb-01.xml");
 		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.LISTENER_REFERENCES_INCOMPATIBLE_CHANNEL, 13);
 		int markerNumbers = getMarkersNumber(file);
@@ -42,6 +35,7 @@ public class ValidationTest extends ESBTest {
 	}
 
 	public void testBusenessRulesProcessor() throws Exception {
+		IProject project = ESBTest.findTestProject();
 		IFile file = project.getFile("esbcontent/META-INF/jboss-esb-brp-broken.xml"); //$NON-NLS-1$
 		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.INVALID_RULE_SET_FOR_RULE_LANGUAGE, 52);
 		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.INVALID_RULE_AUDIT_TYPE_AND_INTERVAL, 34);
@@ -63,5 +57,4 @@ public class ValidationTest extends ESBTest {
 	public static int getMarkersNumber(IResource resource) {
 		return AbstractResourceMarkerTest.getMarkersNumberByGroupName(resource, null);
 	}
-
 }

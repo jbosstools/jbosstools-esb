@@ -5,15 +5,14 @@ import java.util.Set;
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.jboss.tools.common.base.test.validation.TestUtil;
 import org.jboss.tools.common.text.ITextSourceReference;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
-import org.jboss.tools.test.util.JobUtils;
 import org.jboss.tools.test.util.ResourcesUtils;
 import org.osgi.framework.Bundle;
 
@@ -23,27 +22,6 @@ public class ESBTest extends TestCase {
 	protected static String PROJECT_PATH = "/projects/esbTest";
 
 	protected static String WEB_CONTENT_SUFFIX = "/esbcontent";
-
-	protected IProject project;
-
-	public ESBTest() {
-		project = getTestProject();
-	}
-
-	public IProject getTestProject() {
-		if(project==null) {
-			try {
-				project = findTestProject();
-				if(project==null || !project.exists()) {
-					project = importPreparedProject("/");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				fail("Can't import ESB test project: " + e.getMessage());
-			}
-		}
-		return project;
-	}
 
 	public static IProject findTestProject() {
 		return ResourcesPlugin.getWorkspace().getRoot().getProject(PROJECT_NAME);
@@ -61,11 +39,10 @@ public class ESBTest extends TestCase {
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
-		project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
+		TestUtil._waitForValidation(project);
 		ResourcesUtils.setBuildAutomatically(saveAutoBuild);
 		return project;
 	}
-
 
 	public static void assertLocationEquals(Set<? extends ITextSourceReference> references, int startPosition, int length) {
 		for (ITextSourceReference reference : references) {
@@ -84,8 +61,5 @@ public class ESBTest extends TestCase {
 	public static void assertLocationEquals(ITextSourceReference reference, int startPosition, int length) {
 		assertEquals("Wrong start position", startPosition, reference.getStartPosition());
 		assertEquals("Wrong length", length, reference.getLength());
-	}
-
-	public static void cleanProject(String _resourcePath) throws Exception {
 	}
 }

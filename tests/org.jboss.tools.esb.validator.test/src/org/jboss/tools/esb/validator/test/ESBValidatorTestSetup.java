@@ -30,13 +30,12 @@ public class ESBValidatorTestSetup extends TestSetup {
 
 	@Override
 	protected void setUp() throws Exception {
-		project = ESBTest.findTestProject();
+		project = ESBTest.importPreparedProject("/");
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
 		boolean saveAutoBuild = ResourcesUtils.setBuildAutomatically(false);
-		JobUtils.waitForIdle();
 		project.delete(true, true, null);
 		JobUtils.waitForIdle();
 		ResourcesUtils.setBuildAutomatically(saveAutoBuild);
