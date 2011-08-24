@@ -45,15 +45,6 @@ public class ValidationTest extends ESBTest {
 		assertEquals("jboss-esb-brp-broken.xml should have 4 error markers.", markerNumbers, 4);
 	}
 
-	/**
-	 * 
-	 * @throws Exception
-	 */
-//	public void testMultipleDisposeParameters() throws Exception {
-//		IFile file = project.getFile("JavaSource/org/jboss/jsr299/tck/tests/implementation/disposal/method/definition/broken/multiParams/SpiderProducer_Broken.java");
-//		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.MULTIPLE_DISPOSING_PARAMETERS, 30, 30);
-//	}
-
 	public static int getMarkersNumber(IResource resource) {
 		return AbstractResourceMarkerTest.getMarkersNumberByGroupName(resource, null);
 	}
