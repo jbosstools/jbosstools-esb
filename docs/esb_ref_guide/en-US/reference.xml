@@ -1,0 +1,400 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<chapter id="reference" role="updated">
+    <?dbhtml filename="reference.html"?>
+    <chapterinfo>
+        <keywordset>
+            <keyword>JBoss ESB</keyword>
+            <keyword>Editor</keyword>
+            <keyword>ESB</keyword>
+        </keywordset>
+    </chapterinfo>
+
+    <title>Reference</title>
+    
+    <para>This chapter includes detailed reference information about <property>JBoss ESB Tools</property>.</para>
+ 
+    <section id="esb_file" role="updated">
+
+        <title>JBoss ESB Editor</title>
+        
+        <para> ESB editor has lots of useful features, they are described in details in this chapter.</para>
+        
+        <para><property>ESB File Editor</property> is a powerful and customizable tool which
+            allows developing an application using ESB technology.</para>
+
+        <para>ESB file editor has two tabs: Tree and Source.</para>
+        
+        <section>
+            <title>Source View</title>
+            
+            <para>You can easily switch from Tree to Source by selecting the Source tab at the bottom of
+                the editor and work in <property>Source view</property>.</para>
+            
+            <figure id="sourceView">
+                <title>Source View</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/02_esb_source_view.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <para>The Source view for the editor displays a text content of the ESB file. It is always
+                synchronized with <property>Tree view</property>, so any changes made in one of the
+                views will immediately appear in the other.</para>
+            
+            <para>No matter what view you select, you get full integration with <property>Outline
+                view</property>. For example, you can work in the Source view with the help of the
+                Outline view. The Outline view shows a tree structure of the ESB file. Simply select any
+                element in the <property>Outline view</property> and it will jump to the same place in
+                the Source editor, so you can navigate through the source code with Outline view.</para>
+            <figure>
+                <title>Outline View</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/03_esb_outline_view.png" scale="70"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+        </section>       
+        
+        <section>
+            <title>Tree View</title>
+            
+            <para>You can switch to Tree. The Tree view for the editor displays all ESB artifacts in a
+                tree format. By selecting any node you can see and edit its properties which will appear
+                in the right-hand area. For example, a Provider:</para>
+            <figure>
+                <title>Tree View</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/01_esb_tree_view.png" scale="90"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <para>Some properties are represented as links to the associated editors.</para>
+            
+            <figure id="TreeViewLink">
+                <title>Property Link to the Associated Editor</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/01a_esb_tree_view_and_links.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>Now when editing ESB actions which refer to other files (Drools, Groovy, Smooks, etc.),
+                the label for the field turns into a link to launch the editor associated with that type of file.</para>        
+            <figure >
+                <title>Property Link to the Associated Editor</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/01b_esb_tree_view_and_links.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <para>Adding, editing or deleting of some artifacts operations are available right in the
+                <property>Tree view</property>. Right-click any node and select one of the
+                available actions in the context menu. For example, you can easily add a new Provider:</para>
+            <para/>
+            <figure>
+                <title>Adding New Provider</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/04_esb_add_provider.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>Then you can add Channels and Properties for the Providers the same way or using the forms with <property>Add</property>, <property>Edit</property> and
+                <property>Remove</property> buttons to the right.</para>
+            
+            <para>You can easily add a new Service too:</para>
+            <figure>
+                <title>Adding New Service</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/05_esb_add_service.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <para>The same way you can create a listener for service and other elements of ESB:</para>
+            <figure>
+                <title>Adding New Listener for Service</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/06_esb_add_listener.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>The same actions can be done in the right part of <property>Tree view</property> tab
+                (Form editor) using <property>Add</property>, <property>Edit</property> and
+                <property>Remove</property> buttons.</para>
+            
+            <para>Filter can be also edited this way</para>
+            
+            <figure>
+                <title>Editing Filter</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/06a_esb_filter.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            
+            <para>In order to add a new custom Action to your ESB XML file you should select the
+                Actions node under the Services, then right-click and choose
+                <menuchoice>
+									<guimenuitem>New</guimenuitem>
+									<guimenuitem>Custom Action</guimenuitem>
+								</menuchoice>.
+						</para>
+            
+            <figure>
+                <title>Adding New Custom Action in the Tree View</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/11_esb_editor.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <para>Or instead make use of <emphasis>
+                <property>Add...</property>
+            </emphasis> button in the <property>Form editor</property> on the left.</para>
+            <figure>
+                <title>Adding New Custom Action in the Form Editor</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/12_esb_editor.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <note>
+                <title>Note:</title>
+                <para>Some new components are available to support ESB 4.7, such as:
+                    new actions (XsltAction, PersistAction, BpmProcessor, ScriptingAction),
+                    new processors (EJBProcessor), new routers (HttpRouter, JMSRouter, EmailRouter).
+                </para>
+            </note>
+            <para>Then you will see <property>Add Action</property> wizard. There is a need to specify <property>Action name</property>  and <property>Action Java class</property>.  </para>
+            <figure>
+                <title>Add Action Wizard</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/12a_esb_editor.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>To get a help with finding a proper class you can select <emphasis><property>Browse</property></emphasis> to open <property>Select class</property> dialog.</para>
+            <figure>
+                <title>Select class dialog</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/12b_esb_editor.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>Moreover it's possible to type a <property>Process name</property> or select it with <property>Edit Process </property> dialog  which is called out by clicking <emphasis><property>Browse</property></emphasis>. </para>
+            <figure>
+                <title>Edit Process dialog</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/12c_esb_editor.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <para>As you can see on the both figures above, the context menu will also prompt you to
+                insert one of the Actions that are supplied out-of-the-box with <property>JBoss
+                    ESB</property>. After choosing one an appeared <property>New Pre-Packed Action </property>wizard
+                will ask you to fill out a name field and other fields specific for each Action
+                property. For example, for <emphasis>
+                    <property>Content Based Router</property>
+                </emphasis> Action the wizard looks as follows:</para>
+            
+            <figure>
+                <title>Add Pre-Packed Action Wizard</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/13_esb_editor.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <para>After confirming creating the Action you can see it in the Tree under the <emphasis>
+                <property>Actions</property>
+            </emphasis> node and preview as well as edit its settings in the <property>Form
+                editor</property> on the left.</para>
+            
+            <figure>
+                <title>Form Editor for Content Based Router</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/14_esb_editor.png"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <para><property>ESB editor</property> can recognize some specific objects. On the figure you
+                can see <emphasis>org.jboss.soa.esb.actions.ContentBasedRouter</emphasis> in the <emphasis>
+                    <property>Class</property>
+                </emphasis> section.</para>
+            
+        </section>
+        
+    </section>
+
+    <section id="esb_editors_features">
+
+        <title>ESB Editor Features</title>
+        <para>JBoss ESB tooling has powerful editor features that help you easily make use of
+        content and code assist.</para>
+        <para>This last chapter covers capabilities on how you can use ESB editor.</para>
+
+        <section id="ESBsyntaxvalidation84">
+
+            <title>ESB Syntax Validation</title>
+            <para>When working in <property>JBoss ESB editor</property> you are constantly provided
+                with feedback and contextual error checking as you type. In the Source viewer, if at
+                any point a tag is incorrect or incomplete, an error will be indicated next to the
+                line and also in the <property>Problems view</property> below.</para>
+            
+        </section>
+
+        <section id="ESBSupportXMLSchema">
+            <title>Support for XML Schema</title>
+
+            <para>JBoss ESB Framework fully supports XML files based on
+            schemas as well as DTDs (see <xref linkend="sourceView"/>).</para>
+            <para>The schema checks the child elements of any kind of provider element; the ESB generates errors on startup if you attempt to define an incorrect combination (e.g.: a jms-bus inside an ftp-provider).</para>
+            <note><title>Note:</title>
+                <para>The schema used behind ESB editor now uses the latest version available (from SOA-P 4.3). This removes the errors/warnings some users have reported seeing when using SOA-P specific esb.xml files.</para>  </note>
+            
+        </section>
+
+        <!--<section id="OpenOnSelection">
+         
+            <title>OpenOn</title>
+
+            <para><property>OpenOn</property> let&apos;s you easily navigate through your
+                project without using the Package Explorer view (project tree). With OpenOn, you can
+                simply click on a reference to another file and that file will be opened.</para>
+
+            <para>OpenOn is available for the XML files </para>
+
+                <para>Press and hold down the Ctrl key. As you move the mouse cursor over different
+                    file references in the file, they display an underline. When you have the mouse
+                    cursor over the name of the file you want to open, click and the file will open
+                    in its own editor. In this example the managed bean NameBean will open.</para>
+               
+            </section>
+            -->
+
+        <section id="ESBContentAssist">
+
+            <title>Content Assist for ESB XML File</title>
+
+            <para>When you work with any ESB XML file <property>Content Assist</property> is
+                available to help you. It provides pop-up tip to help you complete your code
+                statements. It allows you to write your code faster and with more accuracy. Content
+                assist is always available in the Source mode. Simply type <emphasis>
+                    <property>Ctrl-Space</property>
+                </emphasis> to see what is available.</para>
+
+            <para>Content Assist for ESB XML file:</para>
+            <figure>
+                <title>Content Assist for ESB XML file</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/08_esb_features.png" scale="80"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+
+            <para>Content Assist for attributes:</para>
+            <figure>
+                <title>Content Assist for attributes</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/09_esb_features.png" scale="80"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <!--          </section>
+                 
+               <section id="ContentAssistWithinTreeEditor">
+                  
+                        <title>Content Assist within Tree ESB Editor</title>
+
+                        <para>JBoss Developer Studio also provides Content Assist when working within the Tree ESB editor.
+                            Just click <emphasis><property>Ctrl-Space</property>.</emphasis></para>
+                        <figure>
+                            <title>Content Assist in Tree ESB Editor</title>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata
+                                        fileref="images/esb_file/09_editors_features.png" scale="85"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure>
+             </section> -->
+        </section>
+    	
+    	<section id="openOn_for_esb">
+    		<title>OpenOn for ESB XML File</title>
+    		<para>ESB file comes with the OpenOn feature that allows to make use of multiple file references in the file just with a click and the <emphasis>
+    			<property>Ctrl</property></emphasis> key hold down.</para>
+    		
+    		<para>The OpenOn is implemented for different types of files/pages inside the <literal>&lt;action&gt;</literal> tag: .xsd, .xml, etc.</para>
+    		
+    		<figure>
+    			<title>OpenOn for smooks configuration file</title>
+    			<mediaobject>
+    				<imageobject>
+    					<imagedata fileref="images/esb_editor/openOn2.png"/>
+    				</imageobject>
+    			</mediaobject>
+    		</figure>
+    		
+    		<para>It is also available for classes:</para>
+    		
+    		<figure>
+    			<title>OpenOn for classes</title>
+    			<mediaobject>
+    				<imageobject>
+    					<imagedata fileref="images/esb_editor/openOn1.png"/>
+    				</imageobject>
+    			</mediaobject>
+    		</figure>
+    	</section>
+
+        <section id="FullControlOverSourceFiles-SynchronizedSourcAndVisualEditing">
+
+            <title>Synchronized Source and Visual Editing</title>
+
+            <para>ESB file can be edited in either source or extra visual modes at the same time.</para>
+
+            <para>JBoss Tools provide you two different editors to speed your development: a
+                graphical view (<property>Tree</property>) and source (<property>Source</property>).
+                At the same time, you always have full control over esb source file. Any changes you
+                make in the source view will immediately appear in the tree view. Both views are
+                synchronized, you can edit the file in any view.</para>
+
+            <figure>
+                <title>Two Views are Synchronized</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/esb_editor/10_esb_features.png" scale="70"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+                   
+            
+        </section>
+    </section>
+</chapter>
