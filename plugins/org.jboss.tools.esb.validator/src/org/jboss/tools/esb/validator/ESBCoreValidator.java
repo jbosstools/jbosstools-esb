@@ -1,6 +1,7 @@
 package org.jboss.tools.esb.validator;
 
 import java.io.File;
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
@@ -133,14 +135,13 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		init(project, validationHelper, context, manager, reporter);
 
 		for (IFile file: changedFiles) {
-			String name = file.getName();
-			if(!name.endsWith(XML_EXT)) continue;
-			XModelObject o = EclipseResourceUtil.createObjectForResource(file);
-			if(o != null && o.getModelEntity().getName().startsWith(ESBConstants.ENT_ESB_FILE)) {
-				validateESBConfigFile(o, file);
+			if(file.getName().endsWith(XML_EXT)) {
+				XModelObject o = EclipseResourceUtil.createObjectForResource(file);
+				if(o != null && o.getModelEntity().getName().startsWith(ESBConstants.ENT_ESB_FILE)) {
+					validateESBConfigFile(o, file);
+				}
 			}
 		}
-
 		return OK_STATUS;
 	}
 
@@ -161,36 +162,39 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		displaySubtask(ESBValidatorMessages.VALIDATING_PROJECT, new String[]{projectName});
 
 		String esbContentFolder = null;
-		
+		IFolder esbContent = null;
 		try {
 			esbContentFolder = project.getPersistentProperty(IJBossESBFacetDataModelProperties.QNAME_ESB_CONTENT_FOLDER);
-		} catch (CoreException e) {
-			//ignore
-		}
-		
-		if(esbContentFolder == null) {
-			esbContentFolder = ESBProjectConstant.DEFAULT_ESB_CONFIG_RESOURCE_FOLDER;
-		}
-		
-		IFolder esbContent = project.getFolder(new Path(esbContentFolder + "/META-INF")); //$NON-NLS-1$
-		if(esbContent != null && esbContent.exists()) {
-			IResource[] rs = null;
-			try {
-				rs = esbContent.members();
-			} catch (CoreException e) {
-				ESBValidatorPlugin.log(e);
+			// there is no reason to have catch block here
+			// if exception is happened it means there is no project and all code below 
+			// should be skipped anyway
+			if(esbContentFolder == null) {
+				esbContentFolder = ESBProjectConstant.DEFAULT_ESB_CONFIG_RESOURCE_FOLDER;
 			}
-			for (IResource r: rs) {
-				if(r instanceof IFile) {
-					IFile file = (IFile)r;
-					String name = file.getName();
-					if(!name.endsWith(XML_EXT)) continue;
-					XModelObject o = EclipseResourceUtil.createObjectForResource(file);
-					if(o != null && o.getModelEntity().getName().startsWith(ESBConstants.ENT_ESB_FILE)) {
-						validateESBConfigFile(o, file);
+			
+			// This code line never return null
+			esbContent = project.getFolder(new Path(esbContentFolder + "/META-INF")); //$NON-NLS-1$
+			// so never check it for null
+			if(esbContent.isAccessible()) {
+				IResource[] rs = esbContent.members();
+				// exception is not required here because if esbContent is not exist control
+				// never gets here
+				for (IResource r: rs) {
+					if(r instanceof IFile) {
+						IFile file = (IFile)r;
+						String name = file.getName();
+						if(name.endsWith(XML_EXT)) {
+							XModelObject o = EclipseResourceUtil.createObjectForResource(file);
+							if(o != null && o.getModelEntity().getName().startsWith(ESBConstants.ENT_ESB_FILE)) {
+								validateESBConfigFile(o, file);
+							}
+						}
 					}
 				}
 			}
+		} catch (CoreException e) {
+			// hiding exceptions is the evil so lets return EROOR Status with exception
+			return new Status(IStatus.ERROR,ESBValidatorPlugin.PLUGIN_ID,MessageFormat.format("Validation error for project {0}",project.getLocation().toString()),e);
 		}
 		
 		return OK_STATUS;
@@ -357,14 +361,15 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	}
 
 	void bindMarkerToPathAndAttribute(IMarker marker, XModelObject object, String attr) {
-		if(marker != null) try {
-			marker.setAttribute(ATTR_PATH, object.getPath());
-			marker.setAttribute(ATTR_ATTRIBUTE, attr);
-		} catch (CoreException e) {
-			e.printStackTrace();
+		if(marker != null) {
+			try {
+				marker.setAttribute(ATTR_PATH, object.getPath());
+				marker.setAttribute(ATTR_ATTRIBUTE, attr);
+			} catch (CoreException e) {
+				ESBValidatorPlugin.log(e);
+			}
 		}
 	}
-
 }
 
 class XMLValueInfo implements IValueInfo {
@@ -414,5 +419,6 @@ class XMLValueInfo implements IValueInfo {
 	public IFile getResource() {
 		return object == null ? null : (IFile)object.getAdapter(File.class);
 	}
-	
 }
+
+
