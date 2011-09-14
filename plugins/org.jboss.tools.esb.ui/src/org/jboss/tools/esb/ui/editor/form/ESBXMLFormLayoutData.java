@@ -10,12 +10,18 @@
  ******************************************************************************/
 package org.jboss.tools.esb.ui.editor.form;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import org.jboss.tools.common.meta.XModelEntity;
 import org.jboss.tools.common.meta.impl.XModelMetaDataImpl;
-import org.jboss.tools.common.model.util.ClassLoaderUtil;
-import org.jboss.tools.common.model.ui.forms.*;
+import org.jboss.tools.common.model.ui.forms.ArrayToMap;
+import org.jboss.tools.common.model.ui.forms.FormData;
+import org.jboss.tools.common.model.ui.forms.IFormData;
+import org.jboss.tools.common.model.ui.forms.IFormLayoutData;
+import org.jboss.tools.common.model.ui.forms.ModelFormLayoutData;
 import org.jboss.tools.esb.core.model.ESBConstants;
 import org.jboss.tools.esb.core.model.converters.ConverterConstants;
 
@@ -23,9 +29,6 @@ import org.jboss.tools.esb.core.model.converters.ConverterConstants;
  * @author Viacheslav Kabanovich
  */
 public class ESBXMLFormLayoutData implements IFormLayoutData, ESBConstants {
-	static {
-		ClassLoaderUtil.init();
-	}
 	
 	public static String EMPTY_DESCRIPTION = ""; //$NON-NLS-1$
 
