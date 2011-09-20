@@ -27,6 +27,7 @@ public class ESBValidatorAllTests {
 		TestSuite suite2 = new TestSuite("ESB Validator Tests");
 		suite2.addTestSuite(ValidationTest.class);
 		suite.addTest(new ESBValidatorTestSetup(suite2));
+		suite.addTestSuite(ESBValidatorPreferencePageTest.class);
 
 		return new DisableJavaIndexingSetup(suite);
 	}
