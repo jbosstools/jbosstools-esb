@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2011 Red Hat, Inc.
+ * Copyright (c) 2011 Red Hat, Inc.
  * Distributed under license by Red Hat, Inc. All rights reserved.
  * This program is made available under the terms of the
  * Eclipse Public License v1.0 which accompanies this distribution,
@@ -18,14 +18,11 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.jboss.ide.eclipse.as.core.util.IJBossRuntimeResourceConstants;
 
-public class ESBRuntimeResolver_49 extends AbstractESBRuntimeResolver implements
+public class ESBRuntimeResolver_410 extends AbstractESBRuntimeResolver implements
 		IESBRuntimeResolver {
 
-	private final static String CONFIG_MODEL_JAR_12 = "jbossesb-config-model-1.2.0.jar";
-	private final static String CONFIG_MODEL_JAR_13 = "jbossesb-config-model-1.3.0.jar";
-	private final static String JUDDI_CLIENT_JAR_303 = "juddi-client-3.0.3.jar";
-	private final static String JUDDI_CLIENT_JAR_304 = "juddi-client-3.0.4.jar";
-
+	private final static String JUDDI_CLIENT_JAR_31 = "juddi-client-3.1.0.jar";
+	private final static String JUDDI_CLIENT_JAR_311 = "juddi-client-3.1.1.jar";
 	
 	public boolean isValidESBRuntime(String location, String version, String configuration){
 		List<String> jarNames = new ArrayList<String>();
@@ -33,11 +30,9 @@ public class ESBRuntimeResolver_49 extends AbstractESBRuntimeResolver implements
 		for(File file : getAllRuntimeJars(location, configuration)){
 			jarNames.add(file.getName());
 		}
-			
-		return jarNames.contains(ROSETTA_JAR)
-				&& jarNames.contains(CONFIG_MODEL_JAR_12)
-				&& jarNames.contains(CONFIG_MODEL_JAR_13)
-				&& (jarNames.contains(JUDDI_CLIENT_JAR_303) || jarNames.contains(JUDDI_CLIENT_JAR_304));
+		
+		return jarNames.contains(ROSETTA_JAR) && 
+				(jarNames.contains(JUDDI_CLIENT_JAR_31) || jarNames.contains(JUDDI_CLIENT_JAR_311));
 	}
 	
 	
