@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.jboss.tools.esb.project.core;singleton:=true
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 1.4.1.qualifier
 Bundle-Localization: plugin
 Bundle-Activator: org.jboss.tools.esb.core.ESBProjectCorePlugin
 Require-Bundle: org.eclipse.ui,
