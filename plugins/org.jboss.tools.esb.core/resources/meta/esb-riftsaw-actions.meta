@@ -91,4 +91,29 @@
    </XActionItem>
   </XActionItem>
  </XEntityExtension>
+ <XEntityExtension name="ESBActions130">
+  <XChildrenEntities>
+   <XChildEntity name="ESBPreActionBPELInvoke120"/>
+  </XChildrenEntities>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="New" group="1"
+    kind="list" name="CreateActions">
+    <XActionItem displayName="Add Pre-Packed Action" kind="list" name="PrePackedAction">
+     <XActionItem displayName="BPEL" group="1" kind="list" name="BPEL">
+      <XActionItem HIDE="disabled"
+       HandlerClassName="org.jboss.tools.esb.core.model.handlers.AddBPELInvokeHandler"
+       ICON="action.empty" PROPERTIES="validator.add=true"
+       WizardClassName="%Default%" displayName="BPEL Invoke Action..."
+       kind="action" name="AddBPELInvoke">
+       <EntityData EntityName="ESBPreActionBPELInvoke120">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="service"/>
+        <AttributeData AttributeName="operation"/>
+       </EntityData>
+      </XActionItem>
+     </XActionItem>
+    </XActionItem>
+   </XActionItem>
+  </XActionItem>
+ </XEntityExtension>
 </XModelEntityGroup>
