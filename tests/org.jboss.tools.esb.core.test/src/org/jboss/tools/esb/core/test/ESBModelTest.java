@@ -339,7 +339,15 @@ public class ESBModelTest extends TestCase {
 
 	public void testRiftsawBPELExample() {
 		XModelObject object = getFileObject("esb-1.2", "jboss-esb-bpel.xml", ESBConstants.ENT_ESB_FILE_120);
+		assertNotNull(object);
+		doTestRiftsawBPELExample(object);
 		
+		object = getFileObject("esb-1.3", "jboss-esb-bpel.xml", ESBConstants.ENT_ESB_FILE_130);
+		assertNotNull(object);
+		doTestRiftsawBPELExample(object);
+	}
+
+	public void doTestRiftsawBPELExample(XModelObject object) {
 		StringBuffer errorList = new StringBuffer();
 		
 		String bpelActionPath = "Services/s/Actions/action2";
