@@ -10,15 +10,19 @@
 	</parent>
 	<groupId>org.jboss.tools</groupId>
 	<artifactId>esb</artifactId>
-	<version>1.5.0-SNAPSHOT</version>
 	<name>esb.all</name>
+	<version>1.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<!-- 
-	build parent pom (and if necessary, update the relativePath above so this pom can find it), then if building upstream components locally (eg., ~/trunk/as):
-	     	mvn3 clean install 
-	or, if not building upstream locally, use (see parent/pom.xml for other profiles you can use too):
-		mvn3 clean install -P jbosstools-nightly
-	-->
+	build parent pom (run `mvn install` in ~/33x/build/parent/ folder), then after building upstream components locally (eg., ~/33x/tests, ~/33x/common, ~/33x/as):
+		cd ~/33x/esb; mvn3 clean install 
+	or use the bootstrap profile which will build upstream and this component in a single build:
+		cd ~/33x/build; mvn clean install -Pesb-bootstrap
+	or, if not building upstream locally, use (see ~/33x/build/parent/pom.xml for other profiles you can use too):
+		cd ~/33x/esb; mvn3 clean install -P jbosstools-nightly
+	to skip running tests (compile only) use -Dmaven.test.skip
+		cd ~/33x/esb; mvn3 clean install -Dmaven.test.skip
+        -->
 	<modules>
 		<module>features</module>
 		<module>plugins</module>
