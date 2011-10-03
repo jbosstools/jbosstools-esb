@@ -6,6 +6,16 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<name>esb.all</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<!-- 
+	build parent pom (run `mvn install` in ~/32x/build/parent/ folder), then after building upstream components locally (eg., ~/32x/tests, ~/32x/common, ~/32x/as):
+		cd ~/32x/esb; mvn3 clean install 
+	or use the bootstrap profile which will build upstream and this component in a single build:
+		cd ~/32x/build; mvn clean install -Pesb-bootstrap
+	or, if not building upstream locally, use (see ~/32x/build/parent/pom.xml for other profiles you can use too):
+		cd ~/32x/esb; mvn3 clean install -P jbosstools-nightly-trunk
+	to skip running tests (compile only) use -Dmaven.test.skip
+		cd ~/32x/esb; mvn3 clean install -Dmaven.test.skip
+        -->
 	<modules>
 		<module>features</module>
 		<module>plugins</module>
