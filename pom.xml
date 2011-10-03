@@ -13,6 +13,12 @@
 	<version>1.5.0-SNAPSHOT</version>
 	<name>esb.all</name>
 	<packaging>pom</packaging>
+	<!-- 
+	build parent pom (and if necessary, update the relativePath above so this pom can find it), then if building upstream components locally (eg., ~/trunk/as):
+	     	mvn3 clean install 
+	or, if not building upstream locally, use (see parent/pom.xml for other profiles you can use too):
+		mvn3 clean install -P jbosstools-nightly
+	-->
 	<modules>
 		<module>features</module>
 		<module>plugins</module>
