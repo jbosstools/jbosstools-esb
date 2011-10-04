@@ -14,6 +14,7 @@
 	<version>1.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<!-- 
+	NOTE: if you don't have build/ checked out into a folder parallel to this one, the relativePath resolution above will fail. .
 	build parent pom (run `mvn install` in ~/33x/build/parent/ folder), then after building upstream components locally (eg., ~/33x/tests, ~/33x/common, ~/33x/as):
 		cd ~/33x/esb; mvn3 clean install 
 	or use the bootstrap profile which will build upstream and this component in a single build:
