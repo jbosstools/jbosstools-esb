@@ -11,11 +11,14 @@
 package org.jboss.tools.esb.core;
 
 import org.eclipse.core.runtime.ILog;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.wst.common.componentcore.internal.util.VirtualReferenceUtilities;
 import org.jboss.ide.eclipse.as.core.publishers.PublishUtil;
+import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.osgi.framework.BundleContext;
 
@@ -44,7 +47,12 @@ public class ESBProjectCorePlugin extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		JBossRuntimeManager.loadParsers();
-		VirtualReferenceUtilities.INSTANCE.addDefaultExtension(ESBProjectConstant.ESB_PROJECT_FACET, ESBProjectConstant.ESB_EXTENSION);
+		Job job = new Job("ESB Facet Framework Initialization") { //$NON-NLS-1$
+			protected IStatus run(IProgressMonitor monitor) {
+				VirtualReferenceUtilities.INSTANCE.addDefaultExtension(ESBProjectConstant.ESB_PROJECT_FACET, ESBProjectConstant.ESB_EXTENSION);
+				return Status.OK_STATUS;
+			}
+		};
 		PublishUtil.addModuleCoreFactory("org.jboss.tools.esb.project.core.moduleFactory");
 	}
 
