@@ -18,19 +18,14 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jdt.core.IClasspathEntry;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.wst.common.frameworks.datamodel.AbstractDataModelOperation;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
+import org.jboss.ide.eclipse.as.wtp.core.vcf.VCFClasspathCommand;
 import org.jboss.tools.esb.core.StatusUtils;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeClassPathInitializer;
@@ -112,44 +107,6 @@ public class JBossClassPathCommand extends AbstractDataModelOperation {
 	 * @return
 	 */
 	public static IStatus addClassPath(IProject project, IPath path) {
-		IStatus status = Status.OK_STATUS;
-		try {
-
-			IClasspathEntry newClasspath;
-			IJavaProject javaProject = JavaCore.create(project);
-			newClasspath = JavaCore.newContainerEntry(path);
-
-			IClasspathEntry[] oldClasspathEntries = javaProject
-					.readRawClasspath();
-
-			boolean isFolderInClassPathAlready = false;
-			for (int i = 0; i < oldClasspathEntries.length
-					&& !isFolderInClassPathAlready; i++) {
-				if (oldClasspathEntries[i].getPath().equals(
-						newClasspath.getPath())) {
-					isFolderInClassPathAlready = true;
-					break;
-				}
-			}
-
-			if (!isFolderInClassPathAlready) {
-
-				IClasspathEntry[] newClasspathEntries = new IClasspathEntry[oldClasspathEntries.length + 1];
-				for (int i = 0; i < oldClasspathEntries.length; i++) {
-					newClasspathEntries[i] = oldClasspathEntries[i];
-				}
-				newClasspathEntries[oldClasspathEntries.length] = newClasspath;
-				javaProject.setRawClasspath(newClasspathEntries,
-						new NullProgressMonitor());
-			}
-		} catch (JavaModelException e) {
-			status = StatusUtils.errorStatus(NLS.bind(
-					JBossFacetCoreMessages.Error_Copy, new String[] { e
-							.getLocalizedMessage() }), e);
-			return status;
-		}
-
-		return status;
+		return VCFClasspathCommand.addClassPath(project, path);
 	}
-
 }
