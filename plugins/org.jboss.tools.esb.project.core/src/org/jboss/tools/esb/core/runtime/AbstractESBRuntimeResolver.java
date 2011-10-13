@@ -25,6 +25,7 @@ public abstract class AbstractESBRuntimeResolver implements IESBRuntimeResolver 
 	protected final static String JBOSSESB_SAR = "jbossesb.sar"; //$NON-NLS-1$
 	protected final static String SOAP_AS_LOCATION = "jboss-as"; //$NON-NLS-1$
 	protected final static String ROSETTA_JAR = "jbossesb-rosetta.jar"; //$NON-NLS-1$
+	protected final static String RIFTSAWESB_ESB = "riftsaw-esb.esb";//$NON-NLS-1$
 	
 	public List<IPath> getJarDirectories(String runtimeLocation, String configuration) {
 		
@@ -43,12 +44,13 @@ public abstract class AbstractESBRuntimeResolver implements IESBRuntimeResolver 
 
 		IPath esbPath = deployPath.append(JBOSSESB_ESB);
 		IPath sarPath = deployPath.append(JBOSSESB_SAR);
-
+		IPath riftsawESBPath = deployPath.append(RIFTSAWESB_ESB);
 
 		IPath libPath = rtHome.append("lib");
 		
 		directories.add(esbPath);
 		directories.add(sarPath.append("lib"));
+		directories.add(riftsawESBPath.append("lib"));
 		directories.add(libPath.append(JBOSSESB_ESB));
 		directories.add(libPath.append(JBOSSESB_SAR).append("lib"));
 		directories.add(soapDeployPath.append(JBOSSESB_ESB));
