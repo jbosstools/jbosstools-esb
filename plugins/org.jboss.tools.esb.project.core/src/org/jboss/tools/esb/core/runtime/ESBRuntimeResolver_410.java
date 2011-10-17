@@ -23,6 +23,7 @@ public class ESBRuntimeResolver_410 extends AbstractESBRuntimeResolver implement
 
 	private final static String JUDDI_CLIENT_JAR_31 = "juddi-client-3.1.0.jar";
 	private final static String JUDDI_CLIENT_JAR_311 = "juddi-client-3.1.1.jar";
+	private final static String JUDDI_CLIENT_JAR_312 = "juddi-client-3.1.2.jar";
 	
 	public boolean isValidESBRuntime(String location, String version, String configuration){
 		List<String> jarNames = new ArrayList<String>();
@@ -32,7 +33,7 @@ public class ESBRuntimeResolver_410 extends AbstractESBRuntimeResolver implement
 		}
 		
 		return jarNames.contains(ROSETTA_JAR) && 
-				(jarNames.contains(JUDDI_CLIENT_JAR_31) || jarNames.contains(JUDDI_CLIENT_JAR_311));
+				(jarNames.contains(JUDDI_CLIENT_JAR_31) || jarNames.contains(JUDDI_CLIENT_JAR_311) || jarNames.contains(JUDDI_CLIENT_JAR_312));
 	}
 	
 	
