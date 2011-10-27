@@ -120,7 +120,9 @@
      </EntityData>
     </XActionItem>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBBus" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>

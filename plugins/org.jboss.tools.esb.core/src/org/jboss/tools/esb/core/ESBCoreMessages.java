@@ -16,6 +16,14 @@ public class ESBCoreMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.jboss.tools.esb.core.messages"; //$NON-NLS-1$
 
 	public static String ESB_CORE_PLUGIN_NO_MESSAGE;
+	
+	public static String REFERENCES;
+	public static String CHANNEL_ID_REFACTORING;
+	public static String CHANNEL_ID;
+	public static String CHANNEL_ID_REF;
+	public static String SCHEDULE_ID;
+	public static String SCHEDULE_ID_REF;
+
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, ESBCoreMessages.class);
 	}

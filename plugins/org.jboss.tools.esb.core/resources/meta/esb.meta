@@ -301,7 +301,11 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItem
+     HandlerClassName="org.jboss.tools.esb.core.model.handlers.RenameChannelIDHandler"
+     ICON="action.empty" displayName="Rename..." kind="action" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -398,7 +402,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBSimpleSchedule101" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -432,7 +438,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBBus" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -637,7 +645,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBBus" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -867,7 +877,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBBus" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -992,7 +1004,9 @@
      </EntityData>
     </XActionItem>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBBus" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -1160,7 +1174,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBBus" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -1397,7 +1413,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBBus" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -2145,7 +2163,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItemReference entity="ESBBus" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -2702,7 +2722,11 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
-   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions">
+    <XActionItem
+     HandlerClassName="org.jboss.tools.esb.core.model.handlers.RenameScheduleIDHandler"
+     ICON="action.empty" displayName="Rename..." kind="action" name="Rename"/>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>

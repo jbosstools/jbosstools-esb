@@ -64,8 +64,10 @@
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddBPELInvokeHandler"
 			class="org.jboss.tools.esb.core.model.handlers.AddBPELInvokeHandler"/>
 
-		<xclass id="org.jboss.tools.esb.core.model.handlers.ESBDefaultVersionResolver"
-			class="org.jboss.tools.esb.core.model.handlers.ESBDefaultVersionResolver"/>
+		<xclass id="org.jboss.tools.esb.core.model.handlers.RenameChannelIDHandler"
+			class="org.jboss.tools.esb.core.model.handlers.RenameChannelIDHandler"/>
+		<xclass id="org.jboss.tools.esb.core.model.handlers.RenameScheduleIDHandler"
+			class="org.jboss.tools.esb.core.model.handlers.RenameScheduleIDHandler"/>
 			
 		<xclass id="org.jboss.tools.esb.core.model.ESBResourceTree"
 			class="org.jboss.tools.esb.core.model.ESBResourceTree"/>
@@ -111,5 +113,46 @@
             uri="platform:/plugin/org.jboss.tools.esb.core/schemas/jbossesb-1.3.0.xsd"/>
       </catalogContribution>
    </extension>
+
+   <extension
+         point="org.eclipse.ltk.core.refactoring.renameParticipants">
+      <renameParticipant
+            class="org.jboss.tools.esb.core.model.handlers.RenameChannelIDParticipant"
+            id="org.jboss.tools.esb.core.model.handlers.RenameChannelIDParticipant"
+            name="esb-RenameChannelIDParticipant">
+         <enablement>
+            <with variable="affectedNatures">
+               <iterate operator="or">
+                  <equals value="org.eclipse.wst.common.project.facet.core.nature"/>
+               </iterate>
+            </with>
+            <with variable="element">
+                <or>
+                   <instanceof value="org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl"/>
+                </or>
+            </with>
+         </enablement>
+      </renameParticipant>
+
+      <renameParticipant
+            class="org.jboss.tools.esb.core.model.handlers.RenameScheduleIDParticipant"
+            id="org.jboss.tools.esb.core.model.handlers.RenameScheduleIDParticipant"
+            name="esb-RenameScheduleIDParticipant">
+         <enablement>
+            <with variable="affectedNatures">
+               <iterate operator="or">
+                  <equals value="org.eclipse.wst.common.project.facet.core.nature"/>
+               </iterate>
+            </with>
+            <with variable="element">
+                <or>
+                   <instanceof value="org.jboss.tools.esb.core.model.ESBCustomizedObjectImpl"/>
+                </or>
+            </with>
+         </enablement>
+      </renameParticipant>
+
+   </extension>
+
 
 </plugin>

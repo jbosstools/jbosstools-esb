@@ -178,6 +178,8 @@ public interface ESBConstants {
 	public String ATTR_PROPERTY_VALUE_PRESENTATION = "value presentation"; //$NON-NLS-1$
 	public String ATTR_BUS_ID = "id"; //$NON-NLS-1$
 	public String ATTR_BUS_ID_REF = "channel id ref"; //$NON-NLS-1$
+	public String ATTR_SCHEDULE_ID = "schedule id"; //$NON-NLS-1$
+	public String ATTR_SCHEDULE_ID_REF = "schedule id ref"; //$NON-NLS-1$
 
 	public String XML_ATTR_PROTECTED_METHODS = "protected-methods"; //$NON-NLS-1$
 }
