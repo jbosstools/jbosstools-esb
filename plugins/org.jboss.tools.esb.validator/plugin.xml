@@ -31,5 +31,26 @@
       </page>
    </extension>
 
+	<extension point="org.eclipse.ui.propertyPages">
+		<page
+			name="%PreferencePage_Validator"
+			class="org.jboss.tools.esb.validator.ui.ESBValidatorPreferencePage"
+			id="org.jboss.tools.esb.validator.ui.propertyPages.ESBValidatorPreferencePage">
+         	<enabledWhen>
+               	<and>
+					<adapt type="org.eclipse.core.resources.IProject">
+						<or> 
+							<test 
+								forcePluginActivation="true"
+								property="org.eclipse.wst.common.project.facet.core.projectFacet"
+								value="jst.jboss.esb" />
+						</or>
+					</adapt>
+				</and> 
+			</enabledWhen>
+         	<keywordReference id="org.eclipse.wst.html.ui.webcontent"/>
+		</page>
+	</extension>
+	
 
 </plugin>
