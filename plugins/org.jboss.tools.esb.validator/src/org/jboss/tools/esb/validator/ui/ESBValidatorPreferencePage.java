@@ -13,6 +13,7 @@ package org.jboss.tools.esb.validator.ui;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.preferences.IWorkbenchPreferenceContainer;
 import org.jboss.tools.common.ui.preferences.SeverityPreferencePage;
+import org.jboss.tools.esb.validator.ESBCoreValidator;
 import org.jboss.tools.esb.validator.ESBValidatorPlugin;
 
 /**
@@ -20,7 +21,7 @@ import org.jboss.tools.esb.validator.ESBValidatorPlugin;
  */
 public class ESBValidatorPreferencePage extends SeverityPreferencePage {
 
-	public static final String PREF_ID = "org.jboss.tools.esb.validator.ui.ESBValidatorPreferencePage"; //$NON-NLS-1$
+	public static final String PREF_ID = ESBCoreValidator.PREFERENCE_PAGE_ID;
 	public static final String PROP_ID = "org.jboss.tools.esb.validator.ui.propertyPages.ESBValidatorPreferencePage"; //$NON-NLS-1$
 
 	public ESBValidatorPreferencePage() {

@@ -47,6 +47,7 @@ import org.w3c.dom.Element;
 public class ESBCoreValidator extends ESBValidationErrorManager implements IValidator {
 	public static final String ID = "org.jboss.tools.esb.validator.ESBCoreValidator"; //$NON-NLS-1$
 	public static final String PROBLEM_TYPE = "org.jboss.tools.esb.validator.esbproblem"; //$NON-NLS-1$
+	public static final String PREFERENCE_PAGE_ID = "org.jboss.tools.esb.validator.ui.ESBValidatorPreferencePage"; //$NON-NLS-1$
 
 	static String XML_EXT = ".xml"; //$NON-NLS-1$
 	static String ATTR_PATH = "path"; //$NON-NLS-1$
@@ -369,6 +370,11 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 				ESBValidatorPlugin.log(e);
 			}
 		}
+	}
+
+	@Override
+	protected String getPreferencePageId() {
+		return PREFERENCE_PAGE_ID;
 	}
 }
 
