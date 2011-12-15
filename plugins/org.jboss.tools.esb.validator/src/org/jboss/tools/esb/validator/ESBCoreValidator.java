@@ -147,7 +147,6 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	}
 
 	private void validateESBConfigFile(XModelObject object, IFile file) {
-//		System.out.println("Validate ESB Config " + file);
 		validateChannelIDRefs(object, file);
 		validateActions(object, file);
 	}
