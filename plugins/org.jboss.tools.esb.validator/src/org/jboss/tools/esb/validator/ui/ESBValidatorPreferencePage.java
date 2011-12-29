@@ -13,6 +13,7 @@ package org.jboss.tools.esb.validator.ui;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.preferences.IWorkbenchPreferenceContainer;
 import org.jboss.tools.common.ui.preferences.SeverityPreferencePage;
+import org.jboss.tools.common.ui.preferences.SeverityConfigurationBlock.SectionDescription;
 import org.jboss.tools.esb.validator.ESBCoreValidator;
 import org.jboss.tools.esb.validator.ESBValidatorPlugin;
 
@@ -51,5 +52,10 @@ public class ESBValidatorPreferencePage extends SeverityPreferencePage {
 		fConfigurationBlock = new ESBConfigurationBlock(getNewStatusChangedListener(), getProject(), container);
 
 		super.createControl(parent);
+	}
+	
+	@Override
+	protected SectionDescription[] getAllSections() {
+		return ESBConfigurationBlock.ALL_SECTIONS;
 	}
 }

@@ -45,7 +45,7 @@ public class ESBConfigurationBlock extends SeverityConfigurationBlock {
 			ESBValidatorPlugin.PLUGIN_ID
 		);
 
-	private static SectionDescription[] ALL_SECTIONS = new SectionDescription[]{
+	public static SectionDescription[] ALL_SECTIONS = new SectionDescription[]{
 		SECTION_CHANNEL_ID_REF,
 		SECTION_ACTION_DEFINITIONS,
 	};
