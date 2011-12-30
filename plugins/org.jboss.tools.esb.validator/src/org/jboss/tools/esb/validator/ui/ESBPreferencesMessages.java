@@ -22,10 +22,14 @@ public class ESBPreferencesMessages extends NLS {
 	// Validator Preference page
 	public static String ESBValidatorConfigurationBlock_common_description;
 
-	// Section Name
+	// Section Channel ID Ref
 	public static String ESBValidatorConfigurationBlock_section_channelidref;
 	public static String ESBValidatorConfigurationBlock_pb_listenerReferencesNonExistentChannel_label;
 	public static String ESBValidatorConfigurationBlock_pb_listenerReferencesIncompatibleChannel_label;
+
+	// Section Schedule ID Ref
+	public static String ESBValidatorConfigurationBlock_section_scheduleidref;
+	public static String ESBValidatorConfigurationBlock_pb_listenerReferencesNonExistentSchedule_label;
 
 	public static String ESBValidatorConfigurationBlock_section_actions;
 	public static String ESBValidatorConfigurationBlock_pb_businessRulesProcessorProblems_label;

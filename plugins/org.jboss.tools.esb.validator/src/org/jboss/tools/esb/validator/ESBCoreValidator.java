@@ -148,6 +148,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 
 	private void validateESBConfigFile(XModelObject object, IFile file) {
 		validateChannelIDRefs(object, file);
+		validateScheduleIDRefs(object, file);
 		validateActions(object, file);
 	}
 
@@ -266,6 +267,53 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		
 		return result;
 	}
+
+	void validateScheduleIDRefs(XModelObject object, IFile file) {
+		XModelObject servicesFolder = object.getChildByPath("Services"); //$NON-NLS-1$
+		if(servicesFolder == null) return;
+		Set<String> ids = getAllScheduleRefIDs(object);
+		XModelObject[] services = servicesFolder.getChildren();
+		for (XModelObject service: services) {
+			XModelObject listenersFolder = service.getChildByPath("Listeners"); //$NON-NLS-1$
+			XModelObject[] listeners = listenersFolder.getChildren();
+			for (XModelObject listener: listeners) {
+				String scheduleIDRef = listener.getAttributeValue(ESBConstants.ATTR_SCHEDULE_ID_REF);
+				if(scheduleIDRef == null) continue;
+				if(scheduleIDRef.length() == 0) {
+					//no id set, it is not an error
+				} else if(!ids.contains(scheduleIDRef)) {
+					//addError - no id found
+					IMarker marker = addError(ESBValidatorMessages.LISTENER_REFERENCES_NON_EXISTENT_SCHEDULE, 
+							ESBPreferences.LISTENER_REFERENCES_NON_EXISTENT_SCHEDULE, getSourceReference(listener, ESBConstants.ATTR_SCHEDULE_ID_REF), file);
+					if(marker != null) try {
+						marker.setAttribute(ATTR_PATH, listener.getPath());
+						marker.setAttribute(ATTR_ATTRIBUTE, ESBConstants.ATTR_SCHEDULE_ID_REF);
+					} catch (CoreException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}		
+	}
+
+	private Set<String> getAllScheduleRefIDs(XModelObject object) {
+		Set<String> result = new HashSet<String>();
+		XModelObject[] ps = object.getChildByPath("Providers").getChildren(); //$NON-NLS-1$
+		for (int i = 0; i < ps.length; i++) {
+			XModelObject[] cs = ps[i].getChildren();
+			for (int j = 0; j < cs.length; j++) {
+				if(cs[j].getModelEntity().getAttribute(ESBConstants.ATTR_SCHEDULE_ID) != null) {
+					String v = cs[j].getAttributeValue(ESBConstants.ATTR_SCHEDULE_ID);
+					if(v != null && v.length() > 0) {
+						result.add(v);
+					}
+				}
+			}
+		}
+		
+		return result;
+	}
+
 
 	ITextSourceReference getSourceReference(XModelObject o, String attr) {
 		return new XMLValueInfo(o, attr);

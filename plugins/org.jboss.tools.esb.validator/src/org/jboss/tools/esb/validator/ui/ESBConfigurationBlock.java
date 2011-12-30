@@ -26,7 +26,7 @@ import org.jboss.tools.esb.validator.ESBValidatorPlugin;
  */
 public class ESBConfigurationBlock extends SeverityConfigurationBlock {
 
-	private static final String SETTINGS_SECTION_NAME = "CDIValidatorConfigurationBlock";
+	private static final String SETTINGS_SECTION_NAME = "CDIValidatorConfigurationBlock"; //$NON-NLS-1$
 
 	private static SectionDescription SECTION_CHANNEL_ID_REF = new SectionDescription(
 		ESBPreferencesMessages.ESBValidatorConfigurationBlock_section_channelidref,
@@ -37,16 +37,25 @@ public class ESBConfigurationBlock extends SeverityConfigurationBlock {
 		ESBValidatorPlugin.PLUGIN_ID
 	);
 
+	private static SectionDescription SECTION_SCHEDULE_ID_REF = new SectionDescription(
+		ESBPreferencesMessages.ESBValidatorConfigurationBlock_section_scheduleidref,
+		new String[][]{
+				{ESBPreferences.LISTENER_REFERENCES_NON_EXISTENT_SCHEDULE, ESBPreferencesMessages.ESBValidatorConfigurationBlock_pb_listenerReferencesNonExistentSchedule_label},
+		},
+		ESBValidatorPlugin.PLUGIN_ID
+	);
+
 	private static SectionDescription SECTION_ACTION_DEFINITIONS = new SectionDescription(
-			ESBPreferencesMessages.ESBValidatorConfigurationBlock_section_actions,
-			new String[][]{
-				{ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, ESBPreferencesMessages.ESBValidatorConfigurationBlock_pb_businessRulesProcessorProblems_label},
-			},
-			ESBValidatorPlugin.PLUGIN_ID
-		);
+		ESBPreferencesMessages.ESBValidatorConfigurationBlock_section_actions,
+		new String[][]{
+			{ESBPreferences.BUSINESS_RULES_PROCESSOR_PROBLEMS, ESBPreferencesMessages.ESBValidatorConfigurationBlock_pb_businessRulesProcessorProblems_label},
+		},
+		ESBValidatorPlugin.PLUGIN_ID
+	);
 
 	public static SectionDescription[] ALL_SECTIONS = new SectionDescription[]{
 		SECTION_CHANNEL_ID_REF,
+		SECTION_SCHEDULE_ID_REF,
 		SECTION_ACTION_DEFINITIONS,
 	};
 
