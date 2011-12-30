@@ -2420,7 +2420,10 @@
     <Constraint loader="%IntEL%"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced"
-    name="schedule id ref" xmlname="scheduleidref"/>
+    name="schedule id ref" xmlname="scheduleidref">
+    <Constraint loader="ListString"/>
+    <Editor name="ESBScheduleList"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="event processor" xmlname="event-processor">
     <Editor name="AccessibleJava"/>
