@@ -34,6 +34,14 @@ public class ValidationTest extends ESBTest {
 		assertEquals("jboss-esb-01.xml should have one error marker.", markerNumbers, 1);
 	}
 
+	public void testScheduleReference() throws Exception {
+		IProject project = ESBTest.findTestProject();
+		IFile file = project.getFile("esbcontent/META-INF/jboss-esb-02.xml");
+		AbstractResourceMarkerTest.assertMarkerIsCreated(file, AbstractResourceMarkerTest.MARKER_TYPE, ESBValidatorMessages.LISTENER_REFERENCES_NON_EXISTENT_SCHEDULE, 26, 29, 32);
+		int markerNumbers = getMarkersNumber(file);
+		assertEquals("jboss-esb-01.xml should have one error marker.", markerNumbers, 3);
+	}
+
 	public void testBusenessRulesProcessor() throws Exception {
 		IProject project = ESBTest.findTestProject();
 		IFile file = project.getFile("esbcontent/META-INF/jboss-esb-brp-broken.xml"); //$NON-NLS-1$

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<jbossesb parameterReloadSecs="5"
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.2.0.xsd">
+ <providers>
+  <fs-provider name="fsProvider">
+   <fs-bus busid="fsChannel"/>
+  </fs-provider>
+  <ftp-provider hostname="myhost" name="ftpProvider">
+   <ftp-bus busid="ftpChannel"/>
+  </ftp-provider>
+  <schedule-provider name="scheduleProvider1">
+   <simple-schedule scheduleid="simpleSchedule1"/>
+   <cron-schedule scheduleid="cronSchedule1"/>
+  </schedule-provider>
+  <schedule-provider name="scheduleProvider2">
+   <simple-schedule scheduleid="simpleSchedule2"/>
+   <cron-schedule scheduleid="cronSchedule2"/>
+  </schedule-provider>
+ </providers>
+ <services>
+  <service category="c1" description="d1" name="s1">
+   <listeners>
+    <ftp-listener busidref="ftpChannel" name="ftpListener1" scheduleidref="cronSchedule1"/>
+    <ftp-listener busidref="ftpChannel" name="ftpListener2" scheduleidref="cronSchedule2"/>
+    <ftp-listener busidref="ftpChannel" name="ftpListener3" scheduleidref="cronSchedule3"/>
+    <fs-listener busidref="fsChannel" name="fsListener1" scheduleidref="simpleSchedule1"/>
+    <fs-listener busidref="fsChannel" name="fsListener2" scheduleidref="simpleSchedule2"/>
+    <fs-listener busidref="fsChannel" name="fsListener3" scheduleidref="simpleSchedule3"/>
+    <scheduled-listener event-processor="pp" name="scheduledListener1" scheduleidref="cronSchedule1"/>
+    <scheduled-listener event-processor="pp" name="scheduledListener2"/>
+    <scheduled-listener event-processor="pp" name="scheduledListener3" scheduleidref="simpleSchedule3"/>
+   </listeners>
+  </service>
+ </services>
+</jbossesb>
