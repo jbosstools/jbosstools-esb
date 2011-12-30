@@ -1,3 +1,13 @@
+/******************************************************************************* 
+ * Copyright (c) 2011 Red Hat, Inc. 
+ * Distributed under license by Red Hat, Inc. All rights reserved. 
+ * This program is made available under the terms of the 
+ * Eclipse Public License v1.0 which accompanies this distribution, 
+ * and is available at http://www.eclipse.org/legal/epl-v10.html 
+ * 
+ * Contributors: 
+ * Red Hat, Inc. - initial API and implementation 
+ ******************************************************************************/
 package org.jboss.tools.esb.ui.editor.attribute.adapter;
 
 import java.util.TreeSet;
@@ -10,10 +20,15 @@ import org.jboss.tools.common.model.ui.attribute.adapter.DefaultComboBoxValueAda
 import org.jboss.tools.common.model.ui.attribute.adapter.DefaultXAttributeListContentProvider;
 import org.jboss.tools.esb.core.model.ESBConstants;
 
-public class BusListAdapter extends DefaultComboBoxValueAdapter {
+/**
+ * 
+ * @author Viacheslav Kabanovich
+ *
+ */
+public class ScheduleListAdapter extends DefaultComboBoxValueAdapter {
 
 	protected IListContentProvider createListContentProvider(XAttribute attribute) {
-		BusListContentProvider p = new BusListContentProvider();
+		ScheduleListContentProvider p = new ScheduleListContentProvider();
 		p.setContext(modelObject);
 		p.setAttribute(attribute);
 		return p;	
@@ -21,7 +36,7 @@ public class BusListAdapter extends DefaultComboBoxValueAdapter {
 
 }
 
-class BusListContentProvider extends DefaultXAttributeListContentProvider {
+class ScheduleListContentProvider extends DefaultXAttributeListContentProvider {
 	private XModelObject context;
 	
 	public void setContext(XModelObject context) {
@@ -31,17 +46,15 @@ class BusListContentProvider extends DefaultXAttributeListContentProvider {
 	protected void loadTags() {
 		XModelObject f = FileSystemsHelper.getFile(context);
 		if(f == null) return;
-		String listenerEntity = attribute.getModelEntity().getName();
-		String prefix = getBusEntityPrefix(listenerEntity);
 		XModelObject[] ps = f.getChildByPath("Providers").getChildren();
 		TreeSet<String> set = new TreeSet<String>();
 		for (int i = 0; i < ps.length; i++) {
-			XModelObject[] cs = ps[i].getChildren();
-			for (int j = 0; j < cs.length; j++) {
-				if(cs[j].getModelEntity().getAttribute(ESBConstants.ATTR_BUS_ID) != null) {
-					String v = cs[j].getAttributeValue(ESBConstants.ATTR_BUS_ID);
-					if(v != null && v.length() > 0) {
-						if(prefix == null || cs[j].getModelEntity().getName().startsWith(prefix)) {
+			if("schedule-provider".equals(ps[i].getModelEntity().getXMLSubPath())) {
+				XModelObject[] cs = ps[i].getChildren();
+				for (int j = 0; j < cs.length; j++) {
+					if(cs[j].getModelEntity().getAttribute(ESBConstants.ATTR_SCHEDULE_ID) != null) {
+						String v = cs[j].getAttributeValue(ESBConstants.ATTR_SCHEDULE_ID);
+						if(v != null && v.length() > 0) {
 							set.add(v);
 						}
 					}
@@ -51,19 +64,5 @@ class BusListContentProvider extends DefaultXAttributeListContentProvider {
 		tags = set.toArray(new String[0]);
 		
 	}
-	
-	private String getBusEntityPrefix(String listenerEntity) {
-		if(listenerEntity == null) return null;
-		if(listenerEntity.startsWith("ESBListener")) {
-			return null;
-		}
-		if(listenerEntity.startsWith("ESBJCAGateway")) {
-			return "ESBJMSBus";
-		}
-		int i = listenerEntity.indexOf("Listener");
-		if(i < 0) return null;
-		return listenerEntity.substring(0, i) + "Bus";
-	}
-
 }
 

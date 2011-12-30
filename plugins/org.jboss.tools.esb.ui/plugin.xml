@@ -64,12 +64,14 @@
 
    <extension point="org.jboss.tools.common.model.ui.attributeAdapter">
       <attributeAdapter class="org.jboss.tools.esb.ui.editor.attribute.adapter.BusListAdapter" id="ESBBusList"/>
+      <attributeAdapter class="org.jboss.tools.esb.ui.editor.attribute.adapter.ScheduleListAdapter" id="ESBScheduleList"/>
       <attributeAdapter class="org.jboss.tools.esb.ui.editor.attribute.adapter.ServiceCategoryListAdapter" id="ESBServiceCategoryList"/>
       <attributeAdapter class="org.jboss.tools.esb.ui.editor.attribute.adapter.ServiceNameListAdapter" id="ESBServiceNameList"/>
    </extension>
 
    <extension point="org.jboss.tools.common.model.ui.attributeEditor">
       <attributeEditor class="org.jboss.tools.common.model.ui.attribute.editor.ComboBoxEditor" id="ESBBusList"/>
+      <attributeEditor class="org.jboss.tools.common.model.ui.attribute.editor.ComboBoxEditor" id="ESBScheduleList"/>
       <attributeEditor class="org.jboss.tools.common.model.ui.attribute.editor.ComboBoxEditor" id="ESBServiceCategoryList"/>
       <attributeEditor class="org.jboss.tools.common.model.ui.attribute.editor.ComboBoxEditor" id="ESBServiceNameList"/>
    </extension>
