@@ -64,6 +64,11 @@
 		<xclass id="org.jboss.tools.esb.core.model.handlers.AddBPELInvokeHandler"
 			class="org.jboss.tools.esb.core.model.handlers.AddBPELInvokeHandler"/>
 
+		<xclass id="org.jboss.tools.esb.core.model.handlers.OpenBusHandler"
+			class="org.jboss.tools.esb.core.model.handlers.OpenBusHandler"/>
+		<xclass id="org.jboss.tools.esb.core.model.handlers.OpenScheduleHandler"
+			class="org.jboss.tools.esb.core.model.handlers.OpenScheduleHandler"/>
+
 		<xclass id="org.jboss.tools.esb.core.model.handlers.RenameChannelIDHandler"
 			class="org.jboss.tools.esb.core.model.handlers.RenameChannelIDHandler"/>
 		<xclass id="org.jboss.tools.esb.core.model.handlers.RenameScheduleIDHandler"

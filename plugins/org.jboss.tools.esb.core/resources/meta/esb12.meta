@@ -357,7 +357,9 @@
    <XActionItem kind="list" name="CreateActions">
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
+   <XActionItemReference entity="ESBScheduledListener101" name="OpenSchedule"/>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBListener101" name="OpenChannel"/>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -540,6 +542,7 @@
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBListener101" name="OpenChannel"/>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -701,6 +704,7 @@
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBListener101" name="OpenChannel"/>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -808,6 +812,7 @@
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBListener101" name="OpenChannel"/>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -842,6 +847,7 @@
     <XActionItemReference entity="ESBAction101" name="AddProperty" path="CreateActions/AddProperty"/>
    </XActionItem>
    <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBListener101" name="OpenChannel"/>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
