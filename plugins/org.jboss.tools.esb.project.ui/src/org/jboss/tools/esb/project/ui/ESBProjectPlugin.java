@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.jboss.tools.esb.project.ui;
 
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -60,4 +62,22 @@ public class ESBProjectPlugin extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	/**
+	 * Returns an image descriptor for the image file at the given
+	 * plug-in relative path
+	 *
+	 * @param path the path
+	 * @return the image descriptor
+	 */
+	public static ImageDescriptor getImageDescriptor(String path) {
+		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Log a message
+	 * @param ex
+	 */
+	public static void log(Throwable ex) {
+		plugin.getLog().log(new Status(Status.ERROR, PLUGIN_ID, Status.OK, "No message", ex)); 
+	}
 }

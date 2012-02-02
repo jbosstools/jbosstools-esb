@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>org.jboss.tools.esb.plugins</groupId>
 	<artifactId>org.jboss.tools.esb.project.ui</artifactId>
-	<version>1.5.1-SNAPSHOT</version>
+	<version>1.5.2-SNAPSHOT</version>
 	
 	<packaging>eclipse-plugin</packaging>
 </project>

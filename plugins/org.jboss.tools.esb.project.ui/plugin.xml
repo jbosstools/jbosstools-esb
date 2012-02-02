@@ -8,7 +8,7 @@
             class="org.jboss.tools.esb.project.ui.wizards.ESBProjectWizard"
             icon="$nl$/icons/wizards/esb.gif"
             id="JBoss.ESB.Project.Wizard"
-            name="ESB Project"
+            name="%esb.project.wizard.name"
             project="true">
       </wizard>
    </extension>
@@ -52,7 +52,7 @@
        <decorator
              class="org.jboss.tools.esb.project.ui.ESBProjectDecorator"
              id="org.jboss.tools.esb.project.ui.decorator"
-             label="JBoss ESB Project Decorator"
+             label="%esb.file.decorator.label"
              lightweight="true"
              location="TOP_LEFT"
              state="true">
@@ -73,7 +73,7 @@
        <classpathContainerPage
              class="org.jboss.tools.esb.project.ui.wizards.pages.JBossESBRuntimeContainerPage"
              id="org.jboss.esb.runtime.classpath"
-             name="JBoss ESB Libraries">
+             name="%esb.file.classpathContainerPage.name">
        </classpathContainerPage>
     </extension>
     
@@ -81,17 +81,17 @@
      <extension
          point="org.eclipse.ui.exportWizards">
      <category
-            name="ESB"
+            name="%esb.file.category.name"
             id="org.jboss.tools.esb.category">
       </category>         
     <wizard
-            name="ESB File"
+            name="%esb.file.wizard.name"
             icon="icons/obj16/esb_module.gif"
             class="org.jboss.tools.esb.project.ui.wizards.export.ESBComponentExportWizard"
             category="org.jboss.tools.esb.category"
             id="org.jboss.tools.esb.project.ui.wizards.temp.ESBExportWizard">
          <description>
-            ESB File
+            %esb.file.wizard.description
          </description>
          <selection
                class="org.eclipse.core.resources.IResource">
@@ -153,6 +153,42 @@
             class="org.jboss.soa.esb.actions.annotation.AttachmentParam"
             name="AttachmentParam">
       </annotation>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.jboss.tools.esb.visualizer"
+            name="%visualizer.view.category">
+      </category>
+      <view
+            allowMultiple="false"
+            category="org.jboss.tools.esb.visualizer"
+            class="org.jboss.tools.esb.project.ui.visualizer.ESBVisualizerView"
+            icon="icons/esb/esb_file.gif"
+            id="org.jboss.tools.esb.visualizer.views.ESBVisualizerView"
+            name="%visualizer.view.name">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.ui.resourcePerspective">
+         <showInPart
+               id="org.jboss.tools.esb.visualizer.views.ESBVisualizerView">
+         </showInPart>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.jst.j2ee.J2EEPerspective">
+         <showInPart
+               id="org.jboss.tools.esb.visualizer.views.ESBVisualizerView">
+         </showInPart>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.jboss.tools.common.ui.JBossPerspective">
+         <showInPart
+               id="org.jboss.tools.esb.visualizer.views.ESBVisualizerView">
+         </showInPart>
+      </perspectiveExtension>
    </extension>
 
 </plugin>
