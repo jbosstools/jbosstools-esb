@@ -65,11 +65,11 @@ public class ESBDomParser {
 				return true;
 			}
 		}catch(ParserConfigurationException pce) {
-			pce.printStackTrace();
+			// ignore
 		}catch(SAXException se) {
-			se.printStackTrace();
+			// ignore
 		}catch(IOException ioe) {
-			ioe.printStackTrace();
+			// ignore
 		}
 		
 		return false;
@@ -109,8 +109,12 @@ public class ESBDomParser {
 			//parse using builder to get DOM representation of the XML file
 			dom = db.parse(filepath);
 			dom.getDocumentElement().normalize();
-			root.setName(dom.getDocumentElement().getTagName());
+			java.io.File tempFile = new java.io.File(filepath);
+			String filename = tempFile.getName();
+			root.setName(filename);
 			root.setEsbObjectType(ESBType.ESB);
+			File setupFile = new File(filepath);
+			root.setData(setupFile);
 			
 			parseDocument();
 
@@ -188,7 +192,7 @@ public class ESBDomParser {
 				parent.setEsbObjectType(ESBType.SERVICE);
 			} else if (tag.equalsIgnoreCase("listeners")) { //$NON-NLS-1$
 				parent.setEsbObjectType(ESBType.LISTENER);
-			} else if (tag.equalsIgnoreCase("actions")) { //$NON-NLS-1$
+			} else if (tag.equalsIgnoreCase("Actions")) { //$NON-NLS-1$
 				parent.setEsbObjectType(ESBType.ACTION);
 			} else if (tag.equalsIgnoreCase("action")) { //$NON-NLS-1$
 				parent.setEsbObjectType(ESBType.ACTION);
@@ -210,6 +214,11 @@ public class ESBDomParser {
 				}
 				if (name == null || name.trim().length() == 0) {
 					name = child.getTagName();
+				}
+				if (name.equalsIgnoreCase("actions")) { //$NON-NLS-1$
+					name = JBossESBUIMessages.ESBDomParser_Actions_Node_Label;
+				} else if (name.equalsIgnoreCase("listeners")) { //$NON-NLS-1$
+					name = JBossESBUIMessages.ESBDomParser_Listeners_Node_Label;
 				}
 				
 				ESBNodeWithChildren childNode = new ESBNodeWithChildren(name);

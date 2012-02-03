@@ -55,6 +55,10 @@ public final class JBossESBUIMessages extends NLS {
 	public static String JBoss_ESBRuntime_Classpath_Container_5;
 	public static String JBoss_Runtime_List_Field_Editor_Configuration;
 	
+	public static String ESBDomParser_Actions_Node_Label;
+
+	public static String ESBDomParser_Listeners_Node_Label;
+
 	public static String ESBDomParser_Providers_Label;
 
 	public static String ESBDomParser_Services_Label;
@@ -143,6 +147,8 @@ public final class JBossESBUIMessages extends NLS {
 
 	public static String ESBVisualizerView_Change_Layout_Action_Label;
 
+	public static String ESBVisualizerView_DoubleClick_Toggle_Action_label;
+
 	public static String ESBVisualizerView_EmptyNodeLabel;
 
 	public static String ESBVisualizerView_Open_ESB_Config_Action_Label;
@@ -150,6 +156,8 @@ public final class JBossESBUIMessages extends NLS {
 	public static String ESBVisualizerView_Open_ESB_Config_Dialog_Field_Text;
 
 	public static String ESBVisualizerView_Open_ESB_Config_Dialog_Title;
+
+	public static String ESBVisualizerView_Open_ESB_Editor_Action_Label;
 
 	public static String ESBVisualizerView_Refresh_Layout_Action_Label;
 
@@ -160,6 +168,8 @@ public final class JBossESBUIMessages extends NLS {
 	public static String ESBVisualizerView_Use_Radial_Layout_Action_Label;
 
 	public static String ESBVisualizerView_Use_Vertical_Tree_Layout_Action_Label;
+
+	public static String WorkbenchFileSelectionDialog_Title;
 
 
 	static {

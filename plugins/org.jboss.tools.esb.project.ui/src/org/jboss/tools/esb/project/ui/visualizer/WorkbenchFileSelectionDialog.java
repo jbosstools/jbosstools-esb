@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
+import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
 
 public class WorkbenchFileSelectionDialog
@@ -106,7 +107,7 @@ public class WorkbenchFileSelectionDialog
 			e.printStackTrace();
 		}
 
-		this.title = "Some fun title"; 
+		this.title = JBossESBUIMessages.WorkbenchFileSelectionDialog_Title; 
 		this.message = message;
 		setShellStyle(getShellStyle() | SWT.RESIZE);
 		this.filterPatterns = filterPatterns;

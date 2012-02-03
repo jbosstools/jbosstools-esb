@@ -35,8 +35,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.ISelectionValidator;
+import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.IShowInTarget;
 import org.eclipse.ui.part.ShowInContext;
 import org.eclipse.ui.part.ViewPart;
@@ -56,6 +59,9 @@ import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
 import org.eclipse.zest.layouts.algorithms.TreeLayoutAlgorithm;
 import org.eclipse.zest.layouts.constraints.BasicEntityConstraint;
 import org.eclipse.zest.layouts.constraints.LayoutConstraint;
+import org.jboss.tools.common.model.XModelObject;
+import org.jboss.tools.common.model.util.EclipseResourceUtil;
+import org.jboss.tools.common.model.util.FindObjectHelper;
 import org.jboss.tools.esb.project.ui.ESBProjectPlugin;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.visualizer.ESBNode.ESBType;
@@ -88,11 +94,17 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 
 	private GraphViewer gv;
 	
+	private IFile currentFile;
+	
 	// Some stashed colors
 	private Color defaultBorder;
 
 	// menu items
 	private Action openESBFileAction;
+	private Action openESBFileInEditorAction;
+	private Action doubleClickAction;
+	
+	private boolean doubleClickFreezesNode = false;
 	
 	// toolbar buttons for different layouts
 	private IAction horizontalLayoutAction;
@@ -112,6 +124,7 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 						String path = selectedFile.getLocation().toOSString();
 						ESBDomParser parser = new ESBDomParser();
 						if (parser.isFileESBConfig(path)) {
+							currentFile = selectedFile;
 							if (!gv.getGraphControl().isDisposed()) {
 								visualizeESB(path);
 								refreshLayoutAction.run();
@@ -169,7 +182,6 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 		clearGraph();
 		new GraphNode (gv.getGraphControl(), ZestStyles.NODES_CACHE_LABEL, 
 				JBossESBUIMessages.ESBVisualizerView_EmptyNodeLabel);
-//		refreshLayoutAction.run();
 	}
 	
 	/**
@@ -337,13 +349,17 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 	 * @param manager
 	 */
 	private void fillContextMenu(IMenuManager manager) {
-		manager.add(openESBFileAction);
+		manager.add(doubleClickAction);
 	}
 
 	/*
 	 * Make the few actions we have 
 	 */
 	private void makeActions() {
+		
+		openESBFileInEditorAction = new OpenESBEditorAction();
+		
+		doubleClickAction = new DoubleClickToggleAction();
 		
 		refreshLayoutAction = new Action() {
 			@Override
@@ -391,6 +407,10 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 				if (rtn_code == WorkbenchFileSelectionDialog.OK) {
 					IPath resultPath = dialog.getFullPath();
 					IPath totalPath = ResourcesPlugin.getWorkspace().getRoot().getLocation().append(resultPath);
+					IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(dialog.getFullPath().toFile().toURI());
+					if (files != null && files.length > 0) {
+						currentFile = files[0];
+					}
 					String path = totalPath.toOSString();
 					visualizeESB(path);
 				}
@@ -410,6 +430,8 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 				this);
 		IActionBars bars = getViewSite().getActionBars();
 		bars.getMenuManager().add(openESBFileAction);
+		bars.getMenuManager().add(openESBFileInEditorAction);
+		bars.getMenuManager().add(doubleClickAction);
 
 		IToolBarManager toolbar = bars.getToolBarManager();
 		
@@ -502,11 +524,113 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 			}
 		}
 	}
+	
+	/*
+	 * Opens the currently displayed file in the ESB editor with the path pre-selected 
+	 */
+	private void openESBAction ( ) {
+		if (currentFile != null) {
+			Graph graph = gv.getGraphControl();
+			String modelpath = ""; //$NON-NLS-1$
+			if (!graph.getSelection().isEmpty()) {
+				GraphNode node = (GraphNode) graph.getSelection().get(0);
+				if (node.getData() != null && node.getData() instanceof ESBNode) {
+					ESBNode esbnode = (ESBNode) node.getData();
+					while (esbnode != null && esbnode.getParent() != null) {
+						if (modelpath.trim().length() > 0) 
+							modelpath = "/" + modelpath; //$NON-NLS-1$
+						modelpath = esbnode.getName() + modelpath;
+						esbnode = esbnode.getParent();
+					}
+
+//					boolean useIdeMethod = false;
+//					if (useIdeMethod) {
+//						modelpath = "FileSystems/project/" + currentFile.getProjectRelativePath().toString() + "/" + modelpath;
+//						// modelpath = "FileSystems/project/esbcontent/META-INF/jboss-esb.xml/Services/SimpleListener";
+//						
+//						IWorkbenchPage page = getSite().getPage();
+//						HashMap<String, String> map = new HashMap<String, String>();
+//						map.put("xpath", modelpath);// "action/path/whatever");
+//						map.put(IDE.EDITOR_ID_ATTR,
+//								"org.jboss.tools.common.model.ui.editor.EditorPartWrapper");
+//						try {
+//							IMarker marker = currentFile.createMarker(IMarker.TEXT);
+//							marker.setAttributes(map);
+//							IDE.openEditor(page, marker); //3.0 API
+//							marker.delete();
+//						} catch (CoreException e) {
+//							e.printStackTrace();
+//						}
+//					} else {
+					// if we have an empty path, the user double-clicked on the root
+					// so just open the file
+					if (modelpath.trim().length() == 0) {
+						IWorkbenchPage page = getSite().getPage();
+						try {
+							IDE.openEditor(page, currentFile);
+						} catch (PartInitException e) {
+							e.printStackTrace();
+						}
+					} else {
+						// otherwise use the FindObjectHelper to find the actual node 
+						// in the ESB editor
+						XModelObject fileObject =
+								EclipseResourceUtil.createObjectForResource(currentFile);
+						XModelObject actionObject =
+							fileObject.getChildByPath(modelpath); //"Services/SimpleListener/Actions/displayAction");
+						FindObjectHelper.findModelObject(actionObject, FindObjectHelper.IN_EDITOR_ONLY);
+					}
+	//				}
+				}
+			}
+		}
+	}
+	
+	/*
+	 * Action to open the ESB editor 
+	 * @author bfitzpat
+	 *
+	 */
+	private class OpenESBEditorAction extends Action {
+
+		public OpenESBEditorAction() {
+			super(JBossESBUIMessages.ESBVisualizerView_Open_ESB_Editor_Action_Label);
+		}
+		
+		public void run() {
+			openESBAction();
+		}
+		
+	}
+
+	/*
+	 * Action to toggle the double-click behavior from freezing a node to opening 
+	 * the ESB editor to the selected object.
+	 * By default it opens the ESB editor.
+	 * @author bfitzpat
+	 *
+	 */
+	private class DoubleClickToggleAction extends Action {
+
+		public DoubleClickToggleAction() {
+			super(JBossESBUIMessages.ESBVisualizerView_DoubleClick_Toggle_Action_label);
+			this.setChecked(doubleClickFreezesNode);
+		}
+		
+		public void run() {
+			doubleClickFreezesNode = !doubleClickFreezesNode;
+			this.setChecked(doubleClickFreezesNode);
+		}
+		
+	}
 
 	/*
 	 * @author bfitzpat
-	 * If the user double-clicks on a node, "fix" it in place. If they double-
-	 * click again, un-"fix" it. 
+	 * If the user double-clicks on a node, it does one of two things:
+	 * * if the double-click toggle is set to freeze the node, it will "freeze" it in place. 
+	 *   If they double-click again, un-"freeze" it. Frozen nodes don't move when the layout
+	 *   changes or is refreshed.
+	 * * if not, the ESB editor is opened and the object double-clicked on is selected
 	 */
 	private class FixNodeDoubleClickListener implements IDoubleClickListener {
 		public void doubleClick(DoubleClickEvent e) {
@@ -515,15 +639,19 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 				if (!graph.getSelection().isEmpty()) {
 					GraphNode node = (GraphNode) graph.getSelection().get(0);
 					if (node.getData() != null && node.getData() instanceof ESBNode) {
-						ESBNode to = (ESBNode)node.getData();
-						to.setIsMovementLocked(!to.isMovementLocked());
-						if (to.isMovementLocked()) {
-							node.setBorderWidth(3);
-							node.setBorderColor(gv.getGraphControl().getDisplay().getSystemColor(
-									SWT.COLOR_BLUE));
+						if (doubleClickFreezesNode) {
+							ESBNode to = (ESBNode)node.getData();
+							to.setIsMovementLocked(!to.isMovementLocked());
+							if (to.isMovementLocked()) {
+								node.setBorderWidth(3);
+								node.setBorderColor(gv.getGraphControl().getDisplay().getSystemColor(
+										SWT.COLOR_BLUE));
+							} else {
+								node.setBorderWidth(1);
+								node.setBorderColor(defaultBorder);
+							}
 						} else {
-							node.setBorderWidth(1);
-							node.setBorderColor(defaultBorder);
+							openESBAction();
 						}
 					}
 				}
@@ -576,6 +704,7 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 				String path = ((IFile)first).getLocation().toOSString();
 				ESBDomParser parser = new ESBDomParser();
 				if (parser.isFileESBConfig(path)) {
+					this.currentFile = (IFile) first;
 					visualizeESB(path);
 					return true;
 				} else {
