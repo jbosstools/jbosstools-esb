@@ -10,15 +10,20 @@
  ******************************************************************************/ 
 package org.jboss.tools.esb.project.ui.visualizer;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -29,15 +34,18 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.ISelectionValidator;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.IShowInTarget;
@@ -59,9 +67,6 @@ import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
 import org.eclipse.zest.layouts.algorithms.TreeLayoutAlgorithm;
 import org.eclipse.zest.layouts.constraints.BasicEntityConstraint;
 import org.eclipse.zest.layouts.constraints.LayoutConstraint;
-import org.jboss.tools.common.model.XModelObject;
-import org.jboss.tools.common.model.util.EclipseResourceUtil;
-import org.jboss.tools.common.model.util.FindObjectHelper;
 import org.jboss.tools.esb.project.ui.ESBProjectPlugin;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 import org.jboss.tools.esb.project.ui.visualizer.ESBNode.ESBType;
@@ -143,6 +148,33 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 		// empty
 	}
 
+	public void putMessageOnStatusLine ( final String message ) {
+		final Display display = Display.getDefault();
+		new Thread() {
+			public void run() {
+				display.syncExec(new Runnable() {
+					/*
+					 * (non-Javadoc)
+					 * @see java.lang.Runnable#run()
+					 */
+					public void run() {
+						IViewSite vSite = ( IViewSite ) getSite();
+						IActionBars actionBars =  vSite.getActionBars();
+						if( actionBars == null )
+							return ;
+
+						IStatusLineManager statusLineManager =
+								actionBars.getStatusLineManager();
+						if( statusLineManager == null )
+							return ;
+
+						statusLineManager.setMessage( message );
+					}
+				});
+			}
+		}.start();
+	}
+	
 	/**
 	 * This is a callback that will allow us
 	 * to create the viewer and initialize it.
@@ -151,6 +183,30 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 		this.gv = new GraphViewer(parent, SWT.NONE);
 		gv.getGraphControl().addConstraintAdapter(new ESBViewerConstraintAdapter());
 		gv.addDoubleClickListener(new FixNodeDoubleClickListener());
+		gv.getGraphControl().addSelectionListener(new SelectionAdapter() {
+
+			public void widgetSelected(SelectionEvent e) {
+				List<?> listSelection = ((Graph) e.widget).getSelection();
+				if (!listSelection.isEmpty() && listSelection.get(0) instanceof GraphNode) {
+					GraphNode node = (GraphNode) listSelection.get(0);
+					if (node.getData() != null && node.getData() instanceof ESBNode) {
+						ESBNode esbnode = (ESBNode) node.getData();
+						String modelpath = "";
+						while (esbnode != null && esbnode.getParent() != null) {
+							if (modelpath.trim().length() > 0) 
+								modelpath = "->" + modelpath; //$NON-NLS-1$
+							modelpath = esbnode.getName() + modelpath;
+							esbnode = esbnode.getParent();
+						}
+						final String message = currentFile.getName() + "->" + modelpath;//$NON-NLS-1$
+						putMessageOnStatusLine(message);
+					}
+				} else {
+					putMessageOnStatusLine(null);
+				}
+			}
+
+		});
 		makeActions();
 		hookContextMenu();
 		fillToolBar();
@@ -543,44 +599,24 @@ public class ESBVisualizerView extends ViewPart  implements IZoomableWorkbenchPa
 						esbnode = esbnode.getParent();
 					}
 
-//					boolean useIdeMethod = false;
-//					if (useIdeMethod) {
-//						modelpath = "FileSystems/project/" + currentFile.getProjectRelativePath().toString() + "/" + modelpath;
-//						// modelpath = "FileSystems/project/esbcontent/META-INF/jboss-esb.xml/Services/SimpleListener";
-//						
-//						IWorkbenchPage page = getSite().getPage();
-//						HashMap<String, String> map = new HashMap<String, String>();
-//						map.put("xpath", modelpath);// "action/path/whatever");
-//						map.put(IDE.EDITOR_ID_ATTR,
-//								"org.jboss.tools.common.model.ui.editor.EditorPartWrapper");
-//						try {
-//							IMarker marker = currentFile.createMarker(IMarker.TEXT);
-//							marker.setAttributes(map);
-//							IDE.openEditor(page, marker); //3.0 API
-//							marker.delete();
-//						} catch (CoreException e) {
-//							e.printStackTrace();
-//						}
-//					} else {
-					// if we have an empty path, the user double-clicked on the root
-					// so just open the file
-					if (modelpath.trim().length() == 0) {
-						IWorkbenchPage page = getSite().getPage();
-						try {
-							IDE.openEditor(page, currentFile);
-						} catch (PartInitException e) {
-							e.printStackTrace();
-						}
-					} else {
-						// otherwise use the FindObjectHelper to find the actual node 
-						// in the ESB editor
-						XModelObject fileObject =
-								EclipseResourceUtil.createObjectForResource(currentFile);
-						XModelObject actionObject =
-							fileObject.getChildByPath(modelpath); //"Services/SimpleListener/Actions/displayAction");
-						FindObjectHelper.findModelObject(actionObject, FindObjectHelper.IN_EDITOR_ONLY);
+					modelpath = "FileSystems/" + currentFile.getProject().getName() + //$NON-NLS-1$
+							"/" + currentFile.getProjectRelativePath().toString() + //$NON-NLS-1$
+							"/" + modelpath;//$NON-NLS-1$
+						
+					IWorkbenchPage page = getSite().getPage();
+					HashMap<String, String> map = new HashMap<String, String>();
+					map.put("path", modelpath);// "action/path/whatever");
+					map.put("tab", "Tree");
+					map.put(IDE.EDITOR_ID_ATTR,
+							"org.jboss.tools.common.model.ui.editor.EditorPartWrapper");//$NON-NLS-1$
+					try {
+						IMarker marker = currentFile.createMarker(IMarker.TEXT);
+						marker.setAttributes(map);
+						IDE.openEditor(page, marker); //3.0 API
+						marker.delete();
+					} catch (CoreException e) {
+						e.printStackTrace();
 					}
-	//				}
 				}
 			}
 		}
