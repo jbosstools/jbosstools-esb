@@ -157,6 +157,24 @@
             </and>
          </constraint>
       </project-facet-version>
+      <project-facet-version
+            facet="jst.jboss.esb"
+            version="4.11">
+         <group-member
+               id="modules">
+         </group-member>
+         <constraint>
+            <and>
+               <conflicts
+                     group="modules">
+               </conflicts>
+               <requires
+                     facet="jst.java"
+                     version="[5.0">
+               </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
       <action
             facet="jst.jboss.esb"
             id="jst.jboss.esb.install"
@@ -186,7 +204,7 @@
       <supported>
          <facet
                id="jst.jboss.esb"
-               version="4.2,4.3,4.4,4.5,4.6,4.7,4.9,4.10">
+               version="4.2,4.3,4.4,4.5,4.6,4.7,4.9,4.10,4.11">
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.as.runtime.component"
@@ -196,7 +214,7 @@
       <supported>
          <facet
                id="jst.jboss.esb"
-               version="4.2,4.3,4.4,4.5,4.6,4.7,4.9,4.10">
+               version="4.2,4.3,4.4,4.5,4.6,4.7,4.9,4.10,4.11">
          </facet>
          <runtime-component
                id="org.jboss.ide.eclipse.eap.runtime.component"
@@ -239,7 +257,7 @@
              projects="true">
           <moduleType
                 types="jst.jboss.esb"
-                versions="4.2,4.3,4.4,4.5,4.6,4.7,4.9,4.10">
+                versions="4.2,4.3,4.4,4.5,4.6,4.7,4.9,4.10,4.11">
           </moduleType>
        </moduleFactory>
     </extension>
@@ -341,6 +359,23 @@
        <Resolver
              class="org.jboss.tools.esb.core.runtime.ESBRuntimeResolver_410"
              esbVersion="4.10"
+             name="ESB runtime resolver">
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.eap.51">
+          </supportedRuntimeType>
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.50">
+          </supportedRuntimeType>
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.51">
+          </supportedRuntimeType>
+          <supportedRuntimeType
+                id="org.jboss.ide.eclipse.as.runtime.60">
+          </supportedRuntimeType>
+       </Resolver>
+       <Resolver
+             class="org.jboss.tools.esb.core.runtime.ESBRuntimeResolver_411"
+             esbVersion="4.11"
              name="ESB runtime resolver">
           <supportedRuntimeType
                 id="org.jboss.ide.eclipse.as.runtime.eap.51">

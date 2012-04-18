@@ -497,7 +497,7 @@ public class JBossRuntimeManager {
 			else if(version.equals("4.3.0")) {
 				version = "4.4";
 			}
-			else if(version.length() > 3){
+			else if(version.length() > 3 && ! (version.charAt(version.length()-1) >= '0' && version.charAt(version.length()-1) < '9') ){
 				version = version.substring(0,3);
 			}
 			

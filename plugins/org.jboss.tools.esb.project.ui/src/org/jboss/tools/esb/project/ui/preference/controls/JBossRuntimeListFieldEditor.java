@@ -15,6 +15,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -631,9 +632,50 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			for(IProjectFacetVersion version: esbfacet.getVersions()){
 				versions.add(version.getVersionString());
 			}
+			//versions.add("");
+			Comparator<String> comparator = new Comparator<String>() {
+
+				public int compare(String o1, String o2) {
+					if (o1 == null || o2 == null) {
+						return 0;
+					}
+					String[] split1 = o1.split("\\.");
+					String[] split2 = o2.split("\\.");
+					if (split1.length != 2 || split2.length != 2) {
+						return o1.compareTo(o2);
+					}
+					int o11;
+					int o12;
+					int o21;
+					int o22;
+					try {
+						o11 = new Integer(split1[0]);
+						o12 = new Integer(split1[1]);
+						o21 = new Integer(split2[0]);
+						o22 = new Integer(split2[1]);
+					} catch (NumberFormatException e) {
+						return o1.compareTo(o2);
+					}
+					
+					if (o11 > o21) {
+						return 1;
+					}
+					if (o11 < o21) {
+						return -1;
+					}
+					if (o12 > o22) {
+						return 1;
+					}
+					if (o12 < o22) {
+						return -1;
+					}
+					return 0;
+				}
+				
+			};
+			Collections.sort(versions, comparator);
 			versions.add("");
-			Collections.sort(versions);
-			Collections.reverse(versions);
+			//Collections.reverse(versions);
 			return versions;
 		}
 

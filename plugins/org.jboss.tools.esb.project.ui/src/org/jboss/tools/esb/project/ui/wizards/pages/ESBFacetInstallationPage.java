@@ -639,6 +639,9 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		if(versionNumber >= 4.9 || versionNumber == 4.10){
 			cmVersions.add("1.3.0"); //$NON-NLS-1$
 		}
+		if(versionNumber == 4.11){
+			cmVersions.add("1.3.1"); //$NON-NLS-1$
+		}
 		int index = cmVersions.getItemCount() - 1;
 		String convigVersionName = cmVersions.getItem(index);
 		cmVersions.select(index);
