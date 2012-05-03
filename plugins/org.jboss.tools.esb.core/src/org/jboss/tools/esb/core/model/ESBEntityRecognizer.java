@@ -27,53 +27,39 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
 
     String getEntityName(String ext, String body) {
         if(body == null) return null;
-    	if(!isSchema(body)) {
+
+        String suffix = getSuffixBySchema(body);
+    	if(suffix == null) {
     		return null;
     	}
     	
-//    	int i = body.indexOf("xsi:schemaLocation"); //$NON-NLS-1$
-    	int i = body.indexOf("xmlns="); //$NON-NLS-1$
-    	if(i < 0) return null;
-    	int j = body.indexOf("\"", i); //$NON-NLS-1$
-    	if(j < 0) return null;
-    	int k = body.indexOf("\"", j + 1); //$NON-NLS-1$
-    	if(k < 0) return null;
-    	String schema = body.substring(j + 1, k);
-    	
-    	int i101 = schema.indexOf("1.0.1"); //$NON-NLS-1$
-    	if(i101 >= 0) {
-    		return ENT_ESB_FILE_101;
-    	}
-    	int i110 = schema.indexOf("1.1.0"); //$NON-NLS-1$
-    	if(i110 >= 0) {
-    		return ENT_ESB_FILE_110;
-    	}
-    	int i120 = schema.indexOf("1.2.0"); //$NON-NLS-1$
-    	if(i120 >= 0) {
-    		return ENT_ESB_FILE_120;
-    	}
-    	int i130 = schema.indexOf("1.3.0"); //$NON-NLS-1$
-    	if(i130 >= 0) {
-    		return ENT_ESB_FILE_130;
-    	}
-        return null;
+        return ENT_ESB_FILE + suffix;
     }
     
-    private boolean isSchema(String body) {
+    private String getSuffixBySchema(String body) {
     	int i = body.indexOf("<jbossesb"); //$NON-NLS-1$
-    	if(i < 0) return false;
+    	if(i < 0) return null;
     	int j = body.indexOf(">", i); //$NON-NLS-1$
-    	if(j < 0) return false;
+    	if(j < 0) return null;
     	String s = body.substring(i, j);
-    	String q = "\"";
-    	return s.indexOf(q + SCHEMA_101 + q) > 0
-    		|| s.indexOf(q + SCHEMA_110 + q) > 0
-    		|| s.indexOf(q + SCHEMA_120 + q) > 0
-    		|| s.indexOf(q + SCHEMA_130 + q) > 0
-    		|| s.indexOf(q + NEW_SCHEMA_101 + q) > 0
-    		|| s.indexOf(q + NEW_SCHEMA_110 + q) > 0
-    		|| s.indexOf(q + NEW_SCHEMA_120 + q) > 0
-    		|| s.indexOf(q + NEW_SCHEMA_130 + q) > 0;
+    	i = s.indexOf("xmlns="); //$NON-NLS-1$
+    	if(i < 0) return null;
+    	j = s.indexOf("\"", i); //$NON-NLS-1$
+    	if(j < 0) return null;
+    	int k = s.indexOf("\"", j + 1); //$NON-NLS-1$
+    	if(k < 0) return null;
+    	String schema = s.substring(j + 1, k);
+    	return schema.equals(SCHEMA_101) ? SUFF_101 :
+    		   schema.equals(SCHEMA_110) ? SUFF_110 :
+    		   schema.equals(SCHEMA_120) ? SUFF_120 :
+    		   schema.equals(SCHEMA_130) ? SUFF_130 :
+       		   schema.equals(SCHEMA_131) ? SUFF_131 :
+    		   schema.equals(NEW_SCHEMA_101) ? SUFF_101 :
+    		   schema.equals(NEW_SCHEMA_110) ? SUFF_110 :
+			   schema.equals(NEW_SCHEMA_120) ? SUFF_120 :
+			   schema.equals(NEW_SCHEMA_130) ? SUFF_130 :
+			   schema.equals(NEW_SCHEMA_131) ? SUFF_131 :
+    		   null;
     }
     
 }

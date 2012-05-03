@@ -17,10 +17,10 @@ import org.jboss.tools.common.meta.XAttribute;
 import org.jboss.tools.common.meta.XChild;
 import org.jboss.tools.common.meta.XMapping;
 import org.jboss.tools.common.meta.XModelEntity;
+import org.jboss.tools.common.meta.impl.XModelMetaDataImpl;
 import org.jboss.tools.common.model.XModelException;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.impl.RegularObjectImpl;
-import org.jboss.tools.common.model.options.PreferenceModelUtilities;
 import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 import org.jboss.tools.esb.core.ESBCorePlugin;
 import org.jboss.tools.esb.core.model.converters.ConverterConstants;
@@ -41,7 +41,7 @@ public class SpecificActionLoader implements ESBConstants {
 
 	SpecificActionLoader() {
 		if(classToEntity.isEmpty()) {
-			XMapping m = PreferenceModelUtilities.getPreferenceModel().getMetaData().getMapping("ESBSpecificActions");
+			XMapping m = XModelMetaDataImpl.getInstance().getMapping("ESBSpecificActions");
 			if(m != null) {
 				String[] classes = m.getKeys();
 				for (String c: classes) {
