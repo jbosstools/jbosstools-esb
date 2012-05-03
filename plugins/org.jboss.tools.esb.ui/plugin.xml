@@ -38,7 +38,7 @@
       <xmlEditor 
             class="org.jboss.tools.esb.ui.editor.ESBCompoundEditor" 
             contributorClass="org.jboss.tools.common.model.ui.texteditors.MultiPageContributor" 
-            entities="FileESB101,FileESB110,FileESB120,FileESB130" 
+            entities="FileESB101,FileESB110,FileESB120,FileESB130,FileESB131" 
             icon="images/xstudio/editors/esb.gif" 
             name="ESB">
       </xmlEditor>
