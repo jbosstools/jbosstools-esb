@@ -59,6 +59,9 @@ public class ESBEntityRecognizer implements EntityRecognizer, ESBConstants {
 			   schema.equals(NEW_SCHEMA_120) ? SUFF_120 :
 			   schema.equals(NEW_SCHEMA_130) ? SUFF_130 :
 			   schema.equals(NEW_SCHEMA_131) ? SUFF_131 :
+			   //Return the latest supported for unknown version
+			   schema.startsWith(SCHEMA_PREFIX) ? SUFF_131 :
+			   schema.startsWith(NEW_SCHEMA_PREFIX) ? SUFF_131 :
     		   null;
     }
     
