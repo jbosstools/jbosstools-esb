@@ -226,11 +226,13 @@ public class ESBProjectDeploymentTest extends TestCase {
 		IClasspathEntry[] entry = initializer.getEntries(path);//jproject.getRawClasspath();
 		List<String> jars = new ArrayList<String>();
 		
+		/* ldimaggi - display list of jars in the assert text - https://issues.jboss.org/browse/JBDS-2152 */
+		String jarsString = null;
 		for(IClasspathEntry ent :entry){
 			jars.add(ent.getPath().lastSegment());
+			jarsString = jarsString + ent.getPath().lastSegment() + " ";
 		}
-		
-		assertEquals("unalbe to read User customized ESB runtime, jbossesb-rosetta.jar is not in classpath.", true, jars.contains("jbossesb-rosetta.jar"));
+		assertEquals("unable to read User customized ESB runtime, jbossesb-rosetta.jar is not in classpath." + jarsString, true, jars.contains("jbossesb-rosetta.jar"));
 		
 	}
 
@@ -351,7 +353,7 @@ public class ESBProjectDeploymentTest extends TestCase {
 	protected void createServer(String runtimeID, String serverID,
 			String location, String configuration) throws CoreException {
 		// if file doesnt exist, abort immediately.
-		assertTrue(new Path(location).toFile().exists());
+		assertTrue("server location " + location + " does not exist", new Path(location).toFile().exists());
 
 		currentRuntime = createRuntime(runtimeID, location, configuration);
 		IServerType serverType = ServerCore.findServerType(serverID);
