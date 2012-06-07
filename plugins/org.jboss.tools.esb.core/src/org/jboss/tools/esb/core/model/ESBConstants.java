@@ -195,5 +195,7 @@ public interface ESBConstants {
 	public String ATTR_SCHEDULE_ID = "schedule id"; //$NON-NLS-1$
 	public String ATTR_SCHEDULE_ID_REF = "schedule id ref"; //$NON-NLS-1$
 
+	public String ATTR_MESSAGE_FLOW_PRIORITY = "message flow priority"; //$NON-NLS-1$
+
 	public String XML_ATTR_PROTECTED_METHODS = "protected-methods"; //$NON-NLS-1$
 }

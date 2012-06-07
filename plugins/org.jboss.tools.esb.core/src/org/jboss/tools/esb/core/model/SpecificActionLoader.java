@@ -198,17 +198,21 @@ public class SpecificActionLoader implements ESBConstants {
 			String pre = as[i].getProperty("pre");
 			if(pre == null || pre.length() == 0) continue;
 			if("true".equals(pre)) {
-				String name = as[i].getXMLName();
-				XModelObject p = basic.getChildByPath(name);
-				if(p == null) continue;
-				String value = p.getAttributeValue("value");
-				specific.setAttributeValue(as[i].getName(), value);
-				specific.set(as[i].getXMLName() + ".#comment", p.getAttributeValue("comment"));
-				p.removeFromParent();
+				copyBasicPropertyToSpecificAttribute(basic, specific, as[i]);
 			} else {
 				//very specific cases
 			}
 		}
+	}
+
+	public static void copyBasicPropertyToSpecificAttribute(XModelObject basic, XModelObject specific, XAttribute a) {
+		String name = a.getXMLName();
+		XModelObject p = basic.getChildByPath(name);
+		if(p == null) return;
+		String value = p.getAttributeValue("value");
+		specific.setAttributeValue(a.getName(), value);
+		specific.set(a.getXMLName() + ".#comment", p.getAttributeValue("comment"));
+		p.removeFromParent();
 	}
 
 	public static void copySpecificAtttributesToBasicProperties(XModelObject specific, XModelObject basic) {
@@ -218,18 +222,22 @@ public class SpecificActionLoader implements ESBConstants {
 			String pre = as[i].getProperty("pre");
 			if(pre == null || pre.length() == 0) continue;
 			if("true".equals(pre)) {
-				String value = specific.getAttributeValue(as[i].getName());
-				if(value == null || value.length() == 0 || value.equals(as[i].getDefaultValue())) {
-					if(!"always".equals(as[i].getProperty("save"))) continue;
-				}
-				XModelObject p = specific.getModel().createModelObject(ESBConstants.ENT_ESB_PROPERTY, null);
-				p.setAttributeValue("name", as[i].getXMLName());
-				p.setAttributeValue("value", value);
-				p.setAttributeValue("comment", specific.get(as[i].getXMLName() + ".#comment"));
-				basic.addChild(p);
+				copySpecificAttributeToBasicProperty(specific, basic, as[i]);
 			} else {
 				//very specific cases
 			}
 		}
+	}
+
+	public static void copySpecificAttributeToBasicProperty(XModelObject specific, XModelObject basic, XAttribute a) {
+		String value = specific.getAttributeValue(a.getName());
+		if(value == null || value.length() == 0 || value.equals(a.getDefaultValue())) {
+			if(!"always".equals(a.getProperty("save"))) return;
+		}
+		XModelObject p = specific.getModel().createModelObject(ESBConstants.ENT_ESB_PROPERTY, null);
+		p.setAttributeValue("name", a.getXMLName());
+		p.setAttributeValue("value", value);
+		p.setAttributeValue("comment", specific.get(a.getXMLName() + ".#comment"));
+		basic.addChild(p);
 	}
 }

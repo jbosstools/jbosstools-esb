@@ -105,6 +105,8 @@
     <Editor name="ListString"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced" name="timeout" xmlname="timeout"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -158,6 +160,8 @@
     <Editor name="ListString"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced" name="timeout" xmlname="timeout"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -201,6 +205,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -289,11 +295,13 @@
     attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
    <XModelAttribute PROPERTIES="category=advanced" name="client id" xmlname="clientId"/>
+   <XModelAttribute PROPERTIES="category=advanced"
+    name="durable subscription name" xmlname="durableSubscriptionName"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=advanced"
-    name="durable subscription name" xmlname="durableSubscriptionName"/>
   </XModelAttributes>
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions">

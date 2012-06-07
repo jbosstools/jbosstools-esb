@@ -47,6 +47,23 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="message flow priority" xmlname="messageFlowPriority">
+    <Constraint loader="List">
+     <value name=""/>
+     <value name="0"/>
+     <value name="1"/>
+     <value name="2"/>
+     <value name="3"/>
+     <value name="4"/>
+     <value name="5"/>
+     <value name="6"/>
+     <value name="7"/>
+     <value name="8"/>
+     <value name="9"/>
+    </Constraint>
+    <Editor name="List"/>
+   </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
