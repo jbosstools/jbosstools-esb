@@ -35,6 +35,10 @@ public interface ConverterConstants {
 	String BPM_VARS = "esbToBpmVars";
 	IPropertyConverter BPM_VAR_CONVERTER = new BasicListConverter(BPM_VARS, BPM_VAR_ENTITY);
 
+	String BPM_PARAM_ENTITY = "ESBPreBPMParam";
+	String BPM_PARAMS = "esbToBpmParams";
+	IPropertyConverter BPM_PARAM_CONVERTER = new BasicListConverter(BPM_PARAMS, BPM_PARAM_ENTITY);
+
 	String HTTP_CLIENT_PROP_ENTITY = "ESBPreClientProp";
 	String END_POINT_URL = "endpointUrl";
 	IPropertyConverter ENDPOINT_CONVERTER = new EndpointConverter();

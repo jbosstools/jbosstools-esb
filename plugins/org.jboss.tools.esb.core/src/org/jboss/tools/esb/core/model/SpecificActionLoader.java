@@ -57,6 +57,7 @@ public class SpecificActionLoader implements ESBConstants {
 		propertyConverters.put("notification", ConverterConstants.NOTIFICATION_CONVERTER);
 		propertyConverters.put("notification2", ConverterConstants.NOTIFICATION_CONVERTER_2);
 		propertyConverters.put("bpmVar", ConverterConstants.BPM_VAR_CONVERTER);
+		propertyConverters.put("bpmParam", ConverterConstants.BPM_PARAM_CONVERTER);
 		propertyConverters.put("httpclient", ConverterConstants.ENDPOINT_CONVERTER);
 		propertyConverters.put("header", ConverterConstants.HEADER_CONVERTER);
 		propertyConverters.put("namespace", ConverterConstants.NAMESPACES_CONVERTER);

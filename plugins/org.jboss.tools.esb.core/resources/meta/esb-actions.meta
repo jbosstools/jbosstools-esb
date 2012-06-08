@@ -44,6 +44,7 @@
    <PAIR
     name="org.jboss.soa.esb.actions.validation.SchemaValidationAction" value="ESBPreActionSchemaValidator"/>
    <PAIR name="org.jboss.soa.esb.services.jbpm.actions.BpmProcessor" value="ESBPreActionBpmProcessor"/>
+   <PAIR name="org.jboss.soa.esb.services.jbpm5.actions.Bpm5Processor" value="ESBPreActionBpm5Processor131"/>
    <PAIR name="org.jboss.soa.esb.smooks.SmooksAction" value="ESBPreActionSmooksAction"/>
   </MAPPING>
   <MAPPING name="FileVersions">
@@ -140,6 +141,76 @@
   </XModelAttributes>
   <XActionItem kind="list">
    <XActionItem kind="list" name="CreateActions"/>
+   <XActionItemReference entity="ESBProperty" name="CopyActions"/>
+   <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
+   <XActionItemReference entity="ESBProperty" name="Properties"/>
+   <XActionItemReference entity="ESBProperty" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity ImplementingClass="%ESB%"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;children=%EntityOrdered%"
+  XMLSUBPATH="action" name="ESBPreActionBpm5Processor131">
+  <XChildrenEntities>
+   <XChildEntity name="ESBProperty"/>
+   <XChildEntity name="ESBPreBPMParam"/>
+  </XChildrenEntities>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.action" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="bpm 5 processor action"
+    loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="name" xmlname="name"/>
+   <XModelAttribute PROPERTIES="category=general;save=always"
+    default="org.jboss.soa.esb.services.jbpm5.actions.Bpm5Processor"
+    name="class" xmlname="class">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=general;save=always"
+    name="process definition name" xmlname="process-definition-name"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general;save=always"
+    name="process id" xmlname="process-id"/>
+   <XModelAttribute PROPERTIES="pre=true;category=general;save=always"
+    default="startProcess" name="process action" xmlname="process-action">
+    <Constraint loader="List">
+     <value name="startProcess"/>
+     <value name="signalEvent"/>
+     <value name="abortProcessInstance"/>
+    </Constraint>
+    <Editor name="ListString"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="process handler class" xmlname="processHandlerClass"/>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="process handler host" xmlname="processHandlerHost"/>
+   <XModelAttribute PROPERTIES="pre=true;category=advanced"
+    name="process handler port" xmlname="processHandlerPort"/>
+   <XModelAttribute PROPERTIES="category=general" default="process"
+    name="process" xmlname="process">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem kind="list" name="CreateActions">
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add BPM Param..." kind="action" name="AddBPMParam">
+     <EntityData EntityName="ESBPreBPMParam">
+      <AttributeData AttributeName="esb"/>
+      <AttributeData AttributeName="bpm"/>
+      <AttributeData AttributeName="value" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+   </XActionItem>
    <XActionItemReference entity="ESBProperty" name="CopyActions"/>
    <XActionItemReference entity="ESBProperty" name="DeleteActions"/>
    <XActionItemReference entity="ESBProperty" name="Properties"/>
@@ -3005,6 +3076,37 @@
  </XModelEntity>
  <XModelEntity
   ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
+  PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=bpmParam"
+  XMLSUBPATH="mapping" name="ESBPreBPMParam">
+  <XChildrenEntities/>
+  <XEntityRenderer>
+   <ICONS>
+    <ICON info="main.esb.property" type="main"/>
+   </ICONS>
+  </XEntityRenderer>
+  <XModelAttributes>
+   <XModelAttribute default="bpm param" loader="ElementType" name="element type">
+    <Editor name="Uneditable"/>
+   </XModelAttribute>
+   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+    name="esb" xmlname="esb"/>
+   <XModelAttribute PROPERTIES="category=general;save=always" name="bpm" xmlname="bpm"/>
+   <XModelAttribute PROPERTIES="category=general" name="value" xmlname="value"/>
+   <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
+    <Editor name="Note"/>
+   </XModelAttribute>
+  </XModelAttributes>
+  <XActionItem kind="list">
+   <XActionItem ICON="action.empty" displayName="Create" kind="list" name="EditActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="CopyActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="DeleteActions"/>
+   <XActionItemReference entity="ESBPreAlias" name="Properties"/>
+   <XActionItemReference entity="ESBPreAlias" name="MoveActions"/>
+  </XActionItem>
+  <XDependencies/>
+ </XModelEntity>
+ <XModelEntity
+  ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=bpmVar"
   XMLSUBPATH="mapping" name="ESBPreBPMVar">
   <XChildrenEntities/>
@@ -4304,6 +4406,7 @@
    <XChildEntity name="ESBPreActionXStreamToObject101"/>
    <XChildEntity name="ESBPreActionCommandInterpreter101"/>
    <XChildEntity name="ESBPreActionBpmProcessor120"/>
+   <XChildEntity name="ESBPreActionBpm5Processor131"/>
    <XChildEntity name="ESBPreActionScripting120"/>
    <XChildEntity name="ESBPreActionGroovyProcessor101"/>
    <XChildEntity name="ESBPreActionEJBProcessor120"/>
@@ -4340,6 +4443,16 @@
         <AttributeData AttributeName="command"/>
         <AttributeData AttributeName="process definition name" Mandatory="no"/>
         <AttributeData AttributeName="process definition id" Mandatory="no"/>
+       </EntityData>
+      </XActionItem>
+      <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+       PROPERTIES="validator.add=true" WizardClassName="%Default%"
+       displayName="BPM 5 Processor..." kind="action" name="AddBPM5Processor">
+       <EntityData EntityName="ESBPreActionBpm5Processor131">
+        <AttributeData AttributeName="name"/>
+        <AttributeData AttributeName="process definition name"/>
+        <AttributeData AttributeName="process id"/>
+        <AttributeData AttributeName="process action"/>
        </EntityData>
       </XActionItem>
       <XActionItem HandlerClassName="%Create%" ICON="action.empty"
