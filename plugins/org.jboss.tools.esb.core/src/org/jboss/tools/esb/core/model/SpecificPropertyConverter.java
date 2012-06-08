@@ -15,6 +15,7 @@ import org.jboss.tools.common.model.impl.RegularObjectImpl;
 import org.jboss.tools.esb.core.model.converters.FTPListenerConverter;
 import org.jboss.tools.esb.core.model.converters.IPropertyConverter;
 import org.jboss.tools.esb.core.model.converters.JBRListenerConverter;
+import org.jboss.tools.esb.core.model.converters.MessageFlowPriorityConverter;
 
 /**
  * When loading from xml, reads 'raw' list of esb property children of loaded object 
@@ -47,6 +48,10 @@ public class SpecificPropertyConverter implements ESBConstants {
 		} else if(JBR_ENTITIES.indexOf("." + entity + ".") >= 0) {
 			JBRListenerConverter.instance.toSpecific(basic, basic);
 		}
+		
+		if(basic.getModelEntity().getAttribute(ATTR_MESSAGE_FLOW_PRIORITY) != null) {
+			MessageFlowPriorityConverter.instance.toSpecific(basic, basic);
+		}
 		return basic;
 	}
 
@@ -59,6 +64,15 @@ public class SpecificPropertyConverter implements ESBConstants {
 		} else if(JBR_ENTITIES.indexOf("." + entity + ".") >= 0) {
 			basic = basic.copy();
 			JBRListenerConverter.instance.toBasic(basic, specific);
+		}
+		
+		if(basic.getModelEntity().getAttribute(ATTR_MESSAGE_FLOW_PRIORITY) != null) {
+			String value = basic.getAttributeValue(ATTR_MESSAGE_FLOW_PRIORITY);
+			if(value != null && value.length() > 0) {
+				if(basic == specific) basic = basic.copy();
+				MessageFlowPriorityConverter.instance.toBasic(basic, specific);
+				basic.setAttributeValue(ATTR_MESSAGE_FLOW_PRIORITY, "");
+			}
 		}
 		return basic;
 	}

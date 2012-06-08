@@ -349,6 +349,8 @@
    <XModelAttributeReference
     attributes="poll frequency seconds,schedule frequency,schedule id ref"
     entity="ESBScheduledListener101" name="scheduled listener"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -487,6 +489,8 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -533,6 +537,8 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -570,6 +576,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -616,6 +624,8 @@
     name="port" xmlname="port">
     <Constraint loader="%IntEL%"/>
    </XModelAttribute>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -695,6 +705,8 @@
    <XModelAttributeReference
     attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -743,6 +755,8 @@
     <Editor name="List"/>
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general" name="host" xmlname="host"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -803,6 +817,8 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -838,6 +854,8 @@
    <XModelAttributeReference
     attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1130,6 +1148,8 @@
     entity="ESBListener101" name="listener"/>
    <XModelAttributeReference attributes="poll frequency seconds"
     entity="ESBScheduledListener101" name="scheduled listener"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>

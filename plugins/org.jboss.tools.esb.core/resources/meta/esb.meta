@@ -293,6 +293,23 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="id" xmlname="busid"/>
+   <XModelAttribute PROPERTIES="category=advanced;pre=true"
+    name="message flow priority" xmlname="messageFlowPriority">
+    <Constraint loader="List">
+     <value/>
+     <value name="0"/>
+     <value name="1"/>
+     <value name="2"/>
+     <value name="3"/>
+     <value name="4"/>
+     <value name="5"/>
+     <value name="6"/>
+     <value name="7"/>
+     <value name="8"/>
+     <value name="9"/>
+    </Constraint>
+    <Editor name="List"/>
+   </XModelAttribute>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -352,6 +369,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -430,6 +449,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="id" xmlname="busid"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -470,6 +491,8 @@
    <XModelAttributeReference
     attributes="poll frequency seconds,schedule frequency,schedule id ref"
     entity="ESBScheduledListener101" name="scheduled listener"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -597,6 +620,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -639,6 +664,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="id" xmlname="busid"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -794,6 +821,8 @@
     name="name" xmlname="name"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="hostname" xmlname="hostname"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -838,6 +867,8 @@
     entity="ESBListener101" name="listener"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="script" xmlname="script"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -994,6 +1025,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="id" xmlname="busid"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1039,6 +1072,8 @@
    <XModelAttributeReference
     attributes="name,channel id ref,max threads,is gateway"
     entity="ESBListener101" name="listener"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1124,6 +1159,8 @@
     name="name" xmlname="name"/>
    <XModelAttribute PROPERTIES="category=general;save=always"
     name="hibernate cfg file" xmlname="hibernate-cfg-file"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1378,6 +1415,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced"
     name="provider adapter JNDI" xmlname="providerAdapterJNDI"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1414,6 +1453,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="id" xmlname="busid"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -1577,6 +1618,8 @@
    <XModelAttribute PROPERTIES="category=advanced"
     name="jndi pkg prefix" xmlname="jndi-pkg-prefix"/>
    <XModelAttribute PROPERTIES="category=advanced" name="jndi url" xmlname="jndi-URL"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -2169,6 +2212,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="id" xmlname="busid"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -2299,6 +2344,8 @@
    <XModelAttribute PROPERTIES="category=advanced" name="password" xmlname="password"/>
    <XModelAttributeReference attributes="transacted"
     entity="ESBScheduledListener101" name="transacted"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -2371,6 +2418,8 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="name" xmlname="name"/>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -2452,6 +2501,8 @@
     </Constraint>
     <Editor name="ListString"/>
    </XModelAttribute>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>
@@ -2784,6 +2835,8 @@
    <XModelAttribute PROPERTIES="category=advanced" name="handler class" xmlname="handlerClass">
     <Constraint loader="%IntEL%"/>
    </XModelAttribute>
+   <XModelAttributeReference attributes="message flow priority"
+    entity="ESBBus" name="message flow priority"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
    </XModelAttribute>

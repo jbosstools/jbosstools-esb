@@ -18,6 +18,7 @@ import org.jboss.tools.common.meta.XModelEntity;
 import org.jboss.tools.common.model.XModelObject;
 import org.jboss.tools.common.model.util.XModelObjectLoaderUtil;
 import org.jboss.tools.common.xml.XMLUtilities;
+import org.jboss.tools.esb.core.model.converters.MessageFlowPriorityConverter;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -56,7 +57,8 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
 		String entity = o.getModelEntity().getName();
 		if(SpecificActionLoader.instance.isActionsFolder(entity)) {
 			SpecificActionLoader.instance.convertChildrenToSpecific(o);
-		} else if("true".equals(o.getModelEntity().getProperty("hasConvertedProperties"))) {
+		} else if("true".equals(o.getModelEntity().getProperty("hasConvertedProperties"))
+			|| o.getModelEntity().getAttribute(ESBConstants.ATTR_MESSAGE_FLOW_PRIORITY) != null) {
 			SpecificPropertyConverter.instance.convertBasicToSpecific(o);
 		}
 	}
@@ -65,7 +67,8 @@ public class ESBLoaderUtil extends XModelObjectLoaderUtil {
     	if(!needToSave(o)) return true;
     	if(SpecificActionLoader.instance.isPreActionEntity(o)) {
     		o = SpecificActionLoader.instance.convertSpecificActionToBasic(o);
-    	} else if("true".equals(o.getModelEntity().getProperty("hasConvertedProperties"))) {
+    	} else if("true".equals(o.getModelEntity().getProperty("hasConvertedProperties"))
+    			|| o.getModelEntity().getAttribute(ESBConstants.ATTR_MESSAGE_FLOW_PRIORITY) != null) {
     		o = SpecificPropertyConverter.instance.convertSpecificToBasic(o);
     	}
     	return super.save(parent, o);
