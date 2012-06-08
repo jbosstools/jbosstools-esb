@@ -210,6 +210,14 @@ public class ESBListsFormLayoutData implements ESBConstants {
 		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddBPMVar") //$NON-NLS-1$
 	);
 
+	static IFormData BPM_PARAM_LIST_DEFINITION = new FormData(
+		"BPM Param List", //$NON-NLS-1$
+		ModelFormLayoutData.EMPTY_DESCRIPTION,
+		new FormAttributeData[]{new FormAttributeData("esb", 25), new FormAttributeData("bpm", 25), new FormAttributeData("value", 50)}, 
+		new String[]{ConverterConstants.BPM_PARAM_ENTITY},
+		FormLayoutDataUtil.createDefaultFormActionData("CreateActions.AddBPMParam") //$NON-NLS-1$
+	);
+
 	static IFormData NAMESPACE_LIST_DEFINITION = createOneAttributeSingleChildList(
 		"Namespace List", "namespace uri", ConverterConstants.NAMESPACE_ENTITY, "CreateActions.AddNamespace"		
 	);
