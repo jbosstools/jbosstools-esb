@@ -25,10 +25,15 @@ public class ESBResourceTree extends FileSystemResourceTree {
     }
 
 	public XModelObject[] getChildren(XModelObject object) {
+		ESBUtil.updateModel(object.getModel());
 		if(object == getRoot()) {
 			XModelObject[] os = object.getChildren();
 			List<XModelObject> list = new ArrayList<XModelObject>();
 			XModelObject r = FileSystemsHelper.getWebRoot(model);
+			if(r != null) {
+				list.add(r);
+			}
+			r = ESBUtil.getESBRoot(model);
 			if(r != null) {
 				list.add(r);
 			}
