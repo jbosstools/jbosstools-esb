@@ -206,7 +206,7 @@
      displayName="Add BPM Param..." kind="action" name="AddBPMParam">
      <EntityData EntityName="ESBPreBPMParam">
       <AttributeData AttributeName="esb"/>
-      <AttributeData AttributeName="bpm"/>
+      <AttributeData AttributeName="bpm" Mandatory="no"/>
       <AttributeData AttributeName="value" Mandatory="no"/>
      </EntityData>
     </XActionItem>
@@ -3090,7 +3090,7 @@
    </XModelAttribute>
    <XModelAttribute PROPERTIES="category=general;id=true;save=always"
     name="esb" xmlname="esb"/>
-   <XModelAttribute PROPERTIES="category=general;save=always" name="bpm" xmlname="bpm"/>
+   <XModelAttribute PROPERTIES="category=general" name="bpm" xmlname="bpm"/>
    <XModelAttribute PROPERTIES="category=general" name="value" xmlname="value"/>
    <XModelAttribute TRIM="no" name="comment" visibility="false" xmlname="#comment">
     <Editor name="Note"/>
