@@ -13,7 +13,7 @@
 	<packaging>eclipse-test-plugin</packaging>
 
 	<properties>
-		<systemProperties>-Djbosstools.test.jboss.home.4.2=${requirementsDirectory}/jboss-soa-p.4.3.0/jboss-as -Djbosstools.test.jboss.home.5.0=${requirementsDirectory}/jboss-soa-p.5.0.0/jboss-as	-Djbosstools.test.jboss.home.5.1=${requirementsDirectory}/jboss-5.1.0.GA -Djbosstools.test.soap.home.4.3=${requirementsDirectory}/jboss-soa-p.4.3.0/jboss-soa-p.4.3.0/ -Djbosstools.test.soap.home.5.0=${requirementsDirectory}/jboss-soa-p.5.0.0/jboss-soa-p.5.0.0/</systemProperties>
+		<systemProperties>-Djbosstools.test.jboss.home.4.2=${requirementsDirectory}/jboss-soa-p.4.3.0/jboss-as -Djbosstools.test.jboss.home.5.0=${requirementsDirectory}/jboss-soa-p.5.0.0/jboss-as	-Djbosstools.test.jboss.home.5.1=${requirementsDirectory}/jboss-5.1.0.GA -Djbosstools.test.soap.home.4.3=${requirementsDirectory}/jboss-soa-p.4.3.0/ -Djbosstools.test.soap.home.5.0=${requirementsDirectory}/jboss-soa-p.5.0.0</systemProperties>
 		<coverage.filter>org.jboss.tools.esb.core*</coverage.filter>
 		<emma.instrument.bundles>org.jboss.tools.esb.project.core</emma.instrument.bundles>
 	</properties>
