@@ -13,7 +13,7 @@
 	<packaging>eclipse-test-plugin</packaging>
 
 	<properties>
-		<systemProperties>-Djbosstools.test.jboss.home.4.2=${requirementsDirectory}/jboss-soa-p.4.3.0/jboss-as -Djbosstools.test.jboss.home.5.0=${requirementsDirectory}/jboss-soa-p.5.0.0/jboss-as	-Djbosstools.test.jboss.home.5.1=${requirementsDirectory}/jboss-5.1.0.GA -Djbosstools.test.soap.home.4.3=${requirementsDirectory}/jboss-soa-p.4.3.0/ -Djbosstools.test.soap.home.5.0=${requirementsDirectory}/jboss-soa-p.5.0.0</systemProperties>
+		<systemProperties>-Djbosstools.test.jboss.home.4.2=${requirementsDirectory}/jboss-soa-p.4.3.0/jboss-as -Djbosstools.test.jboss.home.5.0=${requirementsDirectory}/jboss-soa-p-5/jboss-as -Djbosstools.test.jboss.home.5.1=${requirementsDirectory}/jboss-5.1.0.GA -Djbosstools.test.soap.home.4.3=${requirementsDirectory}/jboss-soa-p.4.3.0/ -Djbosstools.test.soap.home.5.0=${requirementsDirectory}/jboss-soa-p-5</systemProperties>
 		<coverage.filter>org.jboss.tools.esb.core*</coverage.filter>
 		<emma.instrument.bundles>org.jboss.tools.esb.project.core</emma.instrument.bundles>
 	</properties>
@@ -55,8 +55,8 @@
 							<goal>wget</goal>
 						</goals>
 						<configuration>
-							<url>http://download.devel.redhat.com/released/JBossSOAP/5.0.1/soa-5.0.1.GA-signed.zip</url>
-							<md5>b9088f7884c7464419623c596dafe25f</md5>
+							<url>http://jawa05.englab.brq.redhat.com/candidate/soa-5.3.0.ER5/soa-p-5.3.0.ER5.zip</url>
+							<md5>1c2e329498396762b8dad2c1621308bf</md5>
 							<unpack>true</unpack>
 						</configuration>
 					</execution>
