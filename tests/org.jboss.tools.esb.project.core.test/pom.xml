@@ -34,6 +34,7 @@
 							<url>http://repository.jboss.org/sourceforge/jboss-5.1.0.GA.zip</url>
 							<md5>78322c75ca0c13002a04418b4a8bc920</md5>
 							<unpack>true</unpack>
+							<skip>${skipPrivateRequirements}</skip>
 						</configuration>
 					</execution>
 					<execution>
@@ -46,6 +47,7 @@
 							<url>http://download.devel.redhat.com/released/JBossSOAP/4.3.0/CP05/soa-4.3.0.GA_CP05.zip</url>
 							<md5>91ce2b24015178cda02878d0abe38ac7</md5>
 							<unpack>true</unpack>
+							<skip>${skipPrivateRequirements}</skip>
 						</configuration>
 					</execution>
 					<execution>
@@ -58,6 +60,7 @@
 							<url>http://jawa05.englab.brq.redhat.com/candidate/soa-5.3.0.ER5/soa-p-5.3.0.ER5.zip</url>
 							<md5>1c2e329498396762b8dad2c1621308bf</md5>
 							<unpack>true</unpack>
+							<skip>${skipPrivateRequirements}</skip>
 						</configuration>
 					</execution>
 				</executions>
@@ -66,6 +69,7 @@
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<configuration>
+					<skip>${skipPrivateRequirements}</skip>
 					<explodedBundles>
 						<bundle>org.jboss.tools.esb.project.core</bundle>
 					</explodedBundles>
