@@ -16,6 +16,8 @@
 		<coverage.filter>org.jboss.tools.esb.*</coverage.filter>
 		<emma.instrument.bundles>org.jboss.tools.esb.core,org.jboss.tools.esb.validator,org.jboss.tools.esb.project.core</emma.instrument.bundles>
 	</properties>
+
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -59,5 +61,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
+	</build>
 </project>
