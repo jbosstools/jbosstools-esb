@@ -17,6 +17,8 @@
 		<emma.instrument.bundles>org.jboss.tools.esb.core,org.jboss.tools.esb.project.core</emma.instrument.bundles>
 	</properties>
 
+	<build>	
+
 		<plugins>
 
 			<plugin>
@@ -63,7 +65,6 @@
 
 		</plugins>
 
-
-
+	</build>
 
 </project>
