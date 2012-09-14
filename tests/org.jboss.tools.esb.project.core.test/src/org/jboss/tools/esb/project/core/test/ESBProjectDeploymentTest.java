@@ -21,7 +21,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.internal.core.JavaProject;
 import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jdt.launching.JavaRuntime;
 import org.eclipse.wst.common.frameworks.datamodel.DataModelFactory;
@@ -46,10 +45,9 @@ import org.eclipse.wst.server.core.internal.RuntimeWorkingCopy;
 import org.eclipse.wst.server.core.internal.ServerPlugin;
 import org.eclipse.wst.server.core.internal.ServerWorkingCopy;
 import org.eclipse.wst.server.core.model.IModuleResource;
+import org.jboss.ide.eclipse.as.core.server.IDeployableServer;
 import org.jboss.ide.eclipse.as.core.server.IJBossServerRuntime;
-import org.jboss.ide.eclipse.as.core.server.internal.DeployableServer;
 import org.jboss.ide.eclipse.as.core.util.IJBossToolingConstants;
-import org.jboss.tools.test.util.TestProjectProvider;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.facet.JBossClassPathCommand;
@@ -57,6 +55,7 @@ import org.jboss.tools.esb.core.facet.JBossESBFacetDataModelProvider;
 import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeClassPathInitializer;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
+import org.jboss.tools.test.util.TestProjectProvider;
 
 public class ESBProjectDeploymentTest extends TestCase {
 	private static final String SOAP_HOME_5_0_PROP_NAME = "jbosstools.test.soap.home.5.0";
@@ -365,7 +364,7 @@ public class ESBProjectDeploymentTest extends TestCase {
 		IPath path = new Path(location).append("server").append("default")
 				.append("deploy");
 		((ServerWorkingCopy) serverWC).setAttribute(
-				DeployableServer.DEPLOY_DIRECTORY, path.toOSString());
+				IDeployableServer.DEPLOY_DIRECTORY, path.toOSString());
 		currentServer = serverWC.save(true, new NullProgressMonitor());
 
 	}
