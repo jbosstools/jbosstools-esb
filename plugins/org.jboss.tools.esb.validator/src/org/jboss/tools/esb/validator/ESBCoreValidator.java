@@ -29,14 +29,17 @@ import org.jboss.tools.common.model.util.EclipseResourceUtil;
 import org.jboss.tools.common.model.util.PositionHolder;
 import org.jboss.tools.common.text.ITextSourceReference;
 import org.jboss.tools.common.validation.ContextValidationHelper;
+import org.jboss.tools.common.validation.IPreferenceInfo;
 import org.jboss.tools.common.validation.IProjectValidationContext;
 import org.jboss.tools.common.validation.IValidatingProjectSet;
 import org.jboss.tools.common.validation.IValidatingProjectTree;
 import org.jboss.tools.common.validation.IValidator;
+import org.jboss.tools.common.validation.PreferenceInfoManager;
 import org.jboss.tools.common.validation.ValidatorManager;
 import org.jboss.tools.common.validation.internal.ProjectValidationContext;
 import org.jboss.tools.common.validation.internal.SimpleValidatingProjectTree;
 import org.jboss.tools.common.validation.internal.ValidatingProjectSet;
+import org.jboss.tools.esb.core.ESBCorePlugin;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.model.ESBConstants;
@@ -48,6 +51,7 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	public static final String ID = "org.jboss.tools.esb.validator.ESBCoreValidator"; //$NON-NLS-1$
 	public static final String PROBLEM_TYPE = "org.jboss.tools.esb.validator.esbproblem"; //$NON-NLS-1$
 	public static final String PREFERENCE_PAGE_ID = "org.jboss.tools.esb.validator.ui.ESBValidatorPreferencePage"; //$NON-NLS-1$
+	public static final String PROPERTY_PAGE_ID = "org.jboss.tools.esb.validator.ui.propertyPages.ESBValidatorPreferencePage"; //$NON-NLS-1$
 
 	static String XML_EXT = ".xml"; //$NON-NLS-1$
 	static String ATTR_PATH = "path"; //$NON-NLS-1$
@@ -420,8 +424,29 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	}
 
 	@Override
-	protected String getPreferencePageId() {
-		return PREFERENCE_PAGE_ID;
+	protected void registerPreferenceInfo() {
+		if(PreferenceInfoManager.getPreferenceInfo(PROBLEM_TYPE) == null){
+			PreferenceInfoManager.register(PROBLEM_TYPE, new ESBPreferenceInfo());
+		}
+	}
+	
+	class ESBPreferenceInfo implements IPreferenceInfo{
+
+		@Override
+		public String getPreferencePageId() {
+			return PREFERENCE_PAGE_ID;
+		}
+
+		@Override
+		public String getPropertyPageId() {
+			return PROPERTY_PAGE_ID;
+		}
+
+		@Override
+		public String getPluginId() {
+			return ESBCorePlugin.PLUGIN_ID;
+		}
+		
 	}
 }
 
@@ -473,5 +498,3 @@ class XMLValueInfo implements IValueInfo {
 		return object == null ? null : (IFile)object.getAdapter(File.class);
 	}
 }
-
-
