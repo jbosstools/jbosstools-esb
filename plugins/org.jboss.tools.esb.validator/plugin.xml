@@ -18,7 +18,8 @@
          <validator
                class="org.jboss.tools.esb.validator.ESBCoreValidator"
                name="%ESBCoreValidator"
-               id="org.jboss.tools.esb.validator.ESBCoreValidator">
+               id="org.jboss.tools.esb.validator.ESBCoreValidator"
+               problemType="org.jboss.tools.esb.validator.esbproblem">
          </validator>
    </extension>
 

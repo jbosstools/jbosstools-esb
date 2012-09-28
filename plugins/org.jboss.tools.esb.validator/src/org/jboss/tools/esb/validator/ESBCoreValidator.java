@@ -49,7 +49,6 @@ import org.w3c.dom.Element;
 
 public class ESBCoreValidator extends ESBValidationErrorManager implements IValidator {
 	public static final String ID = "org.jboss.tools.esb.validator.ESBCoreValidator"; //$NON-NLS-1$
-	public static final String PROBLEM_TYPE = "org.jboss.tools.esb.validator.esbproblem"; //$NON-NLS-1$
 	public static final String PREFERENCE_PAGE_ID = "org.jboss.tools.esb.validator.ui.ESBValidatorPreferencePage"; //$NON-NLS-1$
 	public static final String PROPERTY_PAGE_ID = "org.jboss.tools.esb.validator.ui.propertyPages.ESBValidatorPreferencePage"; //$NON-NLS-1$
 
@@ -59,15 +58,6 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 
 	String projectName;
 	Map<IProject, IProjectValidationContext> contexts = new HashMap<IProject, IProjectValidationContext>();
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.jboss.tools.jst.web.kb.internal.validation.ValidationErrorManager#getMarkerType()
-	 */
-	@Override
-	public String getMarkerType() {
-		return PROBLEM_TYPE;
-	}
 
 	public String getId() {
 		return ID;
@@ -424,10 +414,8 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 	}
 
 	@Override
-	protected void registerPreferenceInfo() {
-		if(PreferenceInfoManager.getPreferenceInfo(PROBLEM_TYPE) == null){
-			PreferenceInfoManager.register(PROBLEM_TYPE, new ESBPreferenceInfo());
-		}
+	public void registerPreferenceInfo() {
+		PreferenceInfoManager.register(getProblemType(), new ESBPreferenceInfo());
 	}
 	
 	class ESBPreferenceInfo implements IPreferenceInfo{
@@ -446,7 +434,6 @@ public class ESBCoreValidator extends ESBValidationErrorManager implements IVali
 		public String getPluginId() {
 			return ESBCorePlugin.PLUGIN_ID;
 		}
-		
 	}
 }
 
