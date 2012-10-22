@@ -1,5 +1,9 @@
 # The ESB Tools project
 
+## Summary
+
+ESB Tools provides tooling to work with JBoss ESB configuration files and deploy ESB projects.
+
 ## Install
 
 _ESB Tools_ is part of [JBoss Tools](http://jboss.org/tools) from
