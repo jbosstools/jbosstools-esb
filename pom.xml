@@ -13,36 +13,19 @@
 	<name>esb.all</name>
 	<version>1.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<!-- 
-	NOTE: if you don't have build/ checked out into a folder parallel to this one, the relativePath resolution above will fail. .
-	build parent pom (run `mvn install` in ~/33x/build/parent/ folder), then after building upstream components locally (eg., ~/33x/tests, ~/33x/common, ~/33x/as):
-		cd ~/33x/esb; mvn3 clean install 
-	or use the bootstrap profile which will build upstream and this component in a single build:
-		cd ~/33x/build; mvn clean install -Pesb-bootstrap
-	or, if not building upstream locally, use (see ~/33x/build/parent/pom.xml for other profiles you can use too):
-		cd ~/33x/esb; mvn3 clean install -P jbosstools-nightly
-	to skip running tests (compile only) use -Dmaven.test.skip
-		cd ~/33x/esb; mvn3 clean install -Dmaven.test.skip
-        -->
 	<modules>
-		<module>features</module>
 		<module>plugins</module>
 		<module>tests</module>
+		<module>features</module>
 		<module>site</module>
 	</modules>
-
-	<repositories>
-		<!-- To resolve parent artifact -->
-	    <repository>
-      		<id>jboss-public-repository-group</id>
-      		<name>JBoss Public Repository Group</name>
-      		<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-    	</repository>
-    	<repository>
-			<id>jboss-snapshots-repository</id>
-			<name>JBoss Snapshots Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-		</repository>
-	</repositories>
+	<profiles>
+		<profile>
+			<id>bootstrap</id>
+			<modules>
+				<module>../base</module>
+			</modules>
+		</profile>
+	</profiles>	
 </project>
 	
