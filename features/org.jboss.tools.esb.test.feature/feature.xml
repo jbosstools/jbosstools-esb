@@ -16,5 +16,4 @@
 	<plugin id="org.jboss.tools.esb.core.test" download-size="0" install-size="0" version="0.0.0" />
 	<plugin id="org.jboss.tools.esb.project.core.test" download-size="0" install-size="0" version="0.0.0" unpack="false" />
 	<plugin id="org.jboss.tools.esb.validator.test" download-size="0" install-size="0" version="0.0.0" />
-	<plugin id="org.jboss.tools.esb.ui.bot.test" download-size="0" install-size="0" version="0.0.0" />
 </feature>
