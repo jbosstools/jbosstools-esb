@@ -20,4 +20,5 @@ Require-Bundle: org.junit,
  org.eclipse.core.commands;bundle-version="3.5.0",
  org.eclipse.jst.j2ee;bundle-version="1.1.300",
  org.jboss.ide.eclipse.as.classpath.core;bundle-version="2.1.0",
- org.jboss.tools.tests;bundle-version="3.1.0"
+ org.jboss.tools.tests;bundle-version="3.1.0",
+ org.jboss.tools.as.test.core;bundle-version="2.4.1"
