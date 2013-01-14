@@ -391,5 +391,16 @@
           </supportedRuntimeType>
        </Resolver>
     </extension>
-    
+
+     <extension
+         point="org.eclipse.wst.server.core.runtimeModuleType">
+      <runtimeModuleType
+            id="jst.jboss.esb.mappings"
+            runtimeTypes="org.jboss.ide.eclipse.as.runtime.stripped,org.jboss.ide.eclipse.as.runtime.50,org.jboss.ide.eclipse.as.runtime.51,org.jboss.ide.eclipse.as.runtime.60,org.jboss.ide.eclipse.as.runtime.eap.50">
+         <moduleType
+               types="jst.jboss.esb"
+               versions="4.*">
+         </moduleType>
+      </runtimeModuleType>
+   </extension>
 </plugin>
