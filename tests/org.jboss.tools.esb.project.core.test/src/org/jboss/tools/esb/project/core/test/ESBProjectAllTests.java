@@ -1,15 +1,14 @@
  
 package org.jboss.tools.esb.project.core.test;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
+@RunWith(Suite.class)
+@SuiteClasses({
+	ESBProjectDeploymentTest.class,
+	EsbModuleServerCompatTest.class,
+})
 public class ESBProjectAllTests {
-
-	public static Test suite() {
-		TestSuite suite = new TestSuite("Test ESB Project Core");
-		suite.addTestSuite(ESBProjectDeploymentTest.class);
-		return suite;
-	}
-
 }
