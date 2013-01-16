@@ -41,7 +41,10 @@ public class ESBRuntimeVersionComparator implements Comparator<String> {
 		String out2 = input.substring(pos + 1, input.length());
 		if (out1 != null && out2 != null) {
 			Integer intOut1 = Integer.parseInt(out1);
-			Integer intOut2 = Integer.parseInt(out2);
+			Integer intOut2 = 99;
+			if (!out2.contentEquals("12+")) {
+			    intOut2 = Integer.parseInt(out2);
+			}
 			return new Integer[]{intOut1, intOut2};
 		}
 		return null;

@@ -625,7 +625,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		cmVersions.add("1.0.1"); //$NON-NLS-1$
 		double versionNumber = 0.0;
 		try{
-		versionNumber = Double.valueOf(version);
+		    versionNumber = Double.valueOf(version);
 		}
 		catch(NumberFormatException ex){
 			versionNumber = 0.0;
@@ -639,7 +639,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 		if(versionNumber >= 4.9 || versionNumber == 4.10){
 			cmVersions.add("1.3.0"); //$NON-NLS-1$
 		}
-		if(versionNumber == 4.11){
+		if(versionNumber >= 4.11){
 			cmVersions.add("1.3.1"); //$NON-NLS-1$
 		}
 		int index = cmVersions.getItemCount() - 1;

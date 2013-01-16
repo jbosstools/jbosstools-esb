@@ -27,4 +27,6 @@ public class ESBProjectConstant {
 	public final static String DEFAULT_ESB_SOURCE_FOLDER = "src";
 	
 	public final static String ESB_PROJECT_NATURE = "org.jboss.tools.esb.project.ESBNature";
+	
+	public final static String ESB_MAX_SUPPORTED_VERSION = "4.12";
 }
