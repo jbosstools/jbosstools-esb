@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +37,10 @@ import org.eclipse.jface.preference.IPersistentPreferenceStore;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.common.project.facet.core.runtime.RuntimeManager;
+import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
@@ -457,9 +461,61 @@ public class JBossRuntimeManager {
 			}
 		}
 	}
-
 	
-	public  String getVersion(String location, String configuration){
+    public List<String> getESBFacetVersions(){
+        List<String> versions = new ArrayList<String>();
+        IProjectFacet esbfacet = ProjectFacetsManager.getProjectFacet(ESBProjectConstant.ESB_PROJECT_FACET);
+        for(IProjectFacetVersion version: esbfacet.getVersions()){
+            versions.add(version.getVersionString());
+        }
+        //versions.add("");
+        Comparator<String> comparator = new Comparator<String>() {
+
+            public int compare(String o1, String o2) {
+                if (o1 == null || o2 == null) {
+                    return 0;
+                }
+                String[] split1 = o1.split("\\.");
+                String[] split2 = o2.split("\\.");
+                if (split1.length != 2 || split2.length != 2) {
+                    return o1.compareTo(o2);
+                }
+                int o11;
+                int o12;
+                int o21;
+                int o22;
+                try {
+                    o11 = new Integer(split1[0]);
+                    o12 = new Integer(split1[1]);
+                    o21 = new Integer(split2[0]);
+                    o22 = new Integer(split2[1]);
+                } catch (NumberFormatException e) {
+                    return o1.compareTo(o2);
+                }
+                
+                if (o11 > o21) {
+                    return 1;
+                }
+                if (o11 < o21) {
+                    return -1;
+                }
+                if (o12 > o22) {
+                    return 1;
+                }
+                if (o12 < o22) {
+                    return -1;
+                }
+                return 0;
+            }
+            
+        };
+        Collections.sort(versions, comparator);
+        versions.add("");
+        //Collections.reverse(versions);
+        return versions;
+    }
+
+    public  String getVersion(String location, String configuration){
 		String version = "";
 		File rosettaJar = null;
 		Collection<IESBRuntimeResolver> resolvers = parserMap.values();
@@ -500,6 +556,26 @@ public class JBossRuntimeManager {
 			else if(version.length() > 3 && ! (version.charAt(version.length()-1) >= '0' && version.charAt(version.length()-1) < '9') ){
 				version = version.substring(0,3);
 			}
+            
+            // if we hit a version with a three part version, reduce it to two
+			int pos1 = version.indexOf('.');
+			int pos2 = version.indexOf('.', pos1 + 1);
+			if (pos2 > -1) {
+			    version = version.substring(0, pos2);
+			}
+//            if (version.equals("4.11.1")) {
+//                version = "4.11";
+//            }
+            // if we can't find the version in the facets list, default to the highest facet
+            List<String> facets = getESBFacetVersions();
+            if (!facets.isEmpty() && !facets.contains(version)) {
+                int i = facets.size() - 1;
+                String tempFacetVersion = facets.get(i--);
+                while (tempFacetVersion.trim().length() < 1) {
+                    tempFacetVersion = facets.get(i--);
+                }
+                version = tempFacetVersion;
+            }
 			
 		} catch (ZipException e) {
 			ESBProjectCorePlugin.log(e.getLocalizedMessage(), e);
@@ -510,5 +586,47 @@ public class JBossRuntimeManager {
 		return version;
 	}
 	
+    public  String getRuntimeESBVersion(String location, String configuration){
+        String version = "";
+        File rosettaJar = null;
+        Collection<IESBRuntimeResolver> resolvers = parserMap.values();
+        for(IESBRuntimeResolver resolver : resolvers){
+            rosettaJar = resolver.getRosettaJar(location, configuration);
+            if(rosettaJar != null && rosettaJar.exists()){
+                break;
+            }
+        }
+        
+        if(rosettaJar == null || !rosettaJar.exists()){
+            return "";
+        }
+        
+        try {
+            ZipFile zfile = new ZipFile(rosettaJar);
+            ZipEntry entry = zfile.getEntry(VERSION_FILE_NAME);
+            
+            if(entry == null) return "";
+            
+            InputStream input = zfile.getInputStream(entry);
+            Properties properties = new Properties();
+            properties.load(input);
+            version = properties.getProperty(VERSION_PROPERTIES_KEY);
+            
+            
+            if(version == null){
+                return "";
+            }
+            // soa-p5.0 and higher
+            else if(version.indexOf(VERSION_PROPERTIES_SEPERATOR) > 0){
+                version = version.substring(0, version.indexOf(VERSION_PROPERTIES_SEPERATOR));
+            }
+        } catch (ZipException e) {
+            ESBProjectCorePlugin.log(e.getLocalizedMessage(), e);
+        } catch (IOException e) {
+            ESBProjectCorePlugin.log(e.getLocalizedMessage(), e);
+        }
+        
+        return version;
+    }
 	
 }
