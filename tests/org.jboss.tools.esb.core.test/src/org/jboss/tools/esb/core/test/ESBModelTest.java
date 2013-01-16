@@ -516,6 +516,22 @@ public class ESBModelTest extends TestCase {
 		assertTrue(errorList.toString(), errorList.length() == 0);
 	}
 
+	public void testSoapClient() {
+		XModelObject object = getFileObject("esb-1.3", "jboss-esb-client.xml", ESBConstants.ENT_ESB_FILE_131);
+		
+		StringBuffer errorList = new StringBuffer();
+
+		String cbrWiretapPath = "Services/s1/Actions/client";
+		
+		String[][] clientAttrValues = {
+			{"endpoint url", "http://host/servername"},
+			{"file", "httpclient.properties"},
+		};
+		checkAttributes(object, cbrWiretapPath, clientAttrValues, errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
 	XModelObject getFileObject(String parentPath, String xmlname) {
 		return getFileObject(parentPath, xmlname, ESBConstants.ENT_ESB_FILE_101);
 	}

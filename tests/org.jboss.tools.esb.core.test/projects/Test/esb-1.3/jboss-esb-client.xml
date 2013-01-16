@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<jbossesb parameterReloadSecs="5"
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.1.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.1.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.1.xsd">
+ <services>
+  <service category="c1" description="d1" name="s1">
+   <actions>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="client">
+     <property name="wsdl" value="someWsdl"/>
+     <property name="SOAPAction" value="noAction"/>
+     <property name="endpointUrl" value="http://host/servername">
+      <http-client-property name="file" value="httpclient.properties"/>
+     </property>
+    </action>
+   </actions>
+  </service>
+ </services>
+</jbossesb>
