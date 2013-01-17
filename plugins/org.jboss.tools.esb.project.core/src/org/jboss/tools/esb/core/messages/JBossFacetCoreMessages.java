@@ -29,6 +29,7 @@ public class JBossFacetCoreMessages {
 	public static String JBoss_Runtime;
 	public static String Error_Add_Facet_JBossESB;
 	public static String Error_Remove_Facet_JBossESB;
+	public static String Warning_No_Exact_ESB_Runtime_Match;
 
 
 	static {
