@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -74,6 +75,7 @@ import org.jboss.tools.common.ui.widget.editor.IFieldEditor;
 import org.jboss.tools.common.ui.widget.editor.LabelFieldEditor;
 import org.jboss.tools.common.ui.widget.editor.TextFieldEditor;
 import org.jboss.tools.esb.core.ESBProjectConstant;
+import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
 import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
@@ -539,7 +541,7 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 				setPageComplete(false);
 				return;
 			}
-
+			
 			if (!name.getValueAsString().matches(
 					"[a-zA-Z_][a-zA-Z0-9_\\-\\. ]*")) { //$NON-NLS-1$
 				setErrorMessage(JBossESBUIMessages.Error_JBoss_Runtime_List_Field_Editor_Runtime_Name_Is_Not_Correct);
@@ -612,6 +614,26 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			}
 
 			setErrorMessage(null);
+
+			// validate version matches what's in the runtime zip or show warning
+            String homeLocation = homeDir.getValueAsString();
+            String config = configuration.getText();
+            String runtimeESBVersion = JBossRuntimeManager.getInstance().getRuntimeESBVersion(homeLocation, config);
+
+            // if we hit a version with a three part version, reduce it to two
+            int pos1 = runtimeESBVersion.indexOf('.');
+            int pos2 = runtimeESBVersion.indexOf('.', pos1 + 1);
+            if (pos2 > -1) {
+                runtimeESBVersion = runtimeESBVersion.substring(0, pos2);
+            }
+
+            if (!runtimeESBVersion.contentEquals(version.getValueAsString())) {
+                String[] boundStrings = new String[]{runtimeESBVersion, version.getValueAsString()};
+                String message = NLS.bind(
+                        JBossFacetCoreMessages.Warning_No_Exact_ESB_Runtime_Match, boundStrings);
+                setMessage(message, IMessageProvider.WARNING);
+            }
+            
 			setPageComplete(true);
 		}
 
