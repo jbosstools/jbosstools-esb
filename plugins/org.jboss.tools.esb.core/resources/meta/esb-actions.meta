@@ -1953,6 +1953,7 @@
   XMLSUBPATH="action" name="ESBPreActionSOAPClient120">
   <XChildrenEntities>
    <XChildEntity name="ESBProperty"/>
+   <XChildEntity name="ESBPreClientProp"/>
   </XChildrenEntities>
   <XEntityRenderer>
    <ICONS>
@@ -1986,8 +1987,15 @@
     name="params location" xmlname="paramsLocation"/>
    <XModelAttribute PROPERTIES="pre=true;category=advanced"
     name="response location" xmlname="responseLocation"/>
-   <XModelAttribute PROPERTIES="category=advanced;pre=true"
-    name="endpoint url" xmlname="endpointUrl"/>
+   <XModelAttribute PROPERTIES="category=advanced" name="endpoint url" xmlname="endpointUrl"/>
+   <XModelAttribute PROPERTIES="category=general" name="file" xmlname="file">
+    <Constraint loader="Tree">
+     <value name="ESBResourceTree"/>
+     <value name="extensions=properties"/>
+     <value name="linkAction=OpenConfig"/>
+    </Constraint>
+    <Editor name="TreeChooser"/>
+   </XModelAttribute>
    <XModelAttribute PROPERTIES="category=advanced;pre=true"
     name="response as ognl map" xmlname="responseAsOgnlMap">
     <Constraint loader="ListString">
@@ -2015,6 +2023,14 @@
      PROPERTIES="validator.add=true" WizardClassName="%Default%"
      displayName="Add Property..." kind="action" name="AddProperty">
      <EntityData EntityName="ESBProperty">
+      <AttributeData AttributeName="name"/>
+      <AttributeData AttributeName="value" Mandatory="no"/>
+     </EntityData>
+    </XActionItem>
+    <XActionItem HandlerClassName="%Create%" ICON="action.empty"
+     PROPERTIES="validator.add=true" WizardClassName="%Default%"
+     displayName="Add HTTP Client Property..." kind="action" name="AddClientProp">
+     <EntityData EntityName="ESBPreClientProp">
       <AttributeData AttributeName="name"/>
       <AttributeData AttributeName="value" Mandatory="no"/>
      </EntityData>
