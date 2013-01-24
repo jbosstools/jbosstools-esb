@@ -23,6 +23,7 @@ public class ESBRuntimeResolver_47 extends AbstractESBRuntimeResolver implements
 
 	private final static String CONFIG_MODEL_JAR_11 = "jbossesb-config-model-1.1.0.jar";
 	private final static String CONFIG_MODEL_JAR_12 = "jbossesb-config-model-1.2.0.jar";
+    private final static String JUDDI_CLIENT_JAR_301 = "juddi-client-3.0.1.jar";
 
 	
 	public boolean isValidESBRuntime(String location, String version, String configuration){
@@ -33,6 +34,7 @@ public class ESBRuntimeResolver_47 extends AbstractESBRuntimeResolver implements
 		}
 			
 		return jarNames.contains(ROSETTA_JAR)
+                && jarNames.contains(JUDDI_CLIENT_JAR_301)
 				&& jarNames.contains(CONFIG_MODEL_JAR_11)
 				&& jarNames.contains(CONFIG_MODEL_JAR_12);
 	}

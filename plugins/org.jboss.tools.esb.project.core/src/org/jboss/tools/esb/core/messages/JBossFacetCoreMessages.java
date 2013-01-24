@@ -30,7 +30,7 @@ public class JBossFacetCoreMessages {
 	public static String Error_Add_Facet_JBossESB;
 	public static String Error_Remove_Facet_JBossESB;
 	public static String Warning_No_Exact_ESB_Runtime_Match;
-
+	public static String Error_Version_Not_Supported;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, JBossFacetCoreMessages.class);
