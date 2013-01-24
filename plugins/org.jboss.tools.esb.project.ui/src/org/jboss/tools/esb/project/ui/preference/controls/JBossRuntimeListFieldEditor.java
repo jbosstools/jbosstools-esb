@@ -562,21 +562,6 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			}
 
 			JBossESBRuntime jarJbws = (JBossESBRuntime) jars.getValue();
-			if (current != null
-					&& current.getName().equals(name.getValueAsString())
-					&& current.getHomeDir().equals(homeDir.getValueAsString())
-					&& current.getVersion().equals(version.getValueAsString())
-					&& current.isUserConfigClasspath() == jarJbws
-							.isUserConfigClasspath()
-					&& current.getConfiguration().equals(configuration.getText())
-					&& (!jarJbws.isUserConfigClasspath() || hasSameLibraies(
-							current.getLibraries(), jarJbws.getLibraries()))) {
-
-				setErrorMessage(null);
-				setPageComplete(false);
-				return;
-			}
-
 			if (jarJbws.isUserConfigClasspath()
 					&& jarJbws.getLibraries().size() == 0) {
 				setErrorMessage(JBossESBUIMessages.JBossRuntimeListFieldEditor_ErrorMessageAtLeastOneJar);
@@ -592,28 +577,16 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			}
 			
 			if (!runtimeExist(homeDir.getValueAsString(),  (String)version.getValue(), configuration.getText())) {
-				final Combo vCombo = (Combo)this.version.getEditorControls()[1];
-				String[] vStrings = vCombo.getItems();
-				for( int i = 0; i < vStrings.length; i++ ) {
-					boolean works = runtimeExist(homeDir.getValueAsString(),  vStrings[i], configuration.getText());
-					if( works ) { 
-						final String newVersion = vStrings[i];
-						final int i2 = i;
-						Display.getDefault().asyncExec(new Runnable() { 
-							public void run() {
-								vCombo.select(i2);
-								version.setValue(newVersion);
-							}
-						});
-						return;
-					}
-				}
-				setErrorMessage(NLS.bind(JBossESBUIMessages.Label_JBoss_Runtime_Load_Error, version.getValue()));
+                String[] boundStrings = new String[]{version.getValueAsString()};
+                String message = NLS.bind(
+                        JBossFacetCoreMessages.Error_Version_Not_Supported, boundStrings);
+                setErrorMessage(message);
 				setPageComplete(false);
 				return;
 			}
 
 			setErrorMessage(null);
+            setMessage(JBossESBUIMessages.JBoss_Runtime_List_Field_Editor_Create_A_Runtime);
 
 			// validate version matches what's in the runtime zip or show warning
             String homeLocation = homeDir.getValueAsString();
