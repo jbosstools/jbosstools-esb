@@ -27,6 +27,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
@@ -78,6 +79,7 @@ import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.messages.JBossFacetCoreMessages;
 import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
+import org.jboss.tools.esb.project.ui.ESBProjectPlugin;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
 
 /**
@@ -1152,6 +1154,10 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 					(List<JBossESBRuntime>) getValue(), added);
 			WizardDialog dialog = new WizardDialog(Display.getCurrent()
 					.getActiveShell(), wiz);
+			ImageDescriptor desc = ESBProjectPlugin.imageDescriptorFromPlugin(ESBProjectPlugin.PLUGIN_ID,
+					"icons/wizards/ESBRuntimeWizBan.png"); //$NON-NLS-1$
+			wiz.setDefaultPageImageDescriptor(desc);
+
 			dialog.open();
 			tableView.refresh();
 			setDefaultRuntime();
