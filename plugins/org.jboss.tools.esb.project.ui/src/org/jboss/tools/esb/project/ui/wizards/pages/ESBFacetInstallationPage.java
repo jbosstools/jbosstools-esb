@@ -524,6 +524,7 @@ public class ESBFacetInstallationPage extends AbstractFacetWizardPage implements
 			setErrorMessage(JBossESBUIMessages.ESBFacetInstallationPage_Error_Message_Specify_ESB_Runtime);
 			setPageComplete(isPageComplete());
 		}else if(btnServerSupplied.getSelection() && !checkServerSuppliedESBRuntime()){
+            setErrorMessage(null);
 			return;
 		}else{
 			setErrorMessage(null);
