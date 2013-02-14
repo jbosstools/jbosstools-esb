@@ -19,13 +19,11 @@
 		<module>features</module>
 		<module>site</module>
 	</modules>
-	<profiles>
-		<profile>
-			<id>bootstrap</id>
-			<modules>
-				<module>../jbosstools-base</module>
-			</modules>
-		</profile>
-	</profiles>
+	<!-- to build:
+
+	mvn verify -Pjbosstools-nightly-staging-composite-soa-tooling \
+		-Djbosstools-nightly-staging-composite-soa-tooling=http://download.jboss.org/jbosstools/updates/integration/juno/integration-stack/aggregate/4.0.0/ \
+		-Djboss-requirements-composite-soa-tooling-mirror=http://download.jboss.org/jbosstools/updates/juno/integration-stack/
+	-->
 </project>
 	
