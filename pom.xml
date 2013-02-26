@@ -19,11 +19,58 @@
 		<module>features</module>
 		<module>site</module>
 	</modules>
-	<!-- to build:
-
-	mvn verify -Pjbosstools-nightly-staging-composite-soa-tooling \
-		-Djbosstools-nightly-staging-composite-soa-tooling=http://download.jboss.org/jbosstools/updates/integration/juno/integration-stack/aggregate/4.0.0/ \
-		-Djboss-requirements-composite-soa-tooling-mirror=http://download.jboss.org/jbosstools/updates/juno/integration-stack/
-	-->
+ <build>
+  <plugins>
+   <plugin>
+      <groupId>org.eclipse.tycho</groupId>
+      <artifactId>target-platform-configuration</artifactId>
+      <version>${tychoVersion}</version>
+      <configuration>
+        <environments>
+          <environment>
+            <os>macosx</os>
+            <ws>cocoa</ws>
+            <arch>x86</arch>
+          </environment>
+          <environment>
+            <os>macosx</os>
+            <ws>cocoa</ws>
+            <arch>x86_64</arch>
+          </environment>
+          <environment>
+            <os>win32</os>
+            <ws>win32</ws>
+            <arch>x86</arch>
+          </environment>
+          <environment>
+            <os>win32</os>
+            <ws>win32</ws>
+            <arch>x86_64</arch>
+          </environment>
+          <environment>
+            <os>linux</os>
+            <ws>gtk</ws>
+            <arch>x86</arch>
+          </environment>
+          <environment>
+            <os>linux</os>
+            <ws>gtk</ws>
+            <arch>x86_64</arch>
+          </environment>
+        </environments>
+         <!-- Pick up the merged target dependencies of the JBoss Tools core unified target and the full JBoss Tools Integration Stack (with community). -->
+         <target>
+           <artifact>
+             <groupId>org.jboss.tools.integration-stack</groupId>
+             <artifactId>target-platform</artifactId>
+             <version>4.0.0-SNAPSHOT</version>
+             <type>target</type>
+             <classifier>base</classifier>
+           </artifact>
+         </target>
+      </configuration>
+    </plugin>
+  </plugins>
+ </build>
 </project>
 	
