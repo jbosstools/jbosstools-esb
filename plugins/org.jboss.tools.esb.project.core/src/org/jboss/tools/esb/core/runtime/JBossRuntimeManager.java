@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -39,7 +40,6 @@ import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
-import org.eclipse.wst.common.project.facet.core.runtime.RuntimeManager;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
@@ -53,7 +53,7 @@ public class JBossRuntimeManager {
 	private static JBossRuntimeListConverter converter = new JBossRuntimeListConverter();
 
 	private Map<String, JBossESBRuntime> runtimes = new HashMap<String, JBossESBRuntime>();
-	
+	private ArrayList<IRuntimeManagerListener> listeners = new ArrayList<IRuntimeManagerListener>();
 
 	static final String PLUGIN_ID = "org.jboss.tools.esb.project.core"; //$NON-NLS-1$
 	static String ATT_CLASS = "class"; //$NON-NLS-1$
@@ -94,6 +94,27 @@ public class JBossRuntimeManager {
 		return JBossRuntimeManagerHolder.INSTANCE;
 	}
 
+	public void addListener(IRuntimeManagerListener l) {
+		listeners.add(l);
+	}
+	
+	public void removeListener(IRuntimeManagerListener l) {
+		listeners.remove(l);
+	}
+	
+	private void fireRuntimeAdded(JBossESBRuntime rt) {
+		for(Iterator<IRuntimeManagerListener> i = listeners.iterator(); i.hasNext(); ) {
+			IRuntimeManagerListener l = i.next();
+			l.runtimeAdded(rt);
+		}
+	}
+	private void fireRuntimeRemoved(JBossESBRuntime rt) {
+		for(Iterator<IRuntimeManagerListener> i = listeners.iterator(); i.hasNext(); ) {
+			IRuntimeManagerListener l = i.next();
+			l.runtimeRemoved(rt);
+		}
+	}
+	
 	/**
 	 * Return Array of configured JBossWSRuntimes
 	 * 
@@ -121,6 +142,7 @@ public class JBossRuntimeManager {
 		}
 		runtimes.put(runtime.getName(), runtime);
 		save();
+		fireRuntimeAdded(runtime);
 	}
 
 	/**
@@ -217,6 +239,7 @@ public class JBossRuntimeManager {
 	 */
 	public void removeRuntime(JBossESBRuntime rt) {
 		runtimes.remove(rt.getName());
+		fireRuntimeRemoved(rt);
 	}
 
 	/**

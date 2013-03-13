@@ -14,6 +14,9 @@ import java.io.File;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.jboss.ide.eclipse.as.core.server.bean.JBossServerType;
+import org.jboss.ide.eclipse.as.core.server.bean.ServerBean;
+import org.jboss.ide.eclipse.as.core.server.bean.ServerBeanLoader;
 import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.jboss.tools.runtime.core.model.AbstractRuntimeDetectorDelegate;
@@ -29,10 +32,11 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 			String type = runtimeDefinition.getType();
 			if (runtimeDefinition.isEnabled() && !esbExists(runtimeDefinition)) {
 				if (ESB.equals(type)) {
+					String prefix = "ESB - ";
 					JBossESBRuntime runtime = new JBossESBRuntime();
-					runtime.setName("ESB - " + runtimeDefinition.getName()); //$NON-NLS-1$
-					runtime.setHomeDir(runtimeDefinition.getLocation()
-							.getAbsolutePath());
+					if( !runtimeDefinition.getName().startsWith(prefix))
+						runtime.setName("ESB - " + runtimeDefinition.getName()); //$NON-NLS-1$
+					runtime.setHomeDir(runtimeDefinition.getLocation().getAbsolutePath());
 					runtime.setConfiguration(DEFAULT_CONFIGURATION);
 					runtime.setVersion(runtimeDefinition.getVersion());
 					JBossRuntimeManager.getInstance().addRuntime(runtime);
@@ -79,10 +83,31 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 		if (monitor.isCanceled() || root == null) {
 			return null;
 		}
-		// standalone ESB runtime
+		ServerBeanLoader loader = new ServerBeanLoader(root);
+		ServerBean serverBean = loader.getServerBean();
+		if( serverBean.getType().getId() != null) {
+			File esbRoot = null;
+			String type = serverBean.getType().getId();
+			if (JBossServerType.SOAP.getId().equals(type)) {
+				esbRoot = root;
+			} if (JBossServerType.SOAP_STD.getId().equals(type)) {
+				esbRoot = new File(root, "jboss-esb"); //$NON-NLS-1$
+			}
+			if( esbRoot != null ) {
+				if (esbRoot.isDirectory()) {
+					String name = "ESB - " + root.getName();//$NON-NLS-1$
+					String version="";//$NON-NLS-1$
+					RuntimeDefinition esbDefinition = new RuntimeDefinition(
+							name, version, ESB, esbRoot);
+					version = getVersion(esbDefinition);
+					esbDefinition.setVersion(version);
+					return esbDefinition;
+				}
+			}
+		}
 		return null;
 	}
-
+	
 	@Override
 	public void computeIncludedRuntimeDefinition(
 			RuntimeDefinition runtimeDefinition) {

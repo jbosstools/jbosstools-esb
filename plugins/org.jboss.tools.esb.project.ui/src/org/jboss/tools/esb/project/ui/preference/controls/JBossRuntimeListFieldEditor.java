@@ -14,6 +14,7 @@ package org.jboss.tools.esb.project.ui.preference.controls;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -1288,4 +1289,9 @@ public class JBossRuntimeListFieldEditor extends BaseFieldEditor {
 			}
 		}
 	}
+	public void refreshFromModel() {
+		setValue(new ArrayList<JBossESBRuntime>(
+				Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes())));
+	}
+	
 }
