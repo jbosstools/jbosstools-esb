@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.jboss.tools.esb.core.runtime.IRuntimeManagerListener;
 import org.jboss.tools.esb.core.runtime.JBossESBRuntime;
 import org.jboss.tools.esb.core.runtime.JBossRuntimeManager;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
@@ -30,17 +31,17 @@ import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
  * @author Grid Qian
  */
 public class JBossESBRuntimePreferencePage extends PreferencePage implements
-		IWorkbenchPreferencePage {
+		IWorkbenchPreferencePage, IRuntimeManagerListener {
 
 	public JBossESBRuntimePreferencePage() {
 		super();
-		noDefaultAndApplyButton();
 	}
 
 	private static final int COLUMNS = 3;
 
 	JBossRuntimeListFieldEditor jbossRuntimes = new JBossRuntimeListFieldEditor(
-			"rtlist", JBossESBUIMessages.JBoss_Preference_Page_Runtimes, new ArrayList<JBossESBRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()))); //$NON-NLS-1$
+			"rtlist", JBossESBUIMessages.JBoss_Preference_Page_Runtimes,
+			new ArrayList<JBossESBRuntime>(Arrays.asList(JBossRuntimeManager.getInstance().getRuntimes()))); //$NON-NLS-1$
 
 	/**
 	 * Create contents of JBoss ESB preferences page.  list editor
@@ -57,7 +58,18 @@ public class JBossESBRuntimePreferencePage extends PreferencePage implements
 
 		return root;
 	}
+	
+    public void createControl(Composite parent){
+    	super.createControl(parent);
+    	getDefaultsButton().setVisible(false);
+    	JBossRuntimeManager.getInstance().addListener(this);
+    }
 
+    public void dispose() {
+    	super.dispose();
+    	JBossRuntimeManager.getInstance().removeListener(this);
+    }
+    
 	/**
 	 * Inherited from IWorkbenchPreferencePage
 	 * 
@@ -138,5 +150,16 @@ public class JBossESBRuntimePreferencePage extends PreferencePage implements
 
 	public JBossRuntimeListFieldEditor getJBossRuntimes() {
 		return jbossRuntimes;
+	}
+
+	public void runtimeAdded(JBossESBRuntime rt) {
+		refreshPage();
+	}
+
+	public void runtimeRemoved(JBossESBRuntime rt) {
+		refreshPage();
+	}
+	private void refreshPage() {
+		jbossRuntimes.refreshFromModel();
 	}
 }
