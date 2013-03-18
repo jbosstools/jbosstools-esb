@@ -26,16 +26,16 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 
 	private static final String DEFAULT_CONFIGURATION = "default";
 	private static final String ESB = "ESB"; //$NON-NLS-1$
+	private static final String ESB_PREFIX = ESB + " - ";
 	
 	public void initializeRuntimes(List<RuntimeDefinition> runtimeDefinitions) {
 		for (RuntimeDefinition runtimeDefinition : runtimeDefinitions) {
 			String type = runtimeDefinition.getType();
 			if (runtimeDefinition.isEnabled() && !esbExists(runtimeDefinition)) {
 				if (ESB.equals(type)) {
-					String prefix = "ESB - ";
 					JBossESBRuntime runtime = new JBossESBRuntime();
-					if( !runtimeDefinition.getName().startsWith(prefix))
-						runtime.setName("ESB - " + runtimeDefinition.getName()); //$NON-NLS-1$
+					if( !runtimeDefinition.getName().startsWith(ESB_PREFIX))
+						runtime.setName(ESB_PREFIX + runtimeDefinition.getName()); //$NON-NLS-1$
 					runtime.setHomeDir(runtimeDefinition.getLocation().getAbsolutePath());
 					runtime.setConfiguration(DEFAULT_CONFIGURATION);
 					runtime.setVersion(runtimeDefinition.getVersion());
@@ -95,7 +95,7 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 			}
 			if( esbRoot != null ) {
 				if (esbRoot.isDirectory()) {
-					String name = "ESB - " + root.getName();//$NON-NLS-1$
+					String name = ESB_PREFIX + root.getName();//$NON-NLS-1$
 					String version="";//$NON-NLS-1$
 					RuntimeDefinition esbDefinition = new RuntimeDefinition(
 							name, version, ESB, esbRoot);
