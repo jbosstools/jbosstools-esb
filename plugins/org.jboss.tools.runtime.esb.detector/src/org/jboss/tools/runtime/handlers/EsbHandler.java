@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.jboss.ide.eclipse.as.core.server.bean.JBossServerType;
 import org.jboss.ide.eclipse.as.core.server.bean.ServerBean;
 import org.jboss.ide.eclipse.as.core.server.bean.ServerBeanLoader;
@@ -27,6 +28,7 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 	private static final String DEFAULT_CONFIGURATION = "default";
 	private static final String ESB = "ESB"; //$NON-NLS-1$
 	private static final String ESB_PREFIX = ESB + " - ";
+	private static final String JBOSS_ESB_FOLDER = "jboss-esb";
 	
 	public void initializeRuntimes(List<RuntimeDefinition> runtimeDefinitions) {
 		for (RuntimeDefinition runtimeDefinition : runtimeDefinitions) {
@@ -35,7 +37,7 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 				if (ESB.equals(type)) {
 					JBossESBRuntime runtime = new JBossESBRuntime();
 					if( !runtimeDefinition.getName().startsWith(ESB_PREFIX))
-						runtime.setName(ESB_PREFIX + runtimeDefinition.getName()); //$NON-NLS-1$
+						runtime.setName(ESB_PREFIX + runtimeDefinition.getName());
 					runtime.setHomeDir(runtimeDefinition.getLocation().getAbsolutePath());
 					runtime.setConfiguration(DEFAULT_CONFIGURATION);
 					runtime.setVersion(runtimeDefinition.getVersion());
@@ -74,9 +76,12 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 		if (runtimeDefinition == null || runtimeDefinition.getLocation() == null) {
 			return null;
 		}
-		return JBossRuntimeManager.getInstance().getVersion(runtimeDefinition.getLocation().getAbsolutePath(), DEFAULT_CONFIGURATION);
+		return getVersion(runtimeDefinition.getLocation().getAbsolutePath(),DEFAULT_CONFIGURATION );
 	}
-
+	
+    private String getVersion(String location, String configuration){
+		return JBossRuntimeManager.getInstance().getVersion(location, configuration);
+    }
 	@Override
 	public RuntimeDefinition getRuntimeDefinition(File root,
 			IProgressMonitor monitor) {
@@ -91,25 +96,38 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 			if (JBossServerType.SOAP.getId().equals(type)) {
 				esbRoot = root;
 			} if (JBossServerType.SOAP_STD.getId().equals(type)) {
-				esbRoot = new File(root, "jboss-esb"); //$NON-NLS-1$
+				esbRoot = new File(root, JBOSS_ESB_FOLDER); 
 			}
-			if( esbRoot != null ) {
-				if (esbRoot.isDirectory()) {
-					String name = ESB_PREFIX + root.getName();//$NON-NLS-1$
-					String version="";//$NON-NLS-1$
-					RuntimeDefinition esbDefinition = new RuntimeDefinition(
-							name, version, ESB, esbRoot);
-					version = getVersion(esbDefinition);
-					esbDefinition.setVersion(version);
-					return esbDefinition;
-				}
+			return createRuntimeDefinition(esbRoot, root.getName(), monitor);
+		}
+		return null;
+	}
+	
+	private RuntimeDefinition createRuntimeDefinition(File esbRoot, String parentName, IProgressMonitor monitor) {
+		if( esbRoot != null ) {
+			if (esbRoot.isDirectory()) {
+				String name = ESB_PREFIX + parentName;
+				String version=getVersion(esbRoot.getAbsolutePath(), DEFAULT_CONFIGURATION);
+				RuntimeDefinition esbDefinition = new RuntimeDefinition(
+						name, version, ESB, esbRoot);
+				return esbDefinition;
 			}
 		}
 		return null;
 	}
 	
 	@Override
-	public void computeIncludedRuntimeDefinition(
-			RuntimeDefinition runtimeDefinition) {
+	public void computeIncludedRuntimeDefinition(RuntimeDefinition runtimeDefinition) {
+		File esbRoot = null;
+		if (JBossServerType.SOAP.getId().equals(runtimeDefinition.getType())) {
+			esbRoot = runtimeDefinition.getLocation();
+		} if (JBossServerType.SOAP_STD.getId().equals(runtimeDefinition.getType())) {
+			esbRoot = new File(runtimeDefinition.getLocation(), JBOSS_ESB_FOLDER);
+		}
+		RuntimeDefinition child = createRuntimeDefinition(esbRoot, runtimeDefinition.getName(), new NullProgressMonitor());
+		if( child != null ) {
+			child.setParent(runtimeDefinition);
+			runtimeDefinition.getIncludedRuntimeDefinitions().add(child);
+		}
 	}
 }
