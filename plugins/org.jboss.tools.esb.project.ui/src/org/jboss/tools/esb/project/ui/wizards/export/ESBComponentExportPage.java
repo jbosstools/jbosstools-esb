@@ -11,7 +11,12 @@
 package org.jboss.tools.esb.project.ui.wizards.export;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jst.j2ee.datamodel.properties.IJ2EEComponentExportDataModelProperties;
+import org.eclipse.jst.j2ee.internal.plugin.J2EEUIMessages;
 import org.eclipse.jst.j2ee.internal.wizard.J2EEModuleExportPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.jboss.tools.esb.project.ui.ESBSharedImages;
 import org.jboss.tools.esb.project.ui.messages.JBossESBUIMessages;
@@ -54,5 +59,4 @@ public class ESBComponentExportPage extends J2EEModuleExportPage {
 	protected String getCompnentID() {
 		return "JST_JBOSS_ESB"; //$NON-NLS-1$
 	}
-
 }

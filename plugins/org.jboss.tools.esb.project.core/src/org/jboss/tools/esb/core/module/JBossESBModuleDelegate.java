@@ -11,6 +11,7 @@
 package org.jboss.tools.esb.core.module;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
@@ -24,20 +25,49 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jst.common.internal.modulecore.AddMappedOutputFoldersParticipant;
+import org.eclipse.jst.common.internal.modulecore.IgnoreJavaInSourceFolderParticipant;
+import org.eclipse.jst.j2ee.internal.classpathdep.ClasspathDependencyEnablement;
+import org.eclipse.jst.j2ee.internal.common.exportmodel.JEEHeirarchyExportParticipant;
+import org.eclipse.jst.j2ee.internal.deployables.JEEFlattenParticipantProvider;
 import org.eclipse.wst.common.componentcore.ComponentCore;
+import org.eclipse.wst.common.componentcore.internal.flat.FlattenParticipantModel;
+import org.eclipse.wst.common.componentcore.internal.flat.IFlattenParticipant;
 import org.eclipse.wst.common.componentcore.resources.IVirtualComponent;
 import org.eclipse.wst.common.componentcore.resources.IVirtualFolder;
 import org.eclipse.wst.server.core.model.IModuleResource;
 import org.jboss.ide.eclipse.as.wtp.core.modules.IJBTModule;
-import org.jboss.ide.eclipse.as.wtp.core.modules.JBTProjectModuleDelegate;
+import org.jboss.ide.eclipse.as.wtp.core.modules.JBTFlatModuleDelegate;
+import org.jboss.ide.eclipse.as.wtp.core.modules.JBTFlatProjectModuleFactory;
+import org.jboss.ide.eclipse.as.wtp.core.vcf.JBTHeirarchyParticipantProvider;
 import org.jboss.tools.esb.core.ESBProjectCorePlugin;
 import org.jboss.tools.esb.core.StatusUtils;
 import org.jboss.tools.esb.core.facet.IJBossESBFacetDataModelProperties;
 
-public class JBossESBModuleDelegate extends JBTProjectModuleDelegate implements IJBTModule {
+public class JBossESBModuleDelegate extends JBTFlatModuleDelegate implements IJBTModule {
 
-	public JBossESBModuleDelegate(IProject project){
-		super(project);
+	public JBossESBModuleDelegate(IProject project,
+			IVirtualComponent aComponent, JBTFlatProjectModuleFactory myFactory) {
+		super(project, aComponent, myFactory);
+	}
+	
+	public IFlattenParticipant[] getParticipants() {
+		String[] ids = getParticipantIds();
+		return getFlattenParticipants(ids);
+	}
+	
+	@Override
+	public String[] getDefaultFlattenParticipantIDs() {
+		String[] defaultParticipants = new String[]{
+				JEEFlattenParticipantProvider.JEESingleRootParticipant,
+				JEEFlattenParticipantProvider.JEEHeirarchyExportParticipant,
+				JEEFlattenParticipantProvider.AddClasspathLibReferencesParticipant,
+				JEEFlattenParticipantProvider.AddClasspathFoldersParticipant,
+				JEEFlattenParticipantProvider.AddMappedOutputFoldersParticipant,
+				JEEFlattenParticipantProvider.IgnoreJavaInSourceFolderParticipant,
+				JEEFlattenParticipantProvider.FilterResourceParticipant
+		};
+		return defaultParticipants;
 	}
 
 	public IModuleResource[] members() throws CoreException {
@@ -86,10 +116,5 @@ public class JBossESBModuleDelegate extends JBTProjectModuleDelegate implements 
 			System.arraycopy(mr, 0, allResource, esbContent.length + classes.length, mr.length);
 		}
 		return allResource;
-	}
-
-	@Override
-	protected String getFactoryId() {
-		return JBossESBModuleFactory.FACTORY_ID;
 	}
 }

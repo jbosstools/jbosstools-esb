@@ -37,8 +37,8 @@ Require-Bundle: org.eclipse.ui,
  org.jboss.ide.eclipse.as.wtp.core;bundle-version="1.0.0",
  org.jboss.ide.eclipse.as.core;bundle-version="1.0.0",
  org.jboss.tools.common.ui;bundle-version="3.1.0",
- org.eclipse.zest.core,
- org.eclipse.zest.layouts
+ org.eclipse.zest.core;resolution:=optional,
+ org.eclipse.zest.layouts;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor.0
 Eclipse-RegisterBuddy: org.eclipse.jst.ws.annotations.core
