@@ -14,6 +14,10 @@ import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.jboss.ide.eclipse.as.wtp.core.vcf.ModuleExportOperation;
 import org.jboss.tools.esb.core.ESBProjectConstant;
 
+/**
+ * Candidate for removal
+ */
+@Deprecated
 public class ESBComponentExportOperation extends ModuleExportOperation {
 	public ESBComponentExportOperation() {
 		super();

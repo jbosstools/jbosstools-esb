@@ -19,6 +19,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jst.j2ee.application.internal.operations.J2EEComponentExportDataModelProvider;
+import org.eclipse.jst.j2ee.internal.archive.operations.JavaEEComponentExportOperation;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.wst.common.componentcore.internal.util.ComponentUtilities;
 import org.eclipse.wst.common.componentcore.resources.IVirtualComponent;
@@ -33,7 +34,7 @@ public class ESBComponentExportDataModelProvider extends
 		J2EEComponentExportDataModelProvider {
 
 	public IDataModelOperation getDefaultOperation() {
-		return new ESBComponentExportOperation(model);
+		return new JavaEEComponentExportOperation(model);
 	}
 
 	public Set getPropertyNames() {

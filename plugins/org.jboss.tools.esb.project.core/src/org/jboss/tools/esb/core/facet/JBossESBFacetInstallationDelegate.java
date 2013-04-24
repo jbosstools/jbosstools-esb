@@ -82,6 +82,12 @@ public class JBossESBFacetInstallationDelegate implements IDelegate {
 				IJBossESBFacetDataModelProperties.ESB_CONTENT_FOLDER);
 		jbiRoot.createLink(new Path("/" + resourcesFolder), 0, null);
 				
+		String sourcesFolder = model.getStringProperty(
+				IJBossESBFacetDataModelProperties.ESB_SOURCE_FOLDER);
+		jbiRoot.createLink(new Path("/" + sourcesFolder), 0, null);
+
+		
+		
 		//addESBNature(project);
 		IVirtualComponent outputFoldersComponent = new OutputFoldersVirtualComponent(project, newComponent);
 		VCFUtil.addReference(outputFoldersComponent, newComponent, "/", null);
