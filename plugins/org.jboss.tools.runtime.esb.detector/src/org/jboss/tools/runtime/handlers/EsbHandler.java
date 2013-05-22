@@ -38,6 +38,8 @@ public class EsbHandler extends AbstractRuntimeDetectorDelegate {
 					JBossESBRuntime runtime = new JBossESBRuntime();
 					if( !runtimeDefinition.getName().startsWith(ESB_PREFIX))
 						runtime.setName(ESB_PREFIX + runtimeDefinition.getName());
+					else
+						runtime.setName(runtimeDefinition.getName());
 					runtime.setHomeDir(runtimeDefinition.getLocation().getAbsolutePath());
 					runtime.setConfiguration(DEFAULT_CONFIGURATION);
 					runtime.setVersion(runtimeDefinition.getVersion());
