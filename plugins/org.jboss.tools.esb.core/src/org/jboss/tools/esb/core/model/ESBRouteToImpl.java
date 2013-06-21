@@ -15,13 +15,21 @@ package org.jboss.tools.esb.core.model;
  */
 public class ESBRouteToImpl extends ESBCustomizedObjectImpl {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String ATTR_DESTINATION_NAME = "destination name";
+	public static final String ATTR_SERVICE_NAME = "service name";
+	public static final String ATTR_SERVICE_CATEGORY = "service category";
 
 	public ESBRouteToImpl() {}
 
-	public String getPresentationString() {
-		String dn = getAttributeValue("destination name");
-		if(dn != null && dn.length() > 0) return dn;
-		return super.getPresentationString();
+	public String name() {
+		String dn = getAttributeValue(ATTR_DESTINATION_NAME);
+		if(dn != null && dn.length() > 0) {
+			return dn;
+		}
+		String category = getAttributeValue(ATTR_SERVICE_CATEGORY);
+		String name = getAttributeValue(ATTR_SERVICE_NAME);
+		return "" + category + "-" + name;
 	}
 
 }

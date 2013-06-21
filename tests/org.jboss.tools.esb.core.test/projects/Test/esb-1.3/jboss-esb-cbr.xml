@@ -47,6 +47,19 @@
       <object-path esb="body.'org.jboss.soa.esb.message.defaultEntry'" />
      </property>
     </action>
+    <action class="org.jboss.soa.esb.actions.ContentBasedRouter"
+     name="Route" process="process">
+     <property name="cbrAlias" value="Xpath"/>
+     <property name="ruleSet" value="/rules/route-xpath.properties"/>
+     <property name="ruleLanguage"/>
+     <property name="ruleReload" value="true"/>
+     <property name="destinations">
+      <route-to destination-name="ALL-1"
+       service-category="Trade OTC" service-name="FTP Service"/>
+      <route-to destination-name="ALL-2"
+       service-category="Trade OTC" service-name="FTP Service"/>
+     </property>
+    </action>
    </actions>
   </service>
  </services>

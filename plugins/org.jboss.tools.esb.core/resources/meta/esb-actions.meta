@@ -3478,7 +3478,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity
-  ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
+  ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=path"
   XMLSUBPATH="object-path" name="ESBPreObjectPath">
   <XChildrenEntities/>
@@ -3543,7 +3543,7 @@
     <Constraint loader="ListString"/>
     <Editor name="ESBServiceCategoryList"/>
    </XModelAttribute>
-   <XModelAttribute PROPERTIES="category=general;id=true;save=always"
+   <XModelAttribute PROPERTIES="category=general;save=always"
     name="service name" xmlname="service-name">
     <Constraint loader="ListString"/>
     <Editor name="ESBServiceNameList"/>
@@ -3594,7 +3594,7 @@
   <XDependencies/>
  </XModelEntity>
  <XModelEntity
-  ImplementingClass="org.jboss.tools.esb.core.model.ESBRouteToImpl"
+  ImplementingClass="%ESB%"
   PROPERTIES="formFactory=%Default%;formLayout=org.jboss.tools.esb.ui.editor.form.ESBXMLFormLayoutData;converter=send;formDependencies=org.jboss.tools.esb.ui.editor.attribute.adapter.RoutingFormDependency"
   XMLSUBPATH="send-to" name="ESBPreSendTo">
   <XChildrenEntities/>

@@ -471,11 +471,40 @@ public class ESBModelTest extends TestCase {
 		};
 		checkAttributes(object, objectPath, objectAttrValues, errorList);
 
-		String routePath = cbrRouterPath + "/error-service";
+		String routePath = cbrRouterPath + "/ERROR";
 		String[][] routeAttrValues = {
 			{"service name", "error-service"},
 			{"service category", "com.example.soa"},
 			{"destination name", "ERROR"},
+		};
+		checkAttributes(object, routePath, routeAttrValues, errorList);
+
+		assertTrue(errorList.toString(), errorList.length() == 0);
+	}
+
+	/**
+	 * Two routes with same service category and service name.
+	 */
+	public void testContentBasedRouter2() {
+		XModelObject object = getFileObject("esb-1.3", "jboss-esb-cbr.xml", ESBConstants.ENT_ESB_FILE_130);
+		
+		StringBuffer errorList = new StringBuffer();
+
+		String cbrRouterPath = "Services/s/Actions/Route";
+
+		String routePath = cbrRouterPath + "/ALL-1";
+		String[][] routeAttrValues = new String[][]{
+			{"service name", "FTP Service"},
+			{"service category", "Trade OTC"},
+			{"destination name", "ALL-1"},
+		};
+		checkAttributes(object, routePath, routeAttrValues, errorList);
+
+		routePath = cbrRouterPath + "/ALL-2";
+		routeAttrValues = new String[][]{
+			{"service name", "FTP Service"},
+			{"service category", "Trade OTC"},
+			{"destination name", "ALL-2"},
 		};
 		checkAttributes(object, routePath, routeAttrValues, errorList);
 
