@@ -39,7 +39,15 @@ public class EsbModuleServerCompatTest extends Assert {
 		expected.put(IJBossToolingConstants.SERVER_AS_50, full);
 		expected.put(IJBossToolingConstants.SERVER_AS_51, full);
 		expected.put(IJBossToolingConstants.SERVER_AS_60, full);
+		
+		// AS 7 not supported by ESB
+//        expected.put(IJBossToolingConstants.SERVER_AS_70, full);
+//        expected.put(IJBossToolingConstants.SERVER_AS_71, full);
 		expected.put(IJBossToolingConstants.SERVER_EAP_50, full);
+
+		// EAP 6 not supported by ESB
+//		expected.put(IJBossToolingConstants.SERVER_EAP_60, full);
+//        expected.put(IJBossToolingConstants.SERVER_EAP_61, full);
 	}
 	
 	 @Parameters
@@ -78,12 +86,14 @@ public class EsbModuleServerCompatTest extends Assert {
 
 	@Test
 	public void testeServerModuleSupport() {
-		boolean canDeploy = ServerUtil.isSupportedModule(server.getServerType().getRuntimeType().getModuleTypes(), module.getModuleType());
-		boolean shouldDeploy = expected.get(serverType) == null ? false : 
-			contains(expected.get(serverType), version);
-		assertEquals("Version " + version + " supported on " + serverType + 
-				"? Expected:actual=" + shouldDeploy + ":" + canDeploy, 
-				canDeploy, shouldDeploy);
+        boolean canDeploy = ServerUtil.isSupportedModule(server.getServerType().getRuntimeType().getModuleTypes(), module.getModuleType());
+        boolean shouldDeploy = expected.get(serverType) == null ? false : 
+            contains(expected.get(serverType), version);
+        System.out.println("Version " + version + " supported on " + serverType + 
+                "? Expected:actual=" + shouldDeploy + ":" + canDeploy);
+        assertEquals("Version " + version + " supported on " + serverType + 
+                "? Expected:actual=" + shouldDeploy + ":" + canDeploy, 
+                canDeploy, shouldDeploy);
 	}
 	
 	private boolean contains(String[] versions, String version) {
