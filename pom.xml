@@ -18,5 +18,58 @@
 		<module>features</module>
 		<module>site</module>
 	</modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tychoVersion}</version>
+        <configuration>
+          <environments>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>x86</arch>
+            </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86</arch>
+            </environment>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86</arch>
+            </environment>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+           <!-- Pick up the merged target dependencies of the JBoss Tools core unified target and the full JBoss Tools Integration Stack (with community). -->
+           <target>
+             <artifact>
+               <groupId>org.jboss.tools.integration-stack</groupId>
+               <artifactId>target-platform</artifactId>
+               <version>4.1.1.Final</version>
+               <type>target</type>
+               <classifier>base</classifier>
+             </artifact>
+           </target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
 	
