@@ -12,6 +12,9 @@
 	<name>esb.all</name>
 	<version>1.5.300-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<properties>
+ 		<tycho.scmUrl>scm:git:https://github.com/jbosstools/jbosstools-esb.git</tycho.scmUrl>
+ 	</properties>
 	<modules>
 		<module>plugins</module>
 		<module>tests</module>
