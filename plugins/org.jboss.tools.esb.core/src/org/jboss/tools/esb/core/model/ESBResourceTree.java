@@ -22,20 +22,18 @@ public class ESBResourceTree extends FileSystemResourceTree {
     		FileSystemsImpl fs = (FileSystemsImpl)FileSystemsHelper.getFileSystems(model);
     		if(fs != null) fs.forceUpdate();
     	}
+		ESBUtil.updateModel(model);
     }
 
 	public XModelObject[] getChildren(XModelObject object) {
-		ESBUtil.updateModel(object.getModel());
 		if(object == getRoot()) {
 			XModelObject[] os = object.getChildren();
 			List<XModelObject> list = new ArrayList<XModelObject>();
-			XModelObject r = FileSystemsHelper.getWebRoot(model);
-			if(r != null) {
-				list.add(r);
-			}
-			r = ESBUtil.getESBRoot(model);
-			if(r != null) {
-				list.add(r);
+			for (int i = 0; i < os.length; i++) {
+				String name = os[i].getAttributeValue(XModelObjectConstants.ATTR_NAME);
+				if(name.startsWith(ESBUtil.WEB_ROOT)) {
+					list.add(os[i]);
+				}
 			}
 			for (int i = 0; i < os.length; i++) {
 				String name = os[i].getAttributeValue(XModelObjectConstants.ATTR_NAME);
