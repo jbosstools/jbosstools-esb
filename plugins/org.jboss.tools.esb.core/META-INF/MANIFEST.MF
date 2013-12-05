@@ -6,11 +6,9 @@ Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.jboss.tools.esb.core;singleton:=true
 Bundle-Localization: plugin
-Export-Package: org.jboss.tools.esb.core,
- org.jboss.tools.esb.core.model,
- org.jboss.tools.esb.core.model.converters,
- org.jboss.tools.esb.core.model.handlers,
- org.jboss.tools.esb.core.model.impl
+Export-Package: org.jboss.tools.esb.core,org.jboss.tools.esb.core.mode
+ l,org.jboss.tools.esb.core.model.converters,org.jboss.tools.esb.core.
+ model.handlers,org.jboss.tools.esb.core.model.impl
 Require-Bundle: org.eclipse.core.resources;visibility:=reexport,
  org.jboss.tools.common.model;visibility:=reexport,
  org.eclipse.ui,
@@ -19,5 +17,5 @@ Require-Bundle: org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.wst.common.project.facet.core,
  org.eclipse.wst.common.modulecore,
  org.eclipse.jst.j2ee
-Bundle-Version: 1.5.301.qualifier
+Bundle-Version: 1.5.302.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

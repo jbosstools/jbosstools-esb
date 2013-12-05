@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.jboss.tools.esb.project.core;singleton:=true
-Bundle-Version: 1.5.301.qualifier
+Bundle-Version: 1.5.302.qualifier
 Bundle-Localization: plugin
 Bundle-Activator: org.jboss.tools.esb.core.ESBProjectCorePlugin
 Require-Bundle: org.eclipse.ui,
@@ -34,10 +34,7 @@ Require-Bundle: org.eclipse.ui,
  org.jboss.ide.eclipse.as.core;bundle-version="1.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
-Export-Package: org.jboss.tools.esb.core,
- org.jboss.tools.esb.core.facet,
- org.jboss.tools.esb.core.messages,
- org.jboss.tools.esb.core.module,
- org.jboss.tools.esb.core.runtime,
- org.jboss.tools.esb.core.utils
+Export-Package: org.jboss.tools.esb.core,org.jboss.tools.esb.core.face
+ t,org.jboss.tools.esb.core.messages,org.jboss.tools.esb.core.module,o
+ rg.jboss.tools.esb.core.runtime,org.jboss.tools.esb.core.utils
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

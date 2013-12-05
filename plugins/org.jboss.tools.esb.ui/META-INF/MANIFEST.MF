@@ -5,12 +5,10 @@ Bundle-Name: %pluginName
 Bundle-ClassPath: esb-ui.jar
 Bundle-Activator: org.jboss.tools.esb.ui.ESBUiPlugin
 Bundle-Vendor: %providerName
-Export-Package: org.jboss.tools.esb.ui,
- org.jboss.tools.esb.ui.editor,
- org.jboss.tools.esb.ui.editor.form,
- org.jboss.tools.esb.ui.editor.attribute,
- org.jboss.tools.esb.ui.wizard,
- org.jboss.tools.esb.ui.wizard.newfile
+Export-Package: org.jboss.tools.esb.ui,org.jboss.tools.esb.ui.editor,o
+ rg.jboss.tools.esb.ui.editor.form,org.jboss.tools.esb.ui.editor.attri
+ bute,org.jboss.tools.esb.ui.wizard,org.jboss.tools.esb.ui.wizard.newf
+ ile
 Bundle-SymbolicName: org.jboss.tools.esb.ui; singleton:=true
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.jface.text,
@@ -36,5 +34,5 @@ Require-Bundle: org.eclipse.jface.text,
  org.jboss.tools.common.model.ui,
  org.jboss.tools.common.text.xml,
  org.jboss.tools.esb.core
-Bundle-Version: 1.5.301.qualifier
+Bundle-Version: 1.5.302.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
