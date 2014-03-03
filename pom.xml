@@ -10,7 +10,7 @@
 	<groupId>org.jboss.tools</groupId>
 	<artifactId>esb</artifactId>
 	<name>esb.all</name>
-	<version>1.5.301-SNAPSHOT</version>
+	<version>1.5.401-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
  		<tycho.scmUrl>scm:git:https://github.com/jbosstools/jbosstools-esb.git</tycho.scmUrl>
@@ -66,7 +66,7 @@
                <groupId>org.jboss.tools.integration-stack</groupId>
                <artifactId>target-platform</artifactId>
                <!--  Updated for locus -->
-               <version>4.1.5.Alpha2</version>
+               <version>4.2.0.Alpha1</version>
                <type>target</type>
                <classifier>base</classifier>
              </artifact>
