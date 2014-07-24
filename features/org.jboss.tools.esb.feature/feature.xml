@@ -2,7 +2,7 @@
 <feature
       id="org.jboss.tools.esb.feature"
       label="%featureName"
-      version="1.5.401.qualifier"
+      version="1.5.501.qualifier"
       provider-name="%providerName"
       plugin="org.jboss.tools.esb.ui">
 
@@ -29,8 +29,7 @@
          id="org.jboss.tools.esb.ui"
          download-size="0"
          install-size="0"
-         version="0.0.0"
-         unpack="true"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.jboss.tools.esb.project.core"
@@ -48,6 +47,13 @@
 
    <plugin
          id="org.jboss.tools.esb.validator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.esb.examples"
          download-size="0"
          install-size="0"
          version="0.0.0"
