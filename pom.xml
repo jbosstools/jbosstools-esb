@@ -10,7 +10,7 @@
 	<groupId>org.jboss.tools</groupId>
 	<artifactId>esb</artifactId>
 	<name>esb.all</name>
-	<version>1.5.303-SNAPSHOT</version>
+	<version>1.5.310-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>plugins</module>

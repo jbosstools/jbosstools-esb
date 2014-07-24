@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         name="Legacy ESB examples for Integration Stack"
+         point="org.jboss.tools.project.examples.projectExamplesXml">
+      <experimental>
+         false
+      </experimental>
+      <url>
+         http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/jbtis-esb-project-examples-community-7.1.xml
+      </url>
+   </extension>
+
+</plugin>
