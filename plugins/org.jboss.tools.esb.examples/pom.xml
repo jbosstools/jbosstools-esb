@@ -8,7 +8,7 @@
 		<version>1.5.501-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools.esb.plugins</groupId>
-	<artifactId>org.jboss.tools.esb.validator</artifactId>
+	<artifactId>org.jboss.tools.esb.examples</artifactId>
 	
 	<packaging>eclipse-plugin</packaging>
 </project>
