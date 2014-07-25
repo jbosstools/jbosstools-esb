@@ -9,7 +9,7 @@ As well as to demonstrate the needed  minimal files to make a basic ESB componen
 Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
 		<size>1091736</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/helloworld_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/helloworld_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -31,7 +31,7 @@ Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
   classes. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
 		<size>26581</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/helloworld_action_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/helloworld_action_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -55,7 +55,7 @@ Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
   SOA-P 5.x runtime.</description>
 		<size>26166</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/helloworld_file_action_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/helloworld_file_action_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -78,7 +78,7 @@ Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
     console. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
 		<size>1120442</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/webservice_consumer1_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/webservice_consumer1_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -100,7 +100,7 @@ Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
   JBossESB using the SOAPProcessor action. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
 		<size>54052</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/webservice_producer_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/webservice_producer_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -124,7 +124,7 @@ Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
   the intermediate xml format to the target xml. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
 		<size>13173</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/transform_CSV2XML_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/transform_CSV2XML_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -146,7 +146,7 @@ use of Smooks performing a simple transformation by converting a XML file into
 Java POJOs. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
 		<size>41032</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/transform_XML2POJO_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/transform_XML2POJO_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -175,7 +175,7 @@ Java POJOs. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</descr
   printed to the Java console (message before and after).</description>
 		<size>22429</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/transform_XML2XML_date_manipulation_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/transform_XML2XML_date_manipulation_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -198,7 +198,7 @@ Java POJOs. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</descr
   Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
 		<size>19561</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/transform_XML2XML_simple_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_5_x/transform_XML2XML_simple_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -221,7 +221,7 @@ Example requires a SOA-P 4.3 runtime.</description>
 		<size>1087454</size>
 
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/helloworld_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/helloworld_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -243,7 +243,7 @@ Example requires a SOA-P 4.3 runtime.</description>
   Example requires a SOA-P 4.3 runtime.</description>
 		<size>24456</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/helloworld_action_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/helloworld_action_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -268,7 +268,7 @@ Example requires a SOA-P 4.3 runtime.</description>
   Example requires a SOA-P 4.3 runtime.</description>
 		<size>15140</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/helloworld_file_action_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/helloworld_file_action_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -293,7 +293,7 @@ Example requires a SOA-P 4.3 runtime.</description>
 		<size>1094434</size>
 
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/webservice_consumer1_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/webservice_consumer1_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -315,7 +315,7 @@ Example requires a SOA-P 4.3 runtime.</description>
   Example requires a SOA-P 4.3 runtime.</description>
 		<size>52601</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/webservice_producer_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/webservice_producer_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -338,7 +338,7 @@ Example requires a SOA-P 4.3 runtime.</description>
   Example requires a SOA-P 4.3 runtime.</description>
 		<size>18354</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/transform_CSV2XML_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/transform_CSV2XML_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -362,7 +362,7 @@ Java POJOs.
 Example requires a SOA-P 4.3 runtime.</description>
 		<size>33104</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/transform_XML2POJO_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/transform_XML2POJO_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -393,7 +393,7 @@ Example requires a SOA-P 4.3 runtime.</description>
 
 		<size>20313</size>
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/transform_XML2XML_date_manipulation_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/transform_XML2XML_date_manipulation_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
@@ -417,7 +417,7 @@ Example requires a SOA-P 4.3 runtime.</description>
 		<size>18168</size>
 
 		<url>
-			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/transform_XML2XML_simple_all.zip
+			http://github.com/jbosstools/jbosstools-esb/raw/jbosstools-4.1.x/quickstarts/soa-p_4_3/transform_XML2XML_simple_all.zip
 		</url>
 		<fixes>
 			<fix type="wtpruntime">
