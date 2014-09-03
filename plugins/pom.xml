@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.jboss.tools</groupId>
 		<artifactId>esb</artifactId>
-		<version>1.5.401-SNAPSHOT</version>
+		<version>1.5.510-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools.esb</groupId>
 	<artifactId>plugins</artifactId>
@@ -19,6 +19,7 @@
 		<module>org.jboss.tools.esb.ui</module>
 		<module>org.jboss.tools.esb.validator</module>
 		<module>org.jboss.tools.runtime.esb.detector</module>
+		<module>org.jboss.tools.esb.examples</module>
 	</modules>
 </project>
 	

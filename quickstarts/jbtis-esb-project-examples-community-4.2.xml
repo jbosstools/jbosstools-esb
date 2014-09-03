@@ -1,0 +1,432 @@
+<projects>	
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>helloworld</name>
+		<included-projects>	helloworld,helloworld_testclient </included-projects>
+		<shortDescription>JBoss ESB HelloWorld Example - ESB</shortDescription>
+		<description>This example is to prove that the ESB is is properly configured and happy. 
+As well as to demonstrate the needed  minimal files to make a basic ESB component execute. 
+Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
+		<size>1091736</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/helloworld_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">helloworld,helloworld_testclient</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>	
+	
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>helloworld_action</name>
+		<included-projects>helloworld_action,helloworld_action_client </included-projects>
+		<shortDescription>JBoss ESB HelloWorld Action Example - ESB</shortDescription>
+		<description>This sample is to demonstrate the use of multiple action invocations from a single configuration. You can use
+  a single Action class and make multiple method calls or use multiple Action
+  classes. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
+		<size>26581</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/helloworld_action_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">helloworld_action,helloworld_action_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>
+	
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>helloworld_file_action</name>		
+		<included-projects>helloworld_file_action,helloworld_file_action_client</included-projects>
+		<shortDescription>JBoss ESB HelloWorld File Action Example - ESB</shortDescription>
+		<description>This is a basic example of using the File gateway feature of the JBoss ESB.
+ Files that are found in a particular directory with a particular extension
+  are sent to a JMS queue with actions for processing. Before deploy the project, 
+  please change some properties according to the readme.txt file. Example requires a 
+  SOA-P 5.x runtime.</description>
+		<size>26166</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/helloworld_file_action_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">helloworld_file_action, helloworld_file_action_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>	
+	
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>webservice_consumer1</name>		
+		<included-projects>webservice_consumer1,webservice_consumer1_client</included-projects>
+		<shortDescription>JBoss ESB Web Service consumer1 Example</shortDescription>
+		<description>This example demonstrates how to consume a 181 Web Service in an ESB action.
+    This ESB will make a webservice request that requires a single "toWhom" string parameter.
+    The webservice will return a greeting response. The ESB simply dislays the response on the 
+    console. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
+		<size>1120442</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/webservice_consumer1_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">webservice_consumer1,webservice_consumer1_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>
+
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>webservice_producer</name>		
+		<included-projects>webservice_producer,webservice_producer_client</included-projects>
+		<shortDescription>JBoss ESB Web Service producer Example</shortDescription>
+		<description>This sample demonstrates how to deploy a JSR181 Webservice endpoint on
+  JBossESB using the SOAPProcessor action. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
+		<size>54052</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/webservice_producer_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">webservice_producer, webservice_producer_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>
+
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>transform_CSV2XML</name>
+		<included-projects>transform_CSV2XML,transform_CSV2XML_client</included-projects>		
+		<shortDescription>JBoss ESB Smooks CSV->XML Example</shortDescription>
+		<description>This sample demonstrates how to transform a comma separated value (CSV) file to an xml.
+  The transformation is done by configuring Smooks and performing two transformation, one
+  transformation from CSV to an intermediate xml format, and a second transformation from 
+  the intermediate xml format to the target xml. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
+		<size>13173</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/transform_CSV2XML_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">transform_CSV2XML,transform_CSV2XML_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>transform_XML2POJO</name>
+		<included-projects>transform_XML2POJO,transform_XML2POJO_client</included-projects>				
+		<shortDescription>JBoss ESB Smooks XML->POJO Example</shortDescription>
+		<description>The purpose of the simple_transformation sample is to illustrate the
+use of Smooks performing a simple transformation by converting a XML file into
+Java POJOs. Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
+		<size>41032</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/transform_XML2POJO_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">transform_XML2POJO,transform_XML2POJO_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>transform_XML2XML_date_manipulation</name>
+		<included-projects>transform_XML2XML_date_manipulation,transform_XML2XML_date_manipulation_client</included-projects>						
+		<shortDescription>JBoss ESB Smooks XML->XML date-manipulation Example</shortDescription>
+		<description>This is another simple sample of how to manually define and apply a Message
+  Transformation within JBoss ESB. Example requires a JBoss Enterprise SOA Platform 5.x runtime.   
+
+  This sample is an extension of the "transformation_XML2XML_simple"
+  Quickstart, demonstrating how  JBoss ESB Transformations can simplify your
+  XSLT transformations by combining the power of XSLT with Java.  In this
+  Quickstart, we use Java to perform the ugly string manipulation on the
+  SampleOrder date field (see OrderDate.java) and use XSLT for what it's good at
+  i.e. Templating.  Again, the transformed SampleOrder.xml message is just
+  printed to the Java console (message before and after).</description>
+		<size>22429</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/transform_XML2XML_date_manipulation_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">transform_XML2XML_date_manipulation,transform_XML2XML_date_manipulation_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 5.0</category>
+		<name>transform_XML2XML_simple</name>
+		<included-projects>transform_XML2XML_simple,transform_XML2XML_simple_client</included-projects>								
+		<shortDescription>JBoss ESB Smooks XML->XML Example</shortDescription>
+		<description>This is a very basic sample of how to manually define and apply a Message
+  Transformation within JBoss ESB.  It applies a very simple XSLT to a
+  SampleOrder.xml message and prints the before and after XML to the console.
+  Example requires a JBoss Enterprise SOA Platform 5.x runtime.</description>
+		<size>19561</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_5_x/transform_XML2XML_simple_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.50, org.jboss.ide.eclipse.as.runtime.51</property>
+				<property name="eclipse-projects">transform_XML2XML_simple, transform_XML2XML_simple_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 5.x</property>
+			</fix>
+		</fixes>
+	</project>
+	
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>helloworld</name>
+		<included-projects>	helloworld,helloworld_testclient </included-projects>
+		<shortDescription>JBoss ESB HelloWorld Example - ESB</shortDescription>
+		<description>This example is to prove that the ESB is is properly configured and happy.  
+As well as to demonstrate the needed  minimal files to make a basic ESB component execute.
+Example requires a SOA-P 4.3 runtime.</description>
+		<size>1087454</size>
+
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/helloworld_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">helloworld, helloworld_testclient</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+	</project>	
+	
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>helloworld_action</name>
+		<included-projects>helloworld_action,helloworld_action_client </included-projects>		
+		<shortDescription>JBoss ESB HelloWorld Action Example - ESB</shortDescription>
+		<description>This example is to demonstrate the use of multiple action invocations from a single configuration.  You can use  a single Action class and make multiple method calls or use multiple Action
+  classes.
+  Example requires a SOA-P 4.3 runtime.</description>
+		<size>24456</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/helloworld_action_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">helloworld_action, helloworld_action_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+
+	</project>
+	
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>helloworld_file_action</name>
+		<included-projects>helloworld_file_action,helloworld_file_action_client </included-projects>		
+		<shortDescription>JBoss ESB HelloWorld File Action Example - ESB</shortDescription>
+
+		<description>This is a basic example of using the File gateway feature of the JBoss ESB.
+  Files that are found in a particular directory with a particular extension
+  are sent to a JMS queue with actions for processing. Before deploy the project, please change some properties according to the readme.txt file.
+  Example requires a SOA-P 4.3 runtime.</description>
+		<size>15140</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/helloworld_file_action_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">helloworld_file_action, helloworld_file_action_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+	</project>	
+	
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>webservice_consumer1</name>
+		<included-projects>webservice_consumer1,webservice_consumer1_client </included-projects>				
+		<shortDescription>JBoss ESB Web Service consumer1 Example</shortDescription>
+		<description>This example demonstrates how to consume a 181 Web Service in an ESB action.
+    This ESB will make a webservice request that requires a single "toWhom" string parameter.
+    The webservice will return a greeting response. The ESB simply displays the response on the console.
+    Example requires a SOA-P 4.3 runtime.
+    </description>
+		<size>1094434</size>
+
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/webservice_consumer1_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">webservice_consumer1,webservice_consumer1_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+	</project>
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>webservice_producer</name>
+		<included-projects>webservice_producer,webservice_producer_client </included-projects>						
+		<shortDescription>JBoss ESB Web Service producer Example</shortDescription>
+		<description>This sample demonstrates how to deploy a JSR181 Webservice endpoint on
+  JBossESB using the SOAPProcessor action.
+  Example requires a SOA-P 4.3 runtime.</description>
+		<size>52601</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/webservice_producer_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">webservice_producer, webservice_producer_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+
+	</project>
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>transform_CSV2XML</name>
+		<included-projects>transform_CSV2XML,transform_CSV2XML_client </included-projects>						
+		<shortDescription>JBoss ESB Smooks CSV->XML Example</shortDescription>
+		<description>This sample demonstrates how to transform a comma separated value (CSV) file to an xml.
+  The transformation is done by configuring Smooks and performing two transformation, one transformation from CSV to an intermediate xml format, and a second transformation from the intermediate xml format to the target xml.
+  Example requires a SOA-P 4.3 runtime.</description>
+		<size>18354</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/transform_CSV2XML_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">transform_CSV2XML,transform_CSV2XML_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+	</project>
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>transform_XML2POJO</name>
+		<included-projects>transform_XML2POJO,transform_XML2POJO_client </included-projects>		
+		<shortDescription>JBoss ESB Smooks XML->POJO Example</shortDescription>
+
+		<description>The purpose of the simple_transformation sample is to illustrate the
+use of Smooks performing a simple transformation by converting a XML file into
+Java POJOs.
+Example requires a SOA-P 4.3 runtime.</description>
+		<size>33104</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/transform_XML2POJO_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">transform_XML2POJO,transform_XML2POJO_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+	</project>
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>transform_XML2XML_date_manipulation</name>
+		<included-projects>transform_XML2XML_date_manipulation,transform_XML2XML_date_manipulation_client </included-projects>
+		<shortDescription>JBoss ESB Smooks XML->XML date-manipulation Example</shortDescription>
+		<description>This is another simple sample of how to manually define and apply a Message
+  Transformation within JBoss ESB.  
+
+  This sample is an extension of the "transformation_XML2XML_simple"
+  Quickstart, demonstrating how  JBoss ESB Transformations can simplify your
+  XSLT transformations by combining the power of XSLT with Java.  In this
+  Quickstart, we use Java to perform the ugly string manipulation on the
+  SampleOrder date field (see OrderDate.java) and use XSLT for what it's good at
+  i.e. Templating.  Again, the transformed SampleOrder.xml message is just
+  printed to the Java console (message before and after).
+  Example requires a SOA-P 4.3 runtime.</description>
+
+		<size>20313</size>
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/transform_XML2XML_date_manipulation_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">transform_XML2XML_date_manipulation,transform_XML2XML_date_manipulation_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+	</project>
+
+	<project>
+		<category>ESB for JBoss Enterprise SOA Platform 4.3</category>
+		<name>transform_XML2XML_simple</name>
+		<included-projects>transform_XML2XML_simple,transform_XML2XML_simple_client </included-projects>		
+		<shortDescription>JBoss ESB Smooks XML->XML Example</shortDescription>
+		<description>This is a very basic sample of how to manually define and apply a Message
+  Transformation within JBoss ESB.  It applies a very simple XSLT to a
+  SampleOrder.xml message and prints the before and after XML to the console.
+  Example requires a SOA-P 4.3 runtime.</description>
+		<size>18168</size>
+
+		<url>
+			http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/soa-p_4_3/transform_XML2XML_simple_all.zip
+		</url>
+		<fixes>
+			<fix type="wtpruntime">
+				<property name="allowed-types">org.jboss.ide.eclipse.as.runtime.eap.43</property>
+				<property name="eclipse-projects">transform_XML2XML_simple, transform_XML2XML_simple_client</property>
+				<property name="required-components">esb</property>
+				<property name="description">This project example requires JBoss Enterprise SOA Platform 4.3.0</property>
+			</fix>
+		</fixes>
+	</project>
+	
+</projects>

@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>org.jboss.tools.esb</groupId>
 		<artifactId>plugins</artifactId>
-		<version>1.5.401-SNAPSHOT</version>
+		<version>1.5.510-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools.esb.plugins</groupId>
 	<artifactId>org.jboss.tools.esb.project.ui</artifactId>
-	<version>1.5.401-SNAPSHOT</version>
+	<version>1.5.510-SNAPSHOT</version>
 	
 	<packaging>eclipse-plugin</packaging>
 </project>
