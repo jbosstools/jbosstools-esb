@@ -10,7 +10,7 @@
 	<groupId>org.jboss.tools</groupId>
 	<artifactId>esb</artifactId>
 	<name>esb.all</name>
-	<version>1.5.510-SNAPSHOT</version>
+	<version>1.5.520-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
  		<tycho.scmUrl>scm:git:https://github.com/jbosstools/jbosstools-esb.git</tycho.scmUrl>

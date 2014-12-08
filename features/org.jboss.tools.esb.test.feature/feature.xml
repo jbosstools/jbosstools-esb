@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature id="org.jboss.tools.esb.test.feature" label="JBoss Tools - Tests - ESB" version="1.5.510.qualifier" provider-name="JBoss by RedHat">
+<feature id="org.jboss.tools.esb.test.feature" label="JBoss Tools - Tests - ESB" version="1.5.520.qualifier" provider-name="JBoss by RedHat">
 
    <description url="http://www.jboss.org/tools">
       %description
