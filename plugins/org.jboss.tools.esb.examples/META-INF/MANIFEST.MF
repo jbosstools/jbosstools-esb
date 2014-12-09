@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.jboss.tools.esb.examples;singleton:=true
-Bundle-Version: 1.5.510.qualifier
+Bundle-Version: 1.5.520.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui;bundle-version="[3.7.0,4.3.0)",  
  org.eclipse.core.runtime,
