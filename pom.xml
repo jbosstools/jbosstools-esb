@@ -5,15 +5,17 @@
 	<parent>
 		<groupId>org.jboss.tools</groupId>
 		<artifactId>parent</artifactId>
-		<version>4.2.0.Final-SNAPSHOT</version>
+		<version>4.3.0.Beta1-SNAPSHOT</version>
 	</parent>
 	<groupId>org.jboss.tools</groupId>
 	<artifactId>esb</artifactId>
 	<name>esb.all</name>
-	<version>1.5.700-SNAPSHOT</version>
+	<version>1.6.100-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
- 		<tycho.scmUrl>scm:git:https://github.com/jbosstools/jbosstools-esb.git</tycho.scmUrl>
+           <tycho.scmUrl>scm:git:https://github.com/jbosstools/jbosstools-esb.git</tycho.scmUrl>
+           <!-- JBoss Tools Integration Stack version -->
+           <jbtis.version>4.3.1.Beta1a</jbtis.version>
  	</properties>
 	<modules>
 		<module>plugins</module>
@@ -29,11 +31,6 @@
         <version>${tychoVersion}</version>
         <configuration>
           <environments>
-            <environment>
-              <os>macosx</os>
-              <ws>cocoa</ws>
-              <arch>x86</arch>
-            </environment>
             <environment>
               <os>macosx</os>
               <ws>cocoa</ws>
@@ -60,15 +57,15 @@
               <arch>x86_64</arch>
             </environment>
           </environments>
-           <!-- Pick up the merged target dependencies of the JBoss Tools core unified target and the full JBoss Tools Integration Stack (with community). -->
+	  
+           <!-- Pick up the merged target dependencies of the JBoss Tools core unified target and the base JBoss Tools Integration Stack. -->
            <target>
              <artifact>
                <groupId>org.jboss.tools.integration-stack</groupId>
                <artifactId>target-platform</artifactId>
-               <!--  Updated for locus -->
-               <version>4.2.1.Final</version>
+               <version>${jbtis.version}</version>
                <type>target</type>
-               <classifier>base</classifier>
+               <classifier>base-ea</classifier>
              </artifact>
            </target>
         </configuration>

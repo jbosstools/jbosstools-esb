@@ -8,7 +8,7 @@
          false
       </experimental>
       <url>
-         http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/jbtis-esb-project-examples-community-7.1.xml
+         http://github.com/jbosstools/jbosstools-esb/raw/master/quickstarts/jbtis-esb-project-examples-community.xml
       </url>
    </extension>
 

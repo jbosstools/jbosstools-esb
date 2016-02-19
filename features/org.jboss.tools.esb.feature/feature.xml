@@ -2,7 +2,7 @@
 <feature
       id="org.jboss.tools.esb.feature"
       label="%featureName"
-      version="1.5.700.qualifier"
+      version="1.6.100.qualifier"
       provider-name="%providerName"
       plugin="org.jboss.tools.esb.ui">
 
